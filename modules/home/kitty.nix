@@ -21,6 +21,7 @@
       tab_bar_style powerline
       enabled_layouts splits
       linux_display_server wayland
+      cursor_trail 1
 
       # Clipboard
       map ctrl+shift+v        paste_from_selection
