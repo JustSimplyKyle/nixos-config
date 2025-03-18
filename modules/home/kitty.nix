@@ -20,6 +20,7 @@
       tab_bar_margin_width 0.0
       tab_bar_style powerline
       enabled_layouts splits
+      linux_display_server wayland
 
       # Clipboard
       map ctrl+shift+v        paste_from_selection
