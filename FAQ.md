@@ -279,6 +279,13 @@ To change the hostname, there are several steps and you will have to reboot to m
    ```
  3. Change it to `false`
  4. Run the command alias `fr` to create a new generation. 
+
+ ## My cursor in Kitty is "janky" and it jumps around. How do I fix that? 
+
+ - That feature is called "cursor_trail" in the `~/zaneyos/modules/home/kitty.nix` file. 
+
+  1. Edit that file and change the `cursor_trail 1` to `cursor_trail 0` or comment out that line.
+  2. Use the command alias `fr` to create a new generation with the change. 
   
 
 ## How do I update my version ZaneyOS ? 
