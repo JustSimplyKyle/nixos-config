@@ -131,6 +131,60 @@ If the rebuild completes successfully, a new generation with your added packages
 
 - Use the `fr` Flake Rebuild alias. If you **created a new file** please note you will need to run a `git add .` command in the zaneyos folder. If successful, a new generation will be generated with your changes. A logout or reboot could be required depending on what you changed. 
 
+## How can I configure a different kernel on a specific host? 
+1. You have to edit the `hardware.nix` file for that host in `~/zaneyos/hosts/HOSTNAME/hardware.nix` and override the default.
+2. Near the top you will find this section of the `hardware.nix` file.  
+``` 
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
+
+```
+3.  Add the override. E.g. to set the kernel to 6.12. 
+- `boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;`  
+
+4.  The updated code should look like this: 
+```
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc"];
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
+
+```
+5.  Use the command alias `fr` to create a new generation and reboot to take effect. 
+
+
+### What are the major Kernel options in NixOS?
+NixOS offers several major kernel types to cater to different needs and preferences. Below are the available options, excluding specific kernel versions:
+
+1. **`linuxPackages`**  
+   - The default stable kernel, typically an LTS (Long-Term Support) version.
+
+2. **`linuxPackages_latest`**  
+   - The latest mainline kernel, which may include newer features but could be less stable.
+
+3. **`linuxPackages_zen`**  
+   - A performance-optimized kernel with patches aimed at improving responsiveness and interactivity. Commonly used by gamers and desktop users.
+
+4. **`linuxPackages_hardened`**  
+   - A security-focused kernel with additional hardening patches for enhanced protection.
+
+5. **`linuxPackages_rt`**  
+   - A real-time kernel designed for low-latency and time-sensitive applications, such as audio production or robotics.
+
+6. **`linuxPackages_libre`**  
+   - A kernel stripped of proprietary firmware and drivers, adhering to free software principles.
+
+7. **`linuxPackages_xen_dom0`**  
+   - A kernel tailored for running as the host (dom0) in Xen virtualization environments.
+
+8. **`linuxPackages_mptcp`**  
+   - A kernel with support for Multipath TCP, useful for advanced networking scenarios.
+
+---
+
 ## I have older generations I want to delete, how can I do that? 
 
 - The `ncg` NixOS Clean Generations alias will remove **ALL** but the most current generation. Make sure you have booted from that generation before using this alias. There is also a schedule that will remove older generations automatically over time. 
