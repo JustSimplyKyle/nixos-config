@@ -1,6 +1,5 @@
 {
   host,
-  username,
   config,
   ...
 }: let
@@ -8,6 +7,7 @@
     (import ../../../hosts/${host}/variables.nix)
     extraMonitorSettings
     keyboardLayout
+    stylixImage
     ;
 in {
   wayland.windowManager.hyprland = {
@@ -21,7 +21,7 @@ in {
         "nm-applet --indicator"
         "lxqt-policykit-agent"
         "pypr &"
-        "sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg"
+        "sleep 1.5 && swww img ${stylixImage}"
       ];
 
       input = {
@@ -83,7 +83,7 @@ in {
         };
       };
 
-       cursor = {
+      cursor = {
         sync_gsettings_theme = true;
         no_hardware_cursors = 2; # change to 1 if want to disable
         enable_hyprcursor = false;
@@ -91,18 +91,17 @@ in {
         no_warps = true;
       };
 
-        render = {
+      render = {
         explicit_sync = 1; # Change to 1 to disable
         explicit_sync_kms = 1;
         direct_scanout = 0;
       };
 
       master = {
-         new_status = "master";
-         new_on_top = 1;
-         mfact = 0.5;
+        new_status = "master";
+        new_on_top = 1;
+        mfact = 0.5;
       };
-
 
       animations = {
         enabled = true;
