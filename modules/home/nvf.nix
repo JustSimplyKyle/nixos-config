@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  lib,
   ...
 }: {
   imports = [inputs.nvf.homeManagerModules.default];
@@ -76,12 +77,12 @@
         }
       ];
 
-      theme = {
-        enable = false;
-        name = "dracula";
-        style = "dark";
-        transparent = true;
-      };
+      # theme = {
+      #   enable = lib.mkForce false;
+      #   name = "dracula";
+      #   style = "dark";
+      #   transparent = true;
+      # };
 
       telescope.enable = true;
 
