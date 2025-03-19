@@ -9,10 +9,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nvf.url = "github:notashelf/nvf";
     stylix.url = "github:danth/stylix";
-    yazi = {
-      url = "github:sxyazi/yazi";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
