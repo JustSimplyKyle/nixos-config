@@ -39,7 +39,6 @@
     inxi # CLI System Information Tool
     killall # For Killing All Instances Of Programs
     libnotify # For Notifications
-    libvirt # Needed For Virtualisation Support
     lm_sensors # Used For Getting Hardware Temps
     lolcat # Add Colors To Your Terminal Command Output
     lshw # Detailed Hardware Information
@@ -59,7 +58,6 @@
     unzip # Tool For Handling .zip Files
     usbutils # Good Tools For USB Devices
     v4l-utils # Used For Things Like OBS Virtual Camera
-    virt-viewer # View Virtual Machines
     wget # Tool For Fetching Files With Links
     ytmdl # Tool For Downloading Audio From YouTube
     inputs.yazi.packages.${pkgs.system}.yazi #TUI File Manager
