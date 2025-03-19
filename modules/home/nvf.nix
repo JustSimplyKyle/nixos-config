@@ -1,7 +1,6 @@
 {
   inputs,
   config,
-  lib,
   ...
 }: {
   imports = [inputs.nvf.homeManagerModules.default];
@@ -13,6 +12,7 @@
       vimAlias = true;
       viAlias = true;
       withNodeJs = true;
+      useSystemClipboard = true;
 
       options = {
         tabstop = 2;
@@ -76,13 +76,6 @@
           desc = "Move right in insert mode";
         }
       ];
-
-      # theme = {
-      #   enable = lib.mkForce false;
-      #   name = "dracula";
-      #   style = "dark";
-      #   transparent = true;
-      # };
 
       telescope.enable = true;
 
