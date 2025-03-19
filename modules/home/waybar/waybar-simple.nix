@@ -28,11 +28,16 @@ in
             "hyprland/window"
           ];
           modules-right = [
+            "custom/arrow4"
             "custom/hyprbindings"
+            "custom/arrow3"
             "custom/notification"
+            "custom/arrow3"
             "custom/exit"
             "battery"
+            "custom/arrow2"
             "tray"
+            "custom/arrow1"
             "clock"
           ];
 
@@ -204,8 +209,8 @@ in
       style = concatStrings [
         ''
           * {
-            font-family: Montserrat;
-            font-size: 12px;
+            font-family: JetBrainsMono Nerd Font Mono;
+            font-size: 14px;
             border-radius: 0px;
             border: none;
             min-height: 0px;
@@ -216,13 +221,14 @@ in
           }
           #workspaces button {
             padding: 0px 5px;
-            background: #${config.lib.stylix.colors.base08};
+            background: transparent;
+            color: #${config.lib.stylix.colors.base04};
           }
           #workspaces button.active {
-            color: #${config.lib.stylix.colors.base09};
+            color: #${config.lib.stylix.colors.base08};
           }
           #workspaces button:hover {
-            color: #${config.lib.stylix.colors.base09};
+            color: #${config.lib.stylix.colors.base08};
           }
           tooltip {
             background: #${config.lib.stylix.colors.base00};
@@ -241,28 +247,54 @@ in
             color: #${config.lib.stylix.colors.base00};
           }
           #custom-startmenu {
-            color: #${config.lib.stylix.colors.base0B};
-            padding: 0px 10px;
-            font-size: 19px;
-            background: #${config.lib.stylix.colors.base02};
+            color: #${config.lib.stylix.colors.base02};
+            padding: 0px 14px;
+            font-size: 20px;
+            background: #${config.lib.stylix.colors.base0B};
           }
           #custom-hyprbindings, #network, #battery,
-          #custom-notification, #tray, #custom-exit {
+          #custom-notification, #custom-exit {
             background: #${config.lib.stylix.colors.base0F};
             color: #${config.lib.stylix.colors.base00};
             padding: 0px 10px;
           }
+          #tray {
+            background: #${config.lib.stylix.colors.base02};
+            color: #${config.lib.stylix.colors.base00};
+            padding: 0px 10px;
+          }
           #clock {
+            font-weight: bold;
             padding: 0px 10px;
             color: #${config.lib.stylix.colors.base00};
             background: #${config.lib.stylix.colors.base0E};
           }
-          #custom-arrow6 {
+          #custom-arrow1 {
+            font-size: 24px;
+            color: #${config.lib.stylix.colors.base0E};
+            background: #${config.lib.stylix.colors.base02};
+          }
+          #custom-arrow2 {
             font-size: 24px;
             color: #${config.lib.stylix.colors.base02};
+            background: #${config.lib.stylix.colors.base0F};
+          }
+          #custom-arrow3 {
+            font-size: 24px;
+            color: #${config.lib.stylix.colors.base00};
+            background: #${config.lib.stylix.colors.base0F};
+          }
+          #custom-arrow4 {
+            font-size: 24px;
+            color: #${config.lib.stylix.colors.base0F};
             background: transparent;
           }
           #custom-arrow6 {
+            font-size: 24px;
+            color: #${config.lib.stylix.colors.base0B};
+            background: #${config.lib.stylix.colors.base04};
+          }
+          #custom-arrow7 {
             font-size: 24px;
             color: #${config.lib.stylix.colors.base04};
             background: transparent;

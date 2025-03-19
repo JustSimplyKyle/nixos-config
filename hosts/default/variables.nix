@@ -29,8 +29,8 @@
   stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 
   # Set Waybar
-  # Zaneyos includes an alternate waybar-ddubs.nix
-  waybarChoice = ../../modules/home/waybar.nix;
+  # Includes alternates such as waybar-simple.nix & waybar-ddubs.nix
+  waybarChoice = ../../modules/home/waybar/waybar.nix;
 
   # Set Animation style
   # Available options are:
