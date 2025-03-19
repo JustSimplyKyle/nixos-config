@@ -77,7 +77,7 @@
       ];
 
       theme = {
-        enable = true;
+        enable = false;
         name = "dracula";
         style = "dark";
         transparent = true;
@@ -129,7 +129,7 @@
       statusline = {
         lualine = {
           enable = true;
-          theme = "dracula";
+          theme = "base16";
         };
       };
 

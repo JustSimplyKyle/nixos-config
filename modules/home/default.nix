@@ -30,7 +30,6 @@ in {
     ./xdg.nix
     ./yazi
     ./zoxide.nix
-    ./zsh.nix
-    ./zshrc-personal.nix
+    ./zsh
   ];
 }
