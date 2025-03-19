@@ -13,6 +13,11 @@
   ];
   wayland.windowManager.hyprland = {
     enable = true;
+    package = pkgs.hyprland;
+    systemd = {
+      enableXdgAutostart = true;
+      variables = ["--all"];
+    };
     xwayland = {
       enable = true;
     };
