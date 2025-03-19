@@ -26,8 +26,8 @@
         "break"
         {
           type = "os";
-          key = "OS - ZaneyOS v2.3"; 
-          keyColor = "31";  
+          key = "OS - ZaneyOS v2.3";
+          keyColor = "31";
         }
         {
           type = "kernel";
@@ -106,12 +106,12 @@
         }
         {
           type = "monitor";
-          key = " └  ";
+          key = " ├  ";
           keyColor = "33";
         }
         {
           type = "player";
-          key = "└ 󰥠 ";
+          key = " ├ 󰥠 ";
           keyColor = "33";
         }
         {
@@ -128,4 +128,3 @@
     };
   };
 }
-
