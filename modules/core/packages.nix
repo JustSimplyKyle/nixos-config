@@ -4,11 +4,10 @@
   ...
 }: {
   programs = {
-    firefox.enable = false; # Firefox is not installed by defualt
+    firefox.enable = false; # Firefox is not installed by default
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
-    virt-manager.enable = true;
     mtr.enable = true;
     adb.enable = true;
     gnupg.agent = {
