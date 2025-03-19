@@ -10,18 +10,18 @@
       scrollback_lines = 10000;
       enable_audio_bell = false;
       mouse_hide_wait = 60;
+      linux_display = "wayland";
+      cursor_trail = 1;
+      tab_fade = 1;
+      active_tab_font_style = "bold";
+      inactive_tab_font_style = "bold";
+      tab_bar_edge = "top";
+      tab_bar_margin_width = 0;
+      tab_bar_style = "powerline";
+      #tab_bar_style = "fade";
+      enabled_layouts = "splits";
     };
     extraConfig = ''
-      tab_bar_style fade
-      tab_fade 1
-      active_tab_font_style   bold
-      inactive_tab_font_style bold
-      tab_bar_edge top
-      tab_bar_margin_width 0.0
-      tab_bar_style powerline
-      enabled_layouts splits
-      linux_display_server wayland
-      cursor_trail 1
 
       # Clipboard
       map ctrl+shift+v        paste_from_selection
