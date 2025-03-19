@@ -2,6 +2,7 @@
   inherit (import ../../hosts/${host}/variables.nix) waybarChoice;
 in {
   imports = [
+    ./amfora.nix
     ./bash.nix
     ./bashrc-personal.nix
     ./bat.nix
@@ -22,6 +23,7 @@ in {
     ./scripts
     ./starship.nix
     ./stylix.nix
+    ./swappy.nix
     ./swaync.nix
     ./virtmanager.nix
     waybarChoice
