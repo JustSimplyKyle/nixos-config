@@ -38,4 +38,7 @@
   # animations-end4.nix (end-4 project)
   # animations-dynamic.nix (ml4w project)
   animChoice = ../../modules/home/hyprland/animations-end4.nix;
+
+  # Enable Thunar GUI File Manager
+  thunarEnable = false;
 }

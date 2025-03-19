@@ -11,18 +11,9 @@
     virt-manager.enable = true;
     mtr.enable = true;
     adb.enable = true;
-
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-    };
-
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
     };
   };
 
@@ -39,7 +30,6 @@
     duf # Utility For Viewing Disk Usage In Terminal
     eza # Beautiful ls Replacement
     ffmpeg # Terminal Video / Audio Editing
-    ffmpegthumbnailer # Need For Video / Image Preview
     file-roller # Archive Manager
     gedit # Simple Graphical Text Editor
     gimp # Great Photo Editor
@@ -73,6 +63,6 @@
     virt-viewer # View Virtual Machines
     wget # Tool For Fetching Files With Links
     ytmdl # Tool For Downloading Audio From YouTube
-    inputs.yazi.packages.${pkgs.system}.yazi #TUI FileMgr
+    inputs.yazi.packages.${pkgs.system}.yazi #TUI File Manager
   ];
 }
