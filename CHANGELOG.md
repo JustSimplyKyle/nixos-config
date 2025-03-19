@@ -82,3 +82,5 @@ has been improved.
 - Added image used by Stylix into the host variables file.
 - Made printing and NFS variables so they can be easily toggled between hosts.
 - Added waybar styling choice.
+- Moved to hyprpolkitagent and fixed qt theming.
+- Stylix options that I wanted forced us back on the unstable branch.
