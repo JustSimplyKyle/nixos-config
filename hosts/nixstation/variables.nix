@@ -31,4 +31,11 @@
   # Set Waybar
   # Zaneyos includes an alternate waybar-ddubs.nix
   waybarChoice = ../../modules/home/waybar-simple.nix;
+
+  # Set Animation style
+  # Available options are:
+  # animations-def.nix  (default)
+  # animations-end4.nix (end-4 project)
+  # animations-dynamic.nix (ml4w project)
+  animChoice = ../../modules/home/hyprland/animations-def.nix;
 }
