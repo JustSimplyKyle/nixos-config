@@ -1,6 +1,6 @@
 # ZaneyOS FAQ for v2.3 
-- **Revision v1.04**  
-- **Date:** 18-Mar-2025
+- **Revision v1.05**  
+- **Date:** 19-Mar-2025
 
 ## Why did you create ZaneyOS ?
  
@@ -422,7 +422,8 @@ The defaults are:
     map ctrl+shift+h         show_scrollback
 
     # Window management
-    map alt+n               new_os_window
+    map alt+n               new_window_with_cwd      #Opens new window in current directory
+    #map alt+n               new_os_window           #Opens new window in $HOME dir
     map alt+w               close_window
     map ctrl+shift+enter    launch --location=hsplit
     map ctrl+shift+s        launch --location=vsplit
