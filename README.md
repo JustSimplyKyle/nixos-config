@@ -12,7 +12,9 @@ This includes the wallpaper, scripts, applications, config files, and more.
 
 <img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/demo-img2.png" />
 
+**Third waybar option**
 
+<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/demo-img3.png" />
 
 </div>
 
