@@ -1,10 +1,13 @@
 # ZaneyOS FAQ for v2.3 
-- **Revision v1.05**  
-- **Date:** 19-Mar-2025
+- **Revision v1.06**  
+- **Date:** 20-Mar-2025
 
 ## Why did you create ZaneyOS ?
  
-Orginally, it was simply my configuration saved on a GIT repository. It was there to promote NixOS and Hyprland. Providing a stable, working configuration.  It has never been intended as a full NixOS distro.  The `ZaneyOS` was an inside joke among friends.  The intent is this can be used as a daily driver, play games via steam, and be modified to fit your needs. 
+Orginally, it was simply my configuration saved on a GIT repository. It was there to promote NixOS and Hyprland. Providing a stable, 
+working configuration.  It has never been intended as a full NixOS distro.  The `ZaneyOS` name is an inside joke among friends. The intent is this can be used as a daily driver, play games via steam, and be modified to fit your needs.  That is the key take away.
+Ideally you will fork ZaneyOS, modify it to your needs. If you find an issue and fix it, or provide a new feature we hope that
+you will share that with us also.  ZaneyOS is not a distro. At this time there are no plans to create an install ISO. 
 
 ## How do I change the Timezone? 
 
