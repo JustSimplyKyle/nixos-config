@@ -185,7 +185,7 @@ in
         ''
           * {
             font-family: JetBrainsMono Nerd Font Mono;
-            font-size: 14px;
+            font-size: 18px;
             border-radius: 0px;
             border: none;
             min-height: 0px;
@@ -247,20 +247,20 @@ in
             border-radius: 8px 8px 8px 8px;
           }
           #idle_inhibitor {
-          font-size: 24px;
+          font-size: 28px;
           }
           #custom-startmenu {
             color: #${config.lib.stylix.colors.base0B};
             background: #${config.lib.stylix.colors.base02};
-            font-size: 24px;
+            font-size: 22px;
             margin: 0px;
             padding: 0px 5px 0px 5px;
             border-radius: 16px 16px 16px 16px;
           }
           #custom-hyprbindings, #network, #battery,
           #custom-notification, #tray, #custom-exit {
-            font-weight: bold;
-            font-size: 22px;
+            /* font-weight: bold; */
+            font-size: 20px;
             background: #${config.lib.stylix.colors.base00};
             color: #${config.lib.stylix.colors.base08};
             margin: 4px 0px;
