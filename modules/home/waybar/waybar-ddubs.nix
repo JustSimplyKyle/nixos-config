@@ -246,17 +246,21 @@ in
             color: #${config.lib.stylix.colors.base08};
             border-radius: 8px 8px 8px 8px;
           }
+          #idle_inhibitor {
+          font-size: 24px;
+          }
           #custom-startmenu {
             color: #${config.lib.stylix.colors.base0B};
             background: #${config.lib.stylix.colors.base02};
-            font-size: 30px;
+            font-size: 24px;
             margin: 0px;
-            padding: 0px 15px 0px 15px;
+            padding: 0px 5px 0px 5px;
             border-radius: 16px 16px 16px 16px;
           }
           #custom-hyprbindings, #network, #battery,
           #custom-notification, #tray, #custom-exit {
             font-weight: bold;
+            font-size: 22px;
             background: #${config.lib.stylix.colors.base00};
             color: #${config.lib.stylix.colors.base08};
             margin: 4px 0px;
@@ -266,10 +270,11 @@ in
           }
           #clock {
             font-weight: bold;
+            font-size: 16px;
             color: #0D0E15;
             background: linear-gradient(90deg, #${config.lib.stylix.colors.base0B}, #${config.lib.stylix.colors.base02});
             margin: 0px;
-            padding: 0px 15px 0px 15px;
+            padding: 0px 5px 0px 5px;
             border-radius: 16px 16px 16px 16px;
           }
         ''
