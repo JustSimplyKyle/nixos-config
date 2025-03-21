@@ -181,7 +181,7 @@ If the rebuild completes successfully, a new generation with your added packages
 NixOS offers several major kernel types to cater to different needs and preferences. Below are the available options, excluding specific kernel versions:
 
 1. **`linuxPackages`**  
-   - The default stable kernel, typically an LTS (Long-Term Support) version.
+   - The default stable kernel, typically an LTS (Long-Term Support) version. LTS in 25.05 (warbler) is 6.12.x  Older kernels, 6.6.x, 6.8.x are not supported.
 
 2. **`linuxPackages_latest`**  
    - The latest mainline kernel, which may include newer features but could be less stable.
