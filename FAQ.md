@@ -53,7 +53,7 @@ Edit the `extraMonitorSettings` line.
 - Single Monitor: 
 	    `extraMonitorSettings = "monitor=eDP-1,1920x1080@60,auto,1";`
 - Multiple Monitors:
-            `extraMonitorSettins = "
+            `extraMonitorSettings = "
             monitor=eDP-1,1920x1080@60,auto,auto
             monitor=HDMI-A-1,2560x1440@75,auto,auto
             ";` 
