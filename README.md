@@ -125,7 +125,7 @@ sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)
 
 #### Then after login you should see a screen like this:
 
-![Desktop Example](img/4.jpg)
+![Desktop Example](img/initial-session.png)
 
 #### 🦽 Manual:
 
