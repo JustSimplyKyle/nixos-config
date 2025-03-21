@@ -127,6 +127,18 @@ sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)
 
 ![Desktop Example](img/initial-session.png)
 
+### Helpful Keybinds
+
+- SUPER key + ENTER           -- Launches a terminal 
+- SUPER key + SHIFT + ENTER   -- Launches menu 
+- SUPER key + W               -- Launches Web browser
+- SUPER key + Y               -- Launch YAZI file Manager
+- SUPER key + ALT + W         -- Change wallpaper 
+- SUPER key + F               -- Fullscreen current app 
+- SUPER key + SHIFT + F       -- Toggle floating
+- SUPER key + Q               -- Close current window
+- SUPER key + SHIFT + C       -- Exit Hyprland
+
 #### 🦽 Manual:
 
 1. Run this command to ensure Git & Vim are installed:
