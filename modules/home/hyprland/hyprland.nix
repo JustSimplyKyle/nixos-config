@@ -103,7 +103,9 @@ in {
         key_press_enables_dpms = false;
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
-      };
+        enable_swallow = false;
+      };  
+
 
       dwindle = {
         pseudotile = true;
