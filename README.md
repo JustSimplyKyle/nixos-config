@@ -28,8 +28,9 @@ This includes the wallpaper, scripts, applications, config files, and more.
 
 - You must be running on NixOS, version 23.11+. 
 - The zaneyos folder (this repo) is expected to be in your home directory.
-- Must have installed using **GPT** & **UEFI**. Systemd-boot is what is supported, for
-  GRUB you will have to brave the internet for a how-to. ☺️
+- Must have installed using **GPT** & **UEFI**. 
+- ** Note: `/boot`must be at least 500MB **
+- Systemd-boot is what is supported, for GRUB you will have to brave the internet for a how-to. ☺️
 - Manually editing your host specific files. The host is the specific computer
   your installing on.
 
