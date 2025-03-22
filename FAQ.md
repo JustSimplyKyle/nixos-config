@@ -1,21 +1,28 @@
 # ZaneyOS FAQ for v2.3 
-- **Revision v1.06**  
-- **Date:** 20-Mar-2025
+- **Revision v1.07**  
+- **Date:** 21-Mar-2025
+<details>
 
-## Why did you create ZaneyOS ?
+<summary><strong> Why did you create ZaneyOS ? </strong></summary>
  
 Orginally, it was simply my configuration saved on a GIT repository. It was there to promote NixOS and Hyprland. Providing a stable, 
 working configuration.  It has never been intended as a full NixOS distro.  The `ZaneyOS` name is an inside joke among friends. The intent is this can be used as a daily driver, play games via steam, and be modified to fit your needs.  That is the key take away.
 Ideally you will fork ZaneyOS, modify it to your needs. If you find an issue and fix it, or provide a new feature we hope that
 you will share that with us also.  ZaneyOS is not a distro. At this time there are no plans to create an install ISO. 
 
-## How do I change the Timezone? 
+</details>
+
+<details>
+<summary><strong>How do I change the Timezone? </strong></summary>
 
 1. In the file, `~/zaneyos/modules/core/system.nix`  
 2. Edit the line:  time.timeZone = "America/New_York"; 
 3. Save the file and rebuild using the `fr` alias.
-   
-## How do I change the monitor settings? 
+
+</details>   
+
+<details>
+<summary><strong>How do I change the monitor settings? </strong></summary>
 
  Monitor settings are in the file:  `~/zaneyos/hosts/<HOSTNAME>/variables.nix`
 
@@ -77,8 +84,10 @@ Once you have that done.  Run the command alias `fr` to build a new generation t
 
 More information on configuring monitors is available on the [Hyprland Wiki](https://wiki.hyprland.org/Configuring/Monitors/)
 
+</details>
 
-##  How do I add applications to ZaneyOS? 
+<details>
+<summary><strong>How do I add applications to ZaneyOS? </strong></summary>
 
 ###  There are two options. One for all hosts you have, another for a specific host.
 
@@ -138,21 +147,34 @@ The part of the file you need to edit, looks like this:
     
 You can add additional packages, or for example change `discord` to `discord-canary` to get the beta version of Discord but only on this host. 
 
-## I added the package names, now how do I install them ? 
+</details>
+
+<details>
+ <summary><strong> I added the package names, now how do I install them ? </strong></summary>
 
 - Use the `fr`,  Flake Rebuild  alias. 
 
 If the rebuild completes successfully, a new generation with your added packages will be created. 
 
-## How do I update the packages I've already installed? 
+</details>
+
+<details>
+<summary><strong> How do I update the packages I've already installed? </strong></summary>
 
 - Use the `fu`, Flake Update alias. This will check for updated packages, download and install them.
 
-## I made a change to my ZaneyOS configuration, how do I activate it? 
+</details>
+
+<details>
+<summary><strong> I made a change to my ZaneyOS configuration, how do I activate it? </strong></summary>
 
 - Use the `fr` Flake Rebuild alias. If you **created a new file** please note you will need to run a `git add .` command in the zaneyos folder. If successful, a new generation will be generated with your changes. A logout or reboot could be required depending on what you changed. 
 
-## How can I configure a different kernel on a specific host? 
+</details>
+
+<details>
+<summary><strong> How can I configure a different kernel on a specific host? </strong></summary>
+
 1. You have to edit the `hardware.nix` file for that host in `~/zaneyos/hosts/HOSTNAME/hardware.nix` and override the default.
 2. Near the top you will find this section of the `hardware.nix` file.  
 ``` 
@@ -176,8 +198,11 @@ If the rebuild completes successfully, a new generation with your added packages
 ```
 5.  Use the command alias `fr` to create a new generation and reboot to take effect. 
 
+</details>
 
-### What are the major Kernel options in NixOS?
+<details>
+
+<summary><strong> What are the major Kernel options in NixOS? </strong></summary>
 NixOS offers several major kernel types to cater to different needs and preferences. Below are the available options, excluding specific kernel versions:
 
 1. **`linuxPackages`**  
@@ -204,13 +229,19 @@ NixOS offers several major kernel types to cater to different needs and preferen
 8. **`linuxPackages_mptcp`**  
    - A kernel with support for Multipath TCP, useful for advanced networking scenarios.
 
----
+</details>
 
-## I have older generations I want to delete, how can I do that? 
+<details>
+
+<summary><strong>  I have older generations I want to delete, how can I do that? </strong></summary>
 
 - The `ncg` NixOS Clean Generations alias will remove **ALL** but the most current generation. Make sure you have booted from that generation before using this alias. There is also a schedule that will remove older generations automatically over time. 
 
-## How do I change the hostname?  
+</details>
+
+<details>
+
+<summary><strong> How do I change the hostname?  </strong></summary>
 
 To change the hostname, there are several steps and you will have to reboot to make the change effective. 
 
@@ -226,7 +257,11 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 4.  Use the `fr` alias to create a new generation with the new hostname.  You must reboot to make the change effective. 
 
-## How do I enable or disable Stylix? 
+</details>
+
+<details>
+ 
+<summary><strong> How do I enable or disable Stylix?  </strong></summary>
 
 - To Enable:  
 1. Edit the `~/zaneyos/modules/core/stylix.nix` file.  
@@ -295,7 +330,10 @@ To change the hostname, there are several steps and you will have to reboot to m
 ```
 3. Run the `fr`command alias to build a new generation with either the default dracula or set your own custom colors
 
-## How do I change the image for Stylix? 
+</details>
+
+<details>
+ <summary><strong> How do I change the image Stylix uses to theme with?  </strong></summary>
 
 1. Edit the `~/zaneyos/hosts/HOSTNAME/varibles.nix` 
 2. Change the `stylixImage = ` to the filename you want to use. Wallpapers are in `~/zaneyos/wallpapers`
@@ -303,16 +341,28 @@ To change the hostname, there are several steps and you will have to reboot to m
 ``` # Set Stylix Image
   stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 ```
+</details>
 
-## How do I add more wallpapers? 
+<details>
+
+<summary><strong>  How do I add more wallpapers? </strong></summary>
 
 - Wallpapers are stored in the `~/zaneyos/wallpapers` directory.  
+- Simply copy the new ones to that diretory. 
 
-## How do I change the background? 
+</details>
+
+<details>
+
+<summary><strong> How do I change the background? </strong></summary>
 
 - SUPER + ALT + W will select a new background 
 
-## How can I set a timer to change the wallpaper automatically? 
+</details>
+
+<details>
+
+<summary><strong>  How can I set a timer to change the wallpaper automatically?  </strong></summary>
 
 1. Edit the `~/zaneyos/modules/home/hyprland/config.nix` file. 
 2. Comment out the line `sleep 1.5 && swww img ...`
@@ -336,14 +386,22 @@ To change the hostname, there are several steps and you will have to reboot to m
 4.  Run the command alias `fr` to create a new generation.  
 5.  You will need to logout or reboot to make the change effective.
 
-## How do I change the interval the wallpaper changes? 
+</details>
+
+<details>
+
+<summary><strong>  How do I change the interval the wallpaper changes?  </strong></summary>
 
 1.  Edit the `~/zaneyos/modules/home/scripts/wallsetter`  
 2.  Change the `TIMEOUT = ` value. Which is in seconds. 
 3.  Run the command alias `fr` to create a new generation.  
 4.  You will need to logout or reboot to make the change effective. 
 
-## How do I disable the spinning snowflake at startup? 
+</details>
+
+<details>
+
+<summary><strong> How do I disable the spinning snowflake at startup? </strong></summary>
 
 1.  Edit the `~/zaneyos/modules/core/boot.nix` file.
 2.  Look for: 
@@ -355,17 +413,24 @@ To change the hostname, there are several steps and you will have to reboot to m
  3. Change it to `false`
  4. Run the command alias `fr` to create a new generation. 
 
- ## My cursor in Kitty is "janky" and it jumps around. How do I fix that? 
+</details>
+
+<details>
+
+<summary><strong> My cursor in Kitty is "janky" and it jumps around. How do I fix that?  </strong></summary>
 
  - That feature is called "cursor_trail" in the `~/zaneyos/modules/home/kitty.nix` file. 
 
   1. Edit that file and change the `cursor_trail 1` to `cursor_trail 0` or comment out that line.
   2. Use the command alias `fr` to create a new generation with the change. 
   
+</details>
 
-## How do I update my version ZaneyOS ? 
+<details>
+<summary><strong> I update my version ZaneyOS ?  </strong></summary>
 
-###  For versions v2.3+ 
+<details>
+<summary> For versions v2.3+ </summary>
 
 1. First backup your existing  `zaneyos` directory.
 
@@ -387,8 +452,10 @@ To change the hostname, there are several steps and you will have to reboot to m
 5. In the `zaneyos` directory run `git add .` when you have finished copying your host(s).  
 
 6. For any other changes you've made. For example: hyprland keybinds, waybar config, if you added additional packages to the `modules/packages.nix` file.  Those you will have to manually merge back into the new version. 
+</details>
 
-### For versions v2.0->2.2
+<details>
+ <summary> For versions v2.0->2.2 </summary>
 
 1. First backup your existing  `zaneyos` directory.  e.g. `cp -r ~/zaneyos ~/zaneyos-backup`
  
@@ -398,7 +465,10 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 4. Once the build completes and you have rebooted you can review the new layout and decide what if any changes you made on the earlier version can be migrated to v2.3.
 
-### For version v1.x 
+</details>
+
+<details>
+ <summary> For version v1.x </summary>
 
 1. The layout and configuration are completely different. Virtually noting from 1.x is applicable to v2.3.
 
@@ -406,11 +476,19 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 3. Run the `./install-zaneyos.sh` script and follow the new install instructions. 
 
-## How do I know when a new version of ZaneyOS is released? 
+</details>
+
+</details>
+
+<details>
+<summary><strong> How do I know when a new version of ZaneyOS is released? </strong></summary>
 
 It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
-## How do I configure my hybrid laptop with Intel/NVIDIA GPUs? 
+</details>
+
+<details>
+ <summary><strong> How do I configure my hybrid laptop with Intel/NVIDIA GPUs?  </strong></summary>
 
 1. Either run the `install-zaneyos.sh` script and select `nvidia-laptop` template or if configuring manually, set the template in the `flake.nix` to `nvidia-prime`  
 
@@ -420,7 +498,10 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 4. In the `~/zaneyos/modules/home/hyprland/config.nix` file is an ENV setting` "AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"` This sets the primary and secondary GPUs. Using the info from the weblink above you might have to change the order of these values.
 
-## What are the Kitty keybindings and how can I change them? 
+</details>
+
+<details>
+ <summary><strong> What are the Kitty keybindings and how can I change them? </strong></summary>
 
 The kitty bindings are configured in `~/zaneyos/modules/home/kitty.nix`  
   
@@ -479,8 +560,10 @@ The defaults are:
     map ctrl+shift+backspace restore_font_size
 
 ```
+</details>
 
-## What are the Yazi keybindings and how can I change them? 
+<details>
+<summary><strong> What are the Yazi keybindings and how can I change them? </strong></summary>
 
 The Yazi configuration file is located in `~/zaneyos/modules/home/yazi.nix`
 
@@ -488,7 +571,11 @@ Yazi is configured like VIM and VIM motions
 
 The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
-## How do I enable WezTerm? 
+</details>
+
+<details>
+
+ <summary><strong> How do I enable WezTerm?  </strong></summary>
 
  Edit the `/zaneyos/modules/home/wezterm.nix`  Change `enable = false` to `enable = true;`  
  Save the file and rebuild zaneyos with the `fr` command. 
@@ -501,7 +588,10 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
   };
 
 ``` 
-## What are the WezTerm keybindings and how can I change them? 
+</details>
+
+<details>
+ <summary><strong> What are the WezTerm keybindings and how can I change them?  </strong></summary>
 
 The kitty bindings are configured in `~/zaneyos/modules/home/wezterm.nix`  
   
@@ -524,14 +614,23 @@ ALT + Down Arrow        Move to pane -- Down
 ALT + Up Arrow          Move to pane -- Down
 
 ```
+</details>
 
-## How do I enable the ghostty terminal? 
+<details>
+<summary><strong>  Ghostty </strong></summary>
+
+<details>
+<summary> How do I enable the ghostty terminal? </summary>
 
 1. Edit the `~/zaneyos/modules/home/ghostty.nix` file. 
 2. Change `enable = true;`
 3. Run the command alias `fr` to create a new generation. 
 
-## How do I change the ghostty theme? 
+</details>
+
+<details>
+
+<summary> How do I change the ghostty theme?   </summary>
 
 1. Edit the `~/zaneyos/modules/home/ghostty.nix` file.
 2. There are several example themes included but commented out.
@@ -545,7 +644,10 @@ ALT + Up Arrow          Move to pane -- Down
 ```
 3.  Comment out `Dracula` and either uncomment one of the others or add one of ghostty's many themes.
 
-## What are the default ghostty keybindings? 
+</details>
+
+<details>
+<summary> What are the default ghostty keybindings?  </summary>
 
 ```
  # keybindings
@@ -585,17 +687,27 @@ ALT + Up Arrow          Move to pane -- Down
 
     keybind = alt+s>e=equalize_splits
 ```
+</details>
 
-## I am new to NIXOS where can I go to get more info? 
+</details>
+
+<details>
+<summary><strong> I am new to NIXOS where can I go to get more info? </strong></summary>
 
 - [NIXOS Config Guide](https://www.youtube.com/watch?v=AGVXJ-TIv3Y&t=34s)
 - [VIMJOYER YouTube Channel](https://www.youtube.com/@vimjoyer/videos)
 - [Librephoenix YouTube Channel](https://www.youtube.com/@librephoenix)
 - [8 Part Video Series on NIXOS](https://www.youtube.com/watch?v=QKoQ1gKJY5A&list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq-)
 
-## Where can I get info on using GIT repositories 
+</details>
+
+<details>
+
+<summary><strong> Where can I get info on using GIT repositories  </strong></summary>
 
 - [Managing NIXOS config with GIT](https://www.youtube.com/watch?v=20BN4gqHwaQ)
 - [GIT for dummies](https://www.youtube.com/watch?v=K6Q31YkorUE)
 - [How GIT works](https://www.youtube.com/watch?v=e9lnsKot_SQ)
 - [In depth 1hr video on GIT](https://www.youtube.com/watch?v=S7XpTAnSDL4&t=123s)
+
+</details>
