@@ -28,11 +28,13 @@ This includes the wallpaper, scripts, applications, config files, and more.
 #### 🍖 Requirements
 
 - You must be running on NixOS, version 23.11+. 
-- The zaneyos folder (this repo) is expected to be in your home directory.
-- Must have installed using **GPT** & **UEFI**. Systemd-boot is what is supported, for
-  GRUB you will have to brave the internet for a how-to. ☺️
-- Manually editing your host specific files. The host is the specific computer
-  your installing on.
+- The `zaneyos` folder (this repo) is expected to be in your home directory.
+- You must have installed NIXOS using **GPT** parition with booting with **UEFI**.
+- ** 500MB minimum /boot parititon required. **
+- Systemd-boot is what is supported
+- For GRUB you will have to brave the internet for a how-to. ☺️
+- Manually editing your host specific files. 
+- The host is the specific computer your installing on.
 
 #### 🎹 Pipewire & Notification Menu Controls
 
@@ -44,13 +46,12 @@ This includes the wallpaper, scripts, applications, config files, and more.
 
 - Using Hyprland for increased elegance, functionality, and effeciency.
 - No massive Neovim project here. This is my simple, easy to understand, yet
-  incredible Neovim setup.
+  incredible Neovim setup.  With language support already added in. 
 
 #### 🖥️ Multi Host & User Configuration
 
 - You can define separate settings for different host machines and users.
-- Easily specify extra packages for your users in the modules/core/user.nix
-  file.
+- Easily specify extra packages for your users in the `modules/core/user.nix` file.
 - Easy to understand file structure and simple, but encompassing, configuration.
 
 #### 👼 An Incredible Community Focused On Support
@@ -82,7 +83,7 @@ Please do yourself a favor and
 
 - Please feel free to raise an issue on the repo, please label a feature request
   with the title beginning with [feature request], thank you!
-- Contact me on [Discord](https://discord.gg/2cRdBs8) as well, for a potentially
+- Contact us on [Discord](https://discord.gg/2cRdBs8) as well, for a potentially
   faster response.
 
 - Don't forget to checkout the [FAQ](https://zaney.org/wiki/zaneyos-2.3/faq)
