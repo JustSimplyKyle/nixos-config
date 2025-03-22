@@ -1,6 +1,6 @@
 # ZaneyOS FAQ for v2.3 
-- **Revision v1.07**  
-- **Date:** 21-Mar-2025
+- **Revision v1.09**  
+- **Date:** 22-Mar-2025
 <details>
 
 <summary><strong> Why did you create ZaneyOS ? </strong></summary>
@@ -688,7 +688,6 @@ ALT + Up Arrow          Move to pane -- Down
     keybind = alt+s>e=equalize_splits
 ```
 </details>
-
 </details>
 
 <details>
@@ -709,33 +708,27 @@ ALT + Up Arrow          Move to pane -- Down
 - This layout is more dynamic and evenly distributes space among all windows.
 
 ---
-
 ### **How to Verify the Current Layout**
 
 To check which layout is currently active, use the `hyprctl` command:
-```bash
-hyprctl getoption general:layout
+
+`hyprctl getoption general:layout`
 
 </summary></strong>
 </details>
 
 <details>
 <summary><strong> I am new to NIXOS where can I go to get more info? </strong></summary>
-
 - [NIXOS Config Guide](https://www.youtube.com/watch?v=AGVXJ-TIv3Y&t=34s)
 - [VIMJOYER YouTube Channel](https://www.youtube.com/@vimjoyer/videos)
 - [Librephoenix YouTube Channel](https://www.youtube.com/@librephoenix)
 - [8 Part Video Series on NIXOS](https://www.youtube.com/watch?v=QKoQ1gKJY5A&list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq-)
-
 </details>
 
 <details>
-
 <summary><strong> Where can I get info on using GIT repositories  </strong></summary>
-
 - [Managing NIXOS config with GIT](https://www.youtube.com/watch?v=20BN4gqHwaQ)
 - [GIT for dummies](https://www.youtube.com/watch?v=K6Q31YkorUE)
 - [How GIT works](https://www.youtube.com/watch?v=e9lnsKot_SQ)
 - [In depth 1hr video on GIT](https://www.youtube.com/watch?v=S7XpTAnSDL4&t=123s)
-
 </details>
