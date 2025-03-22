@@ -692,6 +692,34 @@ ALT + Up Arrow          Move to pane -- Down
 </details>
 
 <details>
+<summary><strong> What is the difference between Master and Dwindle layouts</strong></summary>
+
+### **Master vs. Dwindle Layouts in Hyprland**
+
+#### **1. Master Layout**
+- The **Master** layout divides the workspace into two main areas:
+  - A **master area** for the primary window, which takes up a larger portion of the screen.
+  - A **stack area** for all other windows, which are tiled in the remaining space.
+- This layout is ideal for workflows where you want to focus on a single main window while keeping others accessible.
+
+#### **2. Dwindle Layout**
+- The **Dwindle** layout is a binary tree-based tiling layout:
+  - Each new window splits the available space dynamically, alternating between horizontal and vertical splits.
+  - The splits are determined by the aspect ratio of the parent container (e.g., wider splits horizontally, taller splits vertically).
+- This layout is more dynamic and evenly distributes space among all windows.
+
+---
+
+### **How to Verify the Current Layout**
+
+To check which layout is currently active, use the `hyprctl` command:
+```bash
+hyprctl getoption general:layout
+
+</summary></strong>
+</details>
+
+<details>
 <summary><strong> I am new to NIXOS where can I go to get more info? </strong></summary>
 
 - [NIXOS Config Guide](https://www.youtube.com/watch?v=AGVXJ-TIv3Y&t=34s)
