@@ -13,7 +13,7 @@ you will share that with us also.  ZaneyOS is not a distro. At this time there a
 </details>
 
 <details>
-<summary><strong>How do I change the Timezone? </strong></summary>
+<summary><strong> How do I change the Timezone? </strong></summary>
 
 1. In the file, `~/zaneyos/modules/core/system.nix`  
 2. Edit the line:  time.timeZone = "America/New_York"; 
@@ -241,7 +241,7 @@ NixOS offers several major kernel types to cater to different needs and preferen
 
 <details>
 
-<summary><strong> How do I change the hostname?  </strong></summary>
+<summary><strong>How do I change the hostname? </strong></summary>
 
 To change the hostname, there are several steps and you will have to reboot to make the change effective. 
 
