@@ -183,4 +183,11 @@ called `fr` that will rebuild the flake and you do not have to be in the
 </details>
 
 
+### Special Recognitions:
+ Thank you for all your assistance
+
+- Jakookit  https://github.com/jakookit
+- Justaguylinux   https://github.com/drewgrif
+- Jerry Starke    https://github.com/JerrySM64
+
 ## Hope you enjoy!
