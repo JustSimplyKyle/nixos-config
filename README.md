@@ -31,7 +31,7 @@ This includes the wallpaper, scripts, applications, config files, and more.
 - The `zaneyos` folder (this repo) is expected to be in your home directory.
 - You must have installed NIXOS using **GPT** parition with booting with **UEFI**.
 - ** 500MB minimum /boot parititon required. **
-- Systemd-boot is what is supported
+- Systemd-boot is what is supported.
 - For GRUB you will have to brave the internet for a how-to. ☺️
 - Manually editing your host specific files. 
 - The host is the specific computer your installing on.
@@ -56,11 +56,11 @@ This includes the wallpaper, scripts, applications, config files, and more.
 
 #### 👼 An Incredible Community Focused On Support
 
-- The entire idea of ZaneyOS is to make NixOS an approachable space that is
-  actually a great community that you want to be in.
+- The entire idea of ZaneyOS is to make NixOS an approachable space.
+- NixOS is actually a great community that you will want to be a part of.
 - Many people who are patient and happy to spend their free time helping you are
-  running ZaneyOS. Feel free to reach out on the Discord for any help with
-  anything.
+  running ZaneyOS. 
+- Feel free to reach out on the Discord for any help with anything.
 
 <div align="center">
 
