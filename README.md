@@ -18,8 +18,9 @@ This includes the wallpaper, scripts, applications, config files, and more.
 
 </div>
 
+### Please note:
 > **This project has a [Wiki](https://zaney.org/wiki/zaneyos-2.3/). Find out how
-> to use ZaneyOS here!** **dwilliam62 have put a lot of effort into the
+> to use ZaneyOS here!** **ddubs has put a lot of effort into the
 > [FAQ](https://zaney.org/wiki/zaneyos-2.3/faq) so it should be accurate.
 > However, please if you notice that something is wrong with it create an issue
 > or reach out to us on Discord.**
@@ -28,9 +29,8 @@ This includes the wallpaper, scripts, applications, config files, and more.
 
 - You must be running on NixOS, version 23.11+. 
 - The zaneyos folder (this repo) is expected to be in your home directory.
-- Must have installed using **GPT** & **UEFI**. 
-- ** Note: `/boot`must be at least 500MB **
-- Systemd-boot is what is supported, for GRUB you will have to brave the internet for a how-to. ☺️
+- Must have installed using **GPT** & **UEFI**. Systemd-boot is what is supported, for
+  GRUB you will have to brave the internet for a how-to. ☺️
 - Manually editing your host specific files. The host is the specific computer
   your installing on.
 
@@ -85,9 +85,14 @@ Please do yourself a favor and
 - Contact me on [Discord](https://discord.gg/2cRdBs8) as well, for a potentially
   faster response.
 
-## ⬇️ Install
+- Don't forget to checkout the [FAQ](https://zaney.org/wiki/zaneyos-2.3/faq)
 
-Don't forget to checkout the [FAQ](https://zaney.org/wiki/zaneyos-2.3/faq)
+## Installation: 
+
+<details>
+<summary><strong> ⬇️ Install with script </strong></summary>
+
+
 
 ### 📜 Script:
 
@@ -125,21 +130,12 @@ sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)
 
 #### Then after login you should see a screen like this:
 
-![Desktop Example](img/initial-session.png)
+![Desktop Example](img/4.jpg)
 
-### Helpful Keybinds
+</details>
 
-- SUPER key + ENTER           -- Launches a terminal 
-- SUPER key + SHIFT + ENTER   -- Launches menu 
-- SUPER key + W               -- Launches Web browser
-- SUPER key + Y               -- Launch YAZI file Manager
-- SUPER key + ALT + W         -- Change wallpaper 
-- SUPER key + F               -- Fullscreen current app 
-- SUPER key + SHIFT + F       -- Toggle floating
-- SUPER key + Q               -- Close current window
-- SUPER key + SHIFT + C       -- Exit Hyprland
-
-#### 🦽 Manual:
+<details>
+<summary><strong> 🦽 Manual install process:  </strong></summary>
 
 1. Run this command to ensure Git & Vim are installed:
 
@@ -184,4 +180,7 @@ Now when you want to rebuild the configuration you have access to an alias
 called `fr` that will rebuild the flake and you do not have to be in the
 `zaneyos` folder for it to work.
 
-Hope you enjoy!
+</details>
+
+
+## Hope you enjoy!
