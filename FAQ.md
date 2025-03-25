@@ -774,7 +774,7 @@ In essence, flakes help manage NixOS setups or Nix-based projects in a more port
 </details>
 
 <details>
-<summary><strong>What is NixOS Home Manager? </strong>></summary>
+<summary><strong>What is NixOS Home Manager? </strong></summary>
 
 **Home Manager** is a powerful tool in the Nix ecosystem that allows you to declaratively manage user-specific configurations and environments. With Home Manager, you can streamline the setup of dotfiles, shell settings, applications, and system packages for your user profile.
 
