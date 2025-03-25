@@ -1,6 +1,17 @@
 # ZaneyOS FAQ for v2.3 
 - **Revision v1.10**  
 - **Date:** 25-Mar-2025
+<h4>---> ZaneyOS related</h4>
+
+<strong>
+Where can I see the Hyprland keybindings?</strong>
+<br><br>
+- The SUPER key + K runs a searchable menu with the bindings
+<br>
+- The "keys" icon on the right side of the waybar will also bring up this menu.
+<br>
+<br>
+ 
 <details>
 
 <summary><strong> Why did you create ZaneyOS ? </strong></summary>
@@ -12,6 +23,8 @@ you will share that with us also.  ZaneyOS is not a distro. At this time there a
 
 </details>
 
+<details>
+<summary><strong>Settings and configuration</strong></summary>
 <details>
 <summary><strong> How do I change the Timezone? </strong></summary>
 
@@ -258,10 +271,38 @@ To change the hostname, there are several steps and you will have to reboot to m
 4.  Use the `fr` alias to create a new generation with the new hostname.  You must reboot to make the change effective. 
 
 </details>
+<details>
+<summary><strong> How do I disable the spinning snowflake at startup? </strong></summary>
+
+1.  Edit the `~/zaneyos/modules/core/boot.nix` file.
+2.  Look for: 
+   ``` 
+   };
+    plymouth.enable = true;
+  };
+   ```
+ 3. Change it to `false`
+ 4. Run the command alias `fr` to create a new generation. 
+
+</details>
 
 <details>
- 
-<summary><strong> How do I enable or disable Stylix?  </strong></summary>
+ <summary><strong> How do I configure my hybrid laptop with Intel/NVIDIA GPUs?  </strong></summary>
+
+1. Either run the `install-zaneyos.sh` script and select `nvidia-laptop` template or if configuring manually, set the template in the `flake.nix` to `nvidia-prime`  
+
+2. In the `~/zaneyos/hosts/HYBRID-HOST/variables.nix` file you will need to set the PCI IDs for the Intel and NVIDIA GPUs. Refer to [this page](https://nixos.wiki/wiki/Nvidia) to help determine those values.
+
+3. Once you have everything configured properly, use the `fr` Flake Rebuild alias to create a new generation. 
+
+4. In the `~/zaneyos/modules/home/hyprland/config.nix` file is an ENV setting` "AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"` This sets the primary and secondary GPUs. Using the info from the weblink above you might have to change the order of these values.
+
+</details>
+
+<details>
+<summary><strong>Stylix</strong></summary>
+<details>
+<summary>How do I enable or disable Stylix? </summary>
 
 - To Enable:  
 1. Edit the `~/zaneyos/modules/core/stylix.nix` file.  
@@ -332,8 +373,9 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 </details>
 
+
 <details>
- <summary><strong> How do I change the image Stylix uses to theme with?  </strong></summary>
+ <summary>How do I change the image Stylix uses to theme with?</summary>
 
 1. Edit the `~/zaneyos/hosts/HOSTNAME/varibles.nix` 
 2. Change the `stylixImage = ` to the filename you want to use. Wallpapers are in `~/zaneyos/wallpapers`
@@ -342,15 +384,19 @@ To change the hostname, there are several steps and you will have to reboot to m
   stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 ```
 </details>
+</details>
 
 <details>
+<summary><strong>Wallpapers</strong></summary>
 
+<details>
 <summary><strong>  How do I add more wallpapers? </strong></summary>
 
 - Wallpapers are stored in the `~/zaneyos/wallpapers` directory.  
 - Simply copy the new ones to that diretory. 
 
 </details>
+
 
 <details>
 
@@ -398,21 +444,6 @@ To change the hostname, there are several steps and you will have to reboot to m
 4.  You will need to logout or reboot to make the change effective. 
 
 </details>
-
-<details>
-
-<summary><strong> How do I disable the spinning snowflake at startup? </strong></summary>
-
-1.  Edit the `~/zaneyos/modules/core/boot.nix` file.
-2.  Look for: 
-   ``` 
-   };
-    plymouth.enable = true;
-  };
-   ```
- 3. Change it to `false`
- 4. Run the command alias `fr` to create a new generation. 
-
 </details>
 
 
@@ -478,19 +509,9 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 </details>
 
-<details>
- <summary><strong> How do I configure my hybrid laptop with Intel/NVIDIA GPUs?  </strong></summary>
-
-1. Either run the `install-zaneyos.sh` script and select `nvidia-laptop` template or if configuring manually, set the template in the `flake.nix` to `nvidia-prime`  
-
-2. In the `~/zaneyos/hosts/HYBRID-HOST/variables.nix` file you will need to set the PCI IDs for the Intel and NVIDIA GPUs. Refer to [this page](https://nixos.wiki/wiki/Nvidia) to help determine those values.
-
-3. Once you have everything configured properly, use the `fr` Flake Rebuild alias to create a new generation. 
-
-4. In the `~/zaneyos/modules/home/hyprland/config.nix` file is an ENV setting` "AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"` This sets the primary and secondary GPUs. Using the info from the weblink above you might have to change the order of these values.
-
 </details>
 
+<h4>--->  Miscellaneous</h4>
 <details>
 <summary><strong> What is the difference between Master and Dwindle layouts</strong></summary>
 
