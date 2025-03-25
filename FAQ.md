@@ -1,6 +1,6 @@
 # ZaneyOS FAQ for v2.3 
-- **Revision v1.09**  
-- **Date:** 22-Mar-2025
+- **Revision v1.10**  
+- **Date:** 25-Mar-2025
 <details>
 
 <summary><strong> Why did you create ZaneyOS ? </strong></summary>
@@ -415,16 +415,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 </details>
 
-<details>
 
-<summary><strong> My cursor in Kitty is "janky" and it jumps around. How do I fix that?  </strong></summary>
-
- - That feature is called "cursor_trail" in the `~/zaneyos/modules/home/kitty.nix` file. 
-
-  1. Edit that file and change the `cursor_trail 1` to `cursor_trail 0` or comment out that line.
-  2. Use the command alias `fr` to create a new generation with the change. 
-  
-</details>
 
 <details>
 <summary><strong> I update my version ZaneyOS ?  </strong></summary>
@@ -501,7 +492,60 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 </details>
 
 <details>
- <summary><strong> What are the Kitty keybindings and how can I change them? </strong></summary>
+<summary><strong> What is the difference between Master and Dwindle layouts</strong></summary>
+
+### **Master vs. Dwindle Layouts in Hyprland**
+
+#### **1. Master Layout**
+- The **Master** layout divides the workspace into two main areas:
+  - A **master area** for the primary window, which takes up a larger portion of the screen.
+  - A **stack area** for all other windows, which are tiled in the remaining space.
+- This layout is ideal for workflows where you want to focus on a single main window while keeping others accessible.
+
+#### **2. Dwindle Layout**
+- The **Dwindle** layout is a binary tree-based tiling layout:
+  - Each new window splits the available space dynamically, alternating between horizontal and vertical splits.
+  - The splits are determined by the aspect ratio of the parent container (e.g., wider splits horizontally, taller splits vertically).
+- This layout is more dynamic and evenly distributes space among all windows.
+
+---
+### **How to Verify the Current Layout**
+
+To check which layout is currently active, use the `hyprctl` command:
+
+`hyprctl getoption general:layout`
+
+</summary></strong>
+</details>
+
+<details>
+<summary><strong> What are the Yazi keybindings and how can I change them? </strong></summary>
+
+The Yazi configuration file is located in `~/zaneyos/modules/home/yazi.nix`
+
+Yazi is configured like VIM and VIM motions 
+
+The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
+
+</details>
+
+<h4>---> Terminals </h4>
+
+<details>
+<summary><strong>Kitty</strong></summary>
+<details>
+
+<summary>My cursor in Kitty is "janky" and it jumps around. How do I fix that?</summary>
+
+ - That feature is called "cursor_trail" in the `~/zaneyos/modules/home/kitty.nix` file. 
+
+  1. Edit that file and change the `cursor_trail 1` to `cursor_trail 0` or comment out that line.
+  2. Use the command alias `fr` to create a new generation with the change. 
+  
+</details>
+
+<details>
+ <summary>What are the Kitty keybindings and how can I change them?</summary>
 
 The kitty bindings are configured in `~/zaneyos/modules/home/kitty.nix`  
   
@@ -562,20 +606,12 @@ The defaults are:
 ```
 </details>
 
-<details>
-<summary><strong> What are the Yazi keybindings and how can I change them? </strong></summary>
-
-The Yazi configuration file is located in `~/zaneyos/modules/home/yazi.nix`
-
-Yazi is configured like VIM and VIM motions 
-
-The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
-
 </details>
-
+<details>
+<summary><strong>WezTerm</strong></summary>
 <details>
 
- <summary><strong> How do I enable WezTerm?  </strong></summary>
+ <summary>How do I enable WezTerm?</summary>
 
  Edit the `/zaneyos/modules/home/wezterm.nix`  Change `enable = false` to `enable = true;`  
  Save the file and rebuild zaneyos with the `fr` command. 
@@ -591,7 +627,7 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 </details>
 
 <details>
- <summary><strong> What are the WezTerm keybindings and how can I change them?  </strong></summary>
+ <summary>What are the WezTerm keybindings and how can I change them?</summary>
 
 The kitty bindings are configured in `~/zaneyos/modules/home/wezterm.nix`  
   
@@ -614,6 +650,7 @@ ALT + Down Arrow        Move to pane -- Down
 ALT + Up Arrow          Move to pane -- Down
 
 ```
+</details>
 </details>
 
 <details>
@@ -690,31 +727,75 @@ ALT + Up Arrow          Move to pane -- Down
 </details>
 </details>
 
+
+
+<h4>
+-->  General NixOS related topics
+</h4>
+
 <details>
-<summary><strong> What is the difference between Master and Dwindle layouts</strong></summary>
+<summary><strong>What are Flakes in NixOS? </strong></summary>
 
-### **Master vs. Dwindle Layouts in Hyprland**
+**Flakes** are a feature of the Nix package manager that simplifies and standardizes how configurations, dependencies, and packages are managed. If you're familiar with tools like `package.json` in JavaScript or `Cargo.toml` in Rust, flakes serve a similar purpose in the Nix ecosystem.
 
-#### **1. Master Layout**
-- The **Master** layout divides the workspace into two main areas:
-  - A **master area** for the primary window, which takes up a larger portion of the screen.
-  - A **stack area** for all other windows, which are tiled in the remaining space.
-- This layout is ideal for workflows where you want to focus on a single main window while keeping others accessible.
+### Key Features of Flakes:
+1. **Pin Dependencies**:
+   - Flakes lock the versions of dependencies in a `flake.lock` file, ensuring reproducibility across systems.
 
-#### **2. Dwindle Layout**
-- The **Dwindle** layout is a binary tree-based tiling layout:
-  - Each new window splits the available space dynamically, alternating between horizontal and vertical splits.
-  - The splits are determined by the aspect ratio of the parent container (e.g., wider splits horizontally, taller splits vertically).
-- This layout is more dynamic and evenly distributes space among all windows.
+2. **Standardize Configurations**:
+   - They use a `flake.nix` file to define how to build, run, or deploy a project or system, making setups more predictable.
 
----
-### **How to Verify the Current Layout**
+3. **Improve Usability**:
+   - Flakes simplify sharing and reusing configurations across different systems or projects by providing a consistent structure.
 
-To check which layout is currently active, use the `hyprctl` command:
+In essence, flakes help manage NixOS setups or Nix-based projects in a more portable and reliable way.
 
-`hyprctl getoption general:layout`
+</details>
 
-</summary></strong>
+<details>
+<summary><strong>What is NixOS Home Manager? </strong>></summary>
+
+**Home Manager** is a powerful tool in the Nix ecosystem that allows you to declaratively manage user-specific configurations and environments. With Home Manager, you can streamline the setup of dotfiles, shell settings, applications, and system packages for your user profile.
+
+### Key Features of Home Manager:
+1. **Declarative Configuration**:
+   - Define all your settings and preferences in a single `home.nix` file, making it easy to track, share, and replicate your setup.
+
+2. **Cross-Distribution Support**:
+   - Home Manager works not only on NixOS but also on other Linux distributions and macOS, allowing you to standardize configurations across devices.
+
+3. **User Environment Management**:
+   - Manage applications, environment variables, shell configurations, and more—all isolated to your user profile.
+
+### Why Use Home Manager?
+Home Manager simplifies system management by offering consistency, reproducibility, and portability. Whether you’re customizing your development environment or sharing configurations between machines, it provides an efficient way to tailor your user experience.
+
+</details>
+
+<details>
+<summary><strong>What are Atomic Builds in NixOS?</strong></summary>
+
+**Atomic builds** in NixOS ensure that any system change (like installing software or updating the configuration) is applied in a safe and fail-proof way. This means that a system update is either fully successful or has no effect at all, eliminating the risk of a partially applied or broken system state.
+
+### How Atomic Builds Work:
+1. **Immutable System Generation**:
+   - Every configuration change creates a new "generation" of the system, while the previous ones remain untouched. You can easily roll back to an earlier generation if something goes wrong.
+
+2. **Transaction-Like Behavior**:
+   - Similar to database transactions, changes are applied atomically: either they succeed and become the new active system, or they fail and leave the current system unchanged.
+
+3. **Seamless Rollbacks**:
+   - In case of errors or issues, you can reboot and select a previous system generation from the boot menu to return to a working state.
+
+### Benefits of Atomic Builds:
+- **Reliability**: Your system is always in a consistent state, even if a configuration change fails.
+- **Reproducibility**: The same configuration will always produce the same system state, making it easy to debug or replicate.
+- **Ease of Rollback**: Reverting to a working configuration is as simple as rebooting and selecting the previous generation.
+
+### Why NixOS Uses Atomic Builds:
+This feature is a cornerstone of NixOS's declarative and reproducible design philosophy, ensuring that system management is predictable and stress-free.
+
+
 </details>
 
 <details>
