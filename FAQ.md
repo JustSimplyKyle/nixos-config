@@ -1,6 +1,6 @@
 # ZaneyOS FAQ for v2.3 
-- **Revision v1.11**  
-- **Date:** 25-Mar-2025
+- **Revision v1.12**  
+- **Date:** 26-Mar-2025
 <h4>---> ZaneyOS related</h4>
 
 <strong>⌨ Where can I see the Hyprland keybindings?</strong>
@@ -20,6 +20,7 @@ you will share that with us also.  ZaneyOS is not a distro. At this time there a
 
 <details>
 <summary><strong>🖼️ Settings and configuration</strong></summary>
+<div style="margin-left: 20px;">
 <details>
 <summary><strong> How do I change the Timezone? </strong></summary>
 
@@ -28,7 +29,8 @@ you will share that with us also.  ZaneyOS is not a distro. At this time there a
 3. Save the file and rebuild using the `fr` alias.
 
 </details>   
-
+</div>
+<div style="margin-left: 20px;">
 <details>
 <summary><strong>How do I change the monitor settings? </strong></summary>
 
@@ -91,7 +93,7 @@ You only need to copy the `monitor=` lines and paste them into the `variables.ni
 Once you have that done.  Run the command alias `fr` to build a new generation to make the chnages effective.
 
 More information on configuring monitors is available on the [Hyprland Wiki](https://wiki.hyprland.org/Configuring/Monitors/)
-
+</div>
 </details>
 
 <details>
@@ -154,16 +156,15 @@ The part of the file you need to edit, looks like this:
 ```
     
 You can add additional packages, or for example change `discord` to `discord-canary` to get the beta version of Discord but only on this host. 
-
 </details>
 
 <details>
+
  <summary><strong> I added the package names, now how do I install them ? </strong></summary>
 
 - Use the `fr`,  Flake Rebuild  alias. 
 
 If the rebuild completes successfully, a new generation with your added packages will be created. 
-
 </details>
 
 <details>
@@ -296,6 +297,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 <details>
 <summary><strong>Stylix</strong></summary>
+<div style="margin-left: 20px;">
 <details>
 <summary>How do I enable or disable Stylix? </summary>
 
@@ -368,7 +370,6 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 </details>
 
-
 <details>
  <summary>How do I change the image Stylix uses to theme with?</summary>
 
@@ -380,10 +381,10 @@ To change the hostname, there are several steps and you will have to reboot to m
 ```
 </details>
 </details>
-
+</div>
 <details>
 <summary><strong>Wallpapers</strong></summary>
-
+<div style="margin-left: 20px;">
 <details>
 <summary><strong>  How do I add more wallpapers? </strong></summary>
 
@@ -440,12 +441,13 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 </details>
 </details>
+</div>
 
 
 
 <details>
 <summary><strong> I update my version ZaneyOS ?  </strong></summary>
-
+<div style="margin-left: 20px;">
 <details>
 <summary> For versions v2.3+ </summary>
 
@@ -503,13 +505,9 @@ To change the hostname, there are several steps and you will have to reboot to m
 It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 </details>
-
-
 </details>
-
-
-<details>
-<summary><strong>📂 ZaneyOS v2.3 Layout</strong></summary>
+</div>
+<details><summary><strong>📂 ZaneyOS v2.3 Layout</strong></summary>
 
 <h4> 📂 ~/zaneyos </h4>
 
@@ -835,7 +833,7 @@ Home Manager simplifies system management by offering consistency, reproducibili
 </details>
 
 <details>
-<summary><strong>What are Atomic Builds in NixOS?</strong></summary>
+<summary><strong>What are Atomic Builds?</strong></summary>
 
 **Atomic builds** in NixOS ensure that any system change (like installing software or updating the configuration) is applied in a safe and fail-proof way. This means that a system update is either fully successful or has no effect at all, eliminating the risk of a partially applied or broken system state.
 
