@@ -1,20 +1,15 @@
 # ZaneyOS FAQ for v2.3 
-- **Revision v1.10**  
+- **Revision v1.11**  
 - **Date:** 25-Mar-2025
 <h4>---> ZaneyOS related</h4>
 
-<strong>
-Where can I see the Hyprland keybindings?</strong>
-<br><br>
+<strong>⌨ Where can I see the Hyprland keybindings?</strong>
 - The SUPER key + K runs a searchable menu with the bindings
-<br>
 - The "keys" icon on the right side of the waybar will also bring up this menu.
-<br>
-<br>
  
 <details>
 
-<summary><strong> Why did you create ZaneyOS ? </strong></summary>
+<summary><strong>🧠 Why did you create ZaneyOS ? </strong></summary>
  
 Orginally, it was simply my configuration saved on a GIT repository. It was there to promote NixOS and Hyprland. Providing a stable, 
 working configuration.  It has never been intended as a full NixOS distro.  The `ZaneyOS` name is an inside joke among friends. The intent is this can be used as a daily driver, play games via steam, and be modified to fit your needs.  That is the key take away.
@@ -24,7 +19,7 @@ you will share that with us also.  ZaneyOS is not a distro. At this time there a
 </details>
 
 <details>
-<summary><strong>Settings and configuration</strong></summary>
+<summary><strong>🖼️ Settings and configuration</strong></summary>
 <details>
 <summary><strong> How do I change the Timezone? </strong></summary>
 
@@ -509,9 +504,55 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 </details>
 
+
 </details>
 
-<h4>--->  Miscellaneous</h4>
+
+<details>
+<summary><strong>📂 ZaneyOS v2.3 Layout</strong></summary>
+
+<h4> 📂 ~/zaneyos </h4>
+
+```
+~/zaneyos/
+├── hosts/                      # Folder where host configs are saved
+│   ├── default                 # Default host template
+│   └── nixstation              # Zaney's host 
+├── img/                        # Images for README.md
+├── modules/                    # Core, HomeMgr, drivers config files
+│   └── drivers/                # AMD,NVIDA,Intel,VM config files
+│   └── core/                   # Services, packages, fonts, etc
+│   └── home/                   # Home Manager config files
+│    ├── fastfetch/             # Fastfetch config 
+│    ├── hyprland/              # Hyrprland configs
+│    ├── rofi/                  # rofi menu configs
+│    ├── scripts/               # screenshots, wallpaper, etc.
+│    ├── waybar/                # waybar configs in NIX format
+│    ├── wlogout/               # Theme, config for logout menu
+│    ├── yazi/                  # TUI filemgr config file
+│    └── zsh/                   # Theme and settings for ZSH
+├── profiles/                   # Video hardware templates
+│   ├── amd/                    # AMD Video config files
+│   ├── intel/                  # Intel video config files
+│   ├── nvidia/                 # NVIDIA discrete video config files
+│   ├── nvidia-laptop/          # NVIDIA Hybrid video config files
+│   └── vm/                     # Virtual Machine config files
+├── wallpapers/                 # Add your wallpapers here 
+├── CHANGELOG.md                # List of changes
+├── CONTRIBUTING.md             # How you can help 
+├── FAQ.md                      # Frequently Asked Questions
+├── flake.lock                  # Saves version info on all installed packages
+├── flake.nix                   # flake that controls ZaneyOS config
+├── install-zaneyos.sh          # Install script for ZaneyOS
+├── LICENSE                     # MIT license ZaneyOS is using
+└── README.md                   # Intro document for ZaneyOS
+
+```
+
+
+</details>
+
+<h4>--->🧰 Miscellaneous</h4>
 <details>
 <summary><strong> What is the difference between Master and Dwindle layouts</strong></summary>
 
@@ -550,7 +591,7 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
 </details>
 
-<h4>---> Terminals </h4>
+<h4>--->🖥️ Terminals </h4>
 
 <details>
 <summary><strong>Kitty</strong></summary>
@@ -751,7 +792,7 @@ ALT + Up Arrow          Move to pane -- Down
 
 
 <h4>
--->  General NixOS related topics
+-->🪧  General NixOS related topics
 </h4>
 
 <details>
