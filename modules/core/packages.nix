@@ -5,6 +5,7 @@
 }: {
   programs = {
     firefox.enable = false; # Firefox is not installed by default
+    hyprland.enable = true; #someone forgot to set this so desktop file is created
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
