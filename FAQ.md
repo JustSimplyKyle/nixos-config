@@ -21,8 +21,6 @@ you will share that with us also.  ZaneyOS is not a distro. At this time there a
 <details>
 <summary><strong>🖼️ Settings and configuration</strong></summary>
 
-<div style="margin-left: 20px;">
-
 <details>
 <summary><strong> How do I change the Timezone? </strong></summary>
 
@@ -41,7 +39,7 @@ you will share that with us also.  ZaneyOS is not a distro. At this time there a
  Monitor must be in all lowercase.  If you are not sure of your video devices run 
  `hyprctl monitors` at a terminal CLI.  The output will look similar to this: 
 
-```
+```text
 hyprctl monitors
 Monitor HDMI-A-1 (ID 0):
 	2560x1440@143.91200 at 0x0
@@ -113,7 +111,7 @@ Followed by a list of packages These are required for ZaneyOS.
 
 We suggest you add a comment at the end of the package names. Then add in your packages. 
 
-```
+```text
     ...
     virt-viewer
     wget
@@ -188,7 +186,7 @@ If the rebuild completes successfully, a new generation with your added packages
 
 1. You have to edit the `hardware.nix` file for that host in `~/zaneyos/hosts/HOSTNAME/hardware.nix` and override the default.
 2. Near the top you will find this section of the `hardware.nix` file.  
-``` 
+```nix
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
@@ -199,7 +197,7 @@ If the rebuild completes successfully, a new generation with your added packages
 - `boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;`  
 
 4.  The updated code should look like this: 
-```
+```nix
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc"];
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
   boot.initrd.kernelModules = [];
@@ -274,7 +272,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 1.  Edit the `~/zaneyos/modules/core/boot.nix` file.
 2.  Look for: 
-   ```json
+   ```nix
    };
     plymouth.enable = true;
   };
@@ -308,7 +306,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 1. Edit the `~/zaneyos/modules/core/stylix.nix` file.  
 2. Comment out from `base16Scheme` to the `};` after `base0F` 
 
-```json
+```nix
 # Styling Options
   stylix = {
     enable = true;
@@ -348,7 +346,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 1. Edit the `~/zaneyos/modules/core/stylix.nix` file.  
 2. Uncomment out from `base16Scheme` to the `};` after `base0F` 
 
-```json
+```nix
      base16Scheme = {
       base00 = "282936";
       base01 = "3a3c4e";
@@ -379,7 +377,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 1. Edit the `~/zaneyos/hosts/HOSTNAME/varibles.nix` 
 2. Change the `stylixImage = ` to the filename you want to use. Wallpapers are in `~/zaneyos/wallpapers`
 
-```text
+```nix
   # Set Stylix Image
   stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 ```
@@ -593,15 +591,14 @@ Yazi is configured like VIM and VIM motions
 The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
 </div>
-
+</details>
 </details>
 
 <h4>--->🖥️ Terminals </h4>
 
 <details>
 <summary><strong>Kitty</strong></summary>
-
-<div style="margin-left: 20px;"> 
+ 
 
 <details>
 
@@ -675,7 +672,6 @@ The defaults are:
 
 ```
 </details>
-</div>
 </details>
 
 <details>
