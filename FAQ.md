@@ -296,6 +296,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 4. In the `~/zaneyos/modules/home/hyprland/config.nix` file is an ENV setting` "AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"` This sets the primary and secondary GPUs. Using the info from the weblink above you might have to change the order of these values.
 
 </details>
+</details>
 
 <details>
 <summary><strong>Stylix</strong></summary>
@@ -307,7 +308,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 1. Edit the `~/zaneyos/modules/core/stylix.nix` file.  
 2. Comment out from `base16Scheme` to the `};` after `base0F` 
 
-```
+```json
 # Styling Options
   stylix = {
     enable = true;
@@ -340,14 +341,14 @@ To change the hostname, there are several steps and you will have to reboot to m
       size = 24;
     };
 ```
-3. Select the image you wasnt stylex to use for the colorpalette.
+3. Select the image you want stylix to use for the colorpalette.
 4. Run `fr` command alias to create a new generation with this colorscheme.
 
 - To disable uncomment 
 1. Edit the `~/zaneyos/modules/core/stylix.nix` file.  
 2. Uncomment out from `base16Scheme` to the `};` after `base0F` 
 
-```
+```json
      base16Scheme = {
       base00 = "282936";
       base01 = "3a3c4e";
@@ -378,11 +379,14 @@ To change the hostname, there are several steps and you will have to reboot to m
 1. Edit the `~/zaneyos/hosts/HOSTNAME/varibles.nix` 
 2. Change the `stylixImage = ` to the filename you want to use. Wallpapers are in `~/zaneyos/wallpapers`
 
-``` # Set Stylix Image
+```text
+  # Set Stylix Image
   stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 ```
 </details>
 </details>
+</details>
+
 <details>
 <summary><strong>Wallpapers</strong></summary>
 
@@ -393,7 +397,6 @@ To change the hostname, there are several steps and you will have to reboot to m
 - Simply copy the new ones to that diretory. 
 
 </details>
-
 
 <details>
 
@@ -411,7 +414,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 2. Comment out the line `sleep 1.5 && swww img ...`
 3. Add new line after that with `sleep 1 && wallsetter` 
 
-```
+```json
  settings = {
       exec-once = [
         "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -442,8 +445,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 </details>
 </details>
-
-
+</details>
 
 
 <details>
@@ -498,7 +500,6 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 </details>
 
-</details>
 
 <details>
 <summary><strong> How do I know when a new version of ZaneyOS is released? </strong></summary>
