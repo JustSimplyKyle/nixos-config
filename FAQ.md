@@ -274,7 +274,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 1.  Edit the `~/zaneyos/modules/core/boot.nix` file.
 2.  Look for: 
-   ``` 
+   ```json
    };
     plymouth.enable = true;
   };
@@ -385,7 +385,6 @@ To change the hostname, there are several steps and you will have to reboot to m
 ```
 </details>
 </details>
-</details>
 
 <details>
 <summary><strong>Wallpapers</strong></summary>
@@ -443,7 +442,6 @@ To change the hostname, there are several steps and you will have to reboot to m
 3.  Run the command alias `fr` to create a new generation.  
 4.  You will need to logout or reboot to make the change effective. 
 
-</details>
 </details>
 </details>
 
@@ -508,6 +506,7 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 </details>
 </details>
+
 </div>
 
 <details><summary><strong>📂 ZaneyOS v2.3 Layout</strong></summary>
