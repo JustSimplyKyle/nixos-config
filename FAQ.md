@@ -21,6 +21,8 @@ you will share that with us also.  ZaneyOS is not a distro. At this time there a
 <details>
 <summary><strong>🖼️ Settings and configuration</strong></summary>
 
+<div style="margin-left: 20px;">
+
 <details>
 <summary><strong> How do I change the Timezone? </strong></summary>
 
@@ -505,13 +507,13 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 </details>
 </details>
-
+</div>
 
 <details><summary><strong>📂 ZaneyOS v2.3 Layout</strong></summary>
 
 <h4> 📂 ~/zaneyos </h4>
 
-```
+```text
 ~/zaneyos/
 ├── hosts/                      # Folder where host configs are saved
 │   ├── default                 # Default host template
@@ -554,32 +556,35 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 <details>
 <summary><strong> What is the difference between Master and Dwindle layouts</strong></summary>
 
-### **Master vs. Dwindle Layouts in Hyprland**
+<div style="margin-left: 20px;">
+<br>
 
-#### **1. Master Layout**
+**1. Master Layout**
 - The **Master** layout divides the workspace into two main areas:
   - A **master area** for the primary window, which takes up a larger portion of the screen.
   - A **stack area** for all other windows, which are tiled in the remaining space.
 - This layout is ideal for workflows where you want to focus on a single main window while keeping others accessible.
 
-#### **2. Dwindle Layout**
+**2. Dwindle Layout**
 - The **Dwindle** layout is a binary tree-based tiling layout:
   - Each new window splits the available space dynamically, alternating between horizontal and vertical splits.
   - The splits are determined by the aspect ratio of the parent container (e.g., wider splits horizontally, taller splits vertically).
 - This layout is more dynamic and evenly distributes space among all windows.
 
 ---
-### **How to Verify the Current Layout**
+**How to Verify the Current Layout**
 
 To check which layout is currently active, use the `hyprctl` command:
 
 `hyprctl getoption general:layout`
 
-</summary></strong>
 </details>
+</div>
 
 <details>
 <summary><strong> What are the Yazi keybindings and how can I change them? </strong></summary>
+
+<div style="margin-left: 20px;"> <br>
 
 The Yazi configuration file is located in `~/zaneyos/modules/home/yazi.nix`
 
@@ -587,12 +592,17 @@ Yazi is configured like VIM and VIM motions
 
 The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
+</div>
+
 </details>
 
 <h4>--->🖥️ Terminals </h4>
 
 <details>
 <summary><strong>Kitty</strong></summary>
+
+<div style="margin-left: 20px;"> 
+
 <details>
 
 <summary>My cursor in Kitty is "janky" and it jumps around. How do I fix that?</summary>
@@ -611,7 +621,7 @@ The kitty bindings are configured in `~/zaneyos/modules/home/kitty.nix`
   
 The defaults are:
 
-```
+```text
     # Clipboard
     map ctrl+shift+v        paste_from_selection
     map shift+insert        paste_from_selection
@@ -665,10 +675,15 @@ The defaults are:
 
 ```
 </details>
-
+</div>
 </details>
+
 <details>
+
 <summary><strong>WezTerm</strong></summary>
+
+<div style="margin-left: 20px;"> 
+
 <details>
 
  <summary>How do I enable WezTerm?</summary>
@@ -692,7 +707,7 @@ The defaults are:
 The kitty bindings are configured in `~/zaneyos/modules/home/wezterm.nix`  
   
 The defaults are:
-```
+```text
 ALT is the defined META key for WezTerm
   -- Tab management
 ALT + t                 Open new Tab
@@ -711,10 +726,13 @@ ALT + Up Arrow          Move to pane -- Down
 
 ```
 </details>
+</div>
 </details>
 
 <details>
 <summary><strong>  Ghostty </strong></summary>
+
+<div style="margin-left: 20px;"> 
 
 <details>
 <summary> How do I enable the ghostty terminal? </summary>
@@ -732,7 +750,7 @@ ALT + Up Arrow          Move to pane -- Down
 1. Edit the `~/zaneyos/modules/home/ghostty.nix` file.
 2. There are several example themes included but commented out.
 
-```
+```text
     #theme = Aura
     theme = Dracula
     #theme = Aardvark Blue
@@ -746,7 +764,7 @@ ALT + Up Arrow          Move to pane -- Down
 <details>
 <summary> What are the default ghostty keybindings?  </summary>
 
-```
+```text
  # keybindings
     keybind = alt+s>r=reload_config
     keybind = alt+s>x=close_surface
@@ -785,6 +803,7 @@ ALT + Up Arrow          Move to pane -- Down
     keybind = alt+s>e=equalize_splits
 ```
 </details>
+</div>
 </details>
 
 
@@ -860,16 +879,20 @@ This feature is a cornerstone of NixOS's declarative and reproducible design phi
 
 <details>
 <summary><strong> I am new to NIXOS where can I go to get more info? </strong></summary>
+
 - [NIXOS Config Guide](https://www.youtube.com/watch?v=AGVXJ-TIv3Y&t=34s)
 - [VIMJOYER YouTube Channel](https://www.youtube.com/@vimjoyer/videos)
 - [Librephoenix YouTube Channel](https://www.youtube.com/@librephoenix)
 - [8 Part Video Series on NIXOS](https://www.youtube.com/watch?v=QKoQ1gKJY5A&list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq-)
+
 </details>
 
 <details>
 <summary><strong> Where can I get info on using GIT repositories  </strong></summary>
+
 - [Managing NIXOS config with GIT](https://www.youtube.com/watch?v=20BN4gqHwaQ)
 - [GIT for dummies](https://www.youtube.com/watch?v=K6Q31YkorUE)
 - [How GIT works](https://www.youtube.com/watch?v=e9lnsKot_SQ)
 - [In depth 1hr video on GIT](https://www.youtube.com/watch?v=S7XpTAnSDL4&t=123s)
+
 </details>
