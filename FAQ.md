@@ -1,25 +1,38 @@
 # ZaneyOS FAQ for v2.3 
-- **Revision v1.13**  
-- **Date:** 29-Mar-2025
+- **Revision v1.14**  
+- **Date:** 30-Mar-2025
 <h4>---> ZaneyOS related</h4>
 
 <strong>⌨ Where can I see the Hyprland keybindings?</strong>
-- The SUPER key + K runs a searchable menu with the bindings
+- The SUPER key + K opens a searchable menu with the bindings
 - The "keys" icon on the right side of the waybar will also bring up this menu.
  
 <details>
 
-<summary><strong>🧠 Why did you create ZaneyOS ? </strong></summary>
+<summary><strong>❄ Why did you create ZaneyOS ? </strong></summary>
  
-Orginally, it was simply my configuration saved on a GIT repository. It was there to promote NixOS and Hyprland. Providing a stable, 
-working configuration.  It has never been intended as a full NixOS distro.  The `ZaneyOS` name is an inside joke among friends. The intent is this can be used as a daily driver, play games via steam, and be modified to fit your needs.  That is the key take away.
-Ideally you will fork ZaneyOS, modify it to your needs. If you find an issue and fix it, or provide a new feature we hope that
-you will share that with us also.  ZaneyOS is not a distro. At this time there are no plans to create an install ISO. 
+<div style="margin-left: 20px;">
 
+ - Orginally, it was simply my configuration saved on a GIT repository. 
+ - It was there to promote NixOS and Hyprland. 
+ - Providing a stable, working configuration. 
+ - It has never been intended as a full NixOS distro. 
+ - The `ZaneyOS` name is an inside joke among friends. 
+ - The intent is this configration can be used as a daily driver
+ - Develop software, play games via steam, etc.
+ - My hope is that it helpful, and will modify it to fit your needs. 
+ - That is the key take away.  Make it your own.
+ - You create a fork of ZaneyOS, then modify it.
+ - If you find an issue and fix it, or provide a new feature, please share it. 
+ - ZaneyOS is not a distro. At this time there are no plans to create an install ISO.
+
+</div>
 </details>
 
 <details>
 <summary><strong>🖼️ Settings and configuration</strong></summary>
+
+<div style="margin-left: 20px;">
 
 <details>
 <summary><strong> How do I change the Timezone? </strong></summary>
@@ -294,10 +307,13 @@ To change the hostname, there are several steps and you will have to reboot to m
 4. In the `~/zaneyos/modules/home/hyprland/config.nix` file is an ENV setting` "AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"` This sets the primary and secondary GPUs. Using the info from the weblink above you might have to change the order of these values.
 
 </details>
+
+</div>
+
 </details>
 
 <details>
-<summary><strong>Stylix</strong></summary>
+<summary><strong>🎨 Stylix</strong></summary>
 
 <details>
 <summary>How do I enable or disable Stylix? </summary>
@@ -385,7 +401,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 </details>
 
 <details>
-<summary><strong>Wallpapers</strong></summary>
+<summary><strong>🌃 Wallpapers</strong></summary>
 
 <details>
 <summary><strong>  How do I add more wallpapers? </strong></summary>
@@ -445,7 +461,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 
 <details>
-<summary><strong>How do I update ZaneyOS?  </strong></summary>
+<summary><strong>⬆ How do I update ZaneyOS?  </strong></summary>
 
 <details>
 <summary> For versions v2.3+ </summary>
