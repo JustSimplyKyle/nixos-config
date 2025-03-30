@@ -1,4 +1,4 @@
-# ZaneyOS FAQ for v2.3 
+# 💬 ZaneyOS FAQ for v2.3 
 - **Revision v1.14**  
 - **Date:** 30-Mar-2025
 <h4>---> ZaneyOS related</h4>
@@ -315,6 +315,8 @@ To change the hostname, there are several steps and you will have to reboot to m
 <details>
 <summary><strong>🎨 Stylix</strong></summary>
 
+<div style="margin-left: 20px;">
+
 <details>
 <summary>How do I enable or disable Stylix? </summary>
 
@@ -398,10 +400,15 @@ To change the hostname, there are several steps and you will have to reboot to m
   stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 ```
 </details>
+
+</div>
+
 </details>
 
 <details>
 <summary><strong>🌃 Wallpapers</strong></summary>
+
+<div style="margin-left: 20px;">
 
 <details>
 <summary><strong>  How do I add more wallpapers? </strong></summary>
@@ -457,11 +464,16 @@ To change the hostname, there are several steps and you will have to reboot to m
 4.  You will need to logout or reboot to make the change effective. 
 
 </details>
+
+</div>
+
 </details>
 
 
 <details>
 <summary><strong>⬆ How do I update ZaneyOS?  </strong></summary>
+
+<div style="margin-left: 20px;">
 
 <details>
 <summary> For versions v2.3+ </summary>
@@ -514,61 +526,67 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 
 <details>
-<summary><strong> How do I know when a new version of ZaneyOS is released? </strong></summary>
+<summary> How do I know when a new version of ZaneyOS is released? </summary>
 
 It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 </details>
+
+</div>
+
 </details>
 
 </div>
 
 <details><summary><strong>📂 ZaneyOS v2.3 Layout</strong></summary>
 
+<div style="margin-left: 25px;">
+
 <h4> 📂 ~/zaneyos </h4>
 
 ```text
 ~/zaneyos/
-├── hosts/                      # Folder where host configs are saved
-│   ├── default                 # Default host template
-│   └── nixstation              # Zaney's host 
-├── img/                        # Images for README.md
-├── modules/                    # Core, HomeMgr, drivers config files
-│   └── drivers/                # AMD,NVIDA,Intel,VM config files
-│   └── core/                   # Services, packages, fonts, etc
-│   └── home/                   # Home Manager config files
-│    ├── fastfetch/             # Fastfetch config 
-│    ├── hyprland/              # Hyrprland configs
-│    ├── rofi/                  # rofi menu configs
-│    ├── scripts/               # screenshots, wallpaper, etc.
-│    ├── waybar/                # waybar configs in NIX format
-│    ├── wlogout/               # Theme, config for logout menu
-│    ├── yazi/                  # TUI filemgr config file
-│    └── zsh/                   # Theme and settings for ZSH
-├── profiles/                   # Video hardware templates
-│   ├── amd/                    # AMD Video config files
-│   ├── intel/                  # Intel video config files
-│   ├── nvidia/                 # NVIDIA discrete video config files
-│   ├── nvidia-laptop/          # NVIDIA Hybrid video config files
-│   └── vm/                     # Virtual Machine config files
-├── wallpapers/                 # Add your wallpapers here 
-├── CHANGELOG.md                # List of changes
-├── CONTRIBUTING.md             # How you can help 
-├── FAQ.md                      # Frequently Asked Questions
-├── flake.lock                  # Saves version info on all installed packages
-├── flake.nix                   # flake that controls ZaneyOS config
-├── install-zaneyos.sh          # Install script for ZaneyOS
-├── LICENSE                     # MIT license ZaneyOS is using
-└── README.md                   # Intro document for ZaneyOS
+    ├── hosts/                      # Folder where host configs are saved
+    │   ├── default                 # Default host template
+    │   └── nixstation              # Zaney's host 
+    ├── img/                        # Images for README.md
+    ├── modules/                    # Core, HomeMgr, drivers config files
+    │   └── drivers/                # AMD,NVIDA,Intel,VM config files
+    │   └── core/                   # Services, packages, fonts, etc
+    │   └── home/                   # Home Manager config files
+    │    ├── fastfetch/             # Fastfetch config 
+    │    ├── hyprland/              # Hyrprland configs
+    │    ├── rofi/                  # rofi menu configs
+    │    ├── scripts/               # screenshots, wallpaper, etc.
+    │    ├── waybar/                # waybar configs in NIX format
+    │    ├── wlogout/               # Theme, config for logout menu
+    │    ├── yazi/                  # TUI filemgr config file
+    │    └── zsh/                   # Theme and settings for ZSH
+    ├── profiles/                   # Video hardware templates
+    │    ├── amd/                   # AMD Video config files
+    │    ├── intel/                 # Intel video config files
+    │    ├── nvidia/                # NVIDIA discrete video config files
+    │    ├── nvidia-laptop/         # NVIDIA Hybrid video config files
+    │    └── vm/                    # Virtual Machine config files
+    ├── wallpapers/                 # Add your wallpapers here 
+    ├── CHANGELOG.md                # List of changes
+    ├── CONTRIBUTING.md             # How you can help 
+    ├── FAQ.md                      # Frequently Asked Questions
+    ├── flake.lock                  # Saves version info on all installed packages
+    ├── flake.nix                   # flake that controls ZaneyOS config
+    ├── install-zaneyos.sh          # Install script for ZaneyOS
+    ├── LICENSE                     # MIT license ZaneyOS is using
+    └── README.md                   # Intro document for ZaneyOS
 
 ```
 
+</div>
 
 </details>
 
-<h4>--->🧰 Miscellaneous</h4>
+<h4>---> 🧰 Miscellaneous</h4>
 <details>
-<summary><strong> What is the difference between Master and Dwindle layouts</strong></summary>
+<summary><strong>📚 What is the difference between Master and Dwindle layouts</strong></summary>
 
 <div style="margin-left: 20px;">
 <br>
@@ -596,7 +614,7 @@ To check which layout is currently active, use the `hyprctl` command:
 </div>
 
 <details>
-<summary><strong> What are the Yazi keybindings and how can I change them? </strong></summary>
+<summary><strong>📦 What are the Yazi keybindings and how can I change them? </strong></summary>
 
 <div style="margin-left: 20px;"> <br>
 
@@ -610,10 +628,10 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 </details>
 </details>
 
-<h4>--->🖥️ Terminals </h4>
+<h4>---> 🖥️ Terminals </h4>
 
 <details>
-<summary><strong>Kitty</strong></summary>
+<summary><strong>🐱  Kitty</strong></summary>
  
 
 <details>
@@ -692,7 +710,7 @@ The defaults are:
 
 <details>
 
-<summary><strong>WezTerm</strong></summary>
+<summary><strong>🇼  WezTerm</strong></summary>
 
 <div style="margin-left: 20px;"> 
 
@@ -742,7 +760,7 @@ ALT + Up Arrow          Move to pane -- Down
 </details>
 
 <details>
-<summary><strong>  Ghostty </strong></summary>
+<summary><strong>👻 Ghostty </strong></summary>
 
 <div style="margin-left: 20px;"> 
 
@@ -821,15 +839,18 @@ ALT + Up Arrow          Move to pane -- Down
 
 
 <h4>
--->🪧  General NixOS related topics
+--> 🪧  General NixOS related topics
 </h4>
 
 <details>
-<summary><strong>What are Flakes in NixOS? </strong></summary>
+<summary><strong>❄  What are Flakes in NixOS? </strong></summary>
+
+<div style="margin-left: 20px;"> 
 
 **Flakes** are a feature of the Nix package manager that simplifies and standardizes how configurations, dependencies, and packages are managed. If you're familiar with tools like `package.json` in JavaScript or `Cargo.toml` in Rust, flakes serve a similar purpose in the Nix ecosystem.
 
-### Key Features of Flakes:
+ <h4> Key Features of Flakes: </h4>
+
 1. **Pin Dependencies**:
    - Flakes lock the versions of dependencies in a `flake.lock` file, ensuring reproducibility across systems.
 
@@ -841,10 +862,12 @@ ALT + Up Arrow          Move to pane -- Down
 
 In essence, flakes help manage NixOS setups or Nix-based projects in a more portable and reliable way.
 
+</div>
+
 </details>
 
 <details>
-<summary><strong>What is NixOS Home Manager? </strong></summary>
+<summary><strong>🏡  What is NixOS Home Manager? </strong></summary>
 
 **Home Manager** is a powerful tool in the Nix ecosystem that allows you to declaratively manage user-specific configurations and environments. With Home Manager, you can streamline the setup of dotfiles, shell settings, applications, and system packages for your user profile.
 
@@ -864,7 +887,7 @@ Home Manager simplifies system management by offering consistency, reproducibili
 </details>
 
 <details>
-<summary><strong>What are Atomic Builds?</strong></summary>
+<summary><strong>🏭  What are Atomic Builds?</strong></summary>
 
 **Atomic builds** in NixOS ensure that any system change (like installing software or updating the configuration) is applied in a safe and fail-proof way. This means that a system update is either fully successful or has no effect at all, eliminating the risk of a partially applied or broken system state.
 
@@ -890,7 +913,7 @@ This feature is a cornerstone of NixOS's declarative and reproducible design phi
 </details>
 
 <details>
-<summary><strong> I am new to NIXOS where can I go to get more info? </strong></summary>
+<summary><strong>❓ I am new to NIXOS where can I go to get more info? </strong></summary>
 
 - [NIXOS Config Guide](https://www.youtube.com/watch?v=AGVXJ-TIv3Y&t=34s)
 - [VIMJOYER YouTube Channel](https://www.youtube.com/@vimjoyer/videos)
@@ -900,7 +923,7 @@ This feature is a cornerstone of NixOS's declarative and reproducible design phi
 </details>
 
 <details>
-<summary><strong> Where can I get info on using GIT repositories  </strong></summary>
+<summary><strong>🏤 Where can I get info on using GIT repositories  </strong></summary>
 
 - [Managing NIXOS config with GIT](https://www.youtube.com/watch?v=20BN4gqHwaQ)
 - [GIT for dummies](https://www.youtube.com/watch?v=K6Q31YkorUE)
