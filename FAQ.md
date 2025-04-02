@@ -919,6 +919,7 @@ This feature is a cornerstone of NixOS's declarative and reproducible design phi
 - [VIMJOYER YouTube Channel](https://www.youtube.com/@vimjoyer/videos)
 - [Librephoenix YouTube Channel](https://www.youtube.com/@librephoenix)
 - [8 Part Video Series on NIXOS](https://www.youtube.com/watch?v=QKoQ1gKJY5A&list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq-)
+- [Great guide for NixOS and Flakes](https://nixos-and-flakes.thiscute.world/preface)
 
 </details>
 
