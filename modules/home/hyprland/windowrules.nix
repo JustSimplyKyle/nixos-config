@@ -33,6 +33,7 @@ in {
         "tag +settings, class:^(nwg-look|qt5ct|qt6ct|[Yy]ad)$"
         "tag +settings, class:(xdg-desktop-portal-gtk)"
         "tag +settings, class:(.blueman-manager-wrapped)"
+        "tag +settings, class:(nwg-displays"
         "move 72% 7%,title:^(Picture-in-Picture)$"
         "center, class:^([Ff]erdium)$"
          "float, class:^([Ww]aypaper)$"
