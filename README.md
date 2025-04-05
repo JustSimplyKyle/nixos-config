@@ -5,11 +5,6 @@
 ZaneyOS is a simple way of reproducing my configuration on any NixOS system.
 This includes the wallpaper, scripts, applications, config files, and more.
 
-This demo video is a customized version of ZaneyOS.  It's to demonstarte that ZaneyOS is a fantastic starting point to create your own version.
-
-
-![ZaneyOS v2.3 Demo Video](https://gitlab.com/Zaney/zaneyos/-/blob/main/img/ZaneyOS-v2.3-demo-video.mp4?ref_type=heads)
-
 
 <img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/demo.png" />
 
