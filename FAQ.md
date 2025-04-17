@@ -92,7 +92,7 @@ you to use the mouse match how they are physicall arranged. E.g. what monitor is
 
 <img align="center" width="90%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/nwg-displays.png" />
 
-After you finish configring the monitors as you wish, hit `Apply` to save the changes to `~/.config/hypr/monitor.conf`  
+After you finish configring the monitors as you wish, hit `Apply` to save the changes to `~/.config/hypr/monitors.conf`  
 The contents will look something like this: 
 
 ```text
