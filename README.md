@@ -89,6 +89,60 @@ Please do yourself a favor and
 
 - Don't forget to checkout the [FAQ](https://zaney.org/wiki/zaneyos-2.3/faq)
 
+# Hyprland Keybindings
+
+Below are the keybindings for Hyprland, formatted for easy reference.
+
+## Application Launching
+- `$modifier + Return` → Launch `terminal`
+- `$modifier + K` → List keybinds
+- `$modifier + Shift + Return` → Launch `rofi-launcher`
+- `$modifier + Shift + W` → Open `web-search`
+- `$modifier + Alt + W` → Open `wallsetter`
+- `$modifier + Shift + N` → Run `swaync-client -rs`
+- `$modifier + W` → Launch `Web Browser`
+- `$modifier + Y` → Open `kitty` with `yazi`
+- `$modifier + E` → Open `emopicker9000`
+- `$modifier + S` → Take a screenshot
+- `$modifier + D` → Open `Discord`
+- `$modifier + O` → Launch `OBS Studio`
+- `$modifier + C` → Run `hyprpicker -a`
+- `$modifier + G` → Open `GIMP`
+- `$modifier + V` → Show clipboard history via `cliphist`
+- `$modifier + T` → Toggle terminal with `pypr`
+- `$modifier + M` → Open `pavucontrol`
+
+## Window Management
+- `$modifier + Q` → Kill active window
+- `$modifier + P` → Toggle pseudo tiling
+- `$modifier + Shift + I` → Toggle split mode
+- `$modifier + F` → Toggle fullscreen
+- `$modifier + Shift + F` → Toggle floating mode
+- `$modifier + Alt + F` → Float all windows
+- `$modifier + Shift + C` → Exit Hyprland
+
+## Window Movement
+- `$modifier + Shift + ← / → / ↑ / ↓` → Move window left/right/up/down
+- `$modifier + Shift + H / L / K / J` → Move window left/right/up/down
+- `$modifier + Alt + ← / → / ↑ / ↓` → Swap window left/right/up/down
+- `$modifier + Alt + 43 / 46 / 45 / 44` → Swap window left/right/up/down
+
+## Focus Movement
+- `$modifier + ← / → / ↑ / ↓` → Move focus left/right/up/down
+- `$modifier + H / L / K / J` → Move focus left/right/up/down
+
+## Workspaces
+- `$modifier + 1-10` → Switch to workspace 1-10
+- `$modifier + Shift + Space` → Move window to special workspace
+- `$modifier + Space` → Toggle special workspace
+- `$modifier + Shift + 1-10` → Move window to workspace 1-10
+- `$modifier + Control + → / ←` → Switch workspace forward/backward
+
+## Window Cycling
+- `Alt + Tab` → Cycle to next window
+- `Alt + Tab` → Bring active window to top
+
+
 ## Installation: 
 
 <details>
