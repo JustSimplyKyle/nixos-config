@@ -12,13 +12,13 @@
 Below are the keybindings for Hyprland, formatted for easy reference.
 
 ## Application Launching
-- `$modifier + Return` → Launch `kitty`
+- `$modifier + Return` → Launch `Terminal`
 - `$modifier + K` → List keybinds
 - `$modifier + Shift + Return` → Launch `rofi-launcher`
 - `$modifier + Shift + W` → Open `web-search`
 - `$modifier + Alt + W` → Open `wallsetter`
 - `$modifier + Shift + N` → Run `swaync-client -rs`
-- `$modifier + W` → Launch `Google Chrome`
+- `$modifier + W` → Launch `Web Browser`
 - `$modifier + Y` → Open `kitty` with `yazi`
 - `$modifier + E` → Open `emopicker9000`
 - `$modifier + S` → Take a screenshot
