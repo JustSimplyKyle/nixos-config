@@ -88,3 +88,6 @@ has been improved.
 - Stylix options that I wanted forced us back on the unstable branch.
 - Made Thunar an optional thing, enabled by default. _But for me Yazi is
   enough._
+- Updated FAQ.md with Hyprland Keybinds and how to change waybar 
+- Updated README with Hyprland keybinds 
+- Updated install script to pull from the most current release not the main branch
