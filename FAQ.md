@@ -89,6 +89,28 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 <div style="margin-left: 20px;">
 
 <details>
+<summary><strong>How to I change the waybar?</strong></summary>
+
+- Go to the `~/zaneyos/host/HOSTNAME`
+- Edit the `variables.nix` file
+- Find the line that starts `waybarChoice` 
+- Change the name to one of the available files 
+- `waybar-simple.nix`, `waybar-curved.nix`, or `waybar-ddubs.nix` 
+- Save the file and exit
+- You need to do a rebuild to make the change effective 
+- Run `fr` "flake rebuild" to start the rebuild process
+
+```json
+
+  # Set Waybar
+  # Includes alternates such as waybar-simple.nix, waybar-curved.nix & waybar-ddubs.nix
+  waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+```
+
+</details>
+
+
+<details>
 <summary><strong> How do I change the Timezone? </strong></summary>
 
 1. In the file, `~/zaneyos/modules/core/system.nix`  
