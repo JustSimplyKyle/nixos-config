@@ -1,6 +1,6 @@
 # 💬 ZaneyOS FAQ for v2.3 
-- **Revision v1.14**  
-- **Date:** 30-Mar-2025
+- **Revision v1.15**  
+- **Date:** 5-May-2025
 <h4>---> ZaneyOS related</h4>
 
 <strong>⌨ Where can I see the Hyprland keybindings?</strong>
