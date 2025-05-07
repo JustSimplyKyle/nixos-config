@@ -1,6 +1,50 @@
 ## 🗒️ Changelog
 
-**ZaneyOS 2.0**
+
+**ZaneyOS 2.3**
+
+With this release there are improvements to Neovim and the entire file structure
+has been improved.
+
+- Updated FAQ.md with Hyprland Keybinds and how to change waybar. 
+- Updated README with Hyprland keybinds. 
+- Updated install script to pull from the most current release not the main branch.
+- Added `hm-find` to find old backup files preventing rebuilds/updates from completing.
+- Added how to fix yazi startup error to `FAQ.md`.
+- Fixed formatting in `FAQ.md` causing yazi info from being hidden.
+
+
+- Switched from nixvim to nvf for neovim configuration.
+- Improved bat config and includes extras now.
+- Added profiles for what kind of system you have based of GPU / VM.
+- Reduced the host specific files and made the entire flake more modular.
+- Fixed git getting set to wrong user settings.
+- Fixed hyprlock conflicting with stylix.
+- Setup`nh` in a better fashion.
+- Added support for qmk out of the box. 
+- Added usbutils for lsusb functionality.
+- Massive improvement to Hyprland window rules.
+- Removed broken support for Apple Silicon (this may return).
+- Install script improved.
+- Fixed `nix flake check` not working.
+- Added nvidia prime PCI ID variables to host `variables.nix`.
+- Added vim keybindings zsh (alt+hjkl).
+- Added (ctrl+hjkl) keybinds for vim movement while in insert mode in neovim.
+- Supports adb out of the box.
+- Ddubs/dwilliam62 helped with the addition of pyprland and scratchpad support.
+  He is now also a maintainer.
+- Can now summon a drop-down terminal with `SUPER, T`.
+- Added image used by Stylix into the host variables file.
+- Made printing and NFS variables so they can be easily toggled between hosts.
+- Added waybar styling choice.
+- Kitty, Wezterm, Neovim/nvf, and even Flatpaks all properly themed with Stylix.
+- Moved to hyprpolkitagent and fixed qt theming.
+- Stylix options that I wanted forced us back on the unstable branch.
+- Made Thunar an optional thing, enabled by default. _But for me Yazi is
+  enough._
+
+
+**ZaneyOS v2.0**
 
 With this new update of ZaneyOS it is a big rewrite of how things are being
 done. This update fixes many issues that you guys were facing. As well as makes
@@ -17,7 +61,7 @@ supportive!
   implementation.
 - Rewrote the documentation for improved readability.
 
-**ZaneyOS 2.1**
+**ZaneyOS v2.1**
 
 Simple bug fixes.
 
@@ -27,7 +71,7 @@ Simple bug fixes.
   so be aware of that.
 - The flake got an update, so all the packages are fresh.
 
-**ZaneyOS 2.2**
+**ZaneyOS v2.2**
 
 This release has a big theming change as well as including the move back to
 rofi. It is a massive improvement in many ways.
@@ -55,39 +99,5 @@ rofi. It is a massive improvement in many ways.
 - Switching to Brave as the default to protect user privacy.
 - Replaced lsd with eza for a better looking experience.
 
-**ZaneyOS 2.3**
 
-With this release there are improvements to Neovim and the entire file structure
-has been improved.
 
-- Switched from nixvim to nvf for neovim configuration.
-- Improved bat config and includes extras now.
-- Added profiles for what kind of system you have based of GPU / VM.
-- Reduced the host specific files and made the entire flake more modular.
-- Fixed git getting set to wrong user settings.
-- Fixed hyprlock conflicting with stylix.
-- Setup nh in a better fashion.
-- Added support for qmk out of the box and added usbutils for lsusb
-  functionality.
-- Massive improvement to Hyprland window rules.
-- Removed broken support for Apple Silicon (this may return).
-- Install script improved.
-- Fixed `nix flake check` not working.
-- Added nvidia prime PCI ID variables to host `variables.nix`.
-- Added vim keybindings zsh (alt+hjkl).
-- Added (ctrl+hjkl) keybinds for vim movement while in insert mode in neovim.
-- Supports adb out of the box.
-- Ddubs/dwilliam62 helped with the addition of pyprland and scratchpad support.
-  He is now also a maintainer.
-- Can now summon a drop-down terminal with `SUPER, T`.
-- Added image used by Stylix into the host variables file.
-- Made printing and NFS variables so they can be easily toggled between hosts.
-- Added waybar styling choice.
-- Kitty, Wezterm, Neovim/nvf, and even Flatpaks all properly themed with Stylix.
-- Moved to hyprpolkitagent and fixed qt theming.
-- Stylix options that I wanted forced us back on the unstable branch.
-- Made Thunar an optional thing, enabled by default. _But for me Yazi is
-  enough._
-- Updated FAQ.md with Hyprland Keybinds and how to change waybar 
-- Updated README with Hyprland keybinds 
-- Updated install script to pull from the most current release not the main branch
