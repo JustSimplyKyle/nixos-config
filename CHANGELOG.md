@@ -3,17 +3,14 @@
 
 **ZaneyOS 2.3**
 
-With this release there are improvements to Neovim and the entire file structure
-has been improved.
-
 - Updated FAQ.md with Hyprland Keybinds and how to change waybar. 
 - Updated README with Hyprland keybinds. 
 - Updated install script to pull from the most current release not the main branch.
 - Added `hm-find` to find old backup files preventing rebuilds/updates from completing.
 - Added how to fix yazi startup error to `FAQ.md`.
 - Fixed formatting in `FAQ.md` causing yazi info from being hidden.
-
-
+- With this release there are improvements to Neovim 
+- The entire file structure has been improved.
 - Switched from nixvim to nvf for neovim configuration.
 - Improved bat config and includes extras now.
 - Added profiles for what kind of system you have based of GPU / VM.
