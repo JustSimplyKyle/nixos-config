@@ -1,6 +1,6 @@
 # 💬 ZaneyOS FAQ for v2.3 
-- **Revision v1.15**  
-- **Date:** 5-May-2025
+- **Revision v1.16**  
+- **Date:** 7-May-2025
 <h4>---> ZaneyOS related</h4>
 
 <strong>⌨ Where can I see the Hyprland keybindings?</strong>
@@ -689,6 +689,9 @@ To check which layout is currently active, use the `hyprctl` command:
 </details>
 </div>
 
+</details>
+
+
 <details>
 <summary><strong>📦 What are the Yazi keybindings and how can I change them? </strong></summary>
 
@@ -696,13 +699,152 @@ To check which layout is currently active, use the `hyprctl` command:
 
 The Yazi configuration file is located in `~/zaneyos/modules/home/yazi.nix`
 
-Yazi is configured like VIM and VIM motions 
+Yazi is configured like VIM and VIM motions
 
 The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
 </div>
 </details>
+
+
+<details>
+
+<summary><strong>❄ Error starting Yazi ? </strong></summary>
+
+<div style="margin-left: 20px;">
+
+```text
+yazi
+Error: Lua runtime failed
+
+Caused by:
+    runtime error: [string "git"]:133: attempt to index a nil value (global 'THEME')
+    stack traceback:
+        [C]: in metamethod 'index'
+        [string "git"]:133: in function 'git.setup'
+        [C]: in method 'setup'
+        [string "init.lua"]:2: in main chunk
+    stack traceback:
+        [C]: in method 'setup'
+        [string "init.lua"]:2: in main chunk
+
+```
+- To resolve run `ya pack -u` in a terminal.  Restart `yazi`
+
+</div>
 </details>
+
+
+<details>
+
+<summary><strong>What fonts are avialable in NixOS</strong></summary>
+
+```nix
+{pkgs, ...}: {
+  fonts = {
+    packages = with pkgs; [
+      dejavu_fonts
+      fira-code
+      fira-code-symbols
+      font-awesome
+      hackgen-nf-font
+      ibm-plex
+      inter
+      jetbrains-mono
+      material-icons
+      maple-mono.NF
+      minecraftia
+      nerd-fonts.im-writing
+      nerd-fonts.blex-mono
+      noto-fonts
+      noto-fonts-emoji
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-monochrome-emoji
+      powerline-fonts
+      roboto
+      roboto-mono
+      symbola
+      terminus_font
+      # NERD fonts 
+      nerd-fonts.0xproto
+      nerd-fonts._3270
+      nerd-fonts.agave
+      nerd-fonts.anonymice
+      nerd-fonts.arimo
+      nerd-fonts.aurulent-sans-mono
+      nerd-fonts.bigblue-terminal
+      nerd-fonts.bitstream-vera-sans-mono
+      nerd-fonts.blex-mono
+      nerd-fonts.caskaydia-cove
+      nerd-fonts.caskaydia-mono
+      nerd-fonts.code-new-roman
+      nerd-fonts.comic-shanns-mono
+      nerd-fonts.commit-mono
+      nerd-fonts.cousine
+      nerd-fonts.d2coding
+      nerd-fonts.daddy-time-mono
+      nerd-fonts.departure-mono
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.envy-code-r
+      nerd-fonts.fantasque-sans-mono
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
+      nerd-fonts.geist-mono
+      nerd-fonts.go-mono
+      nerd-fonts.gohufont
+      nerd-fonts.hack
+      nerd-fonts.hasklug
+      nerd-fonts.heavy-data
+      nerd-fonts.hurmit
+      nerd-fonts.im-writing
+      nerd-fonts.inconsolata
+      nerd-fonts.inconsolata-go
+      nerd-fonts.inconsolata-lgc
+      nerd-fonts.intone-mono
+      nerd-fonts.iosevka
+      nerd-fonts.iosevka-term
+      nerd-fonts.iosevka-term-slab
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.lekton
+      nerd-fonts.liberation
+      nerd-fonts.lilex
+      nerd-fonts.martian-mono
+      nerd-fonts.meslo-lg
+      nerd-fonts.monaspace
+      nerd-fonts.monofur
+      nerd-fonts.monoid
+      nerd-fonts.mononoki
+      nerd-fonts.mplus
+      nerd-fonts.noto
+      nerd-fonts.open-dyslexic
+      nerd-fonts.overpass
+      nerd-fonts.profont
+      nerd-fonts.proggy-clean-tt
+      nerd-fonts.recursive-mono
+      nerd-fonts.roboto-mono
+      nerd-fonts.shure-tech-mono
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.space-mono
+      nerd-fonts.symbols-only
+      nerd-fonts.terminess-ttf
+      nerd-fonts.tinos
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.ubuntu-sans
+      nerd-fonts.victor-mono
+      nerd-fonts.zed-mono
+
+    ];
+  };
+}
+
+```
+
+</details>
+
+
 
 <h4>---> 🖥️ Terminals </h4>
 
