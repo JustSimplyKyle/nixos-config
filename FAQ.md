@@ -1,6 +1,6 @@
 # 💬 ZaneyOS FAQ for v2.3 
-- **Revision v1.16**  
-- **Date:** 7-May-2025
+- **Revision v1.17**  
+- **Date:** 8-May-2025
 <h4>---> ZaneyOS related</h4>
 
 <strong>⌨ Where can I see the Hyprland keybindings?</strong>
@@ -661,7 +661,24 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 </details>
 
 <h4>---> 🧰 Miscellaneous</h4>
+
 <details>
+
+<summary><strong>🪧 Rebuild or update fails with Home Manager error can't backup a file</strong></summary>
+
+<div style="margin-left: 20px;">
+<br>
+ - There is a script `hm-find`  That will search the journal and if found, will prompt you to delete these backups
+ - It creates a log as well 
+ - You can now redo your rebuild
+ - If you ran `fu` for `flake update`  you can now do `fr` for `flake rebuild`  
+ - The flake has already been updated 
+</div>
+</details>
+
+
+<details>
+
 <summary><strong>📚 What is the difference between Master and Dwindle layouts</strong></summary>
 
 <div style="margin-left: 20px;">
@@ -737,7 +754,7 @@ Caused by:
 
 <details>
 
-<summary><strong>What fonts are avialable in NixOS</strong></summary>
+<summary><strong> What fonts are avialable in NixOS</strong></summary>
 
 ```nix
 {pkgs, ...}: {
