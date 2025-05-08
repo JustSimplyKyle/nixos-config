@@ -669,6 +669,19 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 <div style="margin-left: 20px;">
 <br>
 
+```text
+May 08 18:33:57 explorer hm-activate-dwilliams[92420]: Please do one of the following:
+May 08 18:33:57 explorer hm-activate-dwilliams[92420]: - Move or remove the above files and try again.
+May 08 18:33:57 explorer hm-activate-dwilliams[92420]: - In standalone mode, use 'home-manager switch -b backup' to back up
+May 08 18:33:57 explorer hm-activate-dwilliams[92420]:   files automatically.
+May 08 18:33:57 explorer hm-activate-dwilliams[92420]: - When used as a NixOS or nix-darwin module, set
+May 08 18:33:57 explorer hm-activate-dwilliams[92420]:     'home-manager.backupFileExtension'
+May 08 18:33:57 explorer hm-activate-dwilliams[92420]:   to, for example, 'backup' and rebuild.
+May 08 18:33:57 explorer systemd[1]: home-manager-dwilliams.service: Main process exited, code=exited, status=1/FAILURE
+May 08 18:33:57 explorer systemd[1]: home-manager-dwilliams.service: Failed with result 'exit-code'.
+May 08 18:33:57 explorer systemd[1]: Failed to start Home Manager environment for dwilliams.
+```
+
  - There is a script `hm-find`  That will search the journal and if found, will prompt you to delete these backups
  - It creates a log as well 
  - You can now redo your rebuild
