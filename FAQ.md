@@ -668,11 +668,13 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 <div style="margin-left: 20px;">
 <br>
+
  - There is a script `hm-find`  That will search the journal and if found, will prompt you to delete these backups
  - It creates a log as well 
  - You can now redo your rebuild
  - If you ran `fu` for `flake update`  you can now do `fr` for `flake rebuild`  
  - The flake has already been updated 
+
 </div>
 </details>
 
