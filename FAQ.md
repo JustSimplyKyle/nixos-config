@@ -1,5 +1,5 @@
 # 💬 ZaneyOS FAQ for v2.3 
-- **Revision v1.17**  
+- **Revision v1.18**  
 - **Date:** 8-May-2025
 <h4>---> ZaneyOS related</h4>
 
@@ -682,8 +682,11 @@ May 08 18:33:57 explorer systemd[1]: home-manager-dwilliams.service: Failed with
 May 08 18:33:57 explorer systemd[1]: Failed to start Home Manager environment for dwilliams.
 ```
 
- - There is a script `hm-find`  That will search the journal and if found, will prompt you to delete these backups
+ - There is a script `hm-find`  That will search the journal and if found, 
+ - It will prompt you to delete these backups
  - It creates a log as well 
+ - Note:  The script is not perfect
+ - If you get this msg but `hm-find` doesn't report any you will have to search manually e.g `journalctl | grep hm-activate`  
  - You can now redo your rebuild
  - If you ran `fu` for `flake update`  you can now do `fr` for `flake rebuild`  
  - The flake has already been updated 
