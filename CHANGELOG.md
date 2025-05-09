@@ -3,6 +3,39 @@
 
 **ZaneyOS v2.3**
 
+ - **Updated** `zaneyos/modules/home/nvf.nix`
+  - **A recent NeoVIM update:** disables `vim.lspines` (Part of LSP diagnostics)
+  - **Because of that we enabled** `vim.diagnostics`
+  - **As a result**, you have to toggle on diagnostic messages
+    - `leader dt` to toggle on/off  
+    - **Keybindings for diagnostics:**  
+
+```toml
+{
+          key = "<leader>dj";
+          mode = ["n"];
+          action = "<cmd>Lspsaga diagnostic_jump_next<CR>";
+          desc = "Go to next diagnostic";
+        }
+        {
+          key = "<leader>dk";
+          mode = ["n"];
+          action = "<cmd>Lspsaga diagnostic_jump_prev<CR>";
+          desc = "Go to previous diagnostic";
+        }
+        {
+          key = "<leader>dl";
+          mode = ["n"];
+          action = "<cmd>Lspsaga show_line_diagnostics<CR>";
+          desc = "Show diagnostic details";
+        }
+        {
+          key = "<leader>dt";
+          mode = ["n"];
+          action = "<cmd>Trouble diagnostics toggle<cr>";
+          desc = "Toggle diagnostics list";
+        }
+```
 - Updated FAQ.md with Hyprland Keybinds and how to change waybar. 
 - Updated README with Hyprland keybinds. 
 - Updated install script to pull from the most current release not the main branch.
