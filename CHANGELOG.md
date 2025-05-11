@@ -3,6 +3,9 @@
 
 **ZaneyOS v2.3**
 
+- Fixed syntax error in `animations-dynamic.nix     Thx Brisingr05
+- Removed unneeded `home.mgr.enable` in `user.nix`  Thx Brisingr05
+
  - **Updated** `zaneyos/modules/home/nvf.nix`
   - **A recent NeoVIM update:** disables `vim.lspines` (Part of LSP diagnostics)
   - **Because of that we enabled** `vim.diagnostics`
