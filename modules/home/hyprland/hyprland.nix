@@ -111,12 +111,18 @@ in {
         vrr = 2;   #Variable Refresh Rate  Might need to set to 0 for NVIDIA/AQ_DRM_DEVICES
         # Screen flashing to black momentarily or going black when app is fullscreen
         # Try setting vrr to 0
+
+        #  Application not responding (ANR) settings
+        enable_anr_dialog = true;
+        anr_missed_pings = 20;
+
       };  
 
 
       dwindle = {
         pseudotile = true;
         preserve_split = true;
+        force_split = 2;
       };
 
       decoration = {
@@ -135,6 +141,12 @@ in {
           color = "rgba(1a1a1aee)";
         };
       };
+
+      environment = {
+        no_donation_nag = true;
+        no_update_news = false;
+      };
+      
 
       cursor = {
         sync_gsettings_theme = true;
