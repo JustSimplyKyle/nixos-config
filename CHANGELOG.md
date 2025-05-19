@@ -2,6 +2,8 @@
 
 **ZaneyOS v2.3**
 
+- Disabled donation messages 
+- Set Application Not Responding (ANR) dialog threshold to 20 (def 1)
 - Restored diagnotic features inline as errors are detected
 - When you save a file the LSP will show hints if applicable
 - Updated `nvf.nix`to use a clipboard provider as "useSystemClipobard" is no
