@@ -1,17 +1,27 @@
 ## 🗒️ Changelog
 
-
 **ZaneyOS v2.3**
 
-- Fixed syntax error in `animations-dynamic.nix     Thx Brisingr05
-- Removed unneeded `home.mgr.enable` in `user.nix`  Thx Brisingr05
+- Restored diagnotic features inline as errors are detected
+- When you save a file the LSP will show hints if applicable
+- Updated `nvf.nix`to use a clipboard provider as "useSystemClipobard" is no
+  longer supported
+- Pinned `nixpkgs` and `homemanager` to 25.05 in `flake.nix`
+- Updated `flake.lock`to match changes
+- Hyprland updated to v0.49
+- Added `hyprlock.enable=true;` in system packages. This resolves issue with PAM
+  auth errors.
 
- - **Updated** `zaneyos/modules/home/nvf.nix`
-  - **A recent NeoVIM update:** disables `vim.lspines` (Part of LSP diagnostics)
-  - **Because of that we enabled** `vim.diagnostics`
-  - **As a result**, you have to toggle on diagnostic messages
-    - `leader dt` to toggle on/off  
-    - **Keybindings for diagnostics:**  
+- Fixed syntax error in `animations-dynamic.nix Thx Brisingr05
+
+- Removed unneeded `home.mgr.enable` in `user.nix` Thx Brisingr05
+
+- **Updated** `zaneyos/modules/home/nvf.nix`
+- **A recent NeoVIM update:** disables `vim.lspines` (Part of LSP diagnostics)
+- **Because of that we enabled** `vim.diagnostics`
+- **As a result**, you have to toggle on diagnostic messages
+  - `leader dt` to toggle on/off
+  - **Keybindings for diagnostics:**
 
 ```toml
 {
@@ -39,13 +49,16 @@
           desc = "Toggle diagnostics list";
         }
 ```
-- Updated FAQ.md with Hyprland Keybinds and how to change waybar. 
-- Updated README with Hyprland keybinds. 
-- Updated install script to pull from the most current release not the main branch.
-- Added `hm-find` to find old backup files preventing rebuilds/updates from completing.
+
+- Updated FAQ.md with Hyprland Keybinds and how to change waybar.
+- Updated README with Hyprland keybinds.
+- Updated install script to pull from the most current release not the main
+  branch.
+- Added `hm-find` to find old backup files preventing rebuilds/updates from
+  completing.
 - Added how to fix yazi startup error to `FAQ.md`.
 - Fixed formatting in `FAQ.md` causing yazi info from being hidden.
-- With this release there are improvements to Neovim 
+- With this release there are improvements to Neovim
 - The entire file structure has been improved.
 - Switched from nixvim to nvf for neovim configuration.
 - Improved bat config and includes extras now.
@@ -54,7 +67,7 @@
 - Fixed git getting set to wrong user settings.
 - Fixed hyprlock conflicting with stylix.
 - Setup`nh` in a better fashion.
-- Added support for qmk out of the box. 
+- Added support for qmk out of the box.
 - Added usbutils for lsusb functionality.
 - Massive improvement to Hyprland window rules.
 - Removed broken support for Apple Silicon (this may return).
@@ -76,11 +89,9 @@
 - Made Thunar an optional thing, enabled by default. _But for me Yazi is
   enough._
 
-
-
 **ZaneyOS v2.2**
 
-- This release has a big theming change 
+- This release has a big theming change
 - Move back to rofi. It is a massive improvement in many ways.
 - Revert the switch from rofi to wofi. Rofi is just better.
 - Switch from Nix Colors to Stylix. It can build colorschemes from a wallpaper.
@@ -105,17 +116,15 @@
 - Switching to Brave as the default to protect user privacy.
 - Replaced lsd with eza for a better looking experience.
 
-
 **ZaneyOS v2.1**
 
- Simple bug fixes.
+Simple bug fixes.
 
 - Fixed Waybar icons to make them look a bit better.
 - Centered the Wofi window always.
 - Should have fixed some Steam issues, but I have had some crashes due to Steam
   so be aware of that.
 - The flake got an update, so all the packages are fresh.
-
 
 **ZaneyOS v2.0**
 
@@ -133,5 +142,3 @@ supportive!
 - Simplified options and the complexity around understanding their
   implementation.
 - Rewrote the documentation for improved readability.
-
-
