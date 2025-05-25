@@ -19,7 +19,7 @@ in {
     swappy
     ydotool
     hyprpolkitagent
-    hyprland-qtutils  # needed for banners and ANR messages
+    hyprland-qtutils # needed for banners and ANR messages
   ];
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
@@ -107,17 +107,15 @@ in {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         enable_swallow = false;
-        vfr = true;   # Variable Frame Rate 
-        vrr = 2;   #Variable Refresh Rate  Might need to set to 0 for NVIDIA/AQ_DRM_DEVICES
+        vfr = true; # Variable Frame Rate
+        vrr = 2; #Variable Refresh Rate  Might need to set to 0 for NVIDIA/AQ_DRM_DEVICES
         # Screen flashing to black momentarily or going black when app is fullscreen
         # Try setting vrr to 0
 
         #  Application not responding (ANR) settings
         enable_anr_dialog = true;
         anr_missed_pings = 20;
-
-      };  
-
+      };
 
       dwindle = {
         pseudotile = true;
@@ -142,11 +140,10 @@ in {
         };
       };
 
-      environment = {
+      ecosystem = {
         no_donation_nag = true;
         no_update_news = false;
       };
-      
 
       cursor = {
         sync_gsettings_theme = true;
