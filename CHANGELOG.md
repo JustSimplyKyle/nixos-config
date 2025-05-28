@@ -2,6 +2,7 @@
 
 **ZaneyOS v2.3**
 
+- Fixed regression in `windowrules.nix`
 - Stylix was set to unstable - set to 25.05 to stop warning
 - hyprland ENV variables set in two files, created `env.nix`
 - Hyprland animation files had `inherit`statements that weren't used
