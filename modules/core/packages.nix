@@ -42,6 +42,7 @@
     eog # For Image Viewing
     inxi # CLI System Information Tool
     killall # For Killing All Instances Of Programs
+    lazygit # Terminal Based Git GUI
     libnotify # For Notifications
     lm_sensors # Used For Getting Hardware Temps
     lolcat # Add Colors To Your Terminal Command Output
@@ -64,7 +65,6 @@
     usbutils # Good Tools For USB Devices
     v4l-utils # Used For Things Like OBS Virtual Camera
     wget # Tool For Fetching Files With Links
-    yazi #TUI File Manager
     ytmdl # Tool For Downloading Audio From YouTube
   ];
 }

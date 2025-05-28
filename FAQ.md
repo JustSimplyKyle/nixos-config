@@ -744,34 +744,6 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
 <details>
 
-<summary><strong>❄ Error starting Yazi ? </strong></summary>
-
-<div style="margin-left: 20px;">
-
-```text
-yazi
-Error: Lua runtime failed
-
-Caused by:
-    runtime error: [string "git"]:133: attempt to index a nil value (global 'THEME')
-    stack traceback:
-        [C]: in metamethod 'index'
-        [string "git"]:133: in function 'git.setup'
-        [C]: in method 'setup'
-        [string "init.lua"]:2: in main chunk
-    stack traceback:
-        [C]: in method 'setup'
-        [string "init.lua"]:2: in main chunk
-
-```
-- To resolve run `ya pack -u` in a terminal.  Restart `yazi`
-
-</div>
-</details>
-
-
-<details>
-
 <summary><strong> What fonts are avialable in NixOS</strong></summary>
 
 ```nix
