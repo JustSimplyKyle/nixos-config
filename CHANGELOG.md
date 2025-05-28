@@ -3,15 +3,15 @@
 **ZaneyOS v2.3**
 
 - Stylix was set to unstable - set to 25.05 to stop warning
-- hyprland binds set in two files, created `binds.nix`
-- Hyprland animation files had imherts that weren't used
+- hyprland ENV variables set in two files, created `env.nix`
+- Hyprland animation files had `inherit`statements that weren't used
 - Pyprland drop down termina size changed from 75% to 70%
 - Merge yazi fixes Thank you Daniel
 - languages.enableLSP changed to vim.settings.lsp.enable
 - Updated flake 05/27/2025
 - Disabled donation messages
 - Set Application Not Responding (ANR) dialog threshold to 20 (def 1)
-- Restored diagnotic features inline as errors are detected
+- Restored diagnostic features inline as errors are detected
 - When you save a file the LSP will show hints if applicable
 - Updated `nvf.nix`to use a clipboard provider as "useSystemClipobard" is no
   longer supported
@@ -20,11 +20,8 @@
 - Hyprland updated to v0.49
 - Added `hyprlock.enable=true;` in system packages. This resolves issue with PAM
   auth errors.
-
 - Fixed syntax error in `animations-dynamic.nix Thx Brisingr05
-
 - Removed unneeded `home.mgr.enable` in `user.nix` Thx Brisingr05
-
 - **Updated** `zaneyos/modules/home/nvf.nix`
 - **A recent NeoVIM update:** disables `vim.lspines` (Part of LSP diagnostics)
 - **Because of that we enabled** `vim.diagnostics`
