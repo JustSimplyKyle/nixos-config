@@ -9,6 +9,7 @@
     enable = true;
 
     settings.vim = {
+      lsp.enable = true;
       vimAlias = true;
       viAlias = true;
       withNodeJs = true;
@@ -148,7 +149,6 @@
       };
 
       languages = {
-        lsp.enable = true;
         enableFormat = true;
         enableTreesitter = true;
         enableExtraDiagnostics = true;

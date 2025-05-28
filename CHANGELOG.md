@@ -2,6 +2,8 @@
 
 **ZaneyOS v2.3**
 
+- Merge yazi fixes Thank you Daniel
+- languages.enableLSP changed to vim.settings.lsp.enable
 - Updated flake 05/27/2025
 - Disabled donation messages
 - Set Application Not Responding (ANR) dialog threshold to 20 (def 1)
