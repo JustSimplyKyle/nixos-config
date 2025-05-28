@@ -2,6 +2,10 @@
 
 **ZaneyOS v2.3**
 
+- Stylix was set to unstable - set to 25.05 to stop warning
+- hyprland binds set in two files, created `binds.nix`
+- Hyprland animation files had imherts that weren't used
+- Pyprland drop down termina size changed from 75% to 70%
 - Merge yazi fixes Thank you Daniel
 - languages.enableLSP changed to vim.settings.lsp.enable
 - Updated flake 05/27/2025
