@@ -1,12 +1,12 @@
 ## 🗒️ Changelog
 
-**ZaneyOS v2.3**
+**ZaneyOS v2.3 -- Post GA Release Notes** 
 
 - Added relative line numbering back to `nvim` `lineNumberMode = "relNumber";`
 - Removed extraneous LUA code for diags w/debug messages from `nvf.nix`
 - Fixed regression in `windowrules.nix`
 - Stylix was set to unstable - set to 25.05 to stop warning
-- hyprland ENV variables set in two files, created `env.nix`
+- Hyprland ENV variables set in two files, created `env.nix`
 - Hyprland animation files had `inherit`statements that weren't used
 - Pyprland drop down termina size changed from 75% to 70%
 - Merge yazi fixes Thank you Daniel
@@ -25,40 +25,6 @@
   auth errors.
 - Fixed syntax error in `animations-dynamic.nix Thx Brisingr05
 - Removed unneeded `home.mgr.enable` in `user.nix` Thx Brisingr05
-- **Updated** `zaneyos/modules/home/nvf.nix`
-- **A recent NeoVIM update:** disables `vim.lspines` (Part of LSP diagnostics)
-- **Because of that we enabled** `vim.diagnostics`
-- **As a result**, you have to toggle on diagnostic messages
-  - `leader dt` to toggle on/off
-  - **Keybindings for diagnostics:**
-
-```toml
-{
-          key = "<leader>dj";
-          mode = ["n"];
-          action = "<cmd>Lspsaga diagnostic_jump_next<CR>";
-          desc = "Go to next diagnostic";
-        }
-        {
-          key = "<leader>dk";
-          mode = ["n"];
-          action = "<cmd>Lspsaga diagnostic_jump_prev<CR>";
-          desc = "Go to previous diagnostic";
-        }
-        {
-          key = "<leader>dl";
-          mode = ["n"];
-          action = "<cmd>Lspsaga show_line_diagnostics<CR>";
-          desc = "Show diagnostic details";
-        }
-        {
-          key = "<leader>dt";
-          mode = ["n"];
-          action = "<cmd>Trouble diagnostics toggle<cr>";
-          desc = "Toggle diagnostics list";
-        }
-```
-
 - Updated FAQ.md with Hyprland Keybinds and how to change waybar.
 - Updated README with Hyprland keybinds.
 - Updated install script to pull from the most current release not the main
@@ -67,6 +33,13 @@
   completing.
 - Added how to fix yazi startup error to `FAQ.md`.
 - Fixed formatting in `FAQ.md` causing yazi info from being hidden.
+
+<details>
+
+<summary><strong>v2.3 GA Release Notes</strong></summary>
+
+<div style="margin-left: 20px;">
+
 - With this release there are improvements to Neovim
 - The entire file structure has been improved.
 - Switched from nixvim to nvf for neovim configuration.
@@ -98,7 +71,15 @@
 - Made Thunar an optional thing, enabled by default. _But for me Yazi is
   enough._
 
-**ZaneyOS v2.2**
+  </div>
+
+  </details>
+
+<br>
+<details>
+<summary><strong>**ZaneyOS v2.2**</strong> </summary>
+
+<div style="margin-left: 20px;">
 
 - This release has a big theming change
 - Move back to rofi. It is a massive improvement in many ways.
@@ -125,7 +106,17 @@
 - Switching to Brave as the default to protect user privacy.
 - Replaced lsd with eza for a better looking experience.
 
-**ZaneyOS v2.1**
+</div>
+
+</details>
+<br>
+
+<details>
+
+<summary><strong>**ZaneyOS v2.1**</strong></summary>
+
+
+<div style="margin-left: 20px;">
 
 Simple bug fixes.
 
@@ -135,7 +126,17 @@ Simple bug fixes.
   so be aware of that.
 - The flake got an update, so all the packages are fresh.
 
-**ZaneyOS v2.0**
+</div>
+
+</details>
+
+<br>
+
+<details>
+
+<summary><strong>**ZaneyOS v2.0** </strong></summary>
+
+<div style="margin-left: 20px;">
 
 With this new update of ZaneyOS it is a big rewrite of how things are being
 done. This update fixes many issues that you guys were facing. As well as makes
@@ -151,3 +152,7 @@ supportive!
 - Simplified options and the complexity around understanding their
   implementation.
 - Rewrote the documentation for improved readability.
+
+</div>
+
+</details>
