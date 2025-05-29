@@ -1,8 +1,8 @@
 ## 🗒️ Changelog
 
-**ZaneyOS v2.3 -- Post GA Release Notes** 
+**ZaneyOS v2.3 -- Post GA Release Notes**
 
-- Added relative line numbering back to `nvim` `lineNumberMode = "relNumber";`
+- Restored relative line numbering to nvim `lineNumberMode = "relNumber";`
 - Removed extraneous LUA code for diags w/debug messages from `nvf.nix`
 - Fixed regression in `windowrules.nix`
 - Stylix was set to unstable - set to 25.05 to stop warning
@@ -10,23 +10,23 @@
 - Hyprland animation files had `inherit`statements that weren't used
 - Pyprland drop down termina size changed from 75% to 70%
 - Merge yazi fixes Thank you Daniel
-- languages.enableLSP changed to vim.settings.lsp.enable
+- `languages.enableLSP` changed to `vim.settings.lsp.enable`
 - Updated flake 05/27/2025
 - Disabled donation messages
 - Set Application Not Responding (ANR) dialog threshold to 20 (def 1)
-- Restored diagnostic features inline as errors are detected
-- When you save a file the LSP will show hints if applicable
+- Restored diagnostic messages inline as errors are detected
+- When you save a file the LSP will show any applicable hints
 - Updated `nvf.nix`to use a clipboard provider as "useSystemClipobard" is no
   longer supported
-- Pinned `nixpkgs` and `homemanager` to 25.05 in `flake.nix`
+- Pinned nixpkgs and homemanager to 25.05 in `flake.nix`
 - Updated `flake.lock`to match changes
 - Hyprland updated to v0.49
 - Added `hyprlock.enable=true;` in system packages. This resolves issue with PAM
   auth errors.
-- Fixed syntax error in `animations-dynamic.nix Thx Brisingr05
+- Fixed syntax error in `animations-dynamic.nix`file. Thx Brisingr05
 - Removed unneeded `home.mgr.enable` in `user.nix` Thx Brisingr05
-- Updated FAQ.md with Hyprland Keybinds and how to change waybar.
-- Updated README with Hyprland keybinds.
+- Updated `FAQ.md` with Hyprland Keybinds and how to change waybar.
+- Updated `README` with Hyprland keybinds.
 - Updated install script to pull from the most current release not the main
   branch.
 - Added `hm-find` to find old backup files preventing rebuilds/updates from
@@ -115,7 +115,6 @@
 
 <summary><strong>**ZaneyOS v2.1**</strong></summary>
 
-
 <div style="margin-left: 20px;">
 
 Simple bug fixes.
@@ -156,3 +155,4 @@ supportive!
 </div>
 
 </details>
+
