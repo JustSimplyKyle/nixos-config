@@ -2,6 +2,7 @@
 
 **ZaneyOS v2.3**
 
+- Added relative line numbering back to `nvim` `lineNumberMode = "relNumber";`
 - Removed extraneous LUA code for diags w/debug messages from `nvf.nix`
 - Fixed regression in `windowrules.nix`
 - Stylix was set to unstable - set to 25.05 to stop warning
