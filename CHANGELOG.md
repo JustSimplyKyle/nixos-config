@@ -2,6 +2,7 @@
 
 **ZaneyOS v2.3**
 
+- Removed extraneous LUA code for diags w/debug messages from `nvf.nix`
 - Fixed regression in `windowrules.nix`
 - Stylix was set to unstable - set to 25.05 to stop warning
 - hyprland ENV variables set in two files, created `env.nix`
