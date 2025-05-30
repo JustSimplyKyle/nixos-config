@@ -4,6 +4,8 @@
 
 ** Updated: May 30th, 2025 **
 
+- Adjusted some colors in Jerry's waybar
+- Disabled the `df` command in the disk module. Doesn't work w/zaneyos
 - Added examples for monitor setup in `variables.nix`
 - Added Jerry's waybar as option. `Jerry-waybar.nix`
 - Added option to enable blur on waybar on `hyprland.nix` Thx SchotjeChrisman
