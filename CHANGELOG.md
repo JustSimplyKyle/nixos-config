@@ -4,6 +4,7 @@
 
 ** Updated: May 30th, 2025 **
 
+- Added `waybar-ddubs-2.nix` Modified version of Jerry's waybar
 - Adjusted some colors in Jerry's waybar
 - Disabled the `df` command in the disk module. Doesn't work w/zaneyos
 - Added examples for monitor setup in `variables.nix`
@@ -18,7 +19,7 @@
 - Hyprland animation files had `inherit`statements that weren't used
 - Pyprland drop down termina size changed from 75% to 70%
 - Merged yazi fix for errors after rebuilds. Thank you Daniel
-- `languages.enableLSP` changed to `vim.settings.lsp.enable`
+- NVIM `languages.enableLSP` changed to `vim.settings.lsp.enable`
 - Updated flake 05/27/2025
 - Disabled donation messages
 - Set Application Not Responding (ANR) dialog threshold to 20 (def 1)
