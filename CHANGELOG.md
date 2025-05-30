@@ -1,9 +1,10 @@
 ## 🗒️ Changelog
 
-## ZaneyOS v2.3 -- Post GA Release Notes 
+## ZaneyOS v2.3 -- Post GA Release Notes
 
 ** Updated: May 29th, 2025 **
 
+- Added new Window anmation option `animation-moving`from ML4W repo
 - Restored relative line numbering to nvim `lineNumberMode = "relNumber";`
 - Removed extraneous LUA code for diags w/debug messages from `nvf.nix`
 - Fixed regression in `windowrules.nix`
@@ -157,4 +158,3 @@ supportive!
 </div>
 
 </details>
-
