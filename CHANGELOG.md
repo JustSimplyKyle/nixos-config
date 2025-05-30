@@ -4,6 +4,7 @@
 
 ** Updated: May 29th, 2025 **
 
+- Added Jerry's waybar as option. `Jerry-waybar.nix`
 - Added option to enable blur on waybar on `hyprland.nix` Thanks to
   SchotjeChrisman
 - Added new Window animation option `animation-moving`from ML4W repo
