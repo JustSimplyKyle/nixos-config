@@ -2,11 +2,11 @@
 
 ## ZaneyOS v2.3 -- Post GA Release Notes
 
-** Updated: May 29th, 2025 **
+** Updated: May 30th, 2025 **
 
+- Added examples for monitor setup in `variables.nix`
 - Added Jerry's waybar as option. `Jerry-waybar.nix`
-- Added option to enable blur on waybar on `hyprland.nix` Thanks to
-  SchotjeChrisman
+- Added option to enable blur on waybar on `hyprland.nix` Thx SchotjeChrisman
 - Added new Window animation option `animation-moving`from ML4W repo
 - Restored relative line numbering to nvim `lineNumberMode = "relNumber";`
 - Removed extraneous LUA code for diags w/debug messages from `nvf.nix`
@@ -15,7 +15,7 @@
 - Hyprland ENV variables set in two files, created `env.nix`
 - Hyprland animation files had `inherit`statements that weren't used
 - Pyprland drop down termina size changed from 75% to 70%
-- Merge yazi fixes Thank you Daniel
+- Merged yazi fix for errors after rebuilds. Thank you Daniel
 - `languages.enableLSP` changed to `vim.settings.lsp.enable`
 - Updated flake 05/27/2025
 - Disabled donation messages
