@@ -1,9 +1,12 @@
-# 💬 ZaneyOS FAQ for v2.3 
-- **Revision v1.18**  
-- **Date:** 8-May-2025
+# 💬 ZaneyOS FAQ for v2.3
+
+- **Revision v1.19**
+- **Date:** 30-May-2025
+
 <h4>---> ZaneyOS related</h4>
 
 <strong>⌨ Where can I see the Hyprland keybindings?</strong>
+
 - The SUPER key + K opens a searchable menu with the bindings
 - The "keys" icon on the right side of the waybar will also bring up this menu.
 
@@ -12,6 +15,7 @@
 Below are the keybindings for Hyprland, formatted for easy reference.
 
 ## Application Launching
+
 - `$modifier + Return` → Launch `Terminal`
 - `$modifier + K` → List keybinds
 - `$modifier + Shift + Return` → Launch `rofi-launcher`
@@ -31,6 +35,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + M` → Open `pavucontrol`
 
 ## Window Management
+
 - `$modifier + Q` → Kill active window
 - `$modifier + P` → Toggle pseudo tiling
 - `$modifier + Shift + I` → Toggle split mode
@@ -40,16 +45,19 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + Shift + C` → Exit Hyprland
 
 ## Window Movement
+
 - `$modifier + Shift + ← / → / ↑ / ↓` → Move window left/right/up/down
 - `$modifier + Shift + H / L / K / J` → Move window left/right/up/down
 - `$modifier + Alt + ← / → / ↑ / ↓` → Swap window left/right/up/down
 - `$modifier + Alt + 43 / 46 / 45 / 44` → Swap window left/right/up/down
 
 ## Focus Movement
+
 - `$modifier + ← / → / ↑ / ↓` → Move focus left/right/up/down
 - `$modifier + H / L / K / J` → Move focus left/right/up/down
 
 ## Workspaces
+
 - `$modifier + 1-10` → Switch to workspace 1-10
 - `$modifier + Shift + Space` → Move window to special workspace
 - `$modifier + Space` → Toggle special workspace
@@ -57,28 +65,29 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + Control + → / ←` → Switch workspace forward/backward
 
 ## Window Cycling
+
 - `Alt + Tab` → Cycle to next window
 - `Alt + Tab` → Bring active window to top
 
- 
 <details>
 
 <summary><strong>❄ Why did you create ZaneyOS ? </strong></summary>
- 
+
 <div style="margin-left: 20px;">
 
- - Orginally, it was simply my configuration saved on a GIT repository. 
- - It was there to promote NixOS and Hyprland. 
- - Providing a stable, working configuration. 
- - It has never been intended as a full NixOS distro. 
- - The `ZaneyOS` name is an inside joke among friends. 
- - The intent is this configration can be used as a daily driver
- - Develop software, play games via steam, etc.
- - My hope is that it helpful, and will modify it to fit your needs. 
- - That is the key take away.  Make it your own.
- - You create a fork of ZaneyOS, then modify it.
- - If you find an issue and fix it, or provide a new feature, please share it. 
- - ZaneyOS is not a distro. At this time there are no plans to create an install ISO.
+- Orginally, it was simply my configuration saved on a GIT repository.
+- It was there to promote NixOS and Hyprland.
+- Providing a stable, working configuration.
+- It has never been intended as a full NixOS distro.
+- The `ZaneyOS` name is an inside joke among friends.
+- The intent is this configration can be used as a daily driver
+- Develop software, play games via steam, etc.
+- My hope is that it helpful, and will modify it to fit your needs.
+- That is the key take away. Make it your own.
+- You create a fork of ZaneyOS, then modify it.
+- If you find an issue and fix it, or provide a new feature, please share it.
+- ZaneyOS is not a distro. At this time there are no plans to create an install
+  ISO.
 
 </div>
 </details>
@@ -93,40 +102,39 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 
 - Go to the `~/zaneyos/host/HOSTNAME`
 - Edit the `variables.nix` file
-- Find the line that starts `waybarChoice` 
-- Change the name to one of the available files 
-- `waybar-simple.nix`, `waybar-curved.nix`, or `waybar-ddubs.nix` 
+- Find the line that starts `waybarChoice`
+- Change the name to one of the available files
+- `waybar-simple.nix`, `waybar-curved.nix`, or `waybar-ddubs.nix`
 - Save the file and exit
-- You need to do a rebuild to make the change effective 
+- You need to do a rebuild to make the change effective
 - Run `fr` "flake rebuild" to start the rebuild process
 
 ```json
-
-  # Set Waybar
-  # Includes alternates such as waybar-simple.nix, waybar-curved.nix & waybar-ddubs.nix
-  waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+# Set Waybar
+# Includes alternates such as waybar-simple.nix, waybar-curved.nix & waybar-ddubs.nix
+waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
 ```
 
 </details>
 
-
 <details>
 <summary><strong> How do I change the Timezone? </strong></summary>
 
-1. In the file, `~/zaneyos/modules/core/system.nix`  
-2. Edit the line:  time.timeZone = "America/New_York"; 
+1. In the file, `~/zaneyos/modules/core/system.nix`
+2. Edit the line: time.timeZone = "America/New_York";
 3. Save the file and rebuild using the `fr` alias.
 
-</details>   
+</details>
 
 <details>
 <summary><strong>How do I change the monitor settings? </strong></summary>
 
- Monitor settings are in the file:  `~/zaneyos/hosts/<HOSTNAME>/variables.nix`
+Monitor settings are in the file: `~/zaneyos/hosts/<HOSTNAME>/variables.nix`
 
- Inside the quotes the syntax is "monitor=video apapter,resolution@refresh rate, auto,scale" 
- Monitor must be in all lowercase.  If you are not sure of your video devices run 
- `hyprctl monitors` at a terminal CLI.  The output will look similar to this: 
+Inside the quotes the syntax is "monitor=video apapter,resolution@refresh rate,
+auto,scale" Monitor must be in all lowercase. If you are not sure of your video
+devices run `hyprctl monitors` at a terminal CLI. The output will look similar
+to this:
 
 ```text
 hyprctl monitors
@@ -153,52 +161,59 @@ Monitor HDMI-A-1 (ID 0):
 	availableModes: 2560x1440@59.95Hz 2560x1440@143.91Hz 2560x1440@120.00Hz 1920x1200@59.95Hz 1920x1080@143.86Hz 1920x1080@120.00Hz 1920x1080@119.88Hz 1920x1080@60.00Hz 1920x1080@60.00Hz 1920x1080@59.94Hz 1920x1080@50.00Hz 1600x1200@60.00Hz 1680x1050@59.88Hz 1280x1024@75.03Hz 1280x1024@60.02Hz 1440x900@59.95Hz 1280x800@59.91Hz 1152x864@75.00Hz 1280x720@120.00Hz 1280x720@119.88Hz 1280x720@60.00Hz 1280x720@59.94Hz 1280x720@50.00Hz 1024x768@75.03Hz 1024x768@60.00Hz 800x600@75.00Hz 800x600@60.32Hz 720x576@50.00Hz 720x576@50.00Hz 720x480@60.00Hz 720x480@60.00Hz 720x480@59.94Hz 720x480@59.94Hz 640x480@75.00Hz 640x480@60.00Hz 640x480@59.94Hz 640x480@59.94Hz 720x400@70.08Hz
 ```
 
-Edit the `extraMonitorSettings` line.
-**Examples:**
-- Single Monitor: 
-	    `extraMonitorSettings = "monitor=eDP-1,1920x1080@60,auto,1";`
+Edit the `extraMonitorSettings` line. **Examples:**
+
+- Single Monitor: `extraMonitorSettings = "monitor=eDP-1,1920x1080@60,auto,1";`
 - Multiple Monitors:
-            `extraMonitorSettings = "
+  `extraMonitorSettings = "
             monitor=eDP-1,1920x1080@60,auto,auto
             monitor=HDMI-A-1,2560x1440@75,auto,auto
-            ";` 
+            ";`
 
-- For more complex, multi-monitor configurations, you may wish to use the GUI application,  `nwg-displays`  This will show your currently connected monitors allowing 
-you to use the mouse match how they are physicall arranged. E.g. what monitor is to the left, right, up or down. It is very similar to the X11 based tool, `arandr`   It will then create a Hyprland compatible configuration file at `~/.config/hypr/monitors.conf` 
+- For more complex, multi-monitor configurations, you may wish to use the GUI
+  application, `nwg-displays` This will show your currently connected monitors
+  allowing you to use the mouse match how they are physicall arranged. E.g. what
+  monitor is to the left, right, up or down. It is very similar to the X11 based
+  tool, `arandr` It will then create a Hyprland compatible configuration file at
+  `~/.config/hypr/monitors.conf`
 
 <img align="center" width="90%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/nwg-displays.png" />
 
-After you finish configring the monitors as you wish, hit `Apply` to save the changes to `~/.config/hypr/monitors.conf`  
-The contents will look something like this: 
+After you finish configring the monitors as you wish, hit `Apply` to save the
+changes to `~/.config/hypr/monitors.conf`\
+The contents will look something like this:
 
 ```text
 # Generated by nwg-displays on 2025-03-20 at 13:13:49. Do not edit manually.
 monitor=HDMI-A-1,1920x1080@74.97,2136x268,1.0
 monitor=eDP-1,1920x1080@144.0,216x268,1.0
 ```
-You only need to copy the `monitor=` lines and paste them into the `variables.nix` file as described in the process above. 
 
-Once you have that done.  Run the command alias `fr` to build a new generation to make the chnages effective.
+You only need to copy the `monitor=` lines and paste them into the
+`variables.nix` file as described in the process above.
 
-More information on configuring monitors is available on the [Hyprland Wiki](https://wiki.hyprland.org/Configuring/Monitors/)
+Once you have that done. Run the command alias `fr` to build a new generation to
+make the chnages effective.
+
+More information on configuring monitors is available on the
+[Hyprland Wiki](https://wiki.hyprland.org/Configuring/Monitors/)
 
 </details>
-
 
 <details>
 <summary><strong>How do I add applications to ZaneyOS? </strong></summary>
 
-###  There are two options. One for all hosts you have, another for a specific host.
+### There are two options. One for all hosts you have, another for a specific host.
 
-1.  For applications to be included in all defined hosts edit the 
-	`~/zaneyos/modules/core/packages.nix` file.  
-        
-There is a section that begins with: 
-	` environment.systemPackages = with pkgs; `
+1. For applications to be included in all defined hosts edit the
+   `~/zaneyos/modules/core/packages.nix` file.
 
-Followed by a list of packages These are required for ZaneyOS. 
+There is a section that begins with: `environment.systemPackages = with pkgs;`
 
-We suggest you add a comment at the end of the package names. Then add in your packages. 
+Followed by a list of packages These are required for ZaneyOS.
+
+We suggest you add a comment at the end of the package names. Then add in your
+packages.
 
 ```text
     ...
@@ -227,11 +242,12 @@ We suggest you add a comment at the end of the package names. Then add in your p
 }
 ```
 
-2.  For applications that will only be on specific host. 
-   
-You edit the `host-packages.nix` associated with that host. `~/zaneyos/hosts/<HOSTNAME>/host-packages.nix` 
+2. For applications that will only be on specific host.
 
-The part of the file you need to edit, looks like this: 
+You edit the `host-packages.nix` associated with that host.
+`~/zaneyos/hosts/<HOSTNAME>/host-packages.nix`
+
+The part of the file you need to edit, looks like this:
 
 ```nix
 { pkgs, ... }: {
@@ -243,58 +259,71 @@ The part of the file you need to edit, looks like this:
   ];
 }
 ```
-    
-You can add additional packages, or for example change `discord` to `discord-canary` to get the beta version of Discord but only on this host. 
+
+You can add additional packages, or for example change `discord` to
+`discord-canary` to get the beta version of Discord but only on this host.
+
 </details>
 
 <details>
 
- <summary><strong> I added the package names, now how do I install them ? </strong></summary>
+<summary><strong> I added the package names, now how do I install them ? </strong></summary>
 
-- Use the `fr`,  Flake Rebuild  alias. 
+- Use the `fr`, Flake Rebuild alias.
 
-If the rebuild completes successfully, a new generation with your added packages will be created. 
+If the rebuild completes successfully, a new generation with your added packages
+will be created.
+
 </details>
 
 <details>
 <summary><strong> How do I update the packages I've already installed? </strong></summary>
 
-- Use the `fu`, Flake Update alias. This will check for updated packages, download and install them.
+- Use the `fu`, Flake Update alias. This will check for updated packages,
+  download and install them.
 
 </details>
 
 <details>
 <summary><strong> I made a change to my ZaneyOS configuration, how do I activate it? </strong></summary>
 
-- Use the `fr` Flake Rebuild alias. If you **created a new file** please note you will need to run a `git add .` command in the zaneyos folder. If successful, a new generation will be generated with your changes. A logout or reboot could be required depending on what you changed. 
+- Use the `fr` Flake Rebuild alias. If you **created a new file** please note
+  you will need to run a `git add .` command in the zaneyos folder. If
+  successful, a new generation will be generated with your changes. A logout or
+  reboot could be required depending on what you changed.
 
 </details>
 
 <details>
 <summary><strong> How can I configure a different kernel on a specific host? </strong></summary>
 
-1. You have to edit the `hardware.nix` file for that host in `~/zaneyos/hosts/HOSTNAME/hardware.nix` and override the default.
-2. Near the top you will find this section of the `hardware.nix` file.  
+1. You have to edit the `hardware.nix` file for that host in
+   `~/zaneyos/hosts/HOSTNAME/hardware.nix` and override the default.
+2. Near the top you will find this section of the `hardware.nix` file.
+
 ```nix
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
-
+boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc"];
+boot.initrd.kernelModules = [];
+boot.kernelModules = ["kvm-intel"];
+boot.extraModulePackages = [];
 ```
-3.  Add the override. E.g. to set the kernel to 6.12. 
-- `boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;`  
 
-4.  The updated code should look like this: 
+3. Add the override. E.g. to set the kernel to 6.12.
+
+- `boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;`
+
+4. The updated code should look like this:
+
 ```nix
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc"];
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
-
+boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc"];
+boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
+boot.initrd.kernelModules = [];
+boot.kernelModules = ["kvm-intel"];
+boot.extraModulePackages = [];
 ```
-5.  Use the command alias `fr` to create a new generation and reboot to take effect. 
+
+5. Use the command alias `fr` to create a new generation and reboot to take
+   effect.
 
 </details>
 
@@ -303,29 +332,39 @@ If the rebuild completes successfully, a new generation with your added packages
 <summary><strong> What are the major Kernel options in NixOS? </strong></summary>
 NixOS offers several major kernel types to cater to different needs and preferences. Below are the available options, excluding specific kernel versions:
 
-1. **`linuxPackages`**  
-   - The default stable kernel, typically an LTS (Long-Term Support) version. LTS in 25.05 (warbler) is 6.12.x  Older kernels, 6.6.x, 6.8.x are not supported.
+1. **`linuxPackages`**
+   - The default stable kernel, typically an LTS (Long-Term Support) version.
+     LTS in 25.05 (warbler) is 6.12.x Older kernels, 6.6.x, 6.8.x are not
+     supported.
 
-2. **`linuxPackages_latest`**  
-   - The latest mainline kernel, which may include newer features but could be less stable.
+2. **`linuxPackages_latest`**
+   - The latest mainline kernel, which may include newer features but could be
+     less stable.
 
-3. **`linuxPackages_zen`**  
-   - A performance-optimized kernel with patches aimed at improving responsiveness and interactivity. Commonly used by gamers and desktop users.
+3. **`linuxPackages_zen`**
+   - A performance-optimized kernel with patches aimed at improving
+     responsiveness and interactivity. Commonly used by gamers and desktop
+     users.
 
-4. **`linuxPackages_hardened`**  
-   - A security-focused kernel with additional hardening patches for enhanced protection.
+4. **`linuxPackages_hardened`**
+   - A security-focused kernel with additional hardening patches for enhanced
+     protection.
 
-5. **`linuxPackages_rt`**  
-   - A real-time kernel designed for low-latency and time-sensitive applications, such as audio production or robotics.
+5. **`linuxPackages_rt`**
+   - A real-time kernel designed for low-latency and time-sensitive
+     applications, such as audio production or robotics.
 
-6. **`linuxPackages_libre`**  
-   - A kernel stripped of proprietary firmware and drivers, adhering to free software principles.
+6. **`linuxPackages_libre`**
+   - A kernel stripped of proprietary firmware and drivers, adhering to free
+     software principles.
 
-7. **`linuxPackages_xen_dom0`**  
-   - A kernel tailored for running as the host (dom0) in Xen virtualization environments.
+7. **`linuxPackages_xen_dom0`**
+   - A kernel tailored for running as the host (dom0) in Xen virtualization
+     environments.
 
-8. **`linuxPackages_mptcp`**  
-   - A kernel with support for Multipath TCP, useful for advanced networking scenarios.
+8. **`linuxPackages_mptcp`**
+   - A kernel with support for Multipath TCP, useful for advanced networking
+     scenarios.
 
 </details>
 
@@ -333,7 +372,10 @@ NixOS offers several major kernel types to cater to different needs and preferen
 
 <summary><strong>  I have older generations I want to delete, how can I do that? </strong></summary>
 
-- The `ncg` NixOS Clean Generations alias will remove **ALL** but the most current generation. Make sure you have booted from that generation before using this alias. There is also a schedule that will remove older generations automatically over time. 
+- The `ncg` NixOS Clean Generations alias will remove **ALL** but the most
+  current generation. Make sure you have booted from that generation before
+  using this alias. There is also a schedule that will remove older generations
+  automatically over time.
 
 </details>
 
@@ -341,46 +383,60 @@ NixOS offers several major kernel types to cater to different needs and preferen
 
 <summary><strong>How do I change the hostname? </strong></summary>
 
-To change the hostname, there are several steps and you will have to reboot to make the change effective. 
+To change the hostname, there are several steps and you will have to reboot to
+make the change effective.
 
-1. Copy the directory of the host you want to rename to a directory with the new name. 
+1. Copy the directory of the host you want to rename to a directory with the new
+   name.
 
-- `cp -rpv ~/zaneyos/hosts/OLD-HOSTNAME ~/zaneyos/hosts/NEW-HOSTNAME `
+- `cp -rpv ~/zaneyos/hosts/OLD-HOSTNAME ~/zaneyos/hosts/NEW-HOSTNAME`
 
 2. Edit the `~/zaneyos/flake.nix` file. Change the line:
 
-- `host = "NEW-HOSTNAME"`  
-    
-3.  In the `~/zaneyos` Directory run `git add .` *The rebuild will fail with a 'file not found' error if you forget this step.*
+- `host = "NEW-HOSTNAME"`
 
-4.  Use the `fr` alias to create a new generation with the new hostname.  You must reboot to make the change effective. 
+3. In the `~/zaneyos` Directory run `git add .` _The rebuild will fail with a
+   'file not found' error if you forget this step._
+
+4. Use the `fr` alias to create a new generation with the new hostname. You must
+   reboot to make the change effective.
 
 </details>
 <details>
 <summary><strong> How do I disable the spinning snowflake at startup? </strong></summary>
 
-1.  Edit the `~/zaneyos/modules/core/boot.nix` file.
-2.  Look for: 
-   ```nix
-   };
-    plymouth.enable = true;
-  };
-   ```
- 3. Change it to `false`
- 4. Run the command alias `fr` to create a new generation. 
+1. Edit the `~/zaneyos/modules/core/boot.nix` file.
+2. Look for:
+
+```nix
+};
+ plymouth.enable = true;
+};
+```
+
+3. Change it to `false`
+4. Run the command alias `fr` to create a new generation.
 
 </details>
 
 <details>
  <summary><strong> How do I configure my hybrid laptop with Intel/NVIDIA GPUs?  </strong></summary>
 
-1. Either run the `install-zaneyos.sh` script and select `nvidia-laptop` template or if configuring manually, set the template in the `flake.nix` to `nvidia-prime`  
+1. Either run the `install-zaneyos.sh` script and select `nvidia-laptop`
+   template or if configuring manually, set the template in the `flake.nix` to
+   `nvidia-prime`
 
-2. In the `~/zaneyos/hosts/HYBRID-HOST/variables.nix` file you will need to set the PCI IDs for the Intel and NVIDIA GPUs. Refer to [this page](https://nixos.wiki/wiki/Nvidia) to help determine those values.
+2. In the `~/zaneyos/hosts/HYBRID-HOST/variables.nix` file you will need to set
+   the PCI IDs for the Intel and NVIDIA GPUs. Refer to
+   [this page](https://nixos.wiki/wiki/Nvidia) to help determine those values.
 
-3. Once you have everything configured properly, use the `fr` Flake Rebuild alias to create a new generation. 
+3. Once you have everything configured properly, use the `fr` Flake Rebuild
+   alias to create a new generation.
 
-4. In the `~/zaneyos/modules/home/hyprland/config.nix` file is an ENV setting` "AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"` This sets the primary and secondary GPUs. Using the info from the weblink above you might have to change the order of these values.
+4. In the `~/zaneyos/modules/home/hyprland/config.nix` file is an ENV
+   setting`"AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"` This sets the primary
+   and secondary GPUs. Using the info from the weblink above you might have to
+   change the order of these values.
 
 </details>
 
@@ -396,9 +452,10 @@ To change the hostname, there are several steps and you will have to reboot to m
 <details>
 <summary>How do I enable or disable Stylix? </summary>
 
-- To Enable:  
-1. Edit the `~/zaneyos/modules/core/stylix.nix` file.  
-2. Comment out from `base16Scheme` to the `};` after `base0F` 
+- To Enable:
+
+1. Edit the `~/zaneyos/modules/core/stylix.nix` file.
+2. Comment out from `base16Scheme` to the `};` after `base0F`
 
 ```nix
 # Styling Options
@@ -433,48 +490,53 @@ To change the hostname, there are several steps and you will have to reboot to m
       size = 24;
     };
 ```
+
 3. Select the image you want stylix to use for the colorpalette.
 4. Run `fr` command alias to create a new generation with this colorscheme.
 
-- To disable uncomment 
-1. Edit the `~/zaneyos/modules/core/stylix.nix` file.  
-2. Uncomment out from `base16Scheme` to the `};` after `base0F` 
+- To disable uncomment
+
+1. Edit the `~/zaneyos/modules/core/stylix.nix` file.
+2. Uncomment out from `base16Scheme` to the `};` after `base0F`
 
 ```nix
-     base16Scheme = {
-      base00 = "282936";
-      base01 = "3a3c4e";
-      base02 = "4d4f68";
-      base03 = "626483";
-      base04 = "62d6e8";
-      base05 = "e9e9f4";
-      base06 = "f1f2f8";
-      base07 = "f7f7fb";
-      base08 = "ea51b2";
-      base09 = "b45bcf";
-      base0A = "00f769";
-      base0B = "ebff87";
-      base0C = "a1efe4";
-      base0D = "62d6e8";
-      base0E = "b45bcf";
-      base0F = "00f769";
-    };
-
+ base16Scheme = {
+  base00 = "282936";
+  base01 = "3a3c4e";
+  base02 = "4d4f68";
+  base03 = "626483";
+  base04 = "62d6e8";
+  base05 = "e9e9f4";
+  base06 = "f1f2f8";
+  base07 = "f7f7fb";
+  base08 = "ea51b2";
+  base09 = "b45bcf";
+  base0A = "00f769";
+  base0B = "ebff87";
+  base0C = "a1efe4";
+  base0D = "62d6e8";
+  base0E = "b45bcf";
+  base0F = "00f769";
+};
 ```
-3. Run the `fr`command alias to build a new generation with either the default dracula or set your own custom colors
+
+3. Run the `fr`command alias to build a new generation with either the default
+   dracula or set your own custom colors
 
 </details>
 
 <details>
  <summary>How do I change the image Stylix uses to theme with?</summary>
 
-1. Edit the `~/zaneyos/hosts/HOSTNAME/varibles.nix` 
-2. Change the `stylixImage = ` to the filename you want to use. Wallpapers are in `~/zaneyos/wallpapers`
+1. Edit the `~/zaneyos/hosts/HOSTNAME/varibles.nix`
+2. Change the `stylixImage =` to the filename you want to use. Wallpapers are in
+   `~/zaneyos/wallpapers`
 
 ```nix
-  # Set Stylix Image
-  stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
+# Set Stylix Image
+stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 ```
+
 </details>
 
 </div>
@@ -489,8 +551,10 @@ To change the hostname, there are several steps and you will have to reboot to m
 <details>
 <summary><strong>  How do I add more wallpapers? </strong></summary>
 
-- Wallpapers are stored in the `~/zaneyos/wallpapers` directory.  
-- Simply copy the new ones to that diretory. 
+- Wallpapers are stored in the `~/zaneyos/wallpapers` directory.
+- Simply copy the new ones to that diretory.
+- You must do a rebuild after adding new wallpapers.
+- Run `fr` at the CLI.
 
 </details>
 
@@ -498,7 +562,7 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 <summary><strong> How do I change the background? </strong></summary>
 
-- SUPER + ALT + W will select a new background 
+- SUPER + ALT + W will select a new background
 
 </details>
 
@@ -506,27 +570,28 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 <summary><strong>  How can I set a timer to change the wallpaper automatically?  </strong></summary>
 
-1. Edit the `~/zaneyos/modules/home/hyprland/config.nix` file. 
+1. Edit the `~/zaneyos/modules/home/hyprland/config.nix` file.
 2. Comment out the line `sleep 1.5 && swww img ...`
-3. Add new line after that with `sleep 1 && wallsetter` 
+3. Add new line after that with `sleep 1 && wallsetter`
 
 ```json
- settings = {
-      exec-once = [
-        "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "killall -q swww;sleep .5 && swww init"
-        "killall -q waybar;sleep .5 && waybar"
-        "killall -q swaync;sleep .5 && swaync"
-        "nm-applet --indicator"
-        "lxqt-policykit-agent"
-        "pypr &"
-        #"sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg"
-        "sleep 1 && wallsetter"
-      ];
+settings = {
+     exec-once = [
+       "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+       "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+       "killall -q swww;sleep .5 && swww init"
+       "killall -q waybar;sleep .5 && waybar"
+       "killall -q swaync;sleep .5 && swaync"
+       "nm-applet --indicator"
+       "lxqt-policykit-agent"
+       "pypr &"
+       #"sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg"
+       "sleep 1 && wallsetter"
+     ];
 ```
-4.  Run the command alias `fr` to create a new generation.  
-5.  You will need to logout or reboot to make the change effective.
+
+4. Run the command alias `fr` to create a new generation.
+5. You will need to logout or reboot to make the change effective.
 
 </details>
 
@@ -534,17 +599,16 @@ To change the hostname, there are several steps and you will have to reboot to m
 
 <summary><strong>How do I change the interval the wallpaper changes?  </strong></summary>
 
-1.  Edit the `~/zaneyos/modules/home/scripts/wallsetter`  
-2.  Change the `TIMEOUT = ` value. Which is in seconds. 
-3.  Run the command alias `fr` to create a new generation.  
-4.  You will need to logout or reboot to make the change effective. 
+1. Edit the `~/zaneyos/modules/home/scripts/wallsetter`
+2. Change the `TIMEOUT =` value. Which is in seconds.
+3. Run the command alias `fr` to create a new generation.
+4. You will need to logout or reboot to make the change effective.
 
 </details>
 
 </div>
 
 </details>
-
 
 <details>
 <summary><strong>⬆ How do I update ZaneyOS?  </strong></summary>
@@ -554,52 +618,64 @@ To change the hostname, there are several steps and you will have to reboot to m
 <details>
 <summary> For versions v2.3+ </summary>
 
-1. First backup your existing  `zaneyos` directory.
+1. First backup your existing `zaneyos` directory.
 
 - `cp -rpv ~/zaneyos ~/Backup-ZaneyOS`
 
-*Any changes you made to the ZaneyOS config will need to be re-done*
+_Any changes you made to the ZaneyOS config will need to be re-done_
 
-2. In the `zaneyos` directory run `git stash && git pull` 
+2. In the `zaneyos` directory run `git stash && git pull`
 
-3. Copy back your previously created host(s). 
+3. Copy back your previously created host(s).
 
-- `cp -rpv ~/Backup-ZaneyOS/hosts/HOSTNAME  ~/zaneyos/hosts `
+- `cp -rpv ~/Backup-ZaneyOS/hosts/HOSTNAME  ~/zaneyos/hosts`
 
 4. If you did not use the `default` host during your initial install
 
-- Then  do not copy the `default` host from your backup. The new default host might have updates or fixes you will need for the next host you create.**
-- Then you will have to manually compare your backup to the new updated `default` host template, and potentially merge the changes and overwrite your `hardware.nix` file to the `~/zaneyos/hosts/default/hardware.nix` file.**
+- Then do not copy the `default` host from your backup. The new default host
+  might have updates or fixes you will need for the next host you create.**
+- Then you will have to manually compare your backup to the new updated
+  `default` host template, and potentially merge the changes and overwrite your
+  `hardware.nix` file to the `~/zaneyos/hosts/default/hardware.nix` file.**
 
-5. In the `zaneyos` directory run `git add .` when you have finished copying your host(s).  
+5. In the `zaneyos` directory run `git add .` when you have finished copying
+   your host(s).
 
-6. For any other changes you've made. For example: hyprland keybinds, waybar config, if you added additional packages to the `modules/packages.nix` file.  Those you will have to manually merge back into the new version. 
+6. For any other changes you've made. For example: hyprland keybinds, waybar
+   config, if you added additional packages to the `modules/packages.nix` file.
+   Those you will have to manually merge back into the new version.
+
 </details>
 
 <details>
  <summary> For versions v2.0->2.2 </summary>
 
-1. First backup your existing  `zaneyos` directory.  e.g. `cp -r ~/zaneyos ~/zaneyos-backup`
- 
-2. There is no direct update. When you clone the the new config the config files and layout have changed.
+1. First backup your existing `zaneyos` directory. e.g.
+   `cp -r ~/zaneyos ~/zaneyos-backup`
 
-3. You need to install zaneyos like a new install.  `./install-zaneyos.sh`
+2. There is no direct update. When you clone the the new config the config files
+   and layout have changed.
 
-4. Once the build completes and you have rebooted you can review the new layout and decide what if any changes you made on the earlier version can be migrated to v2.3.
+3. You need to install zaneyos like a new install. `./install-zaneyos.sh`
+
+4. Once the build completes and you have rebooted you can review the new layout
+   and decide what if any changes you made on the earlier version can be
+   migrated to v2.3.
 
 </details>
 
 <details>
  <summary> For version v1.x </summary>
 
-1. The layout and configuration are completely different. Virtually noting from 1.x is applicable to v2.3.
+1. The layout and configuration are completely different. Virtually noting from
+   1.x is applicable to v2.3.
 
 2. Backup your `zaneyos` directory e.g. `cp -r ~/zaneyos ~/zaneyos-backup`
 
-3. Run the `./install-zaneyos.sh` script and follow the new install instructions. 
+3. Run the `./install-zaneyos.sh` script and follow the new install
+   instructions.
 
 </details>
-
 
 <details>
 <summary> How do I know when a new version of ZaneyOS is released? </summary>
@@ -653,7 +729,6 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
     ├── install-zaneyos.sh          # Install script for ZaneyOS
     ├── LICENSE                     # MIT license ZaneyOS is using
     └── README.md                   # Intro document for ZaneyOS
-
 ```
 
 </div>
@@ -682,18 +757,18 @@ May 08 18:33:57 explorer systemd[1]: home-manager-dwilliams.service: Failed with
 May 08 18:33:57 explorer systemd[1]: Failed to start Home Manager environment for dwilliams.
 ```
 
- - There is a script `hm-find`  That will search the journal and if found, 
- - It will prompt you to delete these backups
- - It creates a log as well 
- - Note:  The script is not perfect
- - If you get this msg but `hm-find` doesn't report any you will have to search manually e.g `journalctl | grep hm-activate`  
- - You can now redo your rebuild
- - If you ran `fu` for `flake update`  you can now do `fr` for `flake rebuild`  
- - The flake has already been updated 
+- There is a script `hm-find` That will search the journal and if found,
+- It will prompt you to delete these backups
+- It creates a log as well
+- Note: The script is not perfect
+- If you get this msg but `hm-find` doesn't report any you will have to search
+  manually e.g `journalctl | grep hm-activate`
+- You can now redo your rebuild
+- If you ran `fu` for `flake update` you can now do `fr` for `flake rebuild`
+- The flake has already been updated
 
 </div>
 </details>
-
 
 <details>
 
@@ -703,18 +778,26 @@ May 08 18:33:57 explorer systemd[1]: Failed to start Home Manager environment fo
 <br>
 
 **1. Master Layout**
+
 - The **Master** layout divides the workspace into two main areas:
-  - A **master area** for the primary window, which takes up a larger portion of the screen.
-  - A **stack area** for all other windows, which are tiled in the remaining space.
-- This layout is ideal for workflows where you want to focus on a single main window while keeping others accessible.
+  - A **master area** for the primary window, which takes up a larger portion of
+    the screen.
+  - A **stack area** for all other windows, which are tiled in the remaining
+    space.
+- This layout is ideal for workflows where you want to focus on a single main
+  window while keeping others accessible.
 
 **2. Dwindle Layout**
+
 - The **Dwindle** layout is a binary tree-based tiling layout:
-  - Each new window splits the available space dynamically, alternating between horizontal and vertical splits.
-  - The splits are determined by the aspect ratio of the parent container (e.g., wider splits horizontally, taller splits vertically).
+  - Each new window splits the available space dynamically, alternating between
+    horizontal and vertical splits.
+  - The splits are determined by the aspect ratio of the parent container (e.g.,
+    wider splits horizontally, taller splits vertically).
 - This layout is more dynamic and evenly distributes space among all windows.
 
 ---
+
 **How to Verify the Current Layout**
 
 To check which layout is currently active, use the `hyprctl` command:
@@ -725,7 +808,6 @@ To check which layout is currently active, use the `hyprctl` command:
 </div>
 
 </details>
-
 
 <details>
 <summary><strong>📦 What are the Yazi keybindings and how can I change them? </strong></summary>
@@ -740,7 +822,6 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
 </div>
 </details>
-
 
 <details>
 
@@ -846,35 +927,33 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
     ];
   };
 }
-
 ```
 
 </details>
-
-
 
 <h4>---> 🖥️ Terminals </h4>
 
 <details>
 <summary><strong>🐱  Kitty</strong></summary>
- 
 
 <details>
 
 <summary>My cursor in Kitty is "janky" and it jumps around. How do I fix that?</summary>
 
- - That feature is called "cursor_trail" in the `~/zaneyos/modules/home/kitty.nix` file. 
+- That feature is called "cursor_trail" in the
+  `~/zaneyos/modules/home/kitty.nix` file.
 
-  1. Edit that file and change the `cursor_trail 1` to `cursor_trail 0` or comment out that line.
-  2. Use the command alias `fr` to create a new generation with the change. 
-  
+1. Edit that file and change the `cursor_trail 1` to `cursor_trail 0` or comment
+   out that line.
+2. Use the command alias `fr` to create a new generation with the change.
+
 </details>
 
 <details>
  <summary>What are the Kitty keybindings and how can I change them?</summary>
 
-The kitty bindings are configured in `~/zaneyos/modules/home/kitty.nix`  
-  
+The kitty bindings are configured in `~/zaneyos/modules/home/kitty.nix`
+
 The defaults are:
 
 ```text
@@ -928,8 +1007,8 @@ The defaults are:
     map ctrl+shift+up      increase_font_size
     map ctrl+shift+down    decrease_font_size
     map ctrl+shift+backspace restore_font_size
-
 ```
+
 </details>
 </details>
 
@@ -937,14 +1016,15 @@ The defaults are:
 
 <summary><strong>🇼  WezTerm</strong></summary>
 
-<div style="margin-left: 20px;"> 
+<div style="margin-left: 20px;">
 
 <details>
 
- <summary>How do I enable WezTerm?</summary>
+<summary>How do I enable WezTerm?</summary>
 
- Edit the `/zaneyos/modules/home/wezterm.nix`  Change `enable = false` to `enable = true;`  
- Save the file and rebuild zaneyos with the `fr` command. 
+Edit the `/zaneyos/modules/home/wezterm.nix` Change `enable = false` to
+`enable = true;`\
+Save the file and rebuild zaneyos with the `fr` command.
 
 ```
 {pkgs, ...}: {
@@ -952,16 +1032,17 @@ The defaults are:
     enable = false;
     package = pkgs.wezterm;
   };
+```
 
-``` 
 </details>
 
 <details>
  <summary>What are the WezTerm keybindings and how can I change them?</summary>
 
-The kitty bindings are configured in `~/zaneyos/modules/home/wezterm.nix`  
-  
+The kitty bindings are configured in `~/zaneyos/modules/home/wezterm.nix`
+
 The defaults are:
+
 ```text
 ALT is the defined META key for WezTerm
   -- Tab management
@@ -978,8 +1059,8 @@ ALT + Left Arrow        Move to pane -- Left
 ALT + Right Arrow       Move to pane -- Right
 ALT + Down Arrow        Move to pane -- Down
 ALT + Up Arrow          Move to pane -- Down
-
 ```
+
 </details>
 </div>
 </details>
@@ -987,14 +1068,14 @@ ALT + Up Arrow          Move to pane -- Down
 <details>
 <summary><strong>👻 Ghostty </strong></summary>
 
-<div style="margin-left: 20px;"> 
+<div style="margin-left: 20px;">
 
 <details>
 <summary> How do I enable the ghostty terminal? </summary>
 
-1. Edit the `~/zaneyos/modules/home/ghostty.nix` file. 
+1. Edit the `~/zaneyos/modules/home/ghostty.nix` file.
 2. Change `enable = true;`
-3. Run the command alias `fr` to create a new generation. 
+3. Run the command alias `fr` to create a new generation.
 
 </details>
 
@@ -1006,13 +1087,14 @@ ALT + Up Arrow          Move to pane -- Down
 2. There are several example themes included but commented out.
 
 ```text
-    #theme = Aura
-    theme = Dracula
-    #theme = Aardvark Blue
-    #theme = GruvboxDarkHard
-
+#theme = Aura
+theme = Dracula
+#theme = Aardvark Blue
+#theme = GruvboxDarkHard
 ```
-3.  Comment out `Dracula` and either uncomment one of the others or add one of ghostty's many themes.
+
+3. Comment out `Dracula` and either uncomment one of the others or add one of
+   ghostty's many themes.
 
 </details>
 
@@ -1057,11 +1139,10 @@ ALT + Up Arrow          Move to pane -- Down
 
     keybind = alt+s>e=equalize_splits
 ```
+
 </details>
 </div>
 </details>
-
-
 
 <h4>
 --> 🪧  General NixOS related topics
@@ -1070,22 +1151,29 @@ ALT + Up Arrow          Move to pane -- Down
 <details>
 <summary><strong>❄  What are Flakes in NixOS? </strong></summary>
 
-<div style="margin-left: 20px;"> 
+<div style="margin-left: 20px;">
 
-**Flakes** are a feature of the Nix package manager that simplifies and standardizes how configurations, dependencies, and packages are managed. If you're familiar with tools like `package.json` in JavaScript or `Cargo.toml` in Rust, flakes serve a similar purpose in the Nix ecosystem.
+**Flakes** are a feature of the Nix package manager that simplifies and
+standardizes how configurations, dependencies, and packages are managed. If
+you're familiar with tools like `package.json` in JavaScript or `Cargo.toml` in
+Rust, flakes serve a similar purpose in the Nix ecosystem.
 
- <h4> Key Features of Flakes: </h4>
+<h4> Key Features of Flakes: </h4>
 
 1. **Pin Dependencies**:
-   - Flakes lock the versions of dependencies in a `flake.lock` file, ensuring reproducibility across systems.
+   - Flakes lock the versions of dependencies in a `flake.lock` file, ensuring
+     reproducibility across systems.
 
 2. **Standardize Configurations**:
-   - They use a `flake.nix` file to define how to build, run, or deploy a project or system, making setups more predictable.
+   - They use a `flake.nix` file to define how to build, run, or deploy a
+     project or system, making setups more predictable.
 
 3. **Improve Usability**:
-   - Flakes simplify sharing and reusing configurations across different systems or projects by providing a consistent structure.
+   - Flakes simplify sharing and reusing configurations across different systems
+     or projects by providing a consistent structure.
 
-In essence, flakes help manage NixOS setups or Nix-based projects in a more portable and reliable way.
+In essence, flakes help manage NixOS setups or Nix-based projects in a more
+portable and reliable way.
 
 </div>
 
@@ -1094,46 +1182,71 @@ In essence, flakes help manage NixOS setups or Nix-based projects in a more port
 <details>
 <summary><strong>🏡  What is NixOS Home Manager? </strong></summary>
 
-**Home Manager** is a powerful tool in the Nix ecosystem that allows you to declaratively manage user-specific configurations and environments. With Home Manager, you can streamline the setup of dotfiles, shell settings, applications, and system packages for your user profile.
+**Home Manager** is a powerful tool in the Nix ecosystem that allows you to
+declaratively manage user-specific configurations and environments. With Home
+Manager, you can streamline the setup of dotfiles, shell settings, applications,
+and system packages for your user profile.
 
 ### Key Features of Home Manager:
+
 1. **Declarative Configuration**:
-   - Define all your settings and preferences in a single `home.nix` file, making it easy to track, share, and replicate your setup.
+   - Define all your settings and preferences in a single `home.nix` file,
+     making it easy to track, share, and replicate your setup.
 
 2. **Cross-Distribution Support**:
-   - Home Manager works not only on NixOS but also on other Linux distributions and macOS, allowing you to standardize configurations across devices.
+   - Home Manager works not only on NixOS but also on other Linux distributions
+     and macOS, allowing you to standardize configurations across devices.
 
 3. **User Environment Management**:
-   - Manage applications, environment variables, shell configurations, and more—all isolated to your user profile.
+   - Manage applications, environment variables, shell configurations, and
+     more—all isolated to your user profile.
 
 ### Why Use Home Manager?
-Home Manager simplifies system management by offering consistency, reproducibility, and portability. Whether you’re customizing your development environment or sharing configurations between machines, it provides an efficient way to tailor your user experience.
+
+Home Manager simplifies system management by offering consistency,
+reproducibility, and portability. Whether you’re customizing your development
+environment or sharing configurations between machines, it provides an efficient
+way to tailor your user experience.
 
 </details>
 
 <details>
 <summary><strong>🏭  What are Atomic Builds?</strong></summary>
 
-**Atomic builds** in NixOS ensure that any system change (like installing software or updating the configuration) is applied in a safe and fail-proof way. This means that a system update is either fully successful or has no effect at all, eliminating the risk of a partially applied or broken system state.
+**Atomic builds** in NixOS ensure that any system change (like installing
+software or updating the configuration) is applied in a safe and fail-proof way.
+This means that a system update is either fully successful or has no effect at
+all, eliminating the risk of a partially applied or broken system state.
 
 ### How Atomic Builds Work:
+
 1. **Immutable System Generation**:
-   - Every configuration change creates a new "generation" of the system, while the previous ones remain untouched. You can easily roll back to an earlier generation if something goes wrong.
+   - Every configuration change creates a new "generation" of the system, while
+     the previous ones remain untouched. You can easily roll back to an earlier
+     generation if something goes wrong.
 
 2. **Transaction-Like Behavior**:
-   - Similar to database transactions, changes are applied atomically: either they succeed and become the new active system, or they fail and leave the current system unchanged.
+   - Similar to database transactions, changes are applied atomically: either
+     they succeed and become the new active system, or they fail and leave the
+     current system unchanged.
 
 3. **Seamless Rollbacks**:
-   - In case of errors or issues, you can reboot and select a previous system generation from the boot menu to return to a working state.
+   - In case of errors or issues, you can reboot and select a previous system
+     generation from the boot menu to return to a working state.
 
 ### Benefits of Atomic Builds:
-- **Reliability**: Your system is always in a consistent state, even if a configuration change fails.
-- **Reproducibility**: The same configuration will always produce the same system state, making it easy to debug or replicate.
-- **Ease of Rollback**: Reverting to a working configuration is as simple as rebooting and selecting the previous generation.
+
+- **Reliability**: Your system is always in a consistent state, even if a
+  configuration change fails.
+- **Reproducibility**: The same configuration will always produce the same
+  system state, making it easy to debug or replicate.
+- **Ease of Rollback**: Reverting to a working configuration is as simple as
+  rebooting and selecting the previous generation.
 
 ### Why NixOS Uses Atomic Builds:
-This feature is a cornerstone of NixOS's declarative and reproducible design philosophy, ensuring that system management is predictable and stress-free.
 
+This feature is a cornerstone of NixOS's declarative and reproducible design
+philosophy, ensuring that system management is predictable and stress-free.
 
 </details>
 
