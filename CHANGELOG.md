@@ -2,8 +2,9 @@
 
 ## ZaneyOS v2.3 -- Post GA Release Notes
 
-** Updated: May 30th, 2025 **
+** Updated: June 1st, 2025 **
 
+- Added `fzf.nix` to customize fzf util
 - Added `waybar-ddubs-2.nix` Modified version of Jerry's waybar
 - Adjusted some colors in Jerry's waybar
 - Disabled the `df` command in the disk module. Doesn't work w/zaneyos
