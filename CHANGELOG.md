@@ -4,6 +4,22 @@
 
 ** Updated: June 1st, 2025 **
 
+- Modified zsh config
+
+```nix
+ syntaxHighlighting = {
+      enable = true;
+      highlighters = ["main" "brackets" "pattern" "regexp" "root" "line"];
+    };
+    historySubstringSearch.enable = true;
+
+    history = {
+      ignoreDups = true;
+      save = 10000;
+      size = 10000;
+    };
+```
+
 - Added `lazygit.nix` to theme, customize lazygit util
 - Added `fzf.nix` to customize fzf util
 - Added `waybar-ddubs-2.nix` Modified version of Jerry's waybar
