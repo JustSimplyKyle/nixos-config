@@ -18,6 +18,7 @@ in {
     ./htop.nix
     ./hyprland
     ./kitty.nix
+    ./lazygit.nix
     ./nvf.nix
     ./rofi
     ./qt.nix

@@ -4,6 +4,7 @@
 
 ** Updated: June 1st, 2025 **
 
+- Added `lazygit.nix` to theme, customize lazygit util
 - Added `fzf.nix` to customize fzf util
 - Added `waybar-ddubs-2.nix` Modified version of Jerry's waybar
 - Adjusted some colors in Jerry's waybar
