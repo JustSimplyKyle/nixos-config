@@ -4,6 +4,7 @@
 
 ** Updated: June 1st, 2025 **
 
+- Added `eza.nix` to set default options for eza
 - Modified zsh config
 
 ```nix

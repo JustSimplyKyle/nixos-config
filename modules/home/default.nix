@@ -9,6 +9,7 @@ in {
     ./btop.nix
     ./cava.nix
     ./emoji.nix
+    ./eza.nix
     ./fastfetch
     ./fzf.nix
     ./gh.nix
