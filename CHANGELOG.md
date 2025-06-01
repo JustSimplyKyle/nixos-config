@@ -4,6 +4,7 @@
 
 ** Updated: June 1st, 2025 **
 
+- Removed lazygit from core packages now in lazygit.nix
 - Added `eza.nix` to set default options for eza
 - Modified zsh config
 

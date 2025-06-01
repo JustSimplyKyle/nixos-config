@@ -25,7 +25,7 @@
     appimage-run # Needed For AppImage Support
     brave # Brave Browser
     brightnessctl # For Screen Brightness Control
-    cliphist  # Clipboard manager using rofi menu
+    cliphist # Clipboard manager using rofi menu
     cmatrix # Matrix Movie Effect In Terminal
     cowsay # Great Fun Terminal Program
     docker-compose # Allows Controlling Docker From A Single File
@@ -35,14 +35,13 @@
     file-roller # Archive Manager
     gedit # Simple Graphical Text Editor
     gimp # Great Photo Editor
-    glxinfo  #needed for inxi diag util 
+    glxinfo #needed for inxi diag util
     greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     htop # Simple Terminal Based System Monitor
     hyprpicker # Color Picker
     eog # For Image Viewing
     inxi # CLI System Information Tool
     killall # For Killing All Instances Of Programs
-    lazygit # Terminal Based Git GUI
     libnotify # For Notifications
     lm_sensors # Used For Getting Hardware Temps
     lolcat # Add Colors To Your Terminal Command Output
@@ -50,7 +49,7 @@
     mpv # Incredible Video Player
     ncdu # Disk Usage Analyzer With Ncurses Interface
     nixfmt-rfc-style # Nix Formatter
-    nwg-displays  #configure monitor configs via GUI
+    nwg-displays #configure monitor configs via GUI
     onefetch #provides zsaneyos build info on current system
     pavucontrol # For Editing Audio Levels & Devices
     pciutils # Collection Of Tools For Inspecting PCI Devices
