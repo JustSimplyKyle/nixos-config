@@ -4,8 +4,8 @@
 
 ** Updated: June 2nd, 2025 **
 
+- Added features and aliases to `git` command
 - Added preview to `fzf.nix` Enter to edit
-
 - Removed lazygit from core packages now in lazygit.nix
 - Added `eza.nix` to set default options for eza
 - Modified zsh config
