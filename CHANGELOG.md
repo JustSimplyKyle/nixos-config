@@ -2,7 +2,9 @@
 
 ## ZaneyOS v2.3 -- Post GA Release Notes
 
-** Updated: June 1st, 2025 **
+** Updated: June 2nd, 2025 **
+
+- Added preview to `fzf.nix` Enter to edit
 
 - Removed lazygit from core packages now in lazygit.nix
 - Added `eza.nix` to set default options for eza
