@@ -2,8 +2,11 @@
 
 ## ZaneyOS v2.3 -- Post GA Release Notes
 
-** Updated: June 2nd, 2025 **
+** Updated: June 3rd, 2025 **
 
+- spelling corrections in README.md
+- Updated clone command in README.md to grab 2.3 stable branch
+- Updated `hyprland.nix` to set VMs `Virtual-1` monitors to 1920x1080@60
 - Disabled root login for SSH
 - Users allowed password SSH access
 - Added features and aliases to `git` command

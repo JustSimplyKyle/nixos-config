@@ -2,6 +2,8 @@
 
 ## ZaneyOS 🟰 Best ❄️ NixOS Configs
 
+** Updated: June 3rd,2025
+
 ZaneyOS is a simple way of reproducing my configuration on any NixOS system.
 This includes the wallpaper, scripts, applications, config files, and more.
 
@@ -32,7 +34,7 @@ This includes the wallpaper, scripts, applications, config files, and more.
 - The `zaneyos` folder (this repo) is expected to be in your home directory.
 - You must have installed NIXOS using **GPT** parition with booting with
   **UEFI**.
-- ** 500MB minimum /boot parititon required. **
+- ** 500MB minimum /boot partition required. **
 - Systemd-boot is what is supported.
 - For GRUB you will have to brave the internet for a how-to. ☺️
 - Manually editing your host specific files.
@@ -46,9 +48,9 @@ This includes the wallpaper, scripts, applications, config files, and more.
 
 #### 🏇 Optimized Workflow & Simple Yet Elegant Neovim
 
-- Using Hyprland for increased elegance, functionality, and effeciency.
-- No massive Neovim project here. This is my simple, easy to understand, yet
-  incredible Neovim setup. With language support already added in.
+- Using Hyprland for increased elegance, functionality, and efficiency.
+- No massive NeoVIM project here. This is my simple, easy to understand, yet
+  incredible NeoVIM setup. With language support already added in.
 
 #### 🖥️ Multi Host & User Configuration
 
@@ -207,8 +209,10 @@ nix-shell -p git vim
 2. Clone this repo & enter it:
 
 ```
-cd && git clone https://gitlab.com/zaney/zaneyos.git
+cd && git clone https://gitlab.com/zaney/zaneyos.git -b stable-23 ~/zaneyos 
 cd zaneyos
+
+You can still run the `install.sh` script if you want to.
 ```
 
 - _You should stay in this folder for the rest of the install_
