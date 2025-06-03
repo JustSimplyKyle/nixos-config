@@ -7,7 +7,7 @@
     openssh = {
       enable = true; # Enable SSH
       settings = {
-        PermiRootLogin = "no"; # Prevent root from SSH login
+        PermitRootLogin = "no"; # Prevent root from SSH login
         PasswordAuthentication = true; #Users can SSH using kb and password
         KbdInteractiveAuthentication = true;
       };
