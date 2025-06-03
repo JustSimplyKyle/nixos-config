@@ -4,6 +4,8 @@
 
 ** Updated: June 2nd, 2025 **
 
+- Disabled root login for SSH
+- Users allowed password SSH access
 - Added features and aliases to `git` command
 - Added preview to `fzf.nix` Enter to edit
 - Removed lazygit from core packages now in lazygit.nix
