@@ -2,8 +2,12 @@
 
 ## ZaneyOS v2.3 -- Post GA Release Notes
 
-** Updated: June 3rd, 2025 **
+** Updated: June 5th, 2025 **
 
+- Updated flake
+- git command is install script missing `clone` keyword
+- Commented out AQ_DRM_DEVICES ENV variable. Can break config with more than two
+  GPUs
 - spelling corrections in README.md
 - Updated clone command in README.md to grab 2.3 stable branch
 - Updated `hyprland.nix` to set VMs `Virtual-1` monitors to 1920x1080@60
