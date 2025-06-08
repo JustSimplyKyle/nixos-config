@@ -4,6 +4,7 @@
 
 ** Updated: June 7th, 2025 **
 
+- Enabled `neovim` in `packages.nix` to set it to `defaultEditor`
 - Moved `eza` aliases to `eza.nix`
 - Enabled bash,zsh, fish integration to `eza`
 - All supported shells default `eza` and alias are now set in `eza.nix`

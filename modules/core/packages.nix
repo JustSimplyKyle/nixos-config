@@ -1,5 +1,9 @@
 {pkgs, ...}: {
   programs = {
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
     firefox.enable = false; # Firefox is not installed by default
     hyprland.enable = true; #someone forgot to set this so desktop file is created
     dconf.enable = true;
