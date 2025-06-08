@@ -2,9 +2,13 @@
 
 ## ZaneyOS v2.3 -- Post GA Release Notes
 
-** Updated: June 5th, 2025 **
+** Updated: June 7th, 2025 **
 
-- Updated flake
+- Moved `eza` aliases to `eza.nix`
+- Enabled bash,zsh, fish integration to `eza`
+- All supported shells default `eza` and alias are now set in `eza.nix`
+- Removed `eza` aliases from `zsh/default.nix` and `bash.nix`
+- Set default options for `eza` in `eza.nix`
 - git command is install script missing `clone` keyword
 - Commented out AQ_DRM_DEVICES ENV variable. Can break config with more than two
   GPUs
