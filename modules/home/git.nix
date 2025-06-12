@@ -18,11 +18,14 @@ in {
     };
     # Optional: FOSS-friendly Git aliases
     aliases = {
-      lg = "log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %C(green)(%cr)%C(bold blue) <%an>%Creset' --abbrev-commit";
-      co = "checkout";
       br = "branch --sort=-committerdate";
-      st = "status";
+      co = "checkout";
       df = "diff";
+      com = "commit -a";
+      gs = "stash";
+      gp = "pull";
+      lg = "log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %C(green)(%cr)%C(bold blue) <%an>%Creset' --abbrev-commit";
+      st = "status";
     };
   };
 }

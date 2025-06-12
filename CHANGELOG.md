@@ -2,8 +2,12 @@
 
 ## ZaneyOS v2.3 -- Post GA Release Notes
 
-** Updated: June 7th, 2025 **
+** Updated: June 11th, 2025 **
 
+- Added three git aliases `com`, `gs`, and `gp`
+- `git com` will run `git commit -a`
+- `git gs` will run `git stash`
+- `git gp` will run `git pull`
 - Enabled `neovim` in `packages.nix` to set it to `defaultEditor`
 - Moved `eza` aliases to `eza.nix`
 - Enabled bash,zsh, fish integration to `eza`
