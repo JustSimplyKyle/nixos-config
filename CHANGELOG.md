@@ -4,17 +4,19 @@
 
 ** Updated: June 14th, 2025 **
 
+- Re-enabled `language formatter` had to disable `css` formatter for now
+- Updated Updated flake
+- Disabled `language formatter` in `nvf.nix` It fails to build
 
-- Updated Updated flake 
-- Disabled `language formatter` in `nvf.nix` It fails to build 
 ```text
-   error: attribute 'prettier' missing
-       at /nix/store/3vzc8fxjxvv0b0jrywian6ilb7bdk4y8-source/modules/plugins/languages/css.nix:45:17:
-           44|     prettier = {
-           45|       package = pkgs.prettier;
-             |                 ^
-           46|     };
+error: attribute 'prettier' missing
+    at /nix/store/3vzc8fxjxvv0b0jrywian6ilb7bdk4y8-source/modules/plugins/languages/css.nix:45:17:
+        44|     prettier = {
+        45|       package = pkgs.prettier;
+          |                 ^
+        46|     };
 ```
+
 - Will re-enable once it's fixed upstream
 - Added three git aliases `com`, `gs`, and `gp`
 - `git com` will run `git commit -a`
