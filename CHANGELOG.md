@@ -2,8 +2,10 @@
 
 ## ZaneyOS v2.3 -- Post GA Release Notes
 
-** Updated: June 14th, 2025 **
+** Updated: June 15th, 2025 **
 
+- Redid `flatpak.nix` now you can add programs to be installed and get updated
+  on rebuilds
 - Re-enabled `language formatter` had to disable `css` formatter for now
 - Updated Updated flake
 - Disabled `language formatter` in `nvf.nix` It fails to build
