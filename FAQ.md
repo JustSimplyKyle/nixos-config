@@ -14,7 +14,9 @@
 
 Below are the keybindings for Hyprland, formatted for easy reference.
 
-## Application Launching
+<details>
+
+<summary><strong>## Application Launching</strong></summary>
 
 - `$modifier + Return` → Launch `Terminal`
 - `$modifier + K` → List keybinds
@@ -34,7 +36,10 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + T` → Toggle terminal with `pypr`
 - `$modifier + M` → Open `pavucontrol`
 
-## Window Management
+</details>
+
+<details>
+<summary><strong>## Window Management </strong></summary>
 
 - `$modifier + Q` → Kill active window
 - `$modifier + P` → Toggle pseudo tiling
@@ -43,6 +48,8 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + Shift + F` → Toggle floating mode
 - `$modifier + Alt + F` → Float all windows
 - `$modifier + Shift + C` → Exit Hyprland
+
+<</details>
 
 ## Window Movement
 
@@ -766,7 +773,7 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 </details>
 
-</div>
+</xxx>
 
 <details><summary><strong>📂 ZaneyOS v2.3 Layout</strong></summary>
 
