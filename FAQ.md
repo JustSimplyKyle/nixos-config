@@ -51,19 +51,27 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 
 <</details>
 
-## Window Movement
+<details>
+<summary><strong>## Window Movement</strong></summary>
 
 - `$modifier + Shift + ← / → / ↑ / ↓` → Move window left/right/up/down
 - `$modifier + Shift + H / L / K / J` → Move window left/right/up/down
 - `$modifier + Alt + ← / → / ↑ / ↓` → Swap window left/right/up/down
 - `$modifier + Alt + 43 / 46 / 45 / 44` → Swap window left/right/up/down
 
-## Focus Movement
+</details>
+
+<details>
+
+<summary><strong>## Focus Movement</strong></summary>
 
 - `$modifier + ← / → / ↑ / ↓` → Move focus left/right/up/down
 - `$modifier + H / L / K / J` → Move focus left/right/up/down
 
-## Workspaces
+</details>
+
+<details>
+<summary><strong>## Workspaces </strong></summary>
 
 - `$modifier + 1-10` → Switch to workspace 1-10
 - `$modifier + Shift + Space` → Move window to special workspace
@@ -71,10 +79,15 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + Shift + 1-10` → Move window to workspace 1-10
 - `$modifier + Control + → / ←` → Switch workspace forward/backward
 
-## Window Cycling
+</details>
+
+<details>
+<summary><strong>## Window Cycling </strong></summary>
 
 - `Alt + Tab` → Cycle to next window
 - `Alt + Tab` → Bring active window to top
+
+</details>
 
 <details>
 
