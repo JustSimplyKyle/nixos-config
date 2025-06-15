@@ -91,11 +91,13 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 
 <details>
 
-<H3><summary><strong>❄ Why did you create ZaneyOS ? </strong></summary></H3>
+## Questions, settings, updating, misc...
+
+<summary><strong>❄ Why did you create ZaneyOS ? </strong></summary>
 
 <div style="margin-left: 20px;">
 
-- Orginally, it was simply my configuration saved on a GIT repository.
+- In the beginning, it was simply my configuration saved on a GIT repository.
 - It was there to promote NixOS and Hyprland.
 - Providing a stable, working configuration.
 - It has never been intended as a full NixOS distro.
