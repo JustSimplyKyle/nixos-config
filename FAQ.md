@@ -89,9 +89,9 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 
 </details>
 
-<details>
-
 ## Questions, settings, updating, misc...
+
+<details>
 
 <summary><strong>❄ Why did you create ZaneyOS ? </strong></summary>
 
