@@ -91,7 +91,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 
 <details>
 
-<summary><strong>❄ Why did you create ZaneyOS ? </strong></summary>
+<H3><summary><strong>❄ Why did you create ZaneyOS ? </strong></summary></H3>
 
 <div style="margin-left: 20px;">
 
