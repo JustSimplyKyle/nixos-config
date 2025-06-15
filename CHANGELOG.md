@@ -4,6 +4,8 @@
 
 ** Updated: June 15th, 2025 **
 
+- Added more fonts to `modules/core/fonts.nix`
+- Added `alacritty` terminal with `Maple MF` font.
 - Redid `flatpak.nix` now you can add programs to be installed and get updated
   on rebuilds
 - Re-enabled `language formatter` had to disable `css` formatter for now
