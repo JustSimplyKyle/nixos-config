@@ -98,6 +98,46 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 <div style="margin-left: 20px;">
 
 <details>
+<summary><strong>How to I add flatpaks? ?</strong></summary>
+
+- Edit `~/zaneyos/modules/core/flatpak.nix`
+- There is a list of sample apps you can use as a template
+
+```nix
+ services = {
+    flatpak = {
+      enable = true;
+
+      # List the Flatpak applications you want to install
+      # Use the official Flatpak application ID (e.g., from flathub.org)
+      # Examples:
+      packages = [
+        #"com.github.tchx84.Flatseal" #Manage flatpak permissions - should always have this
+        #"com.rtosta.zapzap"              # WhatsApp client
+        #"io.github.flattool.Warehouse"   # Manage flatpaks, clean data, remove flatpaks and deps
+        #"it.mijorus.gearlever"           # Manage and support AppImages
+        #"io.github.freedoom.Phase1"      #  Classic Doom FPS 1
+        #"io.github.freedoom.Phase2"      #  Classic Doom FPS 2
+        #"io.github.dvlv.boxbuddyrs"      #  Manage distroboxes
+
+        # Add other Flatpak IDs here, e.g., "org.mozilla.firefox"
+      ];
+
+      # Optional: Automatically update Flatpaks when you run nixos-rebuild swit ch
+      update.onActivation = true;
+    };
+  };
+```
+
+- Make sure you use the correct package name
+- Go to `flathub.org`to verify or use `flatpak search PACKAGENAME`
+- Save the file and to a rebuild with the `fr`alias
+- After you can run `flatpak list` to verify the install
+- When you run `fu` or `fr` the flatpaks will get updated as well
+
+</details>
+
+<details>
 <summary><strong>How to I change the waybar?</strong></summary>
 
 - Go to the `~/zaneyos/host/HOSTNAME`
