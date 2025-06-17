@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     nodejs
+    atop
     bottom
-    tmux
     dua
     fd
     gping
@@ -16,5 +16,6 @@
     ugrep
     vscode-fhs
     waypaper
+    dysk
   ];
 }
