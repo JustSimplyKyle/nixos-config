@@ -1,7 +1,7 @@
 # 💬 ZaneyOS FAQ for v2.3
 
-- **Revision v1.20**
-- **Date:** 15-Jun-2025
+- **Revision v1.21**
+- **Date:** 17-Jun-2025
 
 <h4>---> ZaneyOS related</h4>
 
@@ -15,8 +15,7 @@
 Below are the keybindings for Hyprland, formatted for easy reference.
 
 <details>
-
-<summary><strong>## Application Launching</strong></summary>
+<summary><strong>🧰 Application Launching</strong></summary>
 
 - `$modifier + Return` → Launch `Terminal`
 - `$modifier + K` → List keybinds
@@ -35,11 +34,10 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + V` → Show clipboard history via `cliphist`
 - `$modifier + T` → Toggle terminal with `pypr`
 - `$modifier + M` → Open `pavucontrol`
-
 </details>
 
 <details>
-<summary><strong>## Window Management </strong></summary>
+<summary><strong>🖼️ Window Management </strong></summary>
 
 - `$modifier + Q` → Kill active window
 - `$modifier + P` → Toggle pseudo tiling
@@ -48,11 +46,10 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + Shift + F` → Toggle floating mode
 - `$modifier + Alt + F` → Float all windows
 - `$modifier + Shift + C` → Exit Hyprland
-
 <</details>
 
 <details>
-<summary><strong>## Window Movement</strong></summary>
+<summary><strong>📚 Window Movement</strong></summary>
 
 - `$modifier + Shift + ← / → / ↑ / ↓` → Move window left/right/up/down
 - `$modifier + Shift + H / L / K / J` → Move window left/right/up/down
@@ -62,8 +59,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 </details>
 
 <details>
-
-<summary><strong>## Focus Movement</strong></summary>
+<summary><strong>📦 Focus Movement</strong></summary>
 
 - `$modifier + ← / → / ↑ / ↓` → Move focus left/right/up/down
 - `$modifier + H / L / K / J` → Move focus left/right/up/down
@@ -71,7 +67,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 </details>
 
 <details>
-<summary><strong>## Workspaces </strong></summary>
+<summary><strong>🎨 Workspaces </strong></summary>
 
 - `$modifier + 1-10` → Switch to workspace 1-10
 - `$modifier + Shift + Space` → Move window to special workspace
@@ -82,7 +78,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 </details>
 
 <details>
-<summary><strong>## Window Cycling </strong></summary>
+<summary><strong>🖼️ Window Cycling </strong></summary>
 
 - `Alt + Tab` → Cycle to next window
 - `Alt + Tab` → Bring active window to top
