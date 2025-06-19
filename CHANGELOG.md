@@ -4,6 +4,11 @@
 
 ** Updated: June 15th, 2025 **
 
+- Added `doas.nix` as complement to `sudo`
+- Added `sddm.nix` themed with stylix
+- Disabled `greeter` but didnt not remove it
+- Set default stylix image to `mountainscapedark.png`
+- Provides warmer colors and super nice SDDM background
 - Added more fonts to `modules/core/fonts.nix`
 - Added `alacritty` terminal with `Maple MF` font.
 - Redid `flatpak.nix` now you can add programs to be installed and get updated

@@ -1,15 +1,17 @@
 {inputs, ...}: {
   imports = [
     ./boot.nix
+    ./doas.nix
     ./flatpak.nix
     ./fonts.nix
-    ./greetd.nix
+    #./greetd.nix
     ./hardware.nix
     ./network.nix
     ./nfs.nix
     ./nh.nix
     ./packages.nix
     ./printing.nix
+    ./sddm.nix
     ./security.nix
     ./services.nix
     ./starfish.nix
