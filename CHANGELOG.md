@@ -4,15 +4,13 @@
 
 ** Updated: June 22nd, 2025 **
 
-- Added alternate `starship` config. `starship-ddubs-1.nix` (Disabled by
-  default)
+- Added alternate `starship` config. `starship-ddubs-1.nix`
 - Added more info in `hosts/default/variables.nix`
 - Listing available terminals, stylix images, waybars
 - More info on how to configure monitors
 - Added new waybar from swordlesbian Very colorful and bright
 - Added `doas.nix` as complement to `sudo`
-- Added `sddm.nix` themed with stylix
-- Disabled `greeter` but didnt not remove it
+- Added `sddm.nix` themed with stylix - Disabled by default
 - Set default stylix image to `mountainscapedark.png`
 - Provides warmer colors and super nice SDDM background
 - Added more fonts to `modules/core/fonts.nix`
