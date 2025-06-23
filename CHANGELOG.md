@@ -1,9 +1,10 @@
 ## 🗒️ Changelog
 
-## ZaneyOS v2.3 -- Post GA Release Notes
+## ZaneyOS v2.3.3 -- Post GA Release Notes
 
 ** Updated: June 22nd, 2025 **
 
+- Updated version to v2.3.3
 - Added `uwsm` package and enabled it in Hyprland
 - Added alternate `starship` config. `starship-ddubs-1.nix`
 - Added more info in `hosts/default/variables.nix`
