@@ -2,12 +2,21 @@
 
 ## ZaneyOS v2.3 -- Post GA Release Notes
 
-** Updated: June 15th, 2025 **
+** Updated: June 22nd, 2025 **
 
+- Added `uwsm` package and enabled it in Hyprland
+- Added alternate `starship` config. `starship-ddubs-1.nix`
+- Added more info in `hosts/default/variables.nix`
+- Listing available terminals, stylix images, waybars
+- More info on how to configure monitors
+- Added new waybar from swordlesbian Very colorful and bright
+- Added `doas.nix` as complement to `sudo`
+- Added `sddm.nix` themed with stylix - Disabled by default
+- Set default stylix image to `mountainscapedark.png`
+- Provides warmer colors and super nice SDDM background
 - Added more fonts to `modules/core/fonts.nix`
 - Added `alacritty` terminal with `Maple MF` font.
-- Redid `flatpak.nix` now you can add programs to be installed and get updated
-  on rebuilds
+- Redid `flatpak.nix` you can add programs and they get updated on rebuilds
 - Re-enabled `language formatter` had to disable `css` formatter for now
 - Updated Updated flake
 - Disabled `language formatter` in `nvf.nix` It fails to build
@@ -109,15 +118,15 @@ error: attribute 'prettier' missing
 
 - With this release there are improvements to Neovim
 - The entire file structure has been improved.
-- Switched from nixvim to nvf for neovim configuration.
-- Improved bat config and includes extras now.
+- Switched from `nixvim` to `nvf` for neovim configuration.
+- Improved `bat` config and includes extras now.
 - Added profiles for what kind of system you have based of GPU / VM.
 - Reduced the host specific files and made the entire flake more modular.
 - Fixed git getting set to wrong user settings.
 - Fixed hyprlock conflicting with stylix.
 - Setup`nh` in a better fashion.
-- Added support for qmk out of the box.
-- Added usbutils for lsusb functionality.
+- Added support for `qmk` out of the box.
+- Added `usbutils` for lsusb functionality.
 - Massive improvement to Hyprland window rules.
 - Removed broken support for Apple Silicon (this may return).
 - Install script improved.
