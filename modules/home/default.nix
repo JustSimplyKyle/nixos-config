@@ -26,6 +26,7 @@ in {
     ./qt.nix
     ./scripts
     ./starship.nix
+    ./starship-ddubs-1.nix
     ./stylix.nix
     ./swappy.nix
     ./swaync.nix
