@@ -2,8 +2,10 @@
 
 ## ZaneyOS v2.3 -- Post GA Release Notes
 
-** Updated: June 19th, 2025 **
+** Updated: June 22nd, 2025 **
 
+- Added alternate `starship` config. `starship-ddubs-1.nix` (Disabled by
+  default)
 - Added more info in `hosts/default/variables.nix`
 - Listing available terminals, stylix images, waybars
 - More info on how to configure monitors
