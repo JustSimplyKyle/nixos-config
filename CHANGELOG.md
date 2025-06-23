@@ -2,8 +2,9 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: June 22nd, 2025 **
+** Updated: June 23nd, 2025 **
 
+- `hm-find` script wasn't imported so not built
 - Updated version to v2.3.3
 - Added `uwsm` package and enabled it in Hyprland
 - Added alternate `starship` config. `starship-ddubs-1.nix`
