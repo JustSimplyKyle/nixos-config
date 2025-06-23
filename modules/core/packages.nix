@@ -5,7 +5,10 @@
       defaultEditor = true;
     };
     firefox.enable = false; # Firefox is not installed by default
-    hyprland.enable = true; #someone forgot to set this so desktop file is created
+    hyprland = {
+      enable = true; #someone forgot to set this so desktop file is created
+      withUWSM = true;
+    };
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
@@ -62,6 +65,7 @@
     unrar # Tool For Handling .rar Files
     unzip # Tool For Handling .zip Files
     usbutils # Good Tools For USB Devices
+    uwsm #Universal Wayland Session Manager
     v4l-utils # Used For Things Like OBS Virtual Camera
     wget # Tool For Fetching Files With Links
     ytmdl # Tool For Downloading Audio From YouTube
