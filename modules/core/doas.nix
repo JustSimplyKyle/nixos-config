@@ -5,11 +5,11 @@
     {
       users = ["adminUser"]; # Replace with your username
       keepEnv = true; # Retains environment variables
-      noPass = true;
+      noPass = false;
     }
     {
       groups = ["wheel"]; # Allows all users in 'wheel' group
-      noPass = true; # Enables passwordless execution
+      noPass = false; # Enables passwordless execution
     }
   ];
 }
