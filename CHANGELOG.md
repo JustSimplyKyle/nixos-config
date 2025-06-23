@@ -4,6 +4,7 @@
 
 ** Updated: June 22nd, 2025 **
 
+- Added `uwsm` package and enabled it in Hyprland
 - Added alternate `starship` config. `starship-ddubs-1.nix`
 - Added more info in `hosts/default/variables.nix`
 - Listing available terminals, stylix images, waybars
