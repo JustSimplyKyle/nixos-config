@@ -4,6 +4,9 @@
 
 ** Updated: June 24th, 2025 **
 
+- Updated flake
+- Added control variables for `alacritty` `ghostty` `tmux` `wezterm` in
+  `variables.nix`
 - Re-enabled `css` formatting in `nvf.nix` Thanks `mister_simon` for the fix
 - Added variable `displayManager` in `hosts/hostname/variables.nix`
 - Set to `sddm` will enable SDDM login manager themed by stylix

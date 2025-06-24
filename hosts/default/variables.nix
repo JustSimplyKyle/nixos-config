@@ -9,16 +9,13 @@
   # SDDM background is set with stylixImage
   displayManager = "sddm";
 
-  # Themed tmux
+  # Emable/disable bundled applications
   tmuxEnable = true;
-
-  # Enable Alacritty
   alacrittyEnable = true;
-
-  # Enable ghostty
+  weztermEnable = true;
   ghosttyEnable = true;
 
-  # P10K or starship prompt
+  # P10K or starship prompt (not enabled yet)
   userPrompt = "starship";
 
   # Hyprland Settings

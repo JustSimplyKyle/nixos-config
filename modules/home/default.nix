@@ -1,10 +1,11 @@
 {host, ...}: let
   inherit
     (import ../../hosts/${host}/variables.nix)
-    ghosttyEnable
     alacrittyEnable
+    ghosttyEnable
     tmuxEnable
     waybarChoice
+    weztermEnable
     ;
 in {
   imports =
@@ -37,13 +38,17 @@ in {
       ./swaync.nix
       ./virtmanager.nix
       waybarChoice
-      ./wezterm.nix
       ./wlogout
       ./xdg.nix
       ./yazi
       ./zoxide.nix
       ./zsh
     ]
+    ++ (
+      if weztermEnable
+      then [./wezterm.nix]
+      else []
+    )
     ++ (
       if ghosttyEnable
       then [./ghostty.nix]
