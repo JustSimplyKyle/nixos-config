@@ -14,6 +14,7 @@
   alacrittyEnable = true;
   weztermEnable = true;
   ghosttyEnable = true;
+  vscodeEnable = true;
 
   # P10K or starship prompt
   userPrompt = "starship";

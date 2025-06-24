@@ -10,10 +10,11 @@
   displayManager = "sddm";
 
   # Emable/disable bundled applications
-  tmuxEnable = true;
-  alacrittyEnable = true;
-  weztermEnable = true;
-  ghosttyEnable = true;
+  tmuxEnable = false;
+  alacrittyEnable = false;
+  weztermEnable = false;
+  ghosttyEnable = false;
+  vscodeEnable = false;
 
   # P10K or starship prompt (not enabled yet)
   userPrompt = "starship";

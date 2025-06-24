@@ -4,6 +4,9 @@
 
 ** Updated: June 24th, 2025 **
 
+- Added `vscode.nix` with plugins for NIX, BASH, JSON, and VIM keybinds
+- Added variable 'enableVscode' in the `hosts/default/variables.nix` to turn on
+  or off
 - Updated flake
 - Added control variables for `alacritty` `ghostty` `tmux` `wezterm` in
   `variables.nix`

@@ -14,7 +14,6 @@
     ncdu
     gdu
     ugrep
-    vscode-fhs
     waypaper
     dysk
   ];
