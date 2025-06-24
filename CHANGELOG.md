@@ -2,8 +2,12 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: June 23nd, 2025 **
+** Updated: June 24th, 2025 **
 
+- Re-enabled `css` formatting in `nvf.nix` Thanks `mister_simon` for the fix
+- Added variable `displayManager` in `hosts/hostname/variables.nix`
+- Set to `sddm` will enable SDDM login manager themed by stylix
+- Set to `tui` and you get the greetd text login as before
 - `hm-find` script wasn't imported so not built
 - Updated version to v2.3.3
 - Added `uwsm` package and enabled it in Hyprland

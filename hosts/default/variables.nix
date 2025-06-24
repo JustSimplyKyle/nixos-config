@@ -3,6 +3,12 @@
   gitUsername = "Tyler Kelley";
   gitEmail = "tylerzanekelley@gmail.com";
 
+  # Set Displau Manager
+  # `tui` for Text login
+  # `sddm` for graphical GUI
+  # SDDM background is set with stylixImage
+  displayManager = "sddm";
+
   # Hyprland Settings
   # ex: extraMonitorSettings = "monitor = Virtual-1,1920x1080@60,auto,1";
   # ex: extraMonitorSettings = "monitor = HDMI-A-1,1920x1080@60,auto,1";
@@ -51,7 +57,7 @@
   #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
   #stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
   #stylixImage = ../../wallpapers/Rainnight.jpg;
-  #stylixImage = ../../wallpapers/zamey-wallpaper.jpg;
+  #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
   #stylixImage = ../../wallpapers/nix-wallpapers-strips-logo.jpg;
   #stylixImage = ../../wallpapers/beautifulmountainscape.jpg;
 

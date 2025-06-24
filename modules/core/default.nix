@@ -1,20 +1,30 @@
-{inputs, ...}: {
+{
+  inputs,
+  host,
+  ...
+}: let
+  # Import the host-specific variables.nix
+  vars = import ../../hosts/${host}/variables.nix;
+in {
   imports = [
     ./boot.nix
     ./doas.nix
     ./flatpak.nix
     ./fonts.nix
-    ./greetd.nix
     ./hardware.nix
     ./network.nix
     ./nfs.nix
     ./nh.nix
     ./packages.nix
     ./printing.nix
-    #./sddm.nix    #Disabled for now until can set up per host variables
+    # Conditionally import the display manager module
+    (
+      if vars.displayManager == "tui"
+      then ./greetd.nix
+      else ./sddm.nix
+    )
     ./security.nix
     ./services.nix
-    #./starfish.nix  Not sure why this is here, as it's in modules/home
     ./steam.nix
     ./stylix.nix
     ./syncthing.nix
