@@ -5,6 +5,7 @@
 ** Updated: June 24th, 2025 **
 
 - Added `vscode.nix` with plugins for NIX, BASH, JSON, and VIM keybinds
+- Thanks to `delciak` for providing the NIX code for `vscode.nix`
 - Added variable 'enableVscode' in the `hosts/default/variables.nix` to turn on
   or off
 - Updated flake
