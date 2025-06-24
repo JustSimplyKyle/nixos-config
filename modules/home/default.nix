@@ -6,6 +6,7 @@
     tmuxEnable
     waybarChoice
     weztermEnable
+    vscodeEnable
     ;
 in {
   imports =
@@ -44,6 +45,11 @@ in {
       ./zoxide.nix
       ./zsh
     ]
+    ++ (
+      if vscodeEnable
+      then [./vscode.nix]
+      else []
+    )
     ++ (
       if weztermEnable
       then [./wezterm.nix]
