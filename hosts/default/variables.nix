@@ -9,6 +9,18 @@
   # SDDM background is set with stylixImage
   displayManager = "sddm";
 
+  # Themed tmux
+  tmuxEnable = true;
+
+  # Enable Alacritty
+  alacrittyEnable = true;
+
+  # Enable ghostty
+  ghosttyEnable = true;
+
+  # P10K or starship prompt
+  userPrompt = "starship";
+
   # Hyprland Settings
   # ex: extraMonitorSettings = "monitor = Virtual-1,1920x1080@60,auto,1";
   # ex: extraMonitorSettings = "monitor = HDMI-A-1,1920x1080@60,auto,1";
