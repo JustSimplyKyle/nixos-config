@@ -15,6 +15,7 @@
   weztermEnable = false;
   ghosttyEnable = false;
   vscodeEnable = false;
+  helixEnable = false;
 
   # P10K or starship prompt (not enabled yet)
   userPrompt = "starship";

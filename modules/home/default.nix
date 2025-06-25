@@ -7,6 +7,7 @@
     waybarChoice
     weztermEnable
     vscodeEnable
+    helixEnable
     ;
 in {
   imports =
@@ -45,6 +46,11 @@ in {
       ./zoxide.nix
       ./zsh
     ]
+    ++ (
+      if helixEnable
+      then [./evil-helix.nix]
+      else []
+    )
     ++ (
       if vscodeEnable
       then [./vscode.nix]

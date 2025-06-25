@@ -2,12 +2,12 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: June 24th, 2025 **
+** Updated: June 25th, 2025 **
 
+- Added `evil-helix` with language support as option
 - Added `vscode.nix` with plugins for NIX, BASH, JSON, and VIM keybinds
 - Thanks to `delciak` for providing the NIX code for `vscode.nix`
-- Added variable 'enableVscode' in the `hosts/default/variables.nix` to turn on
-  or off
+- Added variable 'enableVscode' in the `hosts/default/variables.nix`
 - Updated flake
 - Added control variables for `alacritty` `ghostty` `tmux` `wezterm` in
   `variables.nix`
