@@ -45,13 +45,14 @@ in {
       ./xdg.nix
       ./yazi
       ./zoxide.nix
-      ./zsh {inherit starshipEnable;} {inherit starshipEnable;}
     ]
-    ++ (
-      if starshipEnable
-      then [./starship-ddubs-1.nix]
-      else []
-    )
+    ++ (lib.optionals starshipEnable [
+      ./starship.nix
+      ./zsh {inherit starshipEnable;}
+    ])
+    ++ (lib.optionals (!starshipEnable) [
+      ./zsh {inherit starshipEnable;}
+    ])
     ++ (
       if helixEnable
       then [./evil-helix.nix]
