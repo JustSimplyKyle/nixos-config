@@ -2,6 +2,7 @@
   profile,
   pkgs,
   lib,
+  starshipEnable,
   ...
 }: {
   imports = [
@@ -27,7 +28,7 @@
       enable = true;
     };
 
-    plugins = [
+    plugins = lib.optionals (!starshipEnable) [
       {
         name = "powerlevel10k";
         src = pkgs.zsh-powerlevel10k;
