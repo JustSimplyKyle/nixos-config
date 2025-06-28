@@ -1,4 +1,5 @@
-{host, ...}: let
+{host, pkgs, ...}: let
+  lib = pkgs.lib;
   inherit
     (import ../../hosts/${host}/variables.nix)
     alacrittyEnable
