@@ -1,5 +1,4 @@
-{host, pkgs, ...}: let
-  lib = pkgs.lib;
+{host, ...}: let
   inherit
     (import ../../hosts/${host}/variables.nix)
     alacrittyEnable
@@ -9,7 +8,6 @@
     weztermEnable
     vscodeEnable
     helixEnable
-    starshipEnable
     ;
 in {
   imports =
@@ -46,14 +44,8 @@ in {
       ./xdg.nix
       ./yazi
       ./zoxide.nix
+      ./zsh
     ]
-    ++ (lib.optionals starshipEnable [
-      ./starship.nix
-      ./zsh {inherit starshipEnable;}
-    ])
-    ++ (lib.optionals (!starshipEnable) [
-      ./zsh {inherit starshipEnable;}
-    ])
     ++ (
       if helixEnable
       then [./evil-helix.nix]
