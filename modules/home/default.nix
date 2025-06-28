@@ -45,7 +45,7 @@ in {
       ./xdg.nix
       ./yazi
       ./zoxide.nix
-      ./zsh {inherit starshipEnable;}
+      ./zsh {inherit starshipEnable;} {inherit starshipEnable;}
     ]
     ++ (
       if starshipEnable
