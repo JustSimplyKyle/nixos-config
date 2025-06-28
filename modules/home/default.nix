@@ -8,6 +8,7 @@
     weztermEnable
     vscodeEnable
     helixEnable
+    starshipEnable
     ;
 in {
   imports =
@@ -33,8 +34,8 @@ in {
       ./rofi
       ./qt.nix
       ./scripts
-      ./starship.nix
-      ./starship-ddubs-1.nix
+      #./starship.nix
+      #./starship-ddubs-1.nix
       ./stylix.nix
       ./swappy.nix
       ./swaync.nix
@@ -46,6 +47,11 @@ in {
       ./zoxide.nix
       ./zsh
     ]
+    ++ (
+      if starshipEnable
+      then [./starship-ddubs-1.nix]
+      else []
+    )
     ++ (
       if helixEnable
       then [./evil-helix.nix]

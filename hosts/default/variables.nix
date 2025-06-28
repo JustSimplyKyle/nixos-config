@@ -16,9 +16,7 @@
   ghosttyEnable = false;
   vscodeEnable = false;
   helixEnable = false;
-
-  # P10K or starship prompt (not enabled yet)
-  userPrompt = "starship";
+  starshipEnable = false;
 
   # Hyprland Settings
   # ex: extraMonitorSettings = "monitor = Virtual-1,1920x1080@60,auto,1";
