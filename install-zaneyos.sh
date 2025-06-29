@@ -171,7 +171,7 @@ else
 fi
 
 print_header "Cloning ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git --depth=1 -b zaneyos-ddubs-dev  ~/zaneyos
+git clone https://gitlab.com/zaney/zaneyos.git --depth=1 -b stable-2.3  ~/zaneyos
 cd ~/zaneyos || exit 1
 
 print_header "Configuring Host and Profile"

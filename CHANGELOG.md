@@ -2,8 +2,9 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: June 27th, 2025 **
+** Updated: June 29th, 2025 **
 
+- Improved `install-zaneyos.sh` script Detects GPU and better presentation
 - Added `gemini.nix` Creates an `npm` script to install `gemini-cli`
 - Added `evil-helix` with language support as option
 - Added `vscode.nix` with plugins for NIX, BASH, JSON, and VIM keybinds
