@@ -33,7 +33,7 @@ print_error() {
 # Function to print a success banner
 print_success_banner() {
   echo -e "${GREEN}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${GREEN}║                 ZaneyOS Installation Successful!                      ║${NC}"
+  echo -e "${GREEN}║                 zaneyos Installation Successful!                      ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
   echo -e "${GREEN}║   Please reboot your system for changes to take full effect.          ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
@@ -43,7 +43,7 @@ print_success_banner() {
 # Function to print a failure banner
 print_failure_banner() {
   echo -e "${RED}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${RED}║                 ZaneyOS Installation Failed!                          ║${NC}"
+  echo -e "${RED}║                 zaneyos Installation Failed!                          ║${NC}"
   echo -e "${RED}║                                                                       ║${NC}"
   echo -e "${RED}║   Please review the log file for details:                             ║${NC}"
   echo -e "${RED}║   ${LOG_FILE}                                                        ║${NC}"
@@ -150,28 +150,28 @@ if [ -z "$profile" ]; then
   echo -e "${GREEN}Selected GPU profile: $profile${NC}"
 fi
 
-print_header "Backup Existing ZaneyOS (if any)"
+print_header "Backup Existing zaneyos (if any)"
 
 backupname=$(date +"%Y-%m-%d-%H-%M-%S")
 if [ -d "zaneyos" ]; then
   echo -e "${GREEN}zaneyos exists, backing up to .config/zaneyos-backups folder.${NC}"
   if [ -d ".config/zaneyos-backups" ]; then
-    echo -e "${GREEN}Moving current version of ZaneyOS to backups folder.${NC}"
+    echo -e "${GREEN}Moving current version of zaneyos to backups folder.${NC}"
     mv "$HOME"/zaneyos .config/zaneyos-backups/"$backupname"
     sleep 1
   else
-    echo -e "${GREEN}Creating the backups folder & moving ZaneyOS to it.${NC}"
+    echo -e "${GREEN}Creating the backups folder & moving zaneyos to it.${NC}"
     mkdir -p .config/zaneyos-backups
     mv "$HOME"/zaneyos .config/zaneyos-backups/"$backupname"
     sleep 1
   fi
 else
-  echo -e "${GREEN}Thank you for choosing ZaneyOS.${NC}"
+  echo -e "${GREEN}Thank you for choosing zaneyos.${NC}"
   echo -e "${GREEN}I hope you find your time here enjoyable!${NC}"
 fi
 
-print_header "Cloning ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git --depth=1 -b stable-2.3  ~/zaneyos
+print_header "Cloning zaneyos Repository"
+git clone https://gitlab.com/dwilliam62/zaneyos.git --depth=1  ~/zaneyos
 cd ~/zaneyos || exit 1
 
 print_header "Configuring Host and Profile"

@@ -17,9 +17,6 @@
   vscodeEnable = false;
   helixEnable = false;
 
-  # P10K or starship prompt (not enabled yet)
-  userPrompt = "starship";
-
   # Hyprland Settings
   # ex: extraMonitorSettings = "monitor = Virtual-1,1920x1080@60,auto,1";
   # ex: extraMonitorSettings = "monitor = HDMI-A-1,1920x1080@60,auto,1";
