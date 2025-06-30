@@ -6,7 +6,7 @@
 in {
   wayland.windowManager.hyprland = {
     settings = {
-      windowrulev2 = [
+      windowrule = [
         "tag +file-manager, class:^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt)$"
         "tag +terminal, class:^(com.mitchellh.ghostty|org.wezfurlong.wezterm|Alacritty|kitty|kitty-dropterm)$"
         "tag +browser, class:^(Brave-browser(-beta|-dev|-unstable)?)$"
@@ -74,10 +74,5 @@ in {
         "fullscreen, tag:games*"
       ];
     };
-
-    extraConfig = "
-      monitor=,preferred,auto,auto
-      ${extraMonitorSettings}
-    ";
   };
 }
