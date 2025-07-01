@@ -8,7 +8,6 @@
 in {
   imports = [
     ./boot.nix
-    ./doas.nix
     ./flatpak.nix
     ./fonts.nix
     ./hardware.nix
