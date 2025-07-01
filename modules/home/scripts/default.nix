@@ -1,6 +1,7 @@
 {
   pkgs,
   username,
+  profile,
   ...
 }: {
   home.packages = [
@@ -18,5 +19,11 @@
     (import ./screenshootin.nix {inherit pkgs;})
     (import ./hm-find.nix {inherit pkgs;})
     (import ./gemini.nix {inherit pkgs;})
+    (import ./zcli.nix {
+      inherit pkgs profile;
+      backupFiles = [
+        ".config/mimeapps.list.backup"
+      ];
+    })
   ];
 }
