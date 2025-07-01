@@ -1,7 +1,7 @@
 # 💬 ZaneyOS FAQ for v2.3
 
-- **Revision v1.21**
-- **Date:** 17-Jun-2025
+- **Revision v1.22**
+- **Date:** 1-Jul-2025
 
 <h4>---> ZaneyOS related</h4>
 
@@ -34,6 +34,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + V` → Show clipboard history via `cliphist`
 - `$modifier + T` → Toggle terminal with `pypr`
 - `$modifier + M` → Open `pavucontrol`
+
 </details>
 
 <details>
@@ -45,8 +46,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + F` → Toggle fullscreen
 - `$modifier + Shift + F` → Toggle floating mode
 - `$modifier + Alt + F` → Float all windows
-- `$modifier + Shift + C` → Exit Hyprland
-<</details>
+- `$modifier + Shift + C` → Exit Hyprland <</details>
 
 <details>
 <summary><strong>📚 Window Movement</strong></summary>
@@ -365,7 +365,8 @@ You can add additional packages, or for example change `discord` to
 
 <summary><strong> I added the package names, now how do I install them ? </strong></summary>
 
-- Use the `fr`, Flake Rebuild alias.
+- Use the `zcli` utility. `zcli rebuild`
+- The legacy `fr`, Flake Rebuild alias, is depreciated but still available
 
 If the rebuild completes successfully, a new generation with your added packages
 will be created.
@@ -375,18 +376,21 @@ will be created.
 <details>
 <summary><strong> How do I update the packages I've already installed? </strong></summary>
 
-- Use the `fu`, Flake Update alias. This will check for updated packages,
-  download and install them.
+- Use the `zcli` utility. `zcli update`
+- The `fu`, Flake Update alias, is depreciated but still available
+- Either of these will check for updated packages, download and install them.
 
 </details>
 
 <details>
 <summary><strong> I made a change to my ZaneyOS configuration, how do I activate it? </strong></summary>
 
-- Use the `fr` Flake Rebuild alias. If you **created a new file** please note
-  you will need to run a `git add .` command in the zaneyos folder. If
-  successful, a new generation will be generated with your changes. A logout or
-  reboot could be required depending on what you changed.
+- Use the `zcli` utility. `zcli rebuild`
+- The legacy `fr`, Flake Rebuild alias, is depreciated but still available **
+  NOTE: If you **created a new file**
+- you will need to run a `git add .` command in the `zaneyos` folder
+- If successful a new generation will be generated with your changes
+- A logout or reboot could be required depending on what you changed
 
 </details>
 
@@ -418,8 +422,8 @@ boot.kernelModules = ["kvm-intel"];
 boot.extraModulePackages = [];
 ```
 
-5. Use the command alias `fr` to create a new generation and reboot to take
-   effect.
+5. Use the command `zcli rebuild` or alias `fr` to create a new generation and
+   reboot to take effect.
 
 </details>
 
@@ -494,8 +498,8 @@ make the change effective.
 3. In the `~/zaneyos` Directory run `git add .` _The rebuild will fail with a
    'file not found' error if you forget this step._
 
-4. Use the `fr` alias to create a new generation with the new hostname. You must
-   reboot to make the change effective.
+4. Use the `zcli rebuild` or fr` alias to create a new generation with the new
+   hostname. You must reboot to make the change effective.
 
 </details>
 <details>
@@ -511,7 +515,7 @@ make the change effective.
 ```
 
 3. Change it to `false`
-4. Run the command alias `fr` to create a new generation.
+4. Run the command `zcli rebuild` or use alias `fr` to create a new generation.
 
 </details>
 
@@ -530,9 +534,9 @@ make the change effective.
    alias to create a new generation.
 
 4. In the `~/zaneyos/modules/home/hyprland/config.nix` file is an ENV
-   setting`"AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"` This sets the primary
-   and secondary GPUs. Using the info from the weblink above you might have to
-   change the order of these values.
+   setting`"AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1:/dev/dri/card2"` This
+   sets the primary and secondary GPUs. Using the info from the weblink above
+   you might have to change the order of these values.
 
 </details>
 
@@ -587,8 +591,9 @@ make the change effective.
     };
 ```
 
-3. Select the image you want stylix to use for the colorpalette.
-4. Run `fr` command alias to create a new generation with this colorscheme.
+3. Select the image you want `stylix` to use for the colorpalette.
+4. Run `zcli rebuild` command or `fr` alias to create a new generation with this
+   colorscheme.
 
 - To disable uncomment
 
@@ -616,8 +621,8 @@ make the change effective.
 };
 ```
 
-3. Run the `fr`command alias to build a new generation with either the default
-   dracula or set your own custom colors
+3. Run the `zcli rebuild` command or `fr` alias to build a new generation with
+   either the default dracula or set your own custom colors
 
 </details>
 
@@ -650,7 +655,7 @@ stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 - Wallpapers are stored in the `~/zaneyos/wallpapers` directory.
 - Simply copy the new ones to that diretory.
 - You must do a rebuild after adding new wallpapers.
-- Run `fr` at the CLI.
+- Run `zcli rebuild` command `fr` alias at the CLI.
 
 </details>
 
@@ -686,7 +691,7 @@ settings = {
      ];
 ```
 
-4. Run the command alias `fr` to create a new generation.
+4. Run the `zcli rebuild` command or `fr` alias to create a new generation.
 5. You will need to logout or reboot to make the change effective.
 
 </details>
@@ -697,7 +702,7 @@ settings = {
 
 1. Edit the `~/zaneyos/modules/home/scripts/wallsetter`
 2. Change the `TIMEOUT =` value. Which is in seconds.
-3. Run the command alias `fr` to create a new generation.
+3. Run the `zcli` command or`fr` alias, to create a new generation.
 4. You will need to logout or reboot to make the change effective.
 
 </details>
@@ -840,6 +845,15 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 <div style="margin-left: 20px;">
 <br>
 
+**Update**
+<br>
+
+- Using the `zcli rebuild` or `zcli update` will search for this file causing
+  rebuild failures
+- If you find other files that cause this you can add them in the
+  `zaneyos/modules/home/scripts/default.nix`
+  <br>
+
 ```text
 May 08 18:33:57 explorer hm-activate-dwilliams[92420]: Please do one of the following:
 May 08 18:33:57 explorer hm-activate-dwilliams[92420]: - Move or remove the above files and try again.
@@ -860,7 +874,9 @@ May 08 18:33:57 explorer systemd[1]: Failed to start Home Manager environment fo
 - If you get this msg but `hm-find` doesn't report any you will have to search
   manually e.g `journalctl | grep hm-activate`
 - You can now redo your rebuild
-- If you ran `fu` for `flake update` you can now do `fr` for `flake rebuild`
+- Use the `zcli rebuild` or `fr` alias
+- If you ran `fu` for `flake update` you can now do `zcli rebuild` or `fr` for
+  `flake rebuild`
 - The flake has already been updated
 
 </div>
@@ -1041,7 +1057,8 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
 1. Edit that file and change the `cursor_trail 1` to `cursor_trail 0` or comment
    out that line.
-2. Use the command alias `fr` to create a new generation with the change.
+2. Use the command `zcli rebuild` or the alias `fr` to create a new generation
+   with the change.
 
 </details>
 
@@ -1377,7 +1394,8 @@ philosophy, ensuring that system management is predictable and stress-free.
 - `waybar-simple.nix`, `waybar-curved.nix`, or `waybar-ddubs.nix`
 - Save the file and exit
 - You need to do a rebuild to make the change effective
-- Run `fr` "flake rebuild" to start the rebuild process
+- Run the `zcli rebuild` command or `fr` "flake rebuild" to start the rebuild
+  process
 
 ```json
 # Set Waybar
@@ -1462,8 +1480,8 @@ monitor=eDP-1,1920x1080@144.0,216x268,1.0
 You only need to copy the `monitor=` lines and paste them into the
 `variables.nix` file as described in the process above.
 
-Once you have that done. Run the command alias `fr` to build a new generation to
-make the chnages effective.
+Once you have that done. Run the command `zcli rebuild` or alias `fr` to build a
+new generation to make the changes effective.
 
 More information on configuring monitors is available on the
 [Hyprland Wiki](https://wiki.hyprland.org/Configuring/Monitors/)
@@ -1539,7 +1557,7 @@ You can add additional packages, or for example change `discord` to
 
 <summary><strong> I added the package names, now how do I install them ? </strong></summary>
 
-- Use the `fr`, Flake Rebuild alias.
+- Use the command `zcli rebuild` or `fr`, Flake Rebuild alias.
 
 If the rebuild completes successfully, a new generation with your added packages
 will be created.
@@ -1549,18 +1567,18 @@ will be created.
 <details>
 <summary><strong> How do I update the packages I've already installed? </strong></summary>
 
-- Use the `fu`, Flake Update alias. This will check for updated packages,
-  download and install them.
+- Use the command `zcli update` or the `fu`, Flake Update alias. This will check
+  for updated packages, download and install them.
 
 </details>
 
 <details>
 <summary><strong> I made a change to my ZaneyOS configuration, how do I activate it? </strong></summary>
 
-- Use the `fr` Flake Rebuild alias. If you **created a new file** please note
-  you will need to run a `git add .` command in the zaneyos folder. If
-  successful, a new generation will be generated with your changes. A logout or
-  reboot could be required depending on what you changed.
+- Use the command `zcli rebuild` or `fr` Flake Rebuild alias. If you **created a
+  new file** please note you will need to run a `git add .` command in the
+  `zaneyos` folder. If successful, a new generation will be generated with your
+  changes. A logout or reboot could be required depending on what you changed.
 
 </details>
 
@@ -1592,8 +1610,8 @@ boot.kernelModules = ["kvm-intel"];
 boot.extraModulePackages = [];
 ```
 
-5. Use the command alias `fr` to create a new generation and reboot to take
-   effect.
+5. Use the command `zcli rebuild` or the alias `fr` to create a new generation
+   and reboot to take effect.
 
 </details>
 
@@ -1642,10 +1660,10 @@ NixOS offers several major kernel types to cater to different needs and preferen
 
 <summary><strong>  I have older generations I want to delete, how can I do that? </strong></summary>
 
-- The `ncg` NixOS Clean Generations alias will remove **ALL** but the most
-  current generation. Make sure you have booted from that generation before
-  using this alias. There is also a schedule that will remove older generations
-  automatically over time.
+- The `zcli cleanup` command or the `ncg` `(NixOS Clean Generations)` alias will
+  remove **ALL** but the most current generation. Make sure you have booted from
+  that generation before using this alias. There is also a schedule that will
+  remove older generations automatically over time.
 
 </details>
 
@@ -1668,8 +1686,8 @@ make the change effective.
 3. In the `~/zaneyos` Directory run `git add .` _The rebuild will fail with a
    'file not found' error if you forget this step._
 
-4. Use the `fr` alias to create a new generation with the new hostname. You must
-   reboot to make the change effective.
+4. Use the command `zcli rebuild` or the `fr` alias to create a new generation
+   with the new hostname. You must reboot to make the change effective.
 
 </details>
 <details>
@@ -1685,7 +1703,7 @@ make the change effective.
 ```
 
 3. Change it to `false`
-4. Run the command alias `fr` to create a new generation.
+4. Run the command `zcli rebuild` or the alias `fr` to create a new generation.
 
 </details>
 
@@ -1700,8 +1718,8 @@ make the change effective.
    the PCI IDs for the Intel and NVIDIA GPUs. Refer to
    [this page](https://nixos.wiki/wiki/Nvidia) to help determine those values.
 
-3. Once you have everything configured properly, use the `fr` Flake Rebuild
-   alias to create a new generation.
+3. Once you have everything configured properly, use the command `zcli rebuild`
+   or the `fr` Flake Rebuild alias to create a new generation.
 
 4. In the `~/zaneyos/modules/home/hyprland/config.nix` file is an ENV
    setting`"AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1"` This sets the primary
@@ -1762,7 +1780,8 @@ make the change effective.
 ```
 
 3. Select the image you want stylix to use for the colorpalette.
-4. Run `fr` command alias to create a new generation with this colorscheme.
+4. Run command `zcli rebuild` or the `fr` alias to create a new generation with
+   this colorscheme.
 
 - To disable uncomment
 
@@ -1790,8 +1809,8 @@ make the change effective.
 };
 ```
 
-3. Run the `fr`command alias to build a new generation with either the default
-   dracula or set your own custom colors
+3. Run the command `zcli rebuild` or the `fr` alias to build a new generation
+   with either the default dracula or set your own custom colors
 
 </details>
 
@@ -1824,7 +1843,7 @@ stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 - Wallpapers are stored in the `~/zaneyos/wallpapers` directory.
 - Simply copy the new ones to that diretory.
 - You must do a rebuild after adding new wallpapers.
-- Run `fr` at the CLI.
+- Run the command `zcli rebuild` or the `fr` alias at the CLI.
 
 </details>
 
@@ -1860,7 +1879,7 @@ settings = {
      ];
 ```
 
-4. Run the command alias `fr` to create a new generation.
+4. Run the command `zcli rebuild` or the alias `fr` to create a new generation.
 5. You will need to logout or reboot to make the change effective.
 
 </details>
@@ -1871,7 +1890,7 @@ settings = {
 
 1. Edit the `~/zaneyos/modules/home/scripts/wallsetter`
 2. Change the `TIMEOUT =` value. Which is in seconds.
-3. Run the command alias `fr` to create a new generation.
+3. Run the command `zcli rebuild` or alias `fr` to create a new generation.
 4. You will need to logout or reboot to make the change effective.
 
 </details>
@@ -2027,6 +2046,11 @@ May 08 18:33:57 explorer systemd[1]: home-manager-dwilliams.service: Failed with
 May 08 18:33:57 explorer systemd[1]: Failed to start Home Manager environment for dwilliams.
 ```
 
+- Update: If you use the command `zcli rebuild` or `zcli upgrade` it will remove
+  the common cause of this If you find an issue and fix it, or provide a new
+  feature, please share it.
+- If you find more files that cause it you can add them to
+  `~/zaneyos/modules/home/scripts/default.nix`
 - There is a script `hm-find` That will search the journal and if found,
 - It will prompt you to delete these backups
 - It creates a log as well
@@ -2086,7 +2110,7 @@ To check which layout is currently active, use the `hyprctl` command:
 
 The Yazi configuration file is located in `~/zaneyos/modules/home/yazi.nix`
 
-Yazi is configured like VIM and VIM motions
+`Yazi` is configured like VIM and VIM motions
 
 The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
@@ -2215,7 +2239,8 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
 1. Edit that file and change the `cursor_trail 1` to `cursor_trail 0` or comment
    out that line.
-2. Use the command alias `fr` to create a new generation with the change.
+2. Use the command alias `zcli rebuild` or the `fr` to create a new generation
+   with the change.
 
 </details>
 
@@ -2294,7 +2319,8 @@ The defaults are:
 
 Edit the `/zaneyos/modules/home/wezterm.nix` Change `enable = false` to
 `enable = true;`\
-Save the file and rebuild zaneyos with the `fr` command.
+Save the file and rebuild `zaneyos` with the `zcli rebild` command or the `fr`
+alias
 
 ```
 {pkgs, ...}: {
@@ -2369,7 +2395,7 @@ theme = Dracula
 </details>
 
 <details>
-<summary> What are the default ghostty keybindings?  </summary>
+<summary> What are the default `ghostty` keybindings?  </summary>
 
 ```text
  # keybindings

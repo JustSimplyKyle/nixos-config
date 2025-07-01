@@ -2,7 +2,25 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: June 30th, 2025 **
+** Updated: July 1st, 2025 **
+
+- Added `zcli` CLI maint util for ZaneyOS
+
+```text
+zcli
+Error: No command provided.
+ZaneyOS CLI Utility -- version 0.3
+
+Usage: zcli [command]
+
+Commands:
+  rebuild   - Rebuild the NixOS system configuration.
+  update    - Update the flake and rebuild the system.
+  cleanup   - Run garbage collection to remove old generations.
+  trim      - Trim filesystems to improve SSD performance.
+  diag      - Create a system diagnostic report.
+  help      - Show this help message.
+```
 
 - Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
 - Improved `install-zaneyos.sh` script Detects GPU and better presentation
