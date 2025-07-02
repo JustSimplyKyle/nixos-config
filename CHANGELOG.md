@@ -5,6 +5,9 @@
 ** Updated: July 1st, 2025 **
 
 - Added `zcli` CLI maint util for ZaneyOS
+- Added `update-host` to `zcli.nix`
+- It will autodetect setting for `host` and `profile` in `flake.nix`
+- You can also specify them with `zcli update-host HOSTNAME PROFILE`
 
 ```text
 zcli
