@@ -30,7 +30,7 @@ in
       echo "  rebuild     - Rebuild the NixOS system configuration."
       echo "  trim        - Trim filesystems to improve SSD performance."
       echo "  update      - Update the flake and rebuild the system."
-      echo "  update-host - Auto set `host` and `profile` in flake.nix."
+      echo "  update-host - Auto set host and profile in flake.nix."
       echo "                (Opt: zcli update-host [hostname] [profile])"
       echo ""
       echo "  help        - Show this help message."
@@ -206,4 +206,3 @@ in
         ;;
     esac
   ''
-
