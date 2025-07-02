@@ -13,7 +13,7 @@ in
     # --- Configuration ---
     PROFILE="${profile}"
     BACKUP_FILES_STR="${backupFilesString}"
-    VERSION="0.4"
+    VERSION="0.7"
     FLAKE_NIX_PATH="$HOME/ddubsos/flake.nix"
 
     read -r -a BACKUP_FILES <<< "$BACKUP_FILES_STR"
@@ -25,16 +25,17 @@ in
       echo "Usage: zcli [command]"
       echo ""
       echo "Commands:"
-      echo "  cleanup     - Run garbage collection to remove old generations."
-      echo "  diag        - Create a system diagnostic report."
-      echo "  rebuild     - Rebuild the NixOS system configuration."
-      echo "  trim        - Trim filesystems to improve SSD performance."
-      echo "  update      - Update the flake and rebuild the system."
-      echo "  update-host - Auto set host and profile in flake.nix."
-      echo "                (Opt: zcli update-host [hostname] [profile])"
+      echo "  cleanup         - Run garbage collection to remove all old generations."
+      echo "  diag            - Create a system diagnostic report."
+      echo "                    (Filename: homedir/diag.txt)"
+      echo "  list-gens       - List user and system generations."
+      echo "  rebuild         - Rebuild the NixOS system configuration."
+      echo "  trim            - Trim filesystems to improve SSD performance."
+      echo "  update          - Update the flake and rebuild the system."
+      echo "  update-host     - Auto set host and profile in flake.nix."
+      echo "                    (Opt: zcli update-host [hostname] [profile])"
       echo ""
-      echo "  help        - Show this help message."
-      echo ""
+      echo "  help            - Show this help message."
     }
 
     handle_backups() {
@@ -100,26 +101,6 @@ in
     fi
 
     case "$1" in
-      rebuild)
-        handle_backups
-        echo "Starting NixOS rebuild for host: $PROFILE"
-        if nh os switch --hostname "$PROFILE"; then
-          echo "Rebuild finished successfully"
-        else
-          echo "Rebuild Failed" >&2
-          exit 1
-        fi
-        ;;
-      update)
-        handle_backups
-        echo "Updating flake and rebuilding system for host: $PROFILE"
-        if nh os switch --hostname "$PROFILE" --update; then
-          echo "Update and rebuild finished successfully"
-        else
-          echo "Update and rebuild Failed" >&2
-          exit 1
-        fi
-        ;;
       cleanup)
         echo "Warning! All but most current generations will be removed!"
         read -p "Continue (y/N)? " -n 1 -r
@@ -134,7 +115,32 @@ in
           echo "Cleanup cancelled."
         fi
         ;;
-      trim)
+            diag)
+        echo "Generating system diagnostic report..."
+        inxi --full > "$HOME/diag.txt"
+        echo "Diagnostic report saved to $HOME/diag.txt"
+        ;;
+            help)
+        print_help
+        ;;
+            list-gens)
+        echo "--- User Generations ---"
+        nix-env --list-generations | cat || echo "Could not list user generations."
+        echo ""
+        echo "--- System Generations ---"
+        nix profile history --profile /nix/var/nix/profiles/system | cat || echo "Could not list system generations."
+        ;;
+            rebuild)
+        handle_backups
+        echo "Starting NixOS rebuild for host: $PROFILE"
+        if nh os switch --hostname "$PROFILE"; then
+          echo "Rebuild finished successfully"
+        else
+          echo "Rebuild Failed" >&2
+          exit 1
+        fi
+        ;;
+            trim)
         echo "Running 'sudo fstrim -v /' may take a few minutes and impact system performance."
         read -p "Enter (y/Y) to run now or enter to exit (y/N): " -n 1 -r
         echo # move to a new line
@@ -146,12 +152,17 @@ in
           echo "Trim operation cancelled."
         fi
         ;;
-      diag)
-        echo "Generating system diagnostic report..."
-        inxi --full > "$HOME/diag.txt"
-        echo "Diagnostic report saved to $HOME/diag.txt"
+            update)
+        handle_backups
+        echo "Updating flake and rebuilding system for host: $PROFILE"
+        if nh os switch --hostname "$PROFILE" --update; then
+          echo "Update and rebuild finished successfully"
+        else
+          echo "Update and rebuild Failed" >&2
+          exit 1
+        fi
         ;;
-      update-host)
+            update-host)
         target_hostname=""
         target_profile=""
 
@@ -196,13 +207,11 @@ in
 
         echo "Flake.nix updated successfully!"
         ;;
-      help)
-        print_help
-        ;;
-      *)
+            *)
         echo "Error: Invalid command '$1'" >&2
         print_help
         exit 1
         ;;
     esac
   ''
+
