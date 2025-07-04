@@ -14,7 +14,7 @@ in
     PROFILE="${profile}"
     BACKUP_FILES_STR="${backupFilesString}"
     VERSION="0.7"
-    FLAKE_NIX_PATH="$HOME/ddubsos/flake.nix"
+    FLAKE_NIX_PATH="$HOME/zaneyos/flake.nix"
 
     read -r -a BACKUP_FILES <<< "$BACKUP_FILES_STR"
 
