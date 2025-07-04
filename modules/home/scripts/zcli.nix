@@ -132,7 +132,7 @@ in
         ;;
             rebuild)
         handle_backups
-        echo "Starting NixOS rebuild for host: $PROFILE"
+        echo "Starting NixOS rebuild for host: $(hostname)"
         if nh os switch --hostname "$PROFILE"; then
           echo "Rebuild finished successfully"
         else
@@ -154,7 +154,7 @@ in
         ;;
             update)
         handle_backups
-        echo "Updating flake and rebuilding system for host: $PROFILE"
+        echo "Updating flake and rebuilding system for host: $(hostname)"
         if nh os switch --hostname "$PROFILE" --update; then
           echo "Update and rebuild finished successfully"
         else
@@ -214,4 +214,3 @@ in
         ;;
     esac
   ''
-
