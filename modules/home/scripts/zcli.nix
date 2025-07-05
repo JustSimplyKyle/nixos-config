@@ -13,7 +13,7 @@ in
     # --- Configuration ---
     PROFILE="${profile}"
     BACKUP_FILES_STR="${backupFilesString}"
-    VERSION="0.7"
+    VERSION="0.8"
     FLAKE_NIX_PATH="$HOME/zaneyos/flake.nix"
 
     read -r -a BACKUP_FILES <<< "$BACKUP_FILES_STR"
@@ -34,6 +34,8 @@ in
       echo "  update          - Update the flake and rebuild the system."
       echo "  update-host     - Auto set host and profile in flake.nix."
       echo "                    (Opt: zcli update-host [hostname] [profile])"
+      echo "  add-host        - Adds a new host. (Opt: zcli add-host [hostname] [profile])"
+      echo "  del-host        - Deletes a host. (Opt: zcli del-host [hostname])"
       echo ""
       echo "  help            - Show this help message."
     }
@@ -207,7 +209,88 @@ in
 
         echo "Flake.nix updated successfully!"
         ;;
-            *)
+      add-host)
+        hostname=""
+        profile_arg=""
+
+        if [ "$#" -ge 2 ]; then
+          hostname="$2"
+        fi
+        if [ "$#" -eq 3 ]; then
+          profile_arg="$3"
+        fi
+
+        if [ -z "$hostname" ]; then
+          read -p "Enter the new hostname: " hostname
+        fi
+
+        if [ -d "$HOME/zaneyos/hosts/$hostname" ]; then
+          echo "Error: Host '$hostname' already exists." >&2
+          exit 1
+        fi
+
+        echo "Copying default host configuration..."
+        cp -r "$HOME/zaneyos/hosts/default" "$HOME/zaneyos/hosts/$hostname"
+
+        detected_profile=""
+        if [[ -n "$profile_arg" && "$profile_arg" =~ ^(intel|amd|nvidia|nvidia-hybrid|vm)$ ]]; then
+          detected_profile="$profile_arg"
+        else
+          echo "Detecting GPU profile..."
+          detected_profile=$(detect_gpu_profile)
+          echo "Detected GPU profile: $detected_profile"
+          read -p "Is this correct? (y/n) " -n 1 -r
+          echo
+          if [[ $REPLY =~ ^[Nn]$ ]]; then
+            read -p "Enter the correct profile (intel, amd, nvidia, nvidia-hybrid, vm): " new_profile
+            while [[ ! "$new_profile" =~ ^(intel|amd|nvidia|nvidia-hybrid|vm)$ ]]; do
+              echo "Invalid profile. Please enter one of the following: intel, amd, nvidia, nvidia-hybrid, vm"
+              read -p "Enter the correct profile: " new_profile
+            done
+            detected_profile=$new_profile
+          fi
+        fi
+
+        echo "Setting profile to '$detected_profile'..."
+        sed -i "s/profile = .*/profile = \"$detected_profile\";/" "$HOME/zaneyos/hosts/$hostname/default.nix"
+
+        read -p "Generate new hardware.nix? (y/n) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+          echo "Generating hardware.nix..."
+          sudo nixos-generate-config --show-hardware-config > "$HOME/zaneyos/hosts/$hostname/hardware.nix"
+          echo "hardware.nix generated."
+        fi
+
+        echo "Adding new host to git..."
+        git -C "$HOME/zaneyos" add .
+        echo "hostname: $hostname added"
+        ;;
+      del-host)
+        hostname=""
+        if [ "$#" -eq 2 ]; then
+          hostname="$2"
+        else
+          read -p "Enter the hostname to delete: " hostname
+        fi
+
+        if [ ! -d "$HOME/zaneyos/hosts/$hostname" ]; then
+          echo "Error: Host '$hostname' does not exist." >&2
+          exit 1
+        fi
+
+        read -p "Are you sure you want to delete the host '$hostname'? (y/N) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+          echo "Deleting host '$hostname'..."
+          rm -rf "$HOME/zaneyos/hosts/$hostname"
+          git -C "$HOME/zaneyos" add .
+          echo "hostname: $hostname removed"
+        else
+          echo "Deletion cancelled."
+        fi
+        ;;
+      *)
         echo "Error: Invalid command '$1'" >&2
         print_help
         exit 1

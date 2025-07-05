@@ -4,6 +4,7 @@
 
 ** Updated: July 5th, 2025 **
 
+- Updated `zcli.nix` to version 0.8 add/del host with name
 - Updated `zcli.nix` to current version 0.7
 - Added `obs-studio.nix` To allow for customization added common plugins
 - Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
