@@ -2,8 +2,11 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: June 30th, 2025 **
+** Updated: July 5th, 2025 **
 
+- Updated `zcli.nix` to current version 0.7
+- Added `obs-studio.nix` To allow for customization added common plugins
+- Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
 - Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
 - Improved `install-zaneyos.sh` script Detects GPU and better presentation
 - Added `gemini.nix` Creates an `npm` script to install `gemini-cli`
