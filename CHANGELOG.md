@@ -2,34 +2,8 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: July 4th, 2025 **
+** Updated: June 30th, 2025 **
 
-- Added `zsh/bash/fish` integration to `yazi`
-- Set `shellwrapperName` to `yy`
-- `yy` will star `yazi` then on exit stay in current directory
-- Thanks to `@Brisingr05` for the solution
-- Added `zcli` CLI maint util for ZaneyOS
-- Added `update-host` to `zcli.nix`
-- It will autodetect setting for `host` and `profile` in `flake.nix`
-- You can also specify them with `zcli update-host HOSTNAME PROFILE`
-
-```text
-zcli
-Error: No command provided.
-ZaneyOS CLI Utility -- version 0.3
-
-Usage: zcli [command]
-
-Commands:
-  rebuild   - Rebuild the NixOS system configuration.
-  update    - Update the flake and rebuild the system.
-  cleanup   - Run garbage collection to remove old generations.
-  trim      - Trim filesystems to improve SSD performance.
-  diag      - Create a system diagnostic report.
-  help      - Show this help message.
-```
-
-- Removed `doas.nix` doas is not fully functional in NixOS issues with PAM
 - Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
 - Improved `install-zaneyos.sh` script Detects GPU and better presentation
 - Added `gemini.nix` Creates an `npm` script to install `gemini-cli`
