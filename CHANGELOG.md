@@ -2,8 +2,12 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: July 1st, 2025 **
+** Updated: July 4th, 2025 **
 
+- Added `zsh/bash/fish` integration to `yazi`
+- Set `shellwrapperName` to `yy`
+- `yy` will star `yazi` then on exit stay in current directory
+- Thanks to `@Brisingr05` for the solution
 - Added `zcli` CLI maint util for ZaneyOS
 - Added `update-host` to `zcli.nix`
 - It will autodetect setting for `host` and `profile` in `flake.nix`

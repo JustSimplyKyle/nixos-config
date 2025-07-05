@@ -19,8 +19,8 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    host = "explorer";
-    profile = "nvidia";
+    host = "zaneyos-oem";
+    profile = "vm";
     username = "dwilliams";
   in {
     nixosConfigurations = {
