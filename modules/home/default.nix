@@ -17,6 +17,7 @@ in {
       ./bashrc-personal.nix
       ./bat.nix
       ./btop.nix
+      ./bottom.nix
       ./cava.nix
       ./emoji.nix
       ./eza.nix
