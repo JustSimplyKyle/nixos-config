@@ -2,8 +2,13 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: July 5th, 2025 **
+** Updated: July 7th, 2025 **
 
+- Updated `zcli` now uses `nh` util to select # of generations to keep
+- Updated `zcli` revision to 0.9
+- Added custom config for `btm` htop like cli util
+- Added workaround for issue where `ghostty` is slow or hangs
+- Added electron ozone env variable to `hint`
 - Updated `zcli.nix` to version 0.8 add/del host with name
 - Updated `zcli.nix` to current version 0.7
 - Added `obs-studio.nix` To allow for customization added common plugins
