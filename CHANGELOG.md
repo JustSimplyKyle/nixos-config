@@ -4,6 +4,7 @@
 
 ** Updated: July 7th, 2025 **
 
+- Added `low latecny` setting for pipewire
 - Updated `zcli` now uses `nh` util to select # of generations to keep
 - Updated `zcli` revision to 0.9
 - Added custom config for `btm` htop like cli util
