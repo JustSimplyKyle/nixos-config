@@ -132,8 +132,8 @@ in
         echo "Cleaning up old log files..." >> "$LOG_FILE"
         find "$LOG_DIR" -type f -mtime +3 -name "*.log" -delete >> "$LOG_FILE" 2>&1
         echo "Cleanup process logged to $LOG_FILE"
-        ''';;
-            diag)
+        ;;
+      diag)
         echo "Generating system diagnostic report..."
         inxi --full > "$HOME/diag.txt"
         echo "Diagnostic report saved to $HOME/diag.txt"
