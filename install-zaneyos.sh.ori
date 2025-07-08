@@ -32,7 +32,7 @@ print_error() {
 
 # Function to print a success banner
 print_success_banner() {
-  echo -e "${GREEN}╔═════��═════════════════════════════════════════════════════════════════╗${NC}"
+  echo -e "${GREEN}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
   echo -e "${GREEN}║                 ZaneyOS Installation Successful!                      ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
   echo -e "${GREEN}║   Please reboot your system for changes to take full effect.          ║${NC}"
@@ -179,28 +179,14 @@ mkdir -p hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 
 installusername=$(echo $USER)
+git config --global user.name "$installusername"
+git config --global user.email "$installusername@gmail.com"
+git add .
+git config --global --unset-all user.name
+git config --global --unset-all user.email
 
 sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 sed -i "/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$profile\"/" ./flake.nix
-
-print_header "Timezone Configuration"
-read -rp "Enter your timezone (e.g., America/Chicago): [America/Chicago] " timeZone
-if [ -z "$timeZone" ]; then
-  timeZone="America/Chicago"
-fi
-sed -i "s|time.timeZone = \".*\";|time.timeZone = \"$timeZone\";|" ./modules/core/system.nix
-
-print_header "Git Configuration"
-read -rp "Enter your Git username: [Tyler Kelley] " gitUsername
-if [ -z "$gitUsername" ]; then
-  gitUsername="Tyler Kelley"
-fi
-read -rp "Enter your Git email: [tylerzanekelley@gmail.com] " gitEmail
-if [ -z "$gitEmail" ]; then
-  gitEmail="tylerzanekelley@gmail.com"
-fi
-sed -i "s/gitUsername = \".*\";/gitUsername = \"$gitUsername\";/" ./hosts/$hostName/variables.nix
-sed -i "s/gitEmail = \".*\";/gitEmail = \"$gitEmail\";/" ./hosts/$hostName/variables.nix
 
 print_header "Keyboard Layout Configuration"
 read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
@@ -221,9 +207,6 @@ sed -i "/^[[:space:]]*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$instal
 
 print_header "Generating Hardware Configuration -- Ignore ERROR: cannot access /bin"
 sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
-
-print_header "Adding new host to Git"
-git add .
 
 print_header "Setting Nix Configuration"
 NIX_CONFIG="experimental-features = nix-command flakes"
