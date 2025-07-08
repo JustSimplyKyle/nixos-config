@@ -13,7 +13,7 @@ in
     # --- Configuration ---
     PROFILE="${profile}"
     BACKUP_FILES_STR="${backupFilesString}"
-    VERSION="0.8"
+    VERSION="0.9"
     FLAKE_NIX_PATH="$HOME/zaneyos/flake.nix"
 
     read -r -a BACKUP_FILES <<< "$BACKUP_FILES_STR"
@@ -25,7 +25,7 @@ in
       echo "Usage: zcli [command]"
       echo ""
       echo "Commands:"
-      echo "  cleanup         - Run garbage collection to remove all old generations."
+      echo "  cleanup         - Clean up old system generations. Can specify a number to keep."
       echo "  diag            - Create a system diagnostic report."
       echo "                    (Filename: homedir/diag.txt)"
       echo "  list-gens       - List user and system generations."
@@ -104,19 +104,34 @@ in
 
     case "$1" in
       cleanup)
-        echo "Warning! All but most current generations will be removed!"
-        read -p "Continue (y/N)? " -n 1 -r
-        echo # move to a new line
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-          echo "Starting garbage collection..."
-          nix-collect-garbage --delete-old
-          sudo nix-collect-garbage -d
-          sudo /run/current-system/bin/switch-to-configuration boot
-          echo "Garbage collection complete."
+        echo "Warning! This will remove old generations of your system."
+        read -p "How many generations to keep (default: all)? " keep_count
+
+        if [ -z "$keep_count" ]; then
+          read -p "This will remove all but the current generation. Continue (y/N)? " -n 1 -r
+          echo
+          if [[ $REPLY =~ ^[Yy]$ ]]; then
+            nh clean all -v
+          else
+            echo "Cleanup cancelled."
+          fi
         else
-          echo "Cleanup cancelled."
+          read -p "This will keep the last $keep_count generations. Continue (y/N)? " -n 1 -r
+          echo
+          if [[ $REPLY =~ ^[Yy]$ ]]; then
+            nh clean all -k "$keep_count" -v
+          else
+            echo "Cleanup cancelled."
+          fi
         fi
-        ;;
+
+        LOG_DIR="$HOME/zcli-cleanup-logs"
+        mkdir -p "$LOG_DIR"
+        LOG_FILE="$LOG_DIR/zcli-cleanup-$(date +%Y-%m-%d_%H-%M-%S).log"
+        echo "Cleaning up old log files..." >> "$LOG_FILE"
+        find "$LOG_DIR" -type f -mtime +3 -name "*.log" -delete >> "$LOG_FILE" 2>&1
+        echo "Cleanup process logged to $LOG_FILE"
+        ''';;
             diag)
         echo "Generating system diagnostic report..."
         inxi --full > "$HOME/diag.txt"
