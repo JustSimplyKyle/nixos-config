@@ -81,7 +81,7 @@ in
           if "$has_vm"; then
             detected_profile="vm"
           elif "$has_nvidia" && "$has_intel"; then
-            detected_profile="hybrid"
+            detected_profile="nvidia-laptop"
           elif "$has_nvidia"; then
             detected_profile="nvidia"
           elif "$has_amd"; then

@@ -118,7 +118,7 @@ if lspci | grep -qi 'vga\|3d'; then
   if $has_vm; then
     DETECTED_PROFILE="vm"
   elif $has_nvidia && $has_intel; then
-    DETECTED_PROFILE="hybrid"
+    DETECTED_PROFILE="nvidia-laptop"
   elif $has_nvidia; then
     DETECTED_PROFILE="nvidia"
   elif $has_amd; then
