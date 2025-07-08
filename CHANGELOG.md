@@ -4,6 +4,8 @@
 
 ** Updated: July 7th, 2025 **
 
+- Set Dracula theme to `bat` command
+- Added `style = all` and set `man` pager to `bat`
 - Added info on `zcli` utility
 - Added `low latecny` setting for pipewire
 - Updated `zcli` now uses `nh` util to select # of generations to keep
