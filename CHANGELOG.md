@@ -2,8 +2,10 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: July 7th, 2025 **
+** Updated: July 8th, 2025 **
 
+- Added `$PROJECT` variable to set repo location
+- Default is `zaneyos`
 - Set Dracula theme to `bat` command
 - Added `style = all` and set `man` pager to `bat`
 - Added info on `zcli` utility

@@ -11,10 +11,11 @@ in
     set -euo pipefail
 
     # --- Configuration ---
+    PROJECT="zaneyos"   #ddubos or zaneyos
     PROFILE="${profile}"
     BACKUP_FILES_STR="${backupFilesString}"
     VERSION="0.9"
-    FLAKE_NIX_PATH="$HOME/zaneyos/flake.nix"
+    FLAKE_NIX_PATH="$HOME/$PROJECT/flake.nix"
 
     read -r -a BACKUP_FILES <<< "$BACKUP_FILES_STR"
 
@@ -239,13 +240,13 @@ in
           read -p "Enter the new hostname: " hostname
         fi
 
-        if [ -d "$HOME/zaneyos/hosts/$hostname" ]; then
+        if [ -d "$HOME/$PROJECT/hosts/$hostname" ]; then
           echo "Error: Host '$hostname' already exists." >&2
           exit 1
         fi
 
         echo "Copying default host configuration..."
-        cp -r "$HOME/zaneyos/hosts/default" "$HOME/zaneyos/hosts/$hostname"
+        cp -r "$HOME/$PROJECT/hosts/default" "$HOME/$PROJECT/hosts/$hostname"
 
         detected_profile=""
         if [[ -n "$profile_arg" && "$profile_arg" =~ ^(intel|amd|nvidia|nvidia-hybrid|vm)$ ]]; then
@@ -267,18 +268,18 @@ in
         fi
 
         echo "Setting profile to '$detected_profile'..."
-        sed -i "s/profile = .*/profile = \"$detected_profile\";/" "$HOME/zaneyos/hosts/$hostname/default.nix"
+        sed -i "s/profile = .*/profile = \"$detected_profile\";/" "$HOME/$PROJECT/hosts/$hostname/default.nix"
 
         read -p "Generate new hardware.nix? (y/n) " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
           echo "Generating hardware.nix..."
-          sudo nixos-generate-config --show-hardware-config > "$HOME/zaneyos/hosts/$hostname/hardware.nix"
+          sudo nixos-generate-config --show-hardware-config > "$HOME/$PROJECT/hosts/$hostname/hardware.nix"
           echo "hardware.nix generated."
         fi
 
         echo "Adding new host to git..."
-        git -C "$HOME/zaneyos" add .
+        git -C "$HOME/$PROJECT" add .
         echo "hostname: $hostname added"
         ;;
       del-host)
@@ -289,7 +290,7 @@ in
           read -p "Enter the hostname to delete: " hostname
         fi
 
-        if [ ! -d "$HOME/zaneyos/hosts/$hostname" ]; then
+        if [ ! -d "$HOME/$PROJECT/hosts/$hostname" ]; then
           echo "Error: Host '$hostname' does not exist." >&2
           exit 1
         fi
@@ -298,8 +299,8 @@ in
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
           echo "Deleting host '$hostname'..."
-          rm -rf "$HOME/zaneyos/hosts/$hostname"
-          git -C "$HOME/zaneyos" add .
+          rm -rf "$HOME/$PROJECT/hosts/$hostname"
+          git -C "$HOME/$PROJECT" add .
           echo "hostname: $hostname removed"
         else
           echo "Deletion cancelled."
