@@ -38,6 +38,35 @@ listed below:
 - `del-host`: Delete a host configuration. `del-host [hostname]`
 - `help`: Show the help message.
 
+```text
+❯ zcli
+Error: No command provided.
+ZaneyOS CLI Utility -- version 0.9
+
+Usage: zcli [command]
+
+Commands:
+  cleanup         - Clean up old system generations. Can specify a number to keep.
+  diag            - Create a system diagnostic report.
+                    (Filename: homedir/diag.txt)
+  list-gens       - List user and system generations.
+  rebuild         - Rebuild the NixOS system configuration.
+  trim            - Trim filesystems to improve SSD performance.
+  update          - Update the flake and rebuild the system.
+  update-host     - Auto set host and profile in flake.nix.
+                    (Opt: zcli update-host [hostname] [profile])
+  add-host        - Adds a new host. (Opt: zcli add-host [hostname] [profile])
+  del-host        - Deletes a host. (Opt: zcli del-host [hostname])
+
+  help            - Show this help message.
+~
+❯
+
+ex: 
+>zcli add-host myhost amd 
+>zcli rebuild
+```
+
 </div>
 </details>
 
