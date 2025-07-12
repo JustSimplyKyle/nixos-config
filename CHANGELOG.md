@@ -4,6 +4,9 @@
 
 ** Updated: July 12th, 2025 **
 
+- Update `qt.nix` and `stylix.nix` to `PlatformTheme = "qtct"`
+- In unstable `gnome` is now `adwaita` both cause eval warning
+- Setting it to `qtct` now to prevent this later
 - Fixed formatting issue in install script
 - Updated flake
 - Disabled programming language spellcheck
