@@ -30,6 +30,7 @@ print_help() {
   echo "  diag            - Create a system diagnostic report."
   echo ""
   echo "  help            - Show this help message."
+  echo ""
 }
 
 # Function to detect the GPU profile
