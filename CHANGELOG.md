@@ -4,45 +4,66 @@
 
 ** Updated: July 12th, 2025 **
 
-- Added defensive code to `zcli.nix`
-- For rebuilds, updates, hostname and flake host mistches are checked
-- If not same, prompted to auto update the flake.nix
+- `zcli` fixes
+  - Added defensive code to `zcli.nix`
+  - For rebuilds, updates, hostname and flake host mistches are checked
+  - If not same, prompted to auto update the flake.nix
+  - Added `$PROJECT` variable to set repo location
+  - Default is `zaneyos`
+  - Added info on `zcli` utility
+  - Updated `zcli` now uses `nh` util to select # of generations to keep
+  - Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
+  ```text
+  ❯ zcli
+  ```
+
+ZaneyOS CLI Utility -- version 1.0
+
+Usage: zcli [command]
+
+Commands:
+
+rebuild - Rebuild the NixOS system configuration. update - Update the flake and
+rebuild the system. update-host - Auto-set host and profile in flake.nix.
+
+add-host - Add a new host configuration. del-host - Delete a host configuration.
+
+list-gens - List user and system generations. cleanup - Clean up old system
+generations. trim - Trim filesystems to improve SSD performance. diag - Create a
+system diagnostic report.
+
+help - Show this help message.
+
+````
+- `qt` fixes
 - Update `qt.nix` and `stylix.nix` to `PlatformTheme = "qtct"`
 - In unstable `gnome` is now `adwaita` both cause eval warning
 - Setting it to `qtct` now to prevent this later
 - Fixed formatting issue in install script
 - Updated flake
+- `neovim/nvf` update 7/12/25
 - Disabled programming language spellcheck
 - Bug in `nvf` update prompts you to d/l wordlist ever time
 - `https://github.com/NotAShelf/nvf/pull/991`
 - Waiting for fix 7/12/2025
-- Added `gemini-cli`
-- Added `$PROJECT` variable to set repo location
-- Default is `zaneyos`
+- Re-enabled `css` formatting in `nvf.nix` Thanks `mister_simon` for the fix
+- Added `gemini-cli` AI CLI client only
 - Set Dracula theme to `bat` command
 - Added `style = all` and set `man` pager to `bat`
-- Added info on `zcli` utility
-- Added `low latecny` setting for pipewire
-- Updated `zcli` now uses `nh` util to select # of generations to keep
-- Updated `zcli` revision to 0.9
+- Added `low latecny` setting for `pipewire`
 - Added custom config for `btm` htop like cli util
 - Added workaround for issue where `ghostty` is slow or hangs
 - Added electron ozone env variable to `hint`
-- Updated `zcli.nix` to version 0.8 add/del host with name
-- Updated `zcli.nix` to current version 0.7
 - Added `obs-studio.nix` To allow for customization added common plugins
 - Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
-- Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
 - Improved `install-zaneyos.sh` script Detects GPU and better presentation
-- Added `gemini.nix` Creates an `npm` script to install `gemini-cli`
 - Added `evil-helix` with language support as option
+- `vscode` update
 - Added `vscode.nix` with plugins for NIX, BASH, JSON, and VIM keybinds
 - Thanks to `delciak` for providing the NIX code for `vscode.nix`
 - Added variable 'enableVscode' in the `hosts/default/variables.nix`
 - Updated flake
-- Added control variables for `alacritty` `ghostty` `tmux` `wezterm` in
-  `variables.nix`
-- Re-enabled `css` formatting in `nvf.nix` Thanks `mister_simon` for the fix
+- Added vars for `alacritty` `ghostty` `tmux` `wezterm` in `variables.nix`
 - Added variable `displayManager` in `hosts/hostname/variables.nix`
 - Set to `sddm` will enable SDDM login manager themed by stylix
 - Set to `tui` and you get the greetd text login as before
@@ -52,9 +73,8 @@
 - Added alternate `starship` config. `starship-ddubs-1.nix`
 - Added more info in `hosts/default/variables.nix`
 - Listing available terminals, stylix images, waybars
-- More info on how to configure monitors
+- Added more info on how to configure monitors
 - Added new waybar from swordlesbian Very colorful and bright
-- Added `doas.nix` as complement to `sudo`
 - Added `sddm.nix` themed with stylix - Disabled by default
 - Set default stylix image to `mountainscapedark.png`
 - Provides warmer colors and super nice SDDM background
@@ -67,12 +87,12 @@
 
 ```text
 error: attribute 'prettier' missing
-    at /nix/store/3vzc8fxjxvv0b0jrywian6ilb7bdk4y8-source/modules/plugins/languages/css.nix:45:17:
-        44|     prettier = {
-        45|       package = pkgs.prettier;
-          |                 ^
-        46|     };
-```
+  at /nix/store/3vzc8fxjxvv0b0jrywian6ilb7bdk4y8-source/modules/plugins/languages/css.nix:45:17:
+      44|     prettier = {
+      45|       package = pkgs.prettier;
+        |                 ^
+      46|     };
+````
 
 - Will re-enable once it's fixed upstream
 - Added three git aliases `com`, `gs`, and `gp`
