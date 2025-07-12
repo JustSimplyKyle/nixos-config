@@ -4,6 +4,9 @@
 
 ** Updated: July 12th, 2025 **
 
+- Added defensive code to `zcli.nix`
+- For rebuilds, updates, hostname and flake host mistches are checked
+- If not same, prompted to auto update the flake.nix
 - Update `qt.nix` and `stylix.nix` to `PlatformTheme = "qtct"`
 - In unstable `gnome` is now `adwaita` both cause eval warning
 - Setting it to `qtct` now to prevent this later

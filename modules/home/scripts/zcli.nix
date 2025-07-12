@@ -28,12 +28,16 @@ in
       echo "  rebuild         - Rebuild the NixOS system configuration."
       echo "  update          - Update the flake and rebuild the system."
       echo "  update-host     - Auto-set host and profile in flake.nix."
-      echo "  add-host        - Add a new host configuration."
-      echo "  del-host        - Delete a host configuration."
+      echo ""
       echo "  list-gens       - List user and system generations."
       echo "  cleanup         - Clean up old system generations."
+      echo ""
+      echo "  add-host        - Add a new host configuration."
+      echo "  del-host        - Delete a host configuration."
+      echo ""
       echo "  trim            - Trim filesystems to improve SSD performance."
       echo "  diag            - Create a system diagnostic report."
+      echo ""
       echo "  help            - Show this help message."
     }
 
@@ -81,7 +85,7 @@ in
         echo "Error: Failed to update host in $FLAKE_NIX_PATH" >&2
         return 1
       fi
-      if ! sed -i "s/^[[:space:]]*profile[[:space:]]*=.*$/  profile = \"$target_profile\";/" "$FLKE_NIX_PATH"; then
+      if ! sed -i "s/^[[:space:]]*profile[[:space:]]*=.*$/  profile = \"$target_profile\";/" "$FLAKE_NIX_PATH"; then
         echo "Error: Failed to update profile in $FLAKE_NIX_PATH" >&2
         return 1
       fi
