@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # --- Configuration ---
-PROJECT="ddubsos"
+PROJECT="zaneyos"
 PROFILE=""
 BACKUP_FILES_STR=""
 VERSION="1.0"
