@@ -143,12 +143,14 @@ fi
 # If profile is still empty (either not detected or not confirmed), prompt manually
 if [ -z "$profile" ]; then
   echo -e "${RED}Automatic GPU detection failed or no specific profile found.${NC}"
-  read -rp "Enter Your Hardware Profile (GPU)\nOptions:\n[ amd ]\nnvidia\nnvidia-laptop\nintel\nvm\nPlease type out your choice: " profile
+  printf "Enter Your Hardware Profile (GPU)\nOptions:\n[ amd ]\nnvidia\nnvidia-laptop\nintel\nvm\nPlease type out your choice: "
+  read -r profile
   if [ -z "$profile" ]; then
     profile="amd"
   fi
   echo -e "${GREEN}Selected GPU profile: $profile${NC}"
 fi
+
 
 print_header "Backup Existing ZaneyOS (if any)"
 
