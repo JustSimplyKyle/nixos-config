@@ -2,8 +2,14 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: July 8th, 2025 **
+** Updated: July 12th, 2025 **
 
+- Fixed formatting issue in install script
+- Updated flake
+- Disabled programming language spellcheck
+- Bug in `nvf` update prompts you to d/l wordlist ever time
+- `https://github.com/NotAShelf/nvf/pull/991`
+- Waiting for fix 7/12/2025
 - Added `$PROJECT` variable to set repo location
 - Default is `zaneyos`
 - Set Dracula theme to `bat` command
