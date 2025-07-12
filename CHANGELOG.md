@@ -16,6 +16,7 @@
 - Bug in `nvf` update prompts you to d/l wordlist ever time
 - `https://github.com/NotAShelf/nvf/pull/991`
 - Waiting for fix 7/12/2025
+- Added `gemini-cli`
 - Added `$PROJECT` variable to set repo location
 - Default is `zaneyos`
 - Set Dracula theme to `bat` command
