@@ -4,6 +4,7 @@
 
 ** Updated: July 12th, 2025 **
 
+- Added `tealdeer.nix (TLDR)` with autoupdate
 - `zcli` fixes
   - Added defensive code to `zcli.nix`
   - For rebuilds, updates, hostname and flake host mistches are checked
