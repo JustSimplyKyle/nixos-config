@@ -42,6 +42,7 @@ in {
       ./stylix.nix
       ./swappy.nix
       ./swaync.nix
+      ./tealdeer.nix
       ./virtmanager.nix
       waybarChoice
       ./wlogout
