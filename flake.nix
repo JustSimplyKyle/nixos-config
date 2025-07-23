@@ -10,17 +10,27 @@
     nvf.url = "github:notashelf/nvf";
     stylix.url = "github:danth/stylix/release-25.05";
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
+
+    # Hypersysinfo
+    hyprsysteminfo.url = "github:hyprwm/hyprsysteminfo";
+
+    # QuickShell
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     nix-flatpak,
+    quickshell,
     ...
   } @ inputs: let
     system = "x86_64-linux";
-  host = "zaneyos-oem";
-  profile = "vm";
+    host = "zaneyos-oem";
+    profile = "vm";
     username = "dwilliams";
   in {
     nixosConfigurations = {

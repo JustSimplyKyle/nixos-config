@@ -14,6 +14,7 @@ in {
     ./network.nix
     ./nfs.nix
     ./nh.nix
+    ./quickshell.nix
     ./packages.nix
     ./printing.nix
     # Conditionally import the display manager module

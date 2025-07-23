@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs = {
     neovim = {
       enable = true;
@@ -24,6 +28,9 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    # Hyprland systeminfo QT
+    inputs.hyprsysteminfo.packages.${pkgs.system}.default
+
     amfora # Fancy Terminal Browser For Gemini Protocol
     appimage-run # Needed For AppImage Support
     brave # Brave Browser
