@@ -88,4 +88,7 @@
   #animChoice = ../../modules/home/hyprland/animations-end4.nix;
   #animChoice = ../../modules/home/hyprland/animations-dynamic.nix;
   #animChoice = ../../modules/home/hyprland/animations-moving.nix;
+
+  # Set network hostId if required (needed for zfs)
+  hostId = null;
 }
