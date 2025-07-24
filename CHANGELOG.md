@@ -2,8 +2,11 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: July 12th, 2025 **
+** Updated: July 24th, 2025 **
 
+- Added `hostID` to `variables.nix` and `network.nix`
+  - This is needed by ZFS
+  - Thanks to Daniel Emeery for the patch
 - Added `tealdeer.nix (TLDR)` with autoupdate
 - `zcli` fixes
   - Added defensive code to `zcli.nix`
