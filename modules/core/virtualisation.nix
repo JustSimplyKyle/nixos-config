@@ -1,12 +1,12 @@
 {pkgs, ...}: {
   # Only enable either docker or podman -- Not both
   virtualisation = {
-    libvirtd.enable = true;
-    docker.enable = true;
+    libvirtd.enable = false;
+    docker.enable = false;
     podman.enable = false;
   };
   programs = {
-    virt-manager.enable = true;
+    virt-manager.enable = false;
   };
   environment.systemPackages = with pkgs; [
     # virt-viewer # View Virtual Machines
