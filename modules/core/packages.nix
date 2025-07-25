@@ -10,8 +10,8 @@
     };
     firefox.enable = false; # Firefox is not installed by default
     hyprland = {
-      enable = true; #someone forgot to set this so desktop file is created
-      withUWSM = true;
+      enable = true; #set this so desktop file is created
+      withUWSM = false;
     };
     dconf.enable = true;
     seahorse.enable = true;
@@ -44,7 +44,7 @@
     ffmpeg # Terminal Video / Audio Editing
     file-roller # Archive Manager
     gedit # Simple Graphical Text Editor
-    gemini-cli # CLI AI client
+    gemini-cli # CLI AI client ONLY
     gimp # Great Photo Editor
     glxinfo #needed for inxi diag util
     greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)

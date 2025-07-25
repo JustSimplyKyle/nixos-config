@@ -45,20 +45,6 @@ in {
       enable = true;
     };
     settings = {
-      exec-once = [
-        "wl-paste --type text --watch cliphist store # Stores only text data"
-        "wl-paste --type image --watch cliphist store # Stores only image data"
-        "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "systemctl --user start hyprpolkitagent"
-        "killall -q swww;sleep .5 && swww init"
-        "killall -q waybar;sleep .5 && waybar"
-        "killall -q swaync;sleep .5 && swaync"
-        "nm-applet --indicator"
-        "pypr &"
-        "sleep 1.5 && swww img ${stylixImage}"
-      ];
-
       input = {
         kb_layout = "${keyboardLayout}";
         kb_options = [
@@ -114,7 +100,7 @@ in {
 
         #  Application not responding (ANR) settings
         enable_anr_dialog = true;
-        anr_missed_pings = 20;
+        anr_missed_pings = 15;
       };
 
       dwindle = {
@@ -154,8 +140,9 @@ in {
       };
 
       render = {
-        explicit_sync = 1; # Change to 1 to disable
-        explicit_sync_kms = 1;
+        # Disabling as no longer supported
+        #explicit_sync = 1; # Change to 1 to disable
+        #explicit_sync_kms = 1;
         direct_scanout = 0;
       };
 
