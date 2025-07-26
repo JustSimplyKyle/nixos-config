@@ -19,7 +19,7 @@ descriptions:
 
 | Command     | Icon | Description                                                                                                                                           | Example Usage                           |
 | ----------- | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| cleanup     | 🧹   | Removes old system generations, either all or by specifying a number to keep, helping free up space.                                                  | `zcli cleanup 5` (keeps 5 generations)  |
+| cleanup     | 🧹   | Removes old system generations, either all or by specifying a number to keep, helping free up space.                                                  | `zcli cleanup` (prompted for all or #)  |
 | diag        | 🛠️   | Generates a system diagnostic report and saves it to `diag.txt` in your home directory.                                                               | `zcli diag`                             |
 | list-gens   | 📋   | Lists user and system generations, showing active and existing ones.                                                                                  | `zcli list-gens`                        |
 | rebuild     | 🔨   | Rebuilds the NixOS system configuration by checking for files that might prevent Home Manager from rebuilding.                                        | `zcli rebuild`                          |
@@ -31,8 +31,7 @@ descriptions:
 
 - **🧹 cleanup**: This command helps manage system storage by removing old
   generations. You can remove all generations or specify a number to retain
-  (e.g., `zcli cleanup 5` to keep the last 5). It's useful for freeing up disk
-  space without manual intervention.
+  (e.g., `zcli cleanup` free's up space and removes the entries from boot menu.
 
 - **🛠️ diag**: Creates a comprehensive diagnostic report by running
   `inxi --full` and saving the output to `diag.txt` in your home directory. This
