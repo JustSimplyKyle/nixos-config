@@ -66,8 +66,11 @@ displayManager = "sddm";
 - In the `zaneyos` directory run: `nix flake check`
 - If there are no errors proceed to next step
 
-** Running the upgrade -- Again do NOT use `fr`, `fu`, or `zcli` for this
-upgrade!
+** Running the upgrade
+
+## Again do NOT use `fr`, `fu`, or `zcli` for this upgrade!
+
+## If you do, when the rebuild switches Hyprland will crash when either greetd or SDDM restart
 
 - In the `zaneyos` directory run:
   - `sudo nixos-rebuild boot --flake .#PROFILE`
