@@ -25,7 +25,7 @@
     - `git clone https://gitlab.com/zaney/zaneyos.git -b Stable-2.4 --depth=1`
     - `cd ~/zaneyos`
 
-** Converting v2.3 hosts to v2.3 to v2.4
+** Converting v2.3 hosts to v2.4
 
 - `ZaneyOS v2.4` introduces some new features in the hosts file
 - You now have more options in the `hosts/hostname/variables.nix`
@@ -49,9 +49,8 @@ displayManager = "sddm";
 
 - Copy the `default` host template, naming it the same as your host
   - `cp -r ~/zaneyos/hosts/default ~/zaneyos/hosts/YOURHOSTNAME`
-  - Ex: `cp -r ~/zaneyos/hosts/default ~/zaneyos/hosts/nixos` ** critical step
-    **
-  - In the `zaneyos` directory run `git add .`
+  - Ex: `cp -r ~/zaneyos/hosts/default ~/zaneyos/hosts/nixos`
+  - IMPORTANT: In the `zaneyos` directory run `git add .`
   - Copy the hardware config file from your backup copy
   - If your hostname is `nixos`
   - Ex: `cp ~/zaneyos-backup/hosts/nixos/hardware.nix`
