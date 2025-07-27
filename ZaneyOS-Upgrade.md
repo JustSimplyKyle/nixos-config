@@ -50,11 +50,11 @@ displayManager = "sddm";
 - Copy the `default` host template, naming it the same as your host
   - `cp -r ~/zaneyos/hosts/default ~/zaneyos/hosts/YOURHOSTNAME`
   - Ex: `cp -r ~/zaneyos/hosts/default ~/zaneyos/hosts/nixos`
-  - IMPORTANT: In the `zaneyos` directory run `git add .`
   - Copy the hardware config file from your backup copy
   - If your hostname is `nixos`
   - Ex: `cp ~/zaneyos-backup/hosts/nixos/hardware.nix`
     ~/zaneyos/hosts/nixos/hardware.nix``
+    - IMPORTANT: In the `zaneyos` directory run `git add .`
   - Edit the host files to include any of your changes.
     - I.e. monitor settings, username, packages, etc
   - Do NOT copy/restore your old files directly!
