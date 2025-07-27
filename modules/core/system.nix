@@ -27,7 +27,7 @@ in {
     LC_TIME = "en_US.UTF-8";
   };
   environment.variables = {
-    ZANEYOS_VERSION = "2.3";
+    ZANEYOS_VERSION = "2.4";
     ZANEYOS = "true";
   };
   console.keyMap = "${consoleKeyMap}";

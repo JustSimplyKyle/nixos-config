@@ -29,12 +29,13 @@ in {
     description = "${gitUsername}";
     extraGroups = [
       "adbusers"
-      "docker"
-      "libvirtd"
+      "docker" #access to docker as non-root
+      "libvirtd" #Virt manager/QEMU access
       "lp"
       "networkmanager"
       "scanner"
-      "wheel"
+      "wheel" #subdo access
+      "vboxusers" #Virtual Box
     ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
