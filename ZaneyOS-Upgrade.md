@@ -25,9 +25,10 @@
     - `git clone https://gitlab.com/zaney/zaneyos.git -b Stable-2.4 --depth=1`
     - `cd ~/zaneyos`
 
-** Converting v2.3 hosts to v2.3 to v2.4 - `ZaneyOS v2.4` introduces some new
-features in the hosts file - You now have more options in the
-`hosts/hostname/variables.nix`
+** Converting v2.3 hosts to v2.3 to v2.4
+
+- `ZaneyOS v2.4` introduces some new features in the hosts file
+- You now have more options in the `hosts/hostname/variables.nix`
 
 ```nix
 # Set Displau Manager # `tui` for Text
