@@ -49,15 +49,31 @@ displayManager = "sddm";
 
 - Copy the `default` host template, naming it the same as your host
   - `cp -r ~/zaneyos/hosts/default ~/zaneyos/hosts/YOURHOSTNAME`
+  - If your current host is `nixos`
   - Ex: `cp -r ~/zaneyos/hosts/default ~/zaneyos/hosts/nixos`
   - Copy the hardware config file from your backup copy
-  - If your hostname is `nixos`
   - Ex: `cp ~/zaneyos-backup/hosts/nixos/hardware.nix`
     ~/zaneyos/hosts/nixos/hardware.nix``
     - IMPORTANT: In the `zaneyos` directory run `git add .`
   - Edit the host files to include any of your changes.
-    - I.e. monitor settings, username, packages, etc
+    - I.e. monitor settings, packages, etc
   - Do NOT copy/restore your old files directly!
 
-```
-```
+** Test the configuration
+
+- Make sure you hostname and GPU type are set in `flake.nix`
+  - If unsure run `zcli update-host`
+- In the `zaneyos` directory run: `nix flake check`
+- If there are no errors proceed to next step
+
+** Running the upgrade -- Again do NOT use `fr`, `fu`, or `zcli` for this
+upgrade!
+
+- In the `zaneyos` directory run:
+  - `sudo nixos-rebuild boot --flake .#PROFILE`
+    - Where profile is your GPU
+    - I.e. `amd`, `intel`, `nvidia`, `vm`
+
+  - When the update finishes, reboot your system.
+
+  ### Enjoy! Welcome to ZaneyOS v2.4!
