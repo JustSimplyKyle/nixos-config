@@ -27,7 +27,10 @@
 
 ** Converting v2.3 hosts to v2.3 to v2.4 - `ZaneyOS v2.4` introduces some new
 features in the hosts file - You now have more options in the
-`hosts/hostname/variables.nix` ```nix # Set Displau Manager # `tui` for Text
+`hosts/hostname/variables.nix`
+
+```nix
+# Set Displau Manager # `tui` for Text
 login # `sddm` for graphical GUI # SDDM background is set with stylixImage
 displayManager = "sddm";
 
@@ -38,19 +41,23 @@ displayManager = "sddm";
     ghosttyEnable = false;
     vscodeEnable = false;
     helixEnable = false;
-
 ```
+
     - Providing more control over your config 
     - However, it also requires manual intervention when upgrading
-- Copy the `default` host template, naming it the same as your host 
-    - `cp -r ~/zaneyos/hosts/default ~/zaneyos/hosts/YOURHOSTNAME`
-    - Ex: `cp -r ~/zaneyos/hosts/default ~/zaneyos/hosts/nixos`
-        ** critical step ** 
-    - In the `zaneyos` directory run `git add .` 
-    - Copy the hardware config file from your backup copy 
-    - If your hostname is `nixos`
-    - Ex: `cp ~/zaneyos-backup/hosts/nixos/hardware.nix` ~/zaneyos/hosts/nixos/hardware.nix` `
-    - Edit the host files to include any of your changes. 
-        - I.e. monitor settings, username, packages, etc 
-    - Do NOT copy/restore your old files directly!
+
+- Copy the `default` host template, naming it the same as your host
+  - `cp -r ~/zaneyos/hosts/default ~/zaneyos/hosts/YOURHOSTNAME`
+  - Ex: `cp -r ~/zaneyos/hosts/default ~/zaneyos/hosts/nixos` ** critical step
+    **
+  - In the `zaneyos` directory run `git add .`
+  - Copy the hardware config file from your backup copy
+  - If your hostname is `nixos`
+  - Ex: `cp ~/zaneyos-backup/hosts/nixos/hardware.nix`
+    ~/zaneyos/hosts/nixos/hardware.nix``
+  - Edit the host files to include any of your changes.
+    - I.e. monitor settings, username, packages, etc
+  - Do NOT copy/restore your old files directly!
+
+```
 ```
