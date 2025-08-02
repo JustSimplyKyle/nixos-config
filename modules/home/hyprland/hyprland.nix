@@ -1,16 +1,17 @@
-{
-  host,
-  config,
-  pkgs,
-  ...
-}: let
+{ host
+, config
+, pkgs
+, ...
+}:
+let
   inherit
     (import ../../../hosts/${host}/variables.nix)
     extraMonitorSettings
     keyboardLayout
     stylixImage
     ;
-in {
+in
+{
   home.packages = with pkgs; [
     swww
     grim
@@ -39,7 +40,7 @@ in {
     systemd = {
       enable = true;
       enableXdgAutostart = true;
-      variables = ["--all"];
+      variables = [ "--all" ];
     };
     xwayland = {
       enable = true;

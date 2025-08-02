@@ -1,11 +1,12 @@
-{
-  inputs,
-  host,
-  ...
-}: let
+{ inputs
+, host
+, ...
+}:
+let
   # Import the host-specific variables.nix
   vars = import ../../hosts/${host}/variables.nix;
-in {
+in
+{
   imports = [
     ./boot.nix
     ./flatpak.nix

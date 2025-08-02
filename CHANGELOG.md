@@ -2,8 +2,9 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: July 24th, 2025 **
+** Updated: Aug 1st, 2025 **
 
+- Reformatted NIX to NIX formatting standard
 - Added `hostID` to `variables.nix` and `network.nix`
   - This is needed by ZFS
   - Thanks to Daniel Emeery for the patch

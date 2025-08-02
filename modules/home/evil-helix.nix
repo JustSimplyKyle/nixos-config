@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   enableEvilHelix = true; # Set to true to enable the configuration
-in {
+in
+{
   home.packages = with pkgs; (
     if enableEvilHelix
     then [
@@ -23,7 +25,7 @@ in {
       docker-language-server
       typescript-language-server
     ]
-    else []
+    else [ ]
   );
 
   home.file.".config/helix/languages.toml".text =

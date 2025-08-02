@@ -1,4 +1,4 @@
-{profile, ...}: {
+{ profile, ... }: {
   # Services to start
   services = {
     libinput.enable = true; # Input Handling
@@ -11,7 +11,7 @@
         PasswordAuthentication = true; #Users can SSH using kb and password
         KbdInteractiveAuthentication = true;
       };
-      ports = [22];
+      ports = [ 22 ];
     };
     blueman.enable = true; # Bluetooth Support
     tumbler.enable = true; # Image/video preview

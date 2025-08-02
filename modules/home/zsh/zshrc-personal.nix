@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [zsh];
+{ pkgs, ... }: {
+  home.packages = with pkgs; [ zsh ];
 
   home.file."./.zshrc-personal".text = ''
 

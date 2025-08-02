@@ -21,84 +21,86 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    nix-flatpak,
-    quickshell,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    host = "zaneyos-oem";
-    profile = "vm";
-    username = "dwilliams";
-  in {
-    nixosConfigurations = {
-      amd = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
+  outputs =
+    { nixpkgs
+    , home-manager
+    , nix-flatpak
+    , quickshell
+    , ...
+    } @ inputs:
+    let
+      system = "x86_64-linux";
+      host = "zaneyos-oem";
+      profile = "vm";
+      username = "dwilliams";
+    in
+    {
+      nixosConfigurations = {
+        amd = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit username;
+            inherit host;
+            inherit profile;
+          };
+          modules = [
+            ./profiles/amd
+            nix-flatpak.nixosModules.nix-flatpak
+          ];
         };
-        modules = [
-          ./profiles/amd
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
-      };
-      nvidia = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
+        nvidia = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit username;
+            inherit host;
+            inherit profile;
+          };
+          modules = [
+            ./profiles/nvidia
+            nix-flatpak.nixosModules.nix-flatpak
+          ];
         };
-        modules = [
-          ./profiles/nvidia
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
-      };
-      nvidia-laptop = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
+        nvidia-laptop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit username;
+            inherit host;
+            inherit profile;
+          };
+          modules = [
+            ./profiles/nvidia-laptop
+            nix-flatpak.nixosModules.nix-flatpak
+          ];
         };
-        modules = [
-          ./profiles/nvidia-laptop
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
-      };
-      intel = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
+        intel = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit username;
+            inherit host;
+            inherit profile;
+          };
+          modules = [
+            ./profiles/intel
+            nix-flatpak.nixosModules.nix-flatpak
+          ];
         };
-        modules = [
-          ./profiles/intel
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
-      };
-      vm = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
+        vm = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+            inherit username;
+            inherit host;
+            inherit profile;
+          };
+          modules = [
+            ./profiles/vm
+            nix-flatpak.nixosModules.nix-flatpak
+          ];
         };
-        modules = [
-          ./profiles/vm
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
       };
     };
-  };
 }

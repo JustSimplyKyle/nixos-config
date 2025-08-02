@@ -1,9 +1,11 @@
-{host, ...}: let
+{ host, ... }:
+let
   inherit
     (import ../../../hosts/${host}/variables.nix)
     stylixImage
     ;
-in {
+in
+{
   wayland.windowManager.hyprland.settings = {
     exec-once = [
       "wl-paste --type text --watch cliphist store" # Saves text

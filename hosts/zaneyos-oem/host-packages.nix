@@ -8,13 +8,11 @@
     gping
     lunarvim
     luarocks
-    mc
     mission-center
     resources
     ncdu
     gdu
     ugrep
     waypaper
-    dysk
   ];
 }
