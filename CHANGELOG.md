@@ -2,8 +2,10 @@
 
 ## ZaneyOS v2.3.3 -- Post GA Release Notes
 
-** Updated: Aug 1st, 2025 **
+** Updated: Aug 2st, 2025 **
 
+- Added new waybar, `waybar-dwm.nix`
+  - Inspired by Matt @TheLinuxCast
 - Reformatted NIX to NIX formatting standard
 - Added `hostID` to `variables.nix` and `network.nix`
   - This is needed by ZFS

@@ -3,16 +3,16 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [ waybar ];
+  home.packages = with pkgs; [waybar];
 
   programs.waybar = {
     enable = true;
     settings = {
       mainBar = {
         layer = "top";
-        "modules-left" = ["hyprland/workspaces" "temperature" "hyprland/window"];
-        "modules-center" = ["custom/spacer"];
-        "modules-right" = ["tray" "cpu" "memory" "idle_inhibitor" "clock" "pulseaudio" "bluetooth"];
+        "modules-left" = ["hyprland/workspaces" "hyprland/window"];
+        "modules-center" = ["clock"];
+        "modules-right" = ["tray" "cpu" "memory" "idle_inhibitor" "pulseaudio" "bluetooth"];
         "hyprland/window" = {
           format = "{title}";
           "max-length" = 333;
@@ -66,22 +66,20 @@
         "hyprland/workspaces" = {
           format = "{icon}";
           "active-only" = false;
-          "sort-by-number" = false;
+          "sort-by-number" = true;
           "on-click" = "activate";
           "all-outputs" = false;
           "format-icons" = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
-            "6" = "";
-            "7" = "";
-            "8" = "󰉋";
-            "9" = "󰙯";
-            "10" = "";
-            "11" = "󰅨";
-            "12" = "";
+            "1" = "1";
+            "2" = "2";
+            "3" = "3";
+            "4" = "4";
+            "5" = "5";
+            "6" = "6";
+            "7" = "7";
+            "8" = "8";
+            "9" = "9";
+            "10" = "10";
           };
         };
         network = {
