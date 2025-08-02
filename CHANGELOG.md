@@ -4,8 +4,10 @@
 
 ** Updated: Aug 2st, 2025 **
 
-- Added new waybar, `waybar-dwm.nix`
-  - Inspired by Matt @TheLinuxCast
+- Added new waybars
+  - `waybar-dwm.nix`
+  - `waybar-dwm2.nix`
+    - Inspired by Matt @TheLinuxCast
 - Reformatted NIX to NIX formatting standard
 - Added `hostID` to `variables.nix` and `network.nix`
   - This is needed by ZFS
