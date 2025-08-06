@@ -1,8 +1,14 @@
-## 🗒️ Changelog
+# 📋 ZaneyOS Changelog
 
-## ZaneyOS v2.3.3 -- Post GA Release Notes
+> **A comprehensive history of changes, improvements, and updates to ZaneyOS**
 
-** Updated: Aug 2st, 2025 **
+---
+
+# 🚀 **Current Release - ZaneyOS v2.3.3**
+
+## ✨ **Post GA Release Notes**
+
+#### 📅 **Updated: August 6th, 2025**
 
 - Added new waybars
   - `waybar-dwm.nix`
