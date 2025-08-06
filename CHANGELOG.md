@@ -34,26 +34,24 @@
   - ➕ Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
   ```text
   ❯ zcli
+  
+  ZaneyOS CLI Utility -- version 1.0
+  
+  Usage: zcli [command]
+  
+  Commands:
+  
+  rebuild - Rebuild the NixOS system configuration. update - Update the flake and
+  rebuild the system. update-host - Auto-set host and profile in flake.nix.
+  
+  add-host - Add a new host configuration. del-host - Delete a host configuration.
+  
+  list-gens - List user and system generations. cleanup - Clean up old system
+  generations. trim - Trim filesystems to improve SSD performance. diag - Create a
+  system diagnostic report.
+  
+  help - Show this help message.
   ```
-
-ZaneyOS CLI Utility -- version 1.0
-
-Usage: zcli [command]
-
-Commands:
-
-rebuild - Rebuild the NixOS system configuration. update - Update the flake and
-rebuild the system. update-host - Auto-set host and profile in flake.nix.
-
-add-host - Add a new host configuration. del-host - Delete a host configuration.
-
-list-gens - List user and system generations. cleanup - Clean up old system
-generations. trim - Trim filesystems to improve SSD performance. diag - Create a
-system diagnostic report.
-
-help - Show this help message.
-
-````
 
 - 🔧 **QT Fixes**:
   - 🔄 Update `qt.nix` and `stylix.nix` to `PlatformTheme = "qtct"`
