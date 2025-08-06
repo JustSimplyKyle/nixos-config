@@ -10,24 +10,28 @@
 
 #### 📅 **Updated: August 6th, 2025**
 
-- Added new waybars
-  - `waybar-dwm.nix`
-  - `waybar-dwm2.nix`
-    - Inspired by Matt @TheLinuxCast
-- Reformatted NIX to NIX formatting standard
-- Added `hostID` to `variables.nix` and `network.nix`
-  - This is needed by ZFS
-  - Thanks to Daniel Emeery for the patch
-- Added `tealdeer.nix (TLDR)` with autoupdate
-- `zcli` fixes
-  - Added defensive code to `zcli.nix`
-  - For rebuilds, updates, hostname and flake host mistches are checked
-  - If not same, prompted to auto update the flake.nix
-  - Added `$PROJECT` variable to set repo location
-  - Default is `zaneyos`
-  - Added info on `zcli` utility
-  - Updated `zcli` now uses `nh` util to select # of generations to keep
-  - Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
+- 📊 **Waybars**: Added new waybars
+  - ➕ `waybar-dwm.nix`
+  - ➕ `waybar-dwm2.nix`
+    - 🎨 Inspired by Matt @TheLinuxCast
+
+- 🔧 **NIX Formatting**: Reformatted NIX to NIX formatting standard
+
+- 🎮 **ZFS Support**: Added `hostID` to `variables.nix` and `network.nix`
+  - 💾 This is needed by ZFS
+  - 👏 Thanks to Daniel Emeery for the patch
+
+- 📝 **Documentation**: Added `tealdeer.nix (TLDR)` with autoupdate
+
+- 🔧 **ZCLI Fixes**:
+  - ➕ Added defensive code to `zcli.nix`
+  - 🔍 For rebuilds, updates, hostname and flake host mistches are checked
+  - ⚙️ If not same, prompted to auto update the flake.nix
+  - 💼 Added `$PROJECT` variable to set repo location
+  - 📝 Default is `zaneyos`
+  - 📊 Added info on `zcli` utility
+  - ⬆️ Updated `zcli` now uses `nh` util to select # of generations to keep
+  - ➕ Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
   ```text
   ❯ zcli
   ```
@@ -50,55 +54,74 @@ system diagnostic report.
 help - Show this help message.
 
 ````
-- `qt` fixes
-- Update `qt.nix` and `stylix.nix` to `PlatformTheme = "qtct"`
-- In unstable `gnome` is now `adwaita` both cause eval warning
-- Setting it to `qtct` now to prevent this later
-- Fixed formatting issue in install script
-- Updated flake
-- `neovim/nvf` update 7/12/25
-- Disabled programming language spellcheck
-- Bug in `nvf` update prompts you to d/l wordlist ever time
-- `https://github.com/NotAShelf/nvf/pull/991`
-- Waiting for fix 7/12/2025
-- Re-enabled `css` formatting in `nvf.nix` Thanks `mister_simon` for the fix
-- Added `gemini-cli` AI CLI client only
-- Set Dracula theme to `bat` command
-- Added `style = all` and set `man` pager to `bat`
-- Added `low latecny` setting for `pipewire`
-- Added custom config for `btm` htop like cli util
-- Added workaround for issue where `ghostty` is slow or hangs
-- Added electron ozone env variable to `hint`
-- Added `obs-studio.nix` To allow for customization added common plugins
-- Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
-- Improved `install-zaneyos.sh` script Detects GPU and better presentation
-- Added `evil-helix` with language support as option
-- `vscode` update
-- Added `vscode.nix` with plugins for NIX, BASH, JSON, and VIM keybinds
-- Thanks to `delciak` for providing the NIX code for `vscode.nix`
-- Added variable 'enableVscode' in the `hosts/default/variables.nix`
-- Updated flake
-- Added vars for `alacritty` `ghostty` `tmux` `wezterm` in `variables.nix`
-- Added variable `displayManager` in `hosts/hostname/variables.nix`
-- Set to `sddm` will enable SDDM login manager themed by stylix
-- Set to `tui` and you get the greetd text login as before
-- `hm-find` script wasn't imported so not built
-- Updated version to v2.3.3
-- Added `uwsm` package and enabled it in Hyprland
-- Added alternate `starship` config. `starship-ddubs-1.nix`
-- Added more info in `hosts/default/variables.nix`
-- Listing available terminals, stylix images, waybars
-- Added more info on how to configure monitors
-- Added new waybar from swordlesbian Very colorful and bright
-- Added `sddm.nix` themed with stylix - Disabled by default
-- Set default stylix image to `mountainscapedark.png`
-- Provides warmer colors and super nice SDDM background
-- Added more fonts to `modules/core/fonts.nix`
-- Added `alacritty` terminal with `Maple MF` font.
-- Redid `flatpak.nix` you can add programs and they get updated on rebuilds
-- Re-enabled `language formatter` had to disable `css` formatter for now
-- Updated Updated flake
-- Disabled `language formatter` in `nvf.nix` It fails to build
+
+- 🔧 **QT Fixes**:
+  - 🔄 Update `qt.nix` and `stylix.nix` to `PlatformTheme = "qtct"`
+  - ⚠️ In unstable `gnome` is now `adwaita` both cause eval warning
+  - ⚙️ Setting it to `qtct` now to prevent this later
+  - 🔧 Fixed formatting issue in install script
+  - 🔄 Updated flake
+
+- 📝 **NeoVim/NVF Updates**:
+  - 📅 `neovim/nvf` update 7/12/25
+  - ❌ Disabled programming language spellcheck
+  - 🐛 Bug in `nvf` update prompts you to d/l wordlist ever time
+  - 🔗 `https://github.com/NotAShelf/nvf/pull/991`
+  - ⏳ Waiting for fix 7/12/2025
+  - ✅ Re-enabled `css` formatting in `nvf.nix` Thanks `mister_simon` for the fix
+
+- 🤖 **AI Tools**: Added `gemini-cli` AI CLI client only
+
+- 🦇 **Bat/Theme Updates**:
+  - 🎨 Set Dracula theme to `bat` command
+  - ➕ Added `style = all` and set `man` pager to `bat`
+
+- 🎧 **Audio**: Added `low latecny` setting for `pipewire`
+
+- 📊 **System Monitoring**: Added custom config for `btm` htop like cli util
+
+- 🔧 **Terminal Fixes**:
+  - ➕ Added workaround for issue where `ghostty` is slow or hangs
+  - ➕ Added electron ozone env variable to `hint`
+
+- 🎥 **OBS Studio**: Added `obs-studio.nix` To allow for customization added common plugins
+
+- 📺 **TMUX**: Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
+
+- 📜 **Install Script**: Improved `install-zaneyos.sh` script Detects GPU and better presentation
+
+- 📝 **Evil Helix**: Added `evil-helix` with language support as option
+
+- 💻 **VSCode Updates**:
+  - 🔄 `vscode` update
+  - ➕ Added `vscode.nix` with plugins for NIX, BASH, JSON, and VIM keybinds
+  - 👏 Thanks to `delciak` for providing the NIX code for `vscode.nix`
+  - ➕ Added variable 'enableVscode' in the `hosts/default/variables.nix`
+  - 🔄 Updated flake
+
+## 🔧 **Additional Improvements and Fixes**:
+
+- ⚙️ **Variables**: Added vars for `alacritty` `ghostty` `tmux` `wezterm` in `variables.nix`
+- 🖥️ **Display Manager**: Added variable `displayManager` in `hosts/hostname/variables.nix`
+  - ✨ Set to `sddm` will enable SDDM login manager themed by stylix
+  - 💻 Set to `tui` and you get the greetd text login as before
+- 🔧 **Scripts**: `hm-find` script wasn't imported so not built
+- 📈 **Version**: Updated version to v2.3.3
+- 🖥️ **Wayland**: Added `uwsm` package and enabled it in Hyprland
+- ⭐ **Starship**: Added alternate `starship` config. `starship-ddubs-1.nix`
+- 📚 **Documentation**: Added more info in `hosts/default/variables.nix`
+  - 📋 Listing available terminals, stylix images, waybars
+  - 📐 Added more info on how to configure monitors
+- 🌈 **Colorful Waybar**: Added new waybar from swordlesbian Very colorful and bright
+- 🔐 **SDDM**: Added `sddm.nix` themed with stylix - Disabled by default
+- 🖼️ **Theming**: Set default stylix image to `mountainscapedark.png`
+  - 🎨 Provides warmer colors and super nice SDDM background
+- 📝 **Fonts**: Added more fonts to `modules/core/fonts.nix`
+- 📱 **Terminal**: Added `alacritty` terminal with `Maple MF` font
+- 📦 **Flatpak**: Redid `flatpak.nix` you can add programs and they get updated on rebuilds
+- ✅ **Formatter**: Re-enabled `language formatter` had to disable `css` formatter for now
+- 🔄 **Updates**: Updated flake
+- ❌ **CSS Formatter**: Disabled `language formatter` in `nvf.nix` It fails to build
 
 ```text
 error: attribute 'prettier' missing
@@ -107,32 +130,49 @@ error: attribute 'prettier' missing
       45|       package = pkgs.prettier;
         |                 ^
       46|     };
-````
+```
 
-- Will re-enable once it's fixed upstream
-- Added three git aliases `com`, `gs`, and `gp`
-- `git com` will run `git commit -a`
-- `git gs` will run `git stash`
-- `git gp` will run `git pull`
-- Enabled `neovim` in `packages.nix` to set it to `defaultEditor`
-- Moved `eza` aliases to `eza.nix`
-- Enabled bash,zsh, fish integration to `eza`
-- All supported shells default `eza` and alias are now set in `eza.nix`
-- Removed `eza` aliases from `zsh/default.nix` and `bash.nix`
-- Set default options for `eza` in `eza.nix`
-- git command is install script missing `clone` keyword
-- Commented out AQ_DRM_DEVICES ENV variable. Can break config with more than two
-  GPUs
-- spelling corrections in README.md
-- Updated clone command in README.md to grab 2.3 stable branch
-- Updated `hyprland.nix` to set VMs `Virtual-1` monitors to 1920x1080@60
-- Disabled root login for SSH
-- Users allowed password SSH access
-- Added features and aliases to `git` command
-- Added preview to `fzf.nix` Enter to edit
-- Removed lazygit from core packages now in lazygit.nix
-- Added `eza.nix` to set default options for eza
-- Modified zsh config
+- ⏳ **Upstream Fix**: Will re-enable once it's fixed upstream
+
+## 🔀 **Git Enhancements**:
+
+- ➕ **Aliases**: Added three git aliases `com`, `gs`, and `gp`
+  - 💬 `git com` will run `git commit -a`
+  - 📦 `git gs` will run `git stash`
+  - ⬇️ `git gp` will run `git pull`
+
+## 📝 **Editor Improvements**:
+
+- ✅ **Default Editor**: Enabled `neovim` in `packages.nix` to set it to `defaultEditor`
+- 🔄 **Relative Numbers**: Restored relative line numbering to nvim `lineNumberMode = "relNumber";`
+- ➖ **Cleanup**: Removed extraneous LUA code for diags w/debug messages from `nvf.nix`
+- 🔄 **LSP Changes**: NVIM `languages.enableLSP` changed to `vim.settings.lsp.enable`
+- 📋 **Clipboard**: Updated `nvf.nix`to use a clipboard provider as "useSystemClipobard" is no longer supported
+- 🩺 **Diagnostics**: Restored diagnostic messages inline as errors are detected
+- 💾 **Hints**: When you save a file the LSP will show any applicable hints
+
+## 📁 **File Management (EZA)**:
+
+- 🔄 **Organization**: Moved `eza` aliases to `eza.nix`
+- 🐚 **Shell Integration**: Enabled bash,zsh, fish integration to `eza`
+- 🌍 **Consistency**: All supported shells default `eza` and alias are now set in `eza.nix`
+- 🗑️ **Cleanup**: Removed `eza` aliases from `zsh/default.nix` and `bash.nix`
+- ⚙️ **Defaults**: Set default options for `eza` in `eza.nix`
+
+## 🔧 **System Fixes & Updates**:
+
+- 🔧 **Git Command**: git command is install script missing `clone` keyword
+- ❌ **GPU Fix**: Commented out AQ_DRM_DEVICES ENV variable. Can break config with more than two GPUs
+- ✏️ **Docs**: spelling corrections in README.md
+- 🔗 **Clone**: Updated clone command in README.md to grab 2.3 stable branch
+- 🖥️ **VM Display**: Updated `hyprland.nix` to set VMs `Virtual-1` monitors to 1920x1080@60
+- 🔐 **SSH**: Disabled root login for SSH
+- 👥 **Access**: Users allowed password SSH access
+- 🔀 **Git Features**: Added features and aliases to `git` command
+
+## 🐚 **ZSH Configuration**:
+
+- 🔄 Modified zsh config
 
 ```nix
  syntaxHighlighting = {
@@ -148,46 +188,58 @@ error: attribute 'prettier' missing
     };
 ```
 
-- Added `lazygit.nix` to theme, customize lazygit util
-- Added `fzf.nix` to customize fzf util
-- Added `waybar-ddubs-2.nix` Modified version of Jerry's waybar
-- Adjusted some colors in Jerry's waybar
-- Disabled the `df` command in the disk module. Doesn't work w/zaneyos
-- Added examples for monitor setup in `variables.nix`
-- Added Jerry's waybar as option. `Jerry-waybar.nix`
-- Added option to enable blur on waybar on `hyprland.nix` Thx SchotjeChrisman
-- Added new Window animation option `animation-moving`from ML4W repo
-- Restored relative line numbering to nvim `lineNumberMode = "relNumber";`
-- Removed extraneous LUA code for diags w/debug messages from `nvf.nix`
-- Fixed regression in `windowrules.nix`
-- Stylix was set to unstable - set to 25.05 to stop warning
-- Hyprland ENV variables set in two files, created `env.nix`
-- Hyprland animation files had `inherit`statements that weren't used
-- Pyprland drop down termina size changed from 75% to 70%
-- Merged yazi fix for errors after rebuilds. Thank you Daniel
-- NVIM `languages.enableLSP` changed to `vim.settings.lsp.enable`
-- Updated flake 05/27/2025
-- Disabled donation messages
-- Set Application Not Responding (ANR) dialog threshold to 20 (def 1)
-- Restored diagnostic messages inline as errors are detected
-- When you save a file the LSP will show any applicable hints
-- Updated `nvf.nix`to use a clipboard provider as "useSystemClipobard" is no
-  longer supported
-- Pinned nixpkgs and homemanager to 25.05 in `flake.nix`
-- Updated `flake.lock`to match changes
-- Hyprland updated to v0.49
-- Added `hyprlock.enable=true;` in system packages. This resolves issue with PAM
-  auth errors.
-- Fixed syntax error in `animations-dynamic.nix`file. Thx Brisingr05
-- Removed unneeded `home.mgr.enable` in `user.nix` Thx Brisingr05
-- Updated `FAQ.md` with Hyprland Keybinds and how to change waybar.
-- Updated `README` with Hyprland keybinds.
-- Updated install script to pull from the most current release not the main
-  branch.
-- Added `hm-find` to find old backup files preventing rebuilds/updates from
-  completing.
-- Added how to fix yazi startup error to `FAQ.md`.
-- Fixed formatting in `FAQ.md` causing yazi info from being hidden.
+## 🛠️ **Utility Enhancements**:
+
+- 🎨 **LazyGit**: Added `lazygit.nix` to theme, customize lazygit util
+- 🔍 **FZF**: Added `fzf.nix` to customize fzf util
+  - 👁️ Added preview to `fzf.nix` Enter to edit
+- ➖ **Cleanup**: Removed lazygit from core packages now in lazygit.nix
+
+## 📊 **Waybar & UI Updates**:
+
+- ➕ **Jerry's Waybar**: Added `waybar-ddubs-2.nix` Modified version of Jerry's waybar
+- 🎨 **Colors**: Adjusted some colors in Jerry's waybar
+- ➕ **Options**: Added Jerry's waybar as option. `Jerry-waybar.nix`
+- ✨ **Blur**: Added option to enable blur on waybar on `hyprland.nix` Thx SchotjeChrisman
+
+## 🖥️ **Hyprland Improvements**:
+
+- ✨ **Animations**: Added new Window animation option `animation-moving`from ML4W repo
+- 🔧 **Regression Fix**: Fixed regression in `windowrules.nix`
+- 🎨 **Stylix**: Stylix was set to unstable - set to 25.05 to stop warning
+- ⚙️ **ENV Variables**: Hyprland ENV variables set in two files, created `env.nix`
+- 🗑️ **Cleanup**: Hyprland animation files had `inherit`statements that weren't used
+- 📐 **Terminal Size**: Pyprland drop down termina size changed from 75% to 70%
+- 🚫 **Donations**: Disabled donation messages
+- ⚙️ **ANR Threshold**: Set Application Not Responding (ANR) dialog threshold to 20 (def 1)
+
+## 🏗️ **System Architecture**:
+
+- 📌 **Version Pin**: Pinned nixpkgs and homemanager to 25.05 in `flake.nix`
+- 🔄 **Lock Update**: Updated `flake.lock`to match changes
+- ⬆️ **Hyprland**: Hyprland updated to v0.49
+- 🔐 **Lock Fix**: Added `hyprlock.enable=true;` in system packages. This resolves issue with PAM auth errors
+- 🔧 **Bug Fixes**: Fixed syntax error in `animations-dynamic.nix`file. Thx Brisingr05
+- 🗑️ **Cleanup**: Removed unneeded `home.mgr.enable` in `user.nix` Thx Brisingr05
+
+## 📖 **Documentation & Fixes**:
+
+- ❌ **Disk Module**: Disabled the `df` command in the disk module. Doesn't work w/zaneyos
+- 📋 **Monitor Examples**: Added examples for monitor setup in `variables.nix`
+- 🔧 **Yazi Fix**: Merged yazi fix for errors after rebuilds. Thank you Daniel
+- 🔄 **Flake Update**: Updated flake 05/27/2025
+- 📚 **FAQ Updates**: Updated `FAQ.md` with Hyprland Keybinds and how to change waybar
+- 📖 **README**: Updated `README` with Hyprland keybinds
+- 📜 **Install Script**: Updated install script to pull from the most current release not the main branch
+- 🔍 **Backup Files**: Added `hm-find` to find old backup files preventing rebuilds/updates from completing
+- 🐛 **Yazi Error**: Added how to fix yazi startup error to `FAQ.md`
+- 🎨 **FAQ Format**: Fixed formatting in `FAQ.md` causing yazi info from being hidden
+
+---
+
+# 📚 **Version History**
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <details>
 
