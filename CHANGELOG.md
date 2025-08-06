@@ -1,12 +1,11 @@
 # 📋 ZaneyOS Changelog
 
-> **A comprehensive history of changes, improvements, and updates to ZaneyOS**
+> ** ✨ A comprehensive history of changes, improvements, and updates to
+> ZaneyOS**
 
 ---
 
 # 🚀 **Current Release - ZaneyOS v2.3.3**
-
-## ✨ **Post GA Release Notes**
 
 #### 📅 **Updated: August 6th, 2025**
 
@@ -34,22 +33,22 @@
   - ➕ Added `zcli` CLI util. runs rebuild, update, garbage collection and diags
   ```text
   ❯ zcli
-  
+
   ZaneyOS CLI Utility -- version 1.0
-  
+
   Usage: zcli [command]
-  
+
   Commands:
-  
+
   rebuild - Rebuild the NixOS system configuration. update - Update the flake and
   rebuild the system. update-host - Auto-set host and profile in flake.nix.
-  
+
   add-host - Add a new host configuration. del-host - Delete a host configuration.
-  
+
   list-gens - List user and system generations. cleanup - Clean up old system
   generations. trim - Trim filesystems to improve SSD performance. diag - Create a
   system diagnostic report.
-  
+
   help - Show this help message.
   ```
 
@@ -66,7 +65,8 @@
   - 🐛 Bug in `nvf` update prompts you to d/l wordlist ever time
   - 🔗 `https://github.com/NotAShelf/nvf/pull/991`
   - ⏳ Waiting for fix 7/12/2025
-  - ✅ Re-enabled `css` formatting in `nvf.nix` Thanks `mister_simon` for the fix
+  - ✅ Re-enabled `css` formatting in `nvf.nix` Thanks `mister_simon` for the
+    fix
 
 - 🤖 **AI Tools**: Added `gemini-cli` AI CLI client only
 
@@ -82,11 +82,13 @@
   - ➕ Added workaround for issue where `ghostty` is slow or hangs
   - ➕ Added electron ozone env variable to `hint`
 
-- 🎥 **OBS Studio**: Added `obs-studio.nix` To allow for customization added common plugins
+- 🎥 **OBS Studio**: Added `obs-studio.nix` To allow for customization added
+  common plugins
 
 - 📺 **TMUX**: Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
 
-- 📜 **Install Script**: Improved `install-zaneyos.sh` script Detects GPU and better presentation
+- 📜 **Install Script**: Improved `install-zaneyos.sh` script Detects GPU and
+  better presentation
 
 - 📝 **Evil Helix**: Added `evil-helix` with language support as option
 
@@ -99,8 +101,10 @@
 
 ## 🔧 **Additional Improvements and Fixes**:
 
-- ⚙️ **Variables**: Added vars for `alacritty` `ghostty` `tmux` `wezterm` in `variables.nix`
-- 🖥️ **Display Manager**: Added variable `displayManager` in `hosts/hostname/variables.nix`
+- ⚙️ **Variables**: Added vars for `alacritty` `ghostty` `tmux` `wezterm` in
+  `variables.nix`
+- 🖥️ **Display Manager**: Added variable `displayManager` in
+  `hosts/hostname/variables.nix`
   - ✨ Set to `sddm` will enable SDDM login manager themed by stylix
   - 💻 Set to `tui` and you get the greetd text login as before
 - 🔧 **Scripts**: `hm-find` script wasn't imported so not built
@@ -110,16 +114,20 @@
 - 📚 **Documentation**: Added more info in `hosts/default/variables.nix`
   - 📋 Listing available terminals, stylix images, waybars
   - 📐 Added more info on how to configure monitors
-- 🌈 **Colorful Waybar**: Added new waybar from swordlesbian Very colorful and bright
+- 🌈 **Colorful Waybar**: Added new waybar from swordlesbian Very colorful and
+  bright
 - 🔐 **SDDM**: Added `sddm.nix` themed with stylix - Disabled by default
 - 🖼️ **Theming**: Set default stylix image to `mountainscapedark.png`
   - 🎨 Provides warmer colors and super nice SDDM background
 - 📝 **Fonts**: Added more fonts to `modules/core/fonts.nix`
 - 📱 **Terminal**: Added `alacritty` terminal with `Maple MF` font
-- 📦 **Flatpak**: Redid `flatpak.nix` you can add programs and they get updated on rebuilds
-- ✅ **Formatter**: Re-enabled `language formatter` had to disable `css` formatter for now
+- 📦 **Flatpak**: Redid `flatpak.nix` you can add programs and they get updated
+  on rebuilds
+- ✅ **Formatter**: Re-enabled `language formatter` had to disable `css`
+  formatter for now
 - 🔄 **Updates**: Updated flake
-- ❌ **CSS Formatter**: Disabled `language formatter` in `nvf.nix` It fails to build
+- ❌ **CSS Formatter**: Disabled `language formatter` in `nvf.nix` It fails to
+  build
 
 ```text
 error: attribute 'prettier' missing
@@ -141,11 +149,16 @@ error: attribute 'prettier' missing
 
 ## 📝 **Editor Improvements**:
 
-- ✅ **Default Editor**: Enabled `neovim` in `packages.nix` to set it to `defaultEditor`
-- 🔄 **Relative Numbers**: Restored relative line numbering to nvim `lineNumberMode = "relNumber";`
-- ➖ **Cleanup**: Removed extraneous LUA code for diags w/debug messages from `nvf.nix`
-- 🔄 **LSP Changes**: NVIM `languages.enableLSP` changed to `vim.settings.lsp.enable`
-- 📋 **Clipboard**: Updated `nvf.nix`to use a clipboard provider as "useSystemClipobard" is no longer supported
+- ✅ **Default Editor**: Enabled `neovim` in `packages.nix` to set it to
+  `defaultEditor`
+- 🔄 **Relative Numbers**: Restored relative line numbering to nvim
+  `lineNumberMode = "relNumber";`
+- ➖ **Cleanup**: Removed extraneous LUA code for diags w/debug messages from
+  `nvf.nix`
+- 🔄 **LSP Changes**: NVIM `languages.enableLSP` changed to
+  `vim.settings.lsp.enable`
+- 📋 **Clipboard**: Updated `nvf.nix`to use a clipboard provider as
+  "useSystemClipobard" is no longer supported
 - 🩺 **Diagnostics**: Restored diagnostic messages inline as errors are detected
 - 💾 **Hints**: When you save a file the LSP will show any applicable hints
 
@@ -153,17 +166,20 @@ error: attribute 'prettier' missing
 
 - 🔄 **Organization**: Moved `eza` aliases to `eza.nix`
 - 🐚 **Shell Integration**: Enabled bash,zsh, fish integration to `eza`
-- 🌍 **Consistency**: All supported shells default `eza` and alias are now set in `eza.nix`
+- 🌍 **Consistency**: All supported shells default `eza` and alias are now set
+  in `eza.nix`
 - 🗑️ **Cleanup**: Removed `eza` aliases from `zsh/default.nix` and `bash.nix`
 - ⚙️ **Defaults**: Set default options for `eza` in `eza.nix`
 
 ## 🔧 **System Fixes & Updates**:
 
 - 🔧 **Git Command**: git command is install script missing `clone` keyword
-- ❌ **GPU Fix**: Commented out AQ_DRM_DEVICES ENV variable. Can break config with more than two GPUs
+- ❌ **GPU Fix**: Commented out AQ_DRM_DEVICES ENV variable. Can break config
+  with more than two GPUs
 - ✏️ **Docs**: spelling corrections in README.md
 - 🔗 **Clone**: Updated clone command in README.md to grab 2.3 stable branch
-- 🖥️ **VM Display**: Updated `hyprland.nix` to set VMs `Virtual-1` monitors to 1920x1080@60
+- 🖥️ **VM Display**: Updated `hyprland.nix` to set VMs `Virtual-1` monitors to
+  1920x1080@60
 - 🔐 **SSH**: Disabled root login for SSH
 - 👥 **Access**: Users allowed password SSH access
 - 🔀 **Git Features**: Added features and aliases to `git` command
@@ -195,43 +211,57 @@ error: attribute 'prettier' missing
 
 ## 📊 **Waybar & UI Updates**:
 
-- ➕ **Jerry's Waybar**: Added `waybar-ddubs-2.nix` Modified version of Jerry's waybar
+- ➕ **Jerry's Waybar**: Added `waybar-ddubs-2.nix` Modified version of Jerry's
+  waybar
 - 🎨 **Colors**: Adjusted some colors in Jerry's waybar
 - ➕ **Options**: Added Jerry's waybar as option. `Jerry-waybar.nix`
-- ✨ **Blur**: Added option to enable blur on waybar on `hyprland.nix` Thx SchotjeChrisman
+- ✨ **Blur**: Added option to enable blur on waybar on `hyprland.nix` Thx
+  SchotjeChrisman
 
 ## 🖥️ **Hyprland Improvements**:
 
-- ✨ **Animations**: Added new Window animation option `animation-moving`from ML4W repo
+- ✨ **Animations**: Added new Window animation option `animation-moving`from
+  ML4W repo
 - 🔧 **Regression Fix**: Fixed regression in `windowrules.nix`
 - 🎨 **Stylix**: Stylix was set to unstable - set to 25.05 to stop warning
-- ⚙️ **ENV Variables**: Hyprland ENV variables set in two files, created `env.nix`
-- 🗑️ **Cleanup**: Hyprland animation files had `inherit`statements that weren't used
+- ⚙️ **ENV Variables**: Hyprland ENV variables set in two files, created
+  `env.nix`
+- 🗑️ **Cleanup**: Hyprland animation files had `inherit`statements that weren't
+  used
 - 📐 **Terminal Size**: Pyprland drop down termina size changed from 75% to 70%
 - 🚫 **Donations**: Disabled donation messages
-- ⚙️ **ANR Threshold**: Set Application Not Responding (ANR) dialog threshold to 20 (def 1)
+- ⚙️ **ANR Threshold**: Set Application Not Responding (ANR) dialog threshold to
+  20 (def 1)
 
 ## 🏗️ **System Architecture**:
 
 - 📌 **Version Pin**: Pinned nixpkgs and homemanager to 25.05 in `flake.nix`
 - 🔄 **Lock Update**: Updated `flake.lock`to match changes
 - ⬆️ **Hyprland**: Hyprland updated to v0.49
-- 🔐 **Lock Fix**: Added `hyprlock.enable=true;` in system packages. This resolves issue with PAM auth errors
-- 🔧 **Bug Fixes**: Fixed syntax error in `animations-dynamic.nix`file. Thx Brisingr05
-- 🗑️ **Cleanup**: Removed unneeded `home.mgr.enable` in `user.nix` Thx Brisingr05
+- 🔐 **Lock Fix**: Added `hyprlock.enable=true;` in system packages. This
+  resolves issue with PAM auth errors
+- 🔧 **Bug Fixes**: Fixed syntax error in `animations-dynamic.nix`file. Thx
+  Brisingr05
+- 🗑️ **Cleanup**: Removed unneeded `home.mgr.enable` in `user.nix` Thx
+  Brisingr05
 
 ## 📖 **Documentation & Fixes**:
 
-- ❌ **Disk Module**: Disabled the `df` command in the disk module. Doesn't work w/zaneyos
+- ❌ **Disk Module**: Disabled the `df` command in the disk module. Doesn't work
+  w/zaneyos
 - 📋 **Monitor Examples**: Added examples for monitor setup in `variables.nix`
 - 🔧 **Yazi Fix**: Merged yazi fix for errors after rebuilds. Thank you Daniel
 - 🔄 **Flake Update**: Updated flake 05/27/2025
-- 📚 **FAQ Updates**: Updated `FAQ.md` with Hyprland Keybinds and how to change waybar
+- 📚 **FAQ Updates**: Updated `FAQ.md` with Hyprland Keybinds and how to change
+  waybar
 - 📖 **README**: Updated `README` with Hyprland keybinds
-- 📜 **Install Script**: Updated install script to pull from the most current release not the main branch
-- 🔍 **Backup Files**: Added `hm-find` to find old backup files preventing rebuilds/updates from completing
+- 📜 **Install Script**: Updated install script to pull from the most current
+  release not the main branch
+- 🔍 **Backup Files**: Added `hm-find` to find old backup files preventing
+  rebuilds/updates from completing
 - 🐛 **Yazi Error**: Added how to fix yazi startup error to `FAQ.md`
-- 🎨 **FAQ Format**: Fixed formatting in `FAQ.md` causing yazi info from being hidden
+- 🎨 **FAQ Format**: Fixed formatting in `FAQ.md` causing yazi info from being
+  hidden
 
 ---
 
