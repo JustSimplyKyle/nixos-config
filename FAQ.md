@@ -3,8 +3,6 @@
 - **Revision v1.23**
 - **Date:** 7-Jul-2025
 
-<h4>---> ZaneyOS related</h4>
-
 <strong>⌨ Where can I see the Hyprland keybindings?</strong>
 
 - The SUPER key + K opens a searchable menu with the bindings
