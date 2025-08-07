@@ -68,7 +68,11 @@
   - ✅ Re-enabled `css` formatting in `nvf.nix` Thanks `mister_simon` for the
     fix
 
-- 🤖 **AI Tools**: Added `gemini-cli` AI CLI client only
+- 🤖 **AI Tools**: (Clients only)
+  - Added `gemini-cli` Supports `gemini-pro/flash`
+  - Added `aider chat` Supports many LLMs
+  - Added `claude` Supports `claude code`
+  - Added `warp terminal` Support multiple LLMs
 
 - 🦇 **Bat/Theme Updates**:
   - 🎨 Set Dracula theme to `bat` command
