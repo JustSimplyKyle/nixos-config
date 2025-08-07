@@ -69,10 +69,10 @@
     fix
 
 - 🤖 **AI Tools**: (Clients only)
-  - Added `gemini-cli` Supports `gemini-pro/flash`
-  - Added `aider chat` Supports many LLMs
-  - Added `claude` Supports `claude code`
-  - Added `warp terminal` Support multiple LLMs
+  - ♊️ Added `gemini-cli` Supports `gemini-pro/flash`
+  - 🛠️ Added `aider chat` Supports many LLMs
+  - 📝 Added `claude` Supports `claude code`
+  - 🚀 Added `warp terminal` Support multiple LLMs
 
 - 🦇 **Bat/Theme Updates**:
   - 🎨 Set Dracula theme to `bat` command
