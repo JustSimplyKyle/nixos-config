@@ -26,7 +26,7 @@
         "break"
         {
           type = "os";
-          key = "OS - ZaneyOS v2.3.3";
+          key = "OS - ZaneyOS v2.4";
           keyColor = "31";
         }
         {
