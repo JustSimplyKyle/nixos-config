@@ -9,7 +9,7 @@
 - The "keys" icon on the right side of the waybar will also bring up this menu.
 
 <details>
-<summary><strong>🖥️  ZCLI:  What is it and how do I use it?</strong></summary>
+<summary><h3>✨🖥️  ZCLI:  What is it and how do I use it?</h3></summary>
 <div style="margin-left: 20px;">
 
 The `zcli` utility is a command-line tool designed to simplify the management of
@@ -39,7 +39,7 @@ listed below:
 ```text
 ❯ zcli
 Error: No command provided.
-ZaneyOS CLI Utility -- version 0.9
+ZaneyOS CLI Utility -- version 1.0
 
 Usage: zcli [command]
 
