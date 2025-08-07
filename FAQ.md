@@ -1,4 +1,4 @@
-💬 ZaneyOS FAQ for v2.3
+# 💬 ZaneyOS FAQ for v2.3
 
 - **Revision v1.23**
 - **Date:** 7-Jul-2025
