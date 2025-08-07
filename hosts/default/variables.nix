@@ -5,7 +5,7 @@
 
   # Set Displau Manager
   # `tui` for Text login
-  # `sddm` for graphical GUI
+  # `sddm` for graphical GUI (default)
   # SDDM background is set with stylixImage
   displayManager = "sddm";
 
@@ -15,12 +15,15 @@
   weztermEnable = false;
   ghosttyEnable = false;
   vscodeEnable = false;
+  # Note: This is evil-helix with VIM keybindings by default
   helixEnable = false;
 
   # Hyprland Settings
-  # ex: extraMonitorSettings = "monitor = Virtual-1,1920x1080@60,auto,1";
-  # ex: extraMonitorSettings = "monitor = HDMI-A-1,1920x1080@60,auto,1";
-  # You can configure multiple monitors. Create a new line for each one.
+  # Examples:
+  # extraMonitorSettings = "monitor = Virtual-1,1920x1080@60,auto,1";
+  # extraMonitorSettings = "monitor = HDMI-A-1,1920x1080@60,auto,1";
+  # You can configure multiple monitors.
+  # Inside the quotes, create a new line for each monitor.
   extraMonitorSettings = "
 
     ";
@@ -30,10 +33,15 @@
 
   # Program Options
   # Set Default Browser (google-chrome-stable for google-chrome)
+  # This does NOT install your browser
+  # You need to install it by adding it to the `packages.nix`
+  # or as a flatpak
   browser = "brave";
 
   # Available Options:
-  # Kitty, ghostty, wezterm
+  # Kitty, ghostty, wezterm, aalacrity
+  # Note: kitty, wezterm, alacritty have to be enabled in `variables.nix`
+  # Setting it here does not enable it. Kitty is installed by default
   terminal = "kitty"; # Set Default System Terminal
 
   keyboardLayout = "us";
@@ -75,8 +83,14 @@
   #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-simple.nix;
+  # Throwback to ZaneyOS v1.0
   #waybarChoice = ../../modules/home/waybar/Jerry-waybar.nix;
+  # Very colorful and bright colors
   #waybarChoice = ../../modules/home/waybar/waybar-nekodyke.nix;
+  # DWM styled waybars from Matt at TheLinuxCast
+  # DWM2 uses stylix colors and is the better of the two DWM configs
+  #waybarChoice = ../../modules/home/waybar/waybar-dwm.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-dwm2.nix;
 
   # Set Animation style
   # Available options are:
