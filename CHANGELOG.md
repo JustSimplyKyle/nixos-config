@@ -5,9 +5,9 @@
 
 ---
 
-# 🚀 **Current Release - ZaneyOS v2.3.3**
+# 🚀 **Current Release - ZaneyOS v2.4**
 
-#### 📅 **Updated: August 6th, 2025**
+#### 📅 **Updated: August 7th, 2025**
 
 - 📊 **Waybars**: Added new waybars
   - ➕ `waybar-dwm.nix`

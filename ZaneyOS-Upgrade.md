@@ -93,7 +93,7 @@ ZaneyOS v2.4 introduces new features in the host configuration, giving you more 
 ### 3. ✅ Test the Configuration
 
 1.  **Verify `flake.nix`:** Ensure your hostname and GPU type are set correctly.
-    -   If you are unsure, run: `zcli update-host`
+    -   If you are unsure and your version has it available, run: `zcli update-host`
 
 2.  **Run a configuration check** from the `zaneyos` directory:
     ```bash
