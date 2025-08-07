@@ -54,19 +54,15 @@
 
 - 🔧 **QT Fixes**:
   - 🔄 Update `qt.nix` and `stylix.nix` to `PlatformTheme = "qtct"`
-  - ⚠️ In unstable `gnome` is now `adwaita` both cause eval warning
-  - ⚙️ Setting it to `qtct` now to prevent this later
+  - ⚠️ In unstable `gnome` is now `adwaita` both cause eval warnings
+  - ⚙️ Setting `qtct` in `qt.nix` now to prevent this issue later
   - 🔧 Fixed formatting issue in install script
-  - 🔄 Updated flake
 
 - 📝 **NeoVim/NVF Updates**:
-  - 📅 `neovim/nvf` update 7/12/25
-  - ❌ Disabled programming language spellcheck
-  - 🐛 Bug in `nvf` update prompts you to d/l wordlist ever time
+  - 🐛 Change in `nvf` update prompts you to d/l wordlist ever time
+    - enter `:DirtytalkUpdate` case sensitive to resolve
   - 🔗 `https://github.com/NotAShelf/nvf/pull/991`
-  - ⏳ Waiting for fix 7/12/2025
-  - ✅ Re-enabled `css` formatting in `nvf.nix` Thanks `mister_simon` for the
-    fix
+  - ✅ Re-enabled `css` formatting in `nvf.nix` Thx `mister_simon` for fix
 
 - 🤖 **AI Tools**: (Clients only)
   - ♊️ Added `gemini-cli` Supports `gemini-pro/flash`
@@ -86,41 +82,49 @@
   - ➕ Added workaround for issue where `ghostty` is slow or hangs
   - ➕ Added electron ozone env variable to `hint`
 
-- 🎥 **OBS Studio**: Added `obs-studio.nix` To allow for customization added
-  common plugins
+- 🎥 **OBS Studio**: 
+    - Added `obs-studio.nix` 
+    - To allow for customization added common plugins
 
-- 📺 **TMUX**: Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
+- 📺 **TMUX**:
+    - Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
 
-- 📜 **Install Script**: Improved `install-zaneyos.sh` script Detects GPU and
-  better presentation
+- 📜 **Install Script**: 
+    - Improved `install-zaneyos.sh` script Detects GPU and better presentation
 
-- 📝 **Evil Helix**: Added `evil-helix` with language support as option
+- 📝 **Evil Helix**: 
+    - Added `evil-helix` with language support as option
 
 - 💻 **VSCode Updates**:
   - 🔄 `vscode` update
   - ➕ Added `vscode.nix` with plugins for NIX, BASH, JSON, and VIM keybinds
   - 👏 Thanks to `delciak` for providing the NIX code for `vscode.nix`
   - ➕ Added variable 'enableVscode' in the `hosts/default/variables.nix`
-  - 🔄 Updated flake
 
 ## 🔧 **Additional Improvements and Fixes**:
 
-- ⚙️ **Variables**: Added vars for `alacritty` `ghostty` `tmux` `wezterm` in
-  `variables.nix`
-- 🖥️ **Display Manager**: Added variable `displayManager` in
-  `hosts/hostname/variables.nix`
-  - ✨ Set to `sddm` will enable SDDM login manager themed by stylix
-  - 💻 Set to `tui` and you get the greetd text login as before
-- 🔧 **Scripts**: `hm-find` script wasn't imported so not built
-- 📈 **Version**: Updated version to v2.3.3
+- ⚙️ **Variables**:
+    - Added vars for `alacritty` `ghostty` `tmux` `wezterm` in `variables.nix`
+
+- 🖥️ **Display Manager**: 
+  - Added variable `displayManager` in `hosts/hostname/variables.nix`
+      - ✨ Set to `sddm` will enable SDDM login manager themed by stylix
+      - 💻 Set to `tui` and you get the greetd text login as before
+
+- 🔧 **Scripts**:
+  - `hm-find` script to detect HomeMgr backup files, wasn't imported 
+
+- 📈 **Version**: 
+  - Updated version to v2.3.3
+
 - 🖥️ **Wayland**: Added `uwsm` package and enabled it in Hyprland
 - ⭐ **Starship**: Added alternate `starship` config. `starship-ddubs-1.nix`
 - 📚 **Documentation**: Added more info in `hosts/default/variables.nix`
   - 📋 Listing available terminals, stylix images, waybars
   - 📐 Added more info on how to configure monitors
-- 🌈 **Colorful Waybar**: Added new waybar from swordlesbian Very colorful and
+- 🌈 **Colorful Waybar**: Added new waybar from `swordlesbian` Very colorful and
   bright
-- 🔐 **SDDM**: Added `sddm.nix` themed with stylix - Disabled by default
+- 🔐 **SDDM**: Added `sddm.nix` themed with stylix
 - 🖼️ **Theming**: Set default stylix image to `mountainscapedark.png`
   - 🎨 Provides warmer colors and super nice SDDM background
 - 📝 **Fonts**: Added more fonts to `modules/core/fonts.nix`
