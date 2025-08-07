@@ -11,10 +11,11 @@
 
 - 📊 **Waybars**: Added new waybars
   - ➕ `waybar-dwm.nix`
-  - ➕ `waybar-dwm2.nix`
-    - 🎨 Inspired by Matt @TheLinuxCast
+  - ➕ `waybar-dwm-2.nix`
+    - 🎨 Source waybar code by Matt @TheLinuxCast
 
-- 🔧 **NIX Formatting**: Reformatted NIX to NIX formatting standard
+- 🔧 **NIX Formatting**:
+  - Reformatted NIX to NIX formatting standard
 
 - 🎮 **ZFS Support**: Added `hostID` to `variables.nix` and `network.nix`
   - 💾 This is needed by ZFS
@@ -74,26 +75,28 @@
   - 🎨 Set Dracula theme to `bat` command
   - ➕ Added `style = all` and set `man` pager to `bat`
 
-- 🎧 **Audio**: Added `low latecny` setting for `pipewire`
+- 🎧 **Audio**:
+  - Added `low latecny` setting for `pipewire`
 
-- 📊 **System Monitoring**: Added custom config for `btm` htop like cli util
+- 📊 **System Monitoring**:
+  - Added custom config for `btm` htop like cli util
 
 - 🔧 **Terminal Fixes**:
   - ➕ Added workaround for issue where `ghostty` is slow or hangs
   - ➕ Added electron ozone env variable to `hint`
 
-- 🎥 **OBS Studio**: 
-    - Added `obs-studio.nix` 
-    - To allow for customization added common plugins
+- 🎥 **OBS Studio**:
+  - Added `obs-studio.nix`
+  - To allow for customization added common plugins
 
 - 📺 **TMUX**:
-    - Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
+  - Updated `tmux.nix` adding popups for lazygit, terminal, edit menu
 
-- 📜 **Install Script**: 
-    - Improved `install-zaneyos.sh` script Detects GPU and better presentation
+- 📜 **Install Script**:
+  - Improved `install-zaneyos.sh` script Detects GPU and better presentation
 
-- 📝 **Evil Helix**: 
-    - Added `evil-helix` with language support as option
+- 📝 **Evil Helix**:
+  - Added `evil-helix` with language support as option
 
 - 💻 **VSCode Updates**:
   - 🔄 `vscode` update
@@ -104,49 +107,54 @@
 ## 🔧 **Additional Improvements and Fixes**:
 
 - ⚙️ **Variables**:
-    - Added vars for `alacritty` `ghostty` `tmux` `wezterm` in `variables.nix`
+  - Added vars for `alacritty` `ghostty` `tmux` `wezterm` in `variables.nix`
 
-- 🖥️ **Display Manager**: 
+- 🖥️ **Display Manager**:
   - Added variable `displayManager` in `hosts/hostname/variables.nix`
-      - ✨ Set to `sddm` will enable SDDM login manager themed by stylix
-      - 💻 Set to `tui` and you get the greetd text login as before
+    - ✨ Set to `sddm` will enable SDDM login manager themed by stylix
+    - 💻 Set to `tui` and you get the greetd text login as before
 
 - 🔧 **Scripts**:
-  - `hm-find` script to detect HomeMgr backup files, wasn't imported 
+  - `hm-find` script to detect HomeMgr backup files, wasn't imported
 
-- 📈 **Version**: 
+- 📈 **Version**:
   - Updated version to v2.3.3
 
-- 🖥️ **Wayland**: Added `uwsm` package and enabled it in Hyprland
-- ⭐ **Starship**: Added alternate `starship` config. `starship-ddubs-1.nix`
-- 📚 **Documentation**: Added more info in `hosts/default/variables.nix`
+- 🖥️ **Wayland**:
+  - Added `uwsm` package, disabled by default in Hyprland
+- ⭐ **Starship**:
+  - Added alternate `starship` config. `starship-ddubs-1.nix`
+- 📚 **Documentation**:
+  - Added more info in `hosts/default/variables.nix`
   - 📋 Listing available terminals, stylix images, waybars
   - 📐 Added more info on how to configure monitors
-- 🌈 **Colorful Waybar**: Added new waybar from `swordlesbian` Very colorful and
-  bright
-- 🔐 **SDDM**: Added `sddm.nix` themed with stylix
-- 🖼️ **Theming**: Set default stylix image to `mountainscapedark.png`
+
+- 🌈 **Colorful Waybar**:
+  - Added new waybar from `swordlesbian` Very colorful and bright
+
+- 🔐 **SDDM**:
+- Added `sddm.nix` themed with stylix
+- Moved login dialog to left
+- Styled with better colors
+
+- 🖼️ **Theming**:
+  - Set default stylix image to `mountainscapedark.png`
   - 🎨 Provides warmer colors and super nice SDDM background
-- 📝 **Fonts**: Added more fonts to `modules/core/fonts.nix`
-- 📱 **Terminal**: Added `alacritty` terminal with `Maple MF` font
-- 📦 **Flatpak**: Redid `flatpak.nix` you can add programs and they get updated
-  on rebuilds
-- ✅ **Formatter**: Re-enabled `language formatter` had to disable `css`
-  formatter for now
-- 🔄 **Updates**: Updated flake
-- ❌ **CSS Formatter**: Disabled `language formatter` in `nvf.nix` It fails to
-  build
 
-```text
-error: attribute 'prettier' missing
-  at /nix/store/3vzc8fxjxvv0b0jrywian6ilb7bdk4y8-source/modules/plugins/languages/css.nix:45:17:
-      44|     prettier = {
-      45|       package = pkgs.prettier;
-        |                 ^
-      46|     };
-```
+- 📝 **Fonts**:
+  - Added more fonts to `modules/core/fonts.nix`
 
-- ⏳ **Upstream Fix**: Will re-enable once it's fixed upstream
+- 📱 **Terminal**:
+  - Added `alacritty` terminal with `Maple MF` font
+
+- 📦 **Flatpak**:
+  - Redid `flatpak.nix`
+  - You add your flatpak apps there
+  - They get installed/updated during next rebuild
+  - If you remove it, they flatpak app will be uninstalled on next rebuild
+
+- ✅ **Formatter**:
+- Re-enabled `language formatter` had to disable `css` formatter for now
 
 ## 🔀 **Git Enhancements**:
 
@@ -157,25 +165,28 @@ error: attribute 'prettier' missing
 
 ## 📝 **Editor Improvements**:
 
-- ✅ **Default Editor**: Enabled `neovim` in `packages.nix` to set it to
-  `defaultEditor`
-- 🔄 **Relative Numbers**: Restored relative line numbering to nvim
-  `lineNumberMode = "relNumber";`
-- ➖ **Cleanup**: Removed extraneous LUA code for diags w/debug messages from
-  `nvf.nix`
-- 🔄 **LSP Changes**: NVIM `languages.enableLSP` changed to
-  `vim.settings.lsp.enable`
-- 📋 **Clipboard**: Updated `nvf.nix`to use a clipboard provider as
-  "useSystemClipobard" is no longer supported
-- 🩺 **Diagnostics**: Restored diagnostic messages inline as errors are detected
-- 💾 **Hints**: When you save a file the LSP will show any applicable hints
+- ✅ **Default Editor**:
+  - Enabled `neovim` in `packages.nix` to set it to `defaultEditor`
+- 🔄 **Relative Numbers**:
+  - Restored relative line numbering to nvim `lineNumberMode = "relNumber";`
+- ➖ **Cleanup**:
+  - Removed extraneous LUA code for diags w/debug messages from `nvf.nix`
+- 🔄 **LSP Changes**:
+  - NVIM `languages.enableLSP` changed to `vim.settings.lsp.enable`
+- 📋 **Clipboard**:
+  - Updated `nvf.nix`to use a clipboard provider as `useSystemClipobard` is no
+    longer supported
+- 🩺 **Diagnostics**:
+  - Restored diagnostic messages inline as errors are detected
+- 💾 **Hints**:
+  - When you save a file the LSP will show any applicable hints
 
-## 📁 **File Management (EZA)**:
+## 📁 ** EZA enhancements **:
 
 - 🔄 **Organization**: Moved `eza` aliases to `eza.nix`
-- 🐚 **Shell Integration**: Enabled bash,zsh, fish integration to `eza`
-- 🌍 **Consistency**: All supported shells default `eza` and alias are now set
-  in `eza.nix`
+- 🐚 **Shell Integration**: Enabled `bash`,`zsh`, `fish` integration in
+  `eza.nix`
+- 🌍 **Consistency**: All supported shells aliases are now set in `eza.nix`
 - 🗑️ **Cleanup**: Removed `eza` aliases from `zsh/default.nix` and `bash.nix`
 - ⚙️ **Defaults**: Set default options for `eza` in `eza.nix`
 
@@ -219,7 +230,7 @@ error: attribute 'prettier' missing
 
 ## 📊 **Waybar & UI Updates**:
 
-- ➕ **Jerry's Waybar**: Added `waybar-ddubs-2.nix` Modified version of Jerry's
+- ➕ **Jerry's Waybar**: Added `waybar-ddubs-2.nix` Modified ver of Jerry's
   waybar
 - 🎨 **Colors**: Adjusted some colors in Jerry's waybar
 - ➕ **Options**: Added Jerry's waybar as option. `Jerry-waybar.nix`
@@ -228,28 +239,32 @@ error: attribute 'prettier' missing
 
 ## 🖥️ **Hyprland Improvements**:
 
-- ✨ **Animations**: Added new Window animation option `animation-moving`from
-  ML4W repo
+- ✨ **Animations**: Added new animation `animation-moving`from ML4W repo
 - 🔧 **Regression Fix**: Fixed regression in `windowrules.nix`
-- 🎨 **Stylix**: Stylix was set to unstable - set to 25.05 to stop warning
-- ⚙️ **ENV Variables**: Hyprland ENV variables set in two files, created
-  `env.nix`
-- 🗑️ **Cleanup**: Hyprland animation files had `inherit`statements that weren't
-  used
-- 📐 **Terminal Size**: Pyprland drop down termina size changed from 75% to 70%
-- 🚫 **Donations**: Disabled donation messages
-- ⚙️ **ANR Threshold**: Set Application Not Responding (ANR) dialog threshold to
-  20 (def 1)
+- 🎨 **Stylix**:
+- Stylix was set to unstable - set to 25.05 to stop warning
+- ⚙️ **ENV Variables**:
+  - Hyprland ENV variables were set in two files previously
+  - Created `env.nix` to move them to a single file
+- 🗑️ **Cleanup**: Hyprland animation files had unneeded `inherit`statements
+- 📐 **Terminal Size**: Pyprland drop down terminal size changed from 75% to 70%
+- 🚫 **Donations**: Disabled Hyprland donation messages
+- ⚙️ **ANR Threshold**:
+  - Set Application Not Responding (ANR) dialog threshold to 20
+  - The default threshold of one was too sensitive
+  - It would trigger on many apps like `waypaper`
 
 ## 🏗️ **System Architecture**:
 
 - 📌 **Version Pin**: Pinned nixpkgs and homemanager to 25.05 in `flake.nix`
 - 🔄 **Lock Update**: Updated `flake.lock`to match changes
 - ⬆️ **Hyprland**: Hyprland updated to v0.49
-- 🔐 **Lock Fix**: Added `hyprlock.enable=true;` in system packages. This
-  resolves issue with PAM auth errors
-- 🔧 **Bug Fixes**: Fixed syntax error in `animations-dynamic.nix`file. Thx
-  Brisingr05
+
+- 🔧 **Bug Fixes**:
+  - Fixed syntax error in `animations-dynamic.nix`file. Thx Brisingr05
+- 🔐 **Lock Fix**:
+  - Added `hyprlock.enable=true;` in system packages
+  - This resolves issue with PAM auth errors
 - 🗑️ **Cleanup**: Removed unneeded `home.mgr.enable` in `user.nix` Thx
   Brisingr05
 
