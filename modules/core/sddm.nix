@@ -1,10 +1,10 @@
 # SDDM is a display manager for X11 and Wayland
-{ pkgs
-, config
-, lib
-, ...
-}:
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   foreground = config.stylix.base16Scheme.base00;
   textColor = config.stylix.base16Scheme.base05;
   sddm-astronaut = pkgs.sddm-astronaut.override {
@@ -57,21 +57,16 @@ let
         FormBackgroundColor = "#${config.stylix.base16Scheme.base01}";
       };
   };
-in
-{
+in {
   services.displayManager = {
     sddm = {
       package = pkgs.kdePackages.sddm;
-      extraPackages = [ sddm-astronaut ];
+      extraPackages = [sddm-astronaut];
       enable = true;
       wayland.enable = true;
       theme = "sddm-astronaut-theme";
     };
   };
 
-  environment.systemPackages = [ sddm-astronaut ];
-
-  systemd.settings.Manager = {
-    DefaultTimeoutStopSec = "30s";
-  };
+  environment.systemPackages = [sddm-astronaut];
 }
