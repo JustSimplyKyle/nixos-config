@@ -67,7 +67,7 @@
 - 🤖 **AI Tools**: (Clients only)
   - ♊️ Added `gemini-cli` Supports `gemini-pro/flash`
   - 🛠️ Added `aider chat` Supports many LLMs
-  - 📝 Added `claude` Supports `claude code`
+  - 📝 Added `claude-code` Supports `claude LLMs`
   - 🚀 Added `warp terminal` Support multiple LLMs
 
 - 🦇 **Bat/Theme Updates**:
