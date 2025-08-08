@@ -1,14 +1,16 @@
-{ host, ... }:
-let
+{host, ...}: let
   inherit
     (import ../../../hosts/${host}/variables.nix)
     extraMonitorSettings
     ;
-in
-{
+in {
   wayland.windowManager.hyprland = {
     settings = {
       windowrule = [
+        #"noblur, xwayland:1" # Helps prevent odd borders/shadows for xwayland apps
+        # downside it can impact other xwayland apps
+        # This rule is a template for a more targeted approach
+        "noblur, class:^(\bresolve\b)$, xwayland:1" # Window rule for just resolve
         "tag +file-manager, class:^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt)$"
         "tag +terminal, class:^(com.mitchellh.ghostty|org.wezfurlong.wezterm|Alacritty|kitty|kitty-dropterm)$"
         "tag +browser, class:^(Brave-browser(-beta|-dev|-unstable)?)$"
