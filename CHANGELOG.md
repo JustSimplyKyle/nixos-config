@@ -7,6 +7,18 @@
 
 # 🚀 **Current Release - ZaneyOS v2.4**
 
+#### 📅 **Updated: August 10th, 2025**
+
+- ⚡ **ZCLI Enhancement**: Added `rebuild-boot` function to `zcli`
+  - 🔄 Uses `nh os boot` instead of `nh os switch`
+  - ⏭️ Configuration activates on next restart instead of immediately
+  - 🛡️ Safer for kernel updates, driver changes, and system-critical modifications
+  - 📝 Added to help menu with proper documentation
+
+- 🐛 **Bug Fix**: Fixed typo in `detect_gpu_profile()` function
+  - 🔧 Corrected `detec0.1ted_profile` to `detected_profile`
+  - ✅ GPU auto-detection for hybrid systems now works properly
+
 #### 📅 **Updated: August 7th, 2025**
 
 - 📊 **Waybars**: Added new waybars

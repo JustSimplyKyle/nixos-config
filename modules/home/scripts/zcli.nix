@@ -31,6 +31,7 @@ pkgs.writeShellScriptBin "zcli" ''
     echo "                    (Filename: homedir/diag.txt)"
     echo "  list-gens       - List user and system generations."
     echo "  rebuild         - Rebuild the NixOS system configuration."
+    echo "  rebuild-boot    - Rebuild and set as boot default (activates on next restart)."
     echo "  trim            - Trim filesystems to improve SSD performance."
     echo "  update          - Update the flake and rebuild the system."
     echo "  update-host     - Auto set host and profile in flake.nix."
@@ -79,7 +80,7 @@ pkgs.writeShellScriptBin "zcli" ''
         if "$has_vm"; then
           detected_profile="vm"
         elif "$has_nvidia" && "$has_intel"; then
-          detec0.1ted_profile="nvidia-laptop"
+          detected_profile="nvidia-laptop"
         elif "$has_nvidia"; then
           detected_profile="nvidia"
         elif "$has_amd"; then
@@ -153,6 +154,18 @@ pkgs.writeShellScriptBin "zcli" ''
         echo "Rebuild finished successfully"
       else
         echo "Rebuild Failed" >&2
+        exit 1
+      fi
+      ;;
+          rebuild-boot)
+      handle_backups
+      echo "Starting NixOS rebuild (boot) for host: $(hostname)"
+      echo "Note: Configuration will be activated on next reboot"
+      if nh os boot --hostname "$PROFILE"; then
+        echo "Rebuild-boot finished successfully"
+        echo "New configuration set as boot default - restart to activate"
+      else
+        echo "Rebuild-boot Failed" >&2
         exit 1
       fi
       ;;
