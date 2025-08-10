@@ -19,6 +19,12 @@
   - 🔧 Corrected `detec0.1ted_profile` to `detected_profile`
   - ✅ GPU auto-detection for hybrid systems now works properly
 
+- 📝 **Documentation**: Improved formatting in `ZaneyOS-Upgrade.md`
+  - 🔧 Fixed incomplete sentence about `zcli rebuild-boot` command availability
+  - ✨ Improved bullet point clarity and sub-bullet indentation
+  - 🎨 Fixed code block formatting in migration steps
+  - 📋 Removed unnecessary quote markers from bash commands
+
 #### 📅 **Updated: August 7th, 2025**
 
 - 📊 **Waybars**: Added new waybars
