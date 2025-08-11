@@ -137,17 +137,17 @@ pkgs.writeShellScriptBin "zcli" ''
       inxi --full > "$HOME/diag.txt"
       echo "Diagnostic report saved to $HOME/diag.txt"
       ;;
-          help)
+    help)
       print_help
       ;;
-          list-gens)
+    list-gens)
       echo "--- User Generations ---"
       nix-env --list-generations | cat || echo "Could not list user generations."
       echo ""
       echo "--- System Generations ---"
       nix profile history --profile /nix/var/nix/profiles/system | cat || echo "Could not list system generations."
       ;;
-          rebuild)
+    rebuild)
       handle_backups
       echo "Starting NixOS rebuild for host: $(hostname)"
       if nh os switch --hostname "$PROFILE"; then
@@ -157,7 +157,7 @@ pkgs.writeShellScriptBin "zcli" ''
         exit 1
       fi
       ;;
-          rebuild-boot)
+    rebuild-boot)
       handle_backups
       echo "Starting NixOS rebuild (boot) for host: $(hostname)"
       echo "Note: Configuration will be activated on next reboot"
@@ -169,7 +169,7 @@ pkgs.writeShellScriptBin "zcli" ''
         exit 1
       fi
       ;;
-          trim)
+    trim)
       echo "Running 'sudo fstrim -v /' may take a few minutes and impact system performance."
       read -p "Enter (y/Y) to run now or enter to exit (y/N): " -n 1 -r
       echo # move to a new line
@@ -181,7 +181,7 @@ pkgs.writeShellScriptBin "zcli" ''
         echo "Trim operation cancelled."
       fi
       ;;
-          update)
+    update)
       handle_backups
       echo "Updating flake and rebuilding system for host: $(hostname)"
       if nh os switch --hostname "$PROFILE" --update; then
@@ -191,7 +191,7 @@ pkgs.writeShellScriptBin "zcli" ''
         exit 1
       fi
       ;;
-          update-host)
+    update-host)
       target_hostname=""
       target_profile=""
 
