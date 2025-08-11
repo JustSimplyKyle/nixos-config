@@ -225,6 +225,18 @@
       };
       
       luaConfigPost = ''
+        -- Nix LSP (nil) configuration for auto-eval-inputs
+        local lspconfig = require('lspconfig')
+        lspconfig.nil_ls.setup({
+          settings = {
+            ['nil'] = {
+              nix = {
+                auto_eval_inputs = true,
+              },
+            },
+          },
+        })
+        
         -- Auto-update programming wordlist on first startup
         vim.api.nvim_create_autocmd("VimEnter", {
           callback = function()

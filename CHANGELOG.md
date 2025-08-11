@@ -18,6 +18,15 @@
   - 🎯 **User Experience**: Eliminates the manual `:DirtytalkUpdate` prompt mentioned in previous changelog
   - 📚 **Resolves**: The issue referenced in changelog line 81-83 where users had to manually run the command
 
+- 🔧 **NeoVIM LSP Enhancement**: Enhanced Nix LSP configuration for better development experience
+  - 🎯 **Purpose**: Enables automatic evaluation of Nix inputs for better LSP functionality
+  - 📍 **Location**: Added nil LSP configuration with auto-eval-inputs in luaConfigPost
+  - 🚀 **Benefits**: 
+    - 💡 Better code completion for Nix files
+    - 🔍 Enhanced error checking and navigation
+    - 🧠 Improved IntelliSense for Nix expressions
+  - ⚙️ **Configuration**: Added `auto-eval-inputs = true` for nil LSP server
+
 #### 📅 **Updated: August 10th, 2025**
 
 - ⚡ **ZCLI Enhancement**: Added `rebuild-boot` function to `zcli`
