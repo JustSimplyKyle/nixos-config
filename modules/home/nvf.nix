@@ -109,7 +109,7 @@
       spellcheck = {
         enable = true;
         languages = [ "en" ];
-        programmingWordlist.enable = false;
+        programmingWordlist.enable = true;
       };
 
       lsp = {
@@ -223,6 +223,34 @@
       comments = {
         comment-nvim.enable = true;
       };
+      
+      luaConfigPost = ''
+        -- Auto-update programming wordlist on first startup
+        vim.api.nvim_create_autocmd("VimEnter", {
+          callback = function()
+            -- Check if dirtytalk dict file exists
+            local dict_path = vim.fn.stdpath('data') .. '/site/spell/programming.utf-8.add'
+            if vim.fn.filereadable(dict_path) == 0 then
+              -- Only run if file doesn't exist to avoid repeated downloads
+              vim.schedule(function()
+                vim.cmd('DirtytalkUpdate')
+              end)
+            end
+          end,
+        })
+      '';
     };
+  };
+
+  home.activation = {
+    dirtytalkUpdate = ''
+      # Create the spell directory if it doesn't exist
+      mkdir -p "$HOME/.local/share/nvim/site/spell"
+      
+      # Try to run DirtytalkUpdate in headless mode with better error handling
+      if ! ${config.programs.nvf.finalPackage}/bin/nvim --headless -c "DirtytalkUpdate" -c "qa!" 2>/dev/null; then
+        echo "Note: DirtytalkUpdate will run automatically on first Neovim startup"
+      fi
+    '';
   };
 }

@@ -7,6 +7,17 @@
 
 # 🚀 **Current Release - ZaneyOS v2.4**
 
+#### 📅 **Updated: August 11th, 2025**
+
+- 🔧 **NeoVIM Enhancement**: Fixed DirtytalkUpdate automation for programming spellcheck
+  - ✨ **Auto-download**: Wordlist now downloads automatically on first startup
+  - 🔄 **Smart detection**: Only downloads if wordlist file doesn't exist
+  - 💡 **Fallback**: Improved home activation script with better error handling
+  - ⚡ **Performance**: Added `vim.schedule()` for non-blocking wordlist updates
+  - 🐛 **Bug Fix**: Re-enabled `programmingWordlist.enable = true` with proper automation
+  - 🎯 **User Experience**: Eliminates the manual `:DirtytalkUpdate` prompt mentioned in previous changelog
+  - 📚 **Resolves**: The issue referenced in changelog line 81-83 where users had to manually run the command
+
 #### 📅 **Updated: August 10th, 2025**
 
 - ⚡ **ZCLI Enhancement**: Added `rebuild-boot` function to `zcli`
