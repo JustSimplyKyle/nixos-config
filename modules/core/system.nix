@@ -13,7 +13,7 @@ in {
       trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
   };
-  time.timeZone = "America/Chicago";
+  time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
@@ -28,7 +28,7 @@ in {
   };
   environment.variables = {
     NIXOS_OZONE_WL = "1";
-    ZANEYOS_VERSION = "2.4";
+    ZANEYOS_VERSION = "2.3";
     ZANEYOS = "true";
   };
   console.keyMap = "${consoleKeyMap}";
