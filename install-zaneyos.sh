@@ -191,8 +191,8 @@ cp hosts/default/*.nix hosts/"$hostName"
 
 installusername=$(echo $USER)
 
-sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
-sed -i "/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$profile\"/" ./flake.nix
+sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$hostName\"/" ./flake.nix
+sed -i "/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$profile\"/" ./flake.nix
 
 print_header "Timezone Configuration"
 echo -e "🌍 ${GREEN}Timezone examples:${NC}"
@@ -248,7 +248,7 @@ if [ -z "$keyboardLayout" ]; then
   keyboardLayout="us"
 fi
 echo -e "✅ Selected keyboard layout: ${GREEN}$keyboardLayout${NC}"
-sed -i "/^[[:space:]]*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
+sed -i "/^[[:space:]]*keyboardLayout[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
 echo -e "✅ Updated keyboard layout in configuration"
 
 print_header "Console Keymap Configuration"
@@ -262,12 +262,12 @@ if [ -z "$consoleKeyMap" ]; then
   consoleKeyMap="$keyboardLayout"
 fi
 echo -e "✅ Selected console keymap: ${GREEN}$consoleKeyMap${NC}"
-sed -i "/^[[:space:]]*consoleKeyMap[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$consoleKeyMap\"/" ./hosts/$hostName/variables.nix
+sed -i "/^[[:space:]]*consoleKeyMap[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$consoleKeyMap\"/" ./hosts/$hostName/variables.nix
 echo -e "✅ Updated console keymap in configuration"
 
 print_header "Username Configuration"
 echo -e "👤 Using current username: ${GREEN}$installusername${NC}"
-sed -i "/^[[:space:]]*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
+sed -i "/^[[:space:]]*username[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$installusername\"/" ./flake.nix
 echo -e "✅ Updated username in configuration"
 
 print_header "Generating Hardware Configuration -- Ignore ERROR: cannot access /bin"

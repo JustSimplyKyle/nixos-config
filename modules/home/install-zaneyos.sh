@@ -185,25 +185,25 @@ git add .
 git config --global --unset-all user.name
 git config --global --unset-all user.email
 
-sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
-sed -i "/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$profile\"/" ./flake.nix
+sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$hostName\"/" ./flake.nix
+sed -i "/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$profile\"/" ./flake.nix
 
 print_header "Keyboard Layout Configuration"
 read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
 if [ -z "$keyboardLayout" ]; then
   keyboardLayout="us"
 fi
-sed -i "/^[[:space:]]*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
+sed -i "/^[[:space:]]*keyboardLayout[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
 
 print_header "Console Keymap Configuration"
 read -rp "Enter your console keymap: [ us ] " consoleKeyMap
 if [ -z "$consoleKeyMap" ]; then
   consoleKeyMap="us"
 fi
-sed -i "/^[[:space:]]*consoleKeyMap[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$consoleKeyMap\"/" ./hosts/$hostName/variables.nix
+sed -i "/^[[:space:]]*consoleKeyMap[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$consoleKeyMap\"/" ./hosts/$hostName/variables.nix
 
 print_header "Username Configuration"
-sed -i "/^[[:space:]]*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
+sed -i "/^[[:space:]]*username[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$installusername\"/" ./flake.nix
 
 print_header "Generating Hardware Configuration -- Ignore ERROR: cannot access /bin"
 sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
