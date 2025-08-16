@@ -72,8 +72,7 @@ ex:
 
 Below are the keybindings for Hyprland, formatted for easy reference.
 
-<details>
-<summary>**🧰 Application Launching**</summary>
+## Application Launching
 
 - `$modifier + Return` → Launch `Terminal`
 - `$modifier + K` → List keybinds
@@ -93,10 +92,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + T` → Toggle terminal with `pypr`
 - `$modifier + M` → Open `pavucontrol`
 
-</details>
-
-<details>
-<summary>**🖼️ Window Management **</summary>
+## Window Management
 
 - `$modifier + Q` → Kill active window
 - `$modifier + P` → Toggle pseudo tiling
@@ -104,28 +100,21 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + F` → Toggle fullscreen
 - `$modifier + Shift + F` → Toggle floating mode
 - `$modifier + Alt + F` → Float all windows
-- `$modifier + Shift + C` → Exit Hyprland <</details>
+- `$modifier + Shift + C` → Exit Hyprland
 
-<details>
-<summary>**📚 Window Movement**</summary>
+## Window Movement
 
 - `$modifier + Shift + ← / → / ↑ / ↓` → Move window left/right/up/down
 - `$modifier + Shift + H / L / K / J` → Move window left/right/up/down
 - `$modifier + Alt + ← / → / ↑ / ↓` → Swap window left/right/up/down
 - `$modifier + Alt + 43 / 46 / 45 / 44` → Swap window left/right/up/down
 
-</details>
-
-<details>
-<summary>**📦 Focus Movement**</summary>
+## Focus Movement
 
 - `$modifier + ← / → / ↑ / ↓` → Move focus left/right/up/down
 - `$modifier + H / L / K / J` → Move focus left/right/up/down
 
-</details>
-
-<details>
-<summary>**🎨 Workspaces **</summary>
+## Workspaces
 
 - `$modifier + 1-10` → Switch to workspace 1-10
 - `$modifier + Shift + Space` → Move window to special workspace
@@ -133,15 +122,10 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + Shift + 1-10` → Move window to workspace 1-10
 - `$modifier + Control + → / ←` → Switch workspace forward/backward
 
-</details>
-
-<details>
-<summary>**🖼️ Window Cycling **</summary>
+## Window Cycling
 
 - `Alt + Tab` → Cycle to next window
 - `Alt + Tab` → Bring active window to top
-
-</details>
 
 ## Questions, settings, updating, misc...
 
