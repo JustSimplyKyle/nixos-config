@@ -3,13 +3,13 @@
 - **Revision v1.23**
 - **Date:** 7-Jul-2025
 
-<strong>⌨ Where can I see the Hyprland keybindings?</strong>
+**⌨ Where can I see the Hyprland keybindings?**
 
 - The SUPER key + K opens a searchable menu with the bindings
 - The "keys" icon on the right side of the waybar will also bring up this menu.
 
 <details>
-<summary><h3>✨🖥️  ZCLI:  What is it and how do I use it?</h3></summary>
+<summary>**✨🖥️  ZCLI:  What is it and how do I use it?**</summary>
 <div style="margin-left: 20px;">
 
 The `zcli` utility is a command-line tool designed to simplify the management of
@@ -73,7 +73,7 @@ ex:
 Below are the keybindings for Hyprland, formatted for easy reference.
 
 <details>
-<summary><strong>🧰 Application Launching</strong></summary>
+<summary>**🧰 Application Launching**</summary>
 
 - `$modifier + Return` → Launch `Terminal`
 - `$modifier + K` → List keybinds
@@ -96,7 +96,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 </details>
 
 <details>
-<summary><strong>🖼️ Window Management </strong></summary>
+<summary>**🖼️ Window Management **</summary>
 
 - `$modifier + Q` → Kill active window
 - `$modifier + P` → Toggle pseudo tiling
@@ -107,7 +107,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 - `$modifier + Shift + C` → Exit Hyprland <</details>
 
 <details>
-<summary><strong>📚 Window Movement</strong></summary>
+<summary>**📚 Window Movement**</summary>
 
 - `$modifier + Shift + ← / → / ↑ / ↓` → Move window left/right/up/down
 - `$modifier + Shift + H / L / K / J` → Move window left/right/up/down
@@ -117,7 +117,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 </details>
 
 <details>
-<summary><strong>📦 Focus Movement</strong></summary>
+<summary>**📦 Focus Movement**</summary>
 
 - `$modifier + ← / → / ↑ / ↓` → Move focus left/right/up/down
 - `$modifier + H / L / K / J` → Move focus left/right/up/down
@@ -125,7 +125,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 </details>
 
 <details>
-<summary><strong>🎨 Workspaces </strong></summary>
+<summary>**🎨 Workspaces **</summary>
 
 - `$modifier + 1-10` → Switch to workspace 1-10
 - `$modifier + Shift + Space` → Move window to special workspace
@@ -136,7 +136,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 </details>
 
 <details>
-<summary><strong>🖼️ Window Cycling </strong></summary>
+<summary>**🖼️ Window Cycling **</summary>
 
 - `Alt + Tab` → Cycle to next window
 - `Alt + Tab` → Bring active window to top
@@ -147,7 +147,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 
 <details>
 
-<summary><strong>❄ Why did you create ZaneyOS ? </strong></summary>
+<summary>**❄ Why did you create ZaneyOS ? **</summary>
 
 <div style="margin-left: 20px;">
 
@@ -169,12 +169,12 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 </details>
 
 <details>
-<summary><strong>🖼️ Settings and configuration</strong></summary>
+<summary>**🖼️ Settings and configuration**</summary>
 
 <div style="margin-left: 20px;">
 
 <details>
-<summary><strong>How to I add flatpaks? ?</strong></summary>
+<summary>**How to I add flatpaks? ?**</summary>
 
 - Edit `~/zaneyos/modules/core/flatpak.nix`
 - There is a list of sample apps you can use as a template
@@ -214,7 +214,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 </details>
 
 <details>
-<summary><strong>How to I remove flatpaks? ?</strong></summary>
+<summary>**How to I remove flatpaks? ?**</summary>
 
 - Edit `~/zaneyos/modules/core/flatpak.nix`
 
@@ -252,7 +252,7 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 </details>
 
 <details>
-<summary><strong>How to I change the waybar?</strong></summary>
+<summary>**How to I change the waybar?**</summary>
 
 - Go to the `~/zaneyos/host/HOSTNAME`
 - Edit the `variables.nix` file
@@ -272,7 +272,7 @@ waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
 </details>
 
 <details>
-<summary><strong> How do I change the Timezone? </strong></summary>
+<summary>** How do I change the Timezone? **</summary>
 
 1. In the file, `~/zaneyos/modules/core/system.nix`
 2. Edit the line: time.timeZone = "America/New_York";
@@ -281,7 +281,7 @@ waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
 </details>
 
 <details>
-<summary><strong>How do I change the monitor settings? </strong></summary>
+<summary>**How do I change the monitor settings? **</summary>
 
 Monitor settings are in the file: `~/zaneyos/hosts/<HOSTNAME>/variables.nix`
 
@@ -355,7 +355,7 @@ More information on configuring monitors is available on the
 </details>
 
 <details>
-<summary><strong>How do I add applications to ZaneyOS? </strong></summary>
+<summary>**How do I add applications to ZaneyOS? **</summary>
 
 ### There are two options. One for all hosts you have, another for a specific host.
 
@@ -421,7 +421,7 @@ You can add additional packages, or for example change `discord` to
 
 <details>
 
-<summary><strong> I added the package names, now how do I install them ? </strong></summary>
+<summary>** I added the package names, now how do I install them ? **</summary>
 
 - Use the `zcli` utility. `zcli rebuild`
 - The legacy `fr`, Flake Rebuild alias, is depreciated but still available
@@ -432,7 +432,7 @@ will be created.
 </details>
 
 <details>
-<summary><strong> How do I update the packages I've already installed? </strong></summary>
+<summary>** How do I update the packages I've already installed? **</summary>
 
 - Use the `zcli` utility. `zcli update`
 - The `fu`, Flake Update alias, is depreciated but still available
@@ -441,7 +441,7 @@ will be created.
 </details>
 
 <details>
-<summary><strong> I made a change to my ZaneyOS configuration, how do I activate it? </strong></summary>
+<summary>** I made a change to my ZaneyOS configuration, how do I activate it? **</summary>
 
 - Use the `zcli` utility. `zcli rebuild`
 - The legacy `fr`, Flake Rebuild alias, is depreciated but still available **
@@ -453,7 +453,7 @@ will be created.
 </details>
 
 <details>
-<summary><strong> How can I configure a different kernel on a specific host? </strong></summary>
+<summary>** How can I configure a different kernel on a specific host? **</summary>
 
 1. You have to edit the `hardware.nix` file for that host in
    `~/zaneyos/hosts/HOSTNAME/hardware.nix` and override the default.
@@ -487,7 +487,7 @@ boot.extraModulePackages = [];
 
 <details>
 
-<summary><strong> What are the major Kernel options in NixOS? </strong></summary>
+<summary>** What are the major Kernel options in NixOS? **</summary>
 NixOS offers several major kernel types to cater to different needs and preferences. Below are the available options, excluding specific kernel versions:
 
 1. **`linuxPackages`**
@@ -528,7 +528,7 @@ NixOS offers several major kernel types to cater to different needs and preferen
 
 <details>
 
-<summary><strong>  I have older generations I want to delete, how can I do that? </strong></summary>
+<summary>**  I have older generations I want to delete, how can I do that? **</summary>
 
 - The `ncg` NixOS Clean Generations alias will remove **ALL** but the most
   current generation. Make sure you have booted from that generation before
@@ -539,7 +539,7 @@ NixOS offers several major kernel types to cater to different needs and preferen
 
 <details>
 
-<summary><strong>How do I change the hostname? </strong></summary>
+<summary>**How do I change the hostname? **</summary>
 
 To change the hostname, there are several steps and you will have to reboot to
 make the change effective.
@@ -561,7 +561,7 @@ make the change effective.
 
 </details>
 <details>
-<summary><strong> How do I disable the spinning snowflake at startup? </strong></summary>
+<summary>** How do I disable the spinning snowflake at startup? **</summary>
 
 1. Edit the `~/zaneyos/modules/core/boot.nix` file.
 2. Look for:
@@ -578,7 +578,7 @@ make the change effective.
 </details>
 
 <details>
- <summary><strong> How do I configure my hybrid laptop with Intel/NVIDIA GPUs?  </strong></summary>
+ <summary>** How do I configure my hybrid laptop with Intel/NVIDIA GPUs?  **</summary>
 
 1. Either run the `install-zaneyos.sh` script and select `nvidia-laptop`
    template or if configuring manually, set the template in the `flake.nix` to
@@ -603,7 +603,7 @@ make the change effective.
 </details>
 
 <details>
-<summary><strong>🎨 Stylix</strong></summary>
+<summary>**🎨 Stylix**</summary>
 
 <div style="margin-left: 20px;">
 
@@ -703,12 +703,12 @@ stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 </details>
 
 <details>
-<summary><strong>🌃 Wallpapers</strong></summary>
+<summary>**🌃 Wallpapers**</summary>
 
 <div style="margin-left: 20px;">
 
 <details>
-<summary><strong>  How do I add more wallpapers? </strong></summary>
+<summary>**  How do I add more wallpapers? **</summary>
 
 - Wallpapers are stored in the `~/zaneyos/wallpapers` directory.
 - Simply copy the new ones to that diretory.
@@ -719,7 +719,7 @@ stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 
 <details>
 
-<summary><strong> How do I change the background? </strong></summary>
+<summary>** How do I change the background? **</summary>
 
 - SUPER + ALT + W will select a new background
 
@@ -727,7 +727,7 @@ stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 
 <details>
 
-<summary><strong>  How can I set a timer to change the wallpaper automatically?  </strong></summary>
+<summary>**  How can I set a timer to change the wallpaper automatically?  **</summary>
 
 1. Edit the `~/zaneyos/modules/home/hyprland/config.nix` file.
 2. Comment out the line `sleep 1.5 && swww img ...`
@@ -756,7 +756,7 @@ settings = {
 
 <details>
 
-<summary><strong>How do I change the interval the wallpaper changes?  </strong></summary>
+<summary>**How do I change the interval the wallpaper changes?  **</summary>
 
 1. Edit the `~/zaneyos/modules/home/scripts/wallsetter`
 2. Change the `TIMEOUT =` value. Which is in seconds.
@@ -770,7 +770,7 @@ settings = {
 </details>
 
 <details>
-<summary><strong>⬆ How do I update ZaneyOS?  </strong></summary>
+<summary>**⬆ How do I update ZaneyOS?  **</summary>
 
 <div style="margin-left: 20px;">
 
@@ -849,11 +849,11 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 </xxx>
 
-<details><summary><strong>📂 ZaneyOS v2.3 Layout</strong></summary>
+<details><summary>**📂 ZaneyOS v2.3 Layout**</summary>
 
 <div style="margin-left: 25px;">
 
-<h4> 📂 ~/zaneyos </h4>
+** 📂 ~/zaneyos **
 
 ```text
 ~/zaneyos/
@@ -894,11 +894,11 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 </details>
 
-<h4>---> 🧰 Miscellaneous</h4>
+**---> 🧰 Miscellaneous**
 
 <details>
 
-<summary><strong>🪧 Rebuild or update fails with Home Manager error can't backup a file</strong></summary>
+<summary>**🪧 Rebuild or update fails with Home Manager error can't backup a file**</summary>
 
 <div style="margin-left: 20px;">
 <br>
@@ -942,7 +942,7 @@ May 08 18:33:57 explorer systemd[1]: Failed to start Home Manager environment fo
 
 <details>
 
-<summary><strong>📚 What is the difference between Master and Dwindle layouts</strong></summary>
+<summary>**📚 What is the difference between Master and Dwindle layouts**</summary>
 
 <div style="margin-left: 20px;">
 <br>
@@ -980,7 +980,7 @@ To check which layout is currently active, use the `hyprctl` command:
 </details>
 
 <details>
-<summary><strong>📦 What are the Yazi keybindings and how can I change them? </strong></summary>
+<summary>**📦 What are the Yazi keybindings and how can I change them? **</summary>
 
 <div style="margin-left: 20px;"> <br>
 
@@ -995,7 +995,7 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
 <details>
 
-<summary><strong> What fonts are avialable in NixOS</strong></summary>
+<summary>** What fonts are avialable in NixOS**</summary>
 
 ```nix
 {pkgs, ...}: {
@@ -1101,10 +1101,10 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
 </details>
 
-<h4>---> 🖥️ Terminals </h4>
+**---> 🖥️ Terminals **
 
 <details>
-<summary><strong>🐱  Kitty</strong></summary>
+<summary>**🐱  Kitty**</summary>
 
 <details>
 
@@ -1185,7 +1185,7 @@ The defaults are:
 
 <details>
 
-<summary><strong>🇼  WezTerm</strong></summary>
+<summary>**🇼  WezTerm**</summary>
 
 <div style="margin-left: 20px;">
 
@@ -1237,7 +1237,7 @@ ALT + Up Arrow          Move to pane -- Down
 </details>
 
 <details>
-<summary><strong>👻 Ghostty </strong></summary>
+<summary>**👻 Ghostty **</summary>
 
 <div style="margin-left: 20px;">
 
@@ -1315,12 +1315,12 @@ theme = Dracula
 </div>
 </details>
 
-<h4>
+**
 --> 🪧  General NixOS related topics
-</h4>
+**
 
 <details>
-<summary><strong>❄  What are Flakes in NixOS? </strong></summary>
+<summary>**❄  What are Flakes in NixOS? **</summary>
 
 <div style="margin-left: 20px;">
 
@@ -1329,7 +1329,7 @@ standardizes how configurations, dependencies, and packages are managed. If
 you're familiar with tools like `package.json` in JavaScript or `Cargo.toml` in
 Rust, flakes serve a similar purpose in the Nix ecosystem.
 
-<h4> Key Features of Flakes: </h4>
+** Key Features of Flakes: **
 
 1. **Pin Dependencies**:
    - Flakes lock the versions of dependencies in a `flake.lock` file, ensuring
@@ -1351,7 +1351,7 @@ portable and reliable way.
 </details>
 
 <details>
-<summary><strong>🏡  What is NixOS Home Manager? </strong></summary>
+<summary>**🏡  What is NixOS Home Manager? **</summary>
 
 **Home Manager** is a powerful tool in the Nix ecosystem that allows you to
 declaratively manage user-specific configurations and environments. With Home
@@ -1382,7 +1382,7 @@ way to tailor your user experience.
 </details>
 
 <details>
-<summary><strong>🏭  What are Atomic Builds?</strong></summary>
+<summary>**🏭  What are Atomic Builds?**</summary>
 
 **Atomic builds** in NixOS ensure that any system change (like installing
 software or updating the configuration) is applied in a safe and fail-proof way.
@@ -1422,7 +1422,7 @@ philosophy, ensuring that system management is predictable and stress-free.
 </details>
 
 <details>
-<summary><strong>❓ I am new to NIXOS where can I go to get more info? </strong></summary>
+<summary>**❓ I am new to NIXOS where can I go to get more info? **</summary>
 
 - [NIXOS Config Guide](https://www.youtube.com/watch?v=AGVXJ-TIv3Y&t=34s)
 - [VIMJOYER YouTube Channel](https://www.youtube.com/@vimjoyer/videos)
@@ -1433,7 +1433,7 @@ philosophy, ensuring that system management is predictable and stress-free.
 </details>
 
 <details>
-<summary><strong>🏤 Where can I get info on using GIT repositories  </strong></summary>
+<summary>**🏤 Where can I get info on using GIT repositories  **</summary>
 
 - [Managing NIXOS config with GIT](https://www.youtube.com/watch?v=20BN4gqHwaQ)
 - [GIT for dummies](https://www.youtube.com/watch?v=K6Q31YkorUE)
@@ -1443,7 +1443,7 @@ philosophy, ensuring that system management is predictable and stress-free.
 </details>
 
 <details>
-<summary><strong>How to I change the waybar?</strong></summary>
+<summary>**How to I change the waybar?**</summary>
 
 - Go to the `~/zaneyos/host/HOSTNAME`
 - Edit the `variables.nix` file
@@ -1464,7 +1464,7 @@ waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
 </details>
 
 <details>
-<summary><strong> How do I change the Timezone? </strong></summary>
+<summary>** How do I change the Timezone? **</summary>
 
 1. In the file, `~/zaneyos/modules/core/system.nix`
 2. Edit the line: time.timeZone = "America/New_York";
@@ -1473,7 +1473,7 @@ waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
 </details>
 
 <details>
-<summary><strong>How do I change the monitor settings? </strong></summary>
+<summary>**How do I change the monitor settings? **</summary>
 
 Monitor settings are in the file: `~/zaneyos/hosts/<HOSTNAME>/variables.nix`
 
@@ -1547,7 +1547,7 @@ More information on configuring monitors is available on the
 </details>
 
 <details>
-<summary><strong>How do I add applications to ZaneyOS? </strong></summary>
+<summary>**How do I add applications to ZaneyOS? **</summary>
 
 ### There are two options. One for all hosts you have, another for a specific host.
 
@@ -1613,7 +1613,7 @@ You can add additional packages, or for example change `discord` to
 
 <details>
 
-<summary><strong> I added the package names, now how do I install them ? </strong></summary>
+<summary>** I added the package names, now how do I install them ? **</summary>
 
 - Use the command `zcli rebuild` or `fr`, Flake Rebuild alias.
 
@@ -1623,7 +1623,7 @@ will be created.
 </details>
 
 <details>
-<summary><strong> How do I update the packages I've already installed? </strong></summary>
+<summary>** How do I update the packages I've already installed? **</summary>
 
 - Use the command `zcli update` or the `fu`, Flake Update alias. This will check
   for updated packages, download and install them.
@@ -1631,7 +1631,7 @@ will be created.
 </details>
 
 <details>
-<summary><strong> I made a change to my ZaneyOS configuration, how do I activate it? </strong></summary>
+<summary>** I made a change to my ZaneyOS configuration, how do I activate it? **</summary>
 
 - Use the command `zcli rebuild` or `fr` Flake Rebuild alias. If you **created a
   new file** please note you will need to run a `git add .` command in the
@@ -1641,7 +1641,7 @@ will be created.
 </details>
 
 <details>
-<summary><strong> How can I configure a different kernel on a specific host? </strong></summary>
+<summary>** How can I configure a different kernel on a specific host? **</summary>
 
 1. You have to edit the `hardware.nix` file for that host in
    `~/zaneyos/hosts/HOSTNAME/hardware.nix` and override the default.
@@ -1675,7 +1675,7 @@ boot.extraModulePackages = [];
 
 <details>
 
-<summary><strong> What are the major Kernel options in NixOS? </strong></summary>
+<summary>** What are the major Kernel options in NixOS? **</summary>
 NixOS offers several major kernel types to cater to different needs and preferences. Below are the available options, excluding specific kernel versions:
 
 1. **`linuxPackages`**
@@ -1716,7 +1716,7 @@ NixOS offers several major kernel types to cater to different needs and preferen
 
 <details>
 
-<summary><strong>  I have older generations I want to delete, how can I do that? </strong></summary>
+<summary>**  I have older generations I want to delete, how can I do that? **</summary>
 
 - The `zcli cleanup` command or the `ncg` `(NixOS Clean Generations)` alias will
   remove **ALL** but the most current generation. Make sure you have booted from
@@ -1727,7 +1727,7 @@ NixOS offers several major kernel types to cater to different needs and preferen
 
 <details>
 
-<summary><strong>How do I change the hostname? </strong></summary>
+<summary>**How do I change the hostname? **</summary>
 
 To change the hostname, there are several steps and you will have to reboot to
 make the change effective.
@@ -1749,7 +1749,7 @@ make the change effective.
 
 </details>
 <details>
-<summary><strong> How do I disable the spinning snowflake at startup? </strong></summary>
+<summary>** How do I disable the spinning snowflake at startup? **</summary>
 
 1. Edit the `~/zaneyos/modules/core/boot.nix` file.
 2. Look for:
@@ -1766,7 +1766,7 @@ make the change effective.
 </details>
 
 <details>
- <summary><strong> How do I configure my hybrid laptop with Intel/NVIDIA GPUs?  </strong></summary>
+ <summary>** How do I configure my hybrid laptop with Intel/NVIDIA GPUs?  **</summary>
 
 1. Either run the `install-zaneyos.sh` script and select `nvidia-laptop`
    template or if configuring manually, set the template in the `flake.nix` to
@@ -1791,7 +1791,7 @@ make the change effective.
 </details>
 
 <details>
-<summary><strong>🎨 Stylix</strong></summary>
+<summary>**🎨 Stylix**</summary>
 
 <div style="margin-left: 20px;">
 
@@ -1891,12 +1891,12 @@ stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 </details>
 
 <details>
-<summary><strong>🌃 Wallpapers</strong></summary>
+<summary>**🌃 Wallpapers**</summary>
 
 <div style="margin-left: 20px;">
 
 <details>
-<summary><strong>  How do I add more wallpapers? </strong></summary>
+<summary>**  How do I add more wallpapers? **</summary>
 
 - Wallpapers are stored in the `~/zaneyos/wallpapers` directory.
 - Simply copy the new ones to that diretory.
@@ -1907,7 +1907,7 @@ stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 
 <details>
 
-<summary><strong> How do I change the background? </strong></summary>
+<summary>** How do I change the background? **</summary>
 
 - SUPER + ALT + W will select a new background
 
@@ -1915,7 +1915,7 @@ stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
 
 <details>
 
-<summary><strong>  How can I set a timer to change the wallpaper automatically?  </strong></summary>
+<summary>**  How can I set a timer to change the wallpaper automatically?  **</summary>
 
 1. Edit the `~/zaneyos/modules/home/hyprland/config.nix` file.
 2. Comment out the line `sleep 1.5 && swww img ...`
@@ -1944,7 +1944,7 @@ settings = {
 
 <details>
 
-<summary><strong>How do I change the interval the wallpaper changes?  </strong></summary>
+<summary>**How do I change the interval the wallpaper changes?  **</summary>
 
 1. Edit the `~/zaneyos/modules/home/scripts/wallsetter`
 2. Change the `TIMEOUT =` value. Which is in seconds.
@@ -1958,7 +1958,7 @@ settings = {
 </details>
 
 <details>
-<summary><strong>⬆ How do I update ZaneyOS?  </strong></summary>
+<summary>**⬆ How do I update ZaneyOS?  **</summary>
 
 <div style="margin-left: 20px;">
 
@@ -2037,11 +2037,11 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 </div>
 
-<details><summary><strong>📂 ZaneyOS v2.3 Layout</strong></summary>
+<details><summary>**📂 ZaneyOS v2.3 Layout**</summary>
 
 <div style="margin-left: 25px;">
 
-<h4> 📂 ~/zaneyos </h4>
+** 📂 ~/zaneyos **
 
 ```text
 ~/zaneyos/
@@ -2082,11 +2082,11 @@ It will be announced on the Zaney [Discord](https://discord.gg/W7efsSDS) server.
 
 </details>
 
-<h4>---> 🧰 Miscellaneous</h4>
+**---> 🧰 Miscellaneous**
 
 <details>
 
-<summary><strong>🪧 Rebuild or update fails with Home Manager error can't backup a file</strong></summary>
+<summary>**🪧 Rebuild or update fails with Home Manager error can't backup a file**</summary>
 
 <div style="margin-left: 20px;">
 <br>
@@ -2124,7 +2124,7 @@ May 08 18:33:57 explorer systemd[1]: Failed to start Home Manager environment fo
 
 <details>
 
-<summary><strong>📚 What is the difference between Master and Dwindle layouts</strong></summary>
+<summary>**📚 What is the difference between Master and Dwindle layouts**</summary>
 
 <div style="margin-left: 20px;">
 <br>
@@ -2162,7 +2162,7 @@ To check which layout is currently active, use the `hyprctl` command:
 </details>
 
 <details>
-<summary><strong>📦 What are the Yazi keybindings and how can I change them? </strong></summary>
+<summary>**📦 What are the Yazi keybindings and how can I change them? **</summary>
 
 <div style="margin-left: 20px;"> <br>
 
@@ -2177,7 +2177,7 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
 <details>
 
-<summary><strong> What fonts are avialable in NixOS</strong></summary>
+<summary>** What fonts are avialable in NixOS**</summary>
 
 ```nix
 {pkgs, ...}: {
@@ -2283,10 +2283,10 @@ The keymap is in the `~/zaneyos/modules/home/yazi/keymap.toml` file
 
 </details>
 
-<h4>---> 🖥️ Terminals </h4>
+**---> 🖥️ Terminals **
 
 <details>
-<summary><strong>🐱  Kitty</strong></summary>
+<summary>**🐱  Kitty**</summary>
 
 <details>
 
@@ -2367,7 +2367,7 @@ The defaults are:
 
 <details>
 
-<summary><strong>🇼  WezTerm</strong></summary>
+<summary>**🇼  WezTerm**</summary>
 
 <div style="margin-left: 20px;">
 
@@ -2420,7 +2420,7 @@ ALT + Up Arrow          Move to pane -- Down
 </details>
 
 <details>
-<summary><strong>👻 Ghostty </strong></summary>
+<summary>**👻 Ghostty **</summary>
 
 <div style="margin-left: 20px;">
 
@@ -2498,12 +2498,12 @@ theme = Dracula
 </div>
 </details>
 
-<h4>
+**
 --> 🪧  General NixOS related topics
-</h4>
+**
 
 <details>
-<summary><strong>❄  What are Flakes in NixOS? </strong></summary>
+<summary>**❄  What are Flakes in NixOS? **</summary>
 
 <div style="margin-left: 20px;">
 
@@ -2512,7 +2512,7 @@ standardizes how configurations, dependencies, and packages are managed. If
 you're familiar with tools like `package.json` in JavaScript or `Cargo.toml` in
 Rust, flakes serve a similar purpose in the Nix ecosystem.
 
-<h4> Key Features of Flakes: </h4>
+** Key Features of Flakes: **
 
 1. **Pin Dependencies**:
    - Flakes lock the versions of dependencies in a `flake.lock` file, ensuring
@@ -2534,7 +2534,7 @@ portable and reliable way.
 </details>
 
 <details>
-<summary><strong>🏡  What is NixOS Home Manager? </strong></summary>
+<summary>**🏡  What is NixOS Home Manager? **</summary>
 
 **Home Manager** is a powerful tool in the Nix ecosystem that allows you to
 declaratively manage user-specific configurations and environments. With Home
@@ -2565,7 +2565,7 @@ way to tailor your user experience.
 </details>
 
 <details>
-<summary><strong>🏭  What are Atomic Builds?</strong></summary>
+<summary>**🏭  What are Atomic Builds?**</summary>
 
 **Atomic builds** in NixOS ensure that any system change (like installing
 software or updating the configuration) is applied in a safe and fail-proof way.
@@ -2605,7 +2605,7 @@ philosophy, ensuring that system management is predictable and stress-free.
 </details>
 
 <details>
-<summary><strong>❓ I am new to NIXOS where can I go to get more info? </strong></summary>
+<summary>**❓ I am new to NIXOS where can I go to get more info? **</summary>
 
 - [NIXOS Config Guide](https://www.youtube.com/watch?v=AGVXJ-TIv3Y&t=34s)
 - [VIMJOYER YouTube Channel](https://www.youtube.com/@vimjoyer/videos)
@@ -2616,7 +2616,7 @@ philosophy, ensuring that system management is predictable and stress-free.
 </details>
 
 <details>
-<summary><strong>🏤 Where can I get info on using GIT repositories  </strong></summary>
+<summary>**🏤 Where can I get info on using GIT repositories  **</summary>
 
 - [Managing NIXOS config with GIT](https://www.youtube.com/watch?v=20BN4gqHwaQ)
 - [GIT for dummies](https://www.youtube.com/watch?v=K6Q31YkorUE)
