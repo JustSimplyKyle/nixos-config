@@ -1,16 +1,18 @@
-{host, ...}: let
+{ host, ... }:
+let
   inherit (import ../../hosts/${host}/variables.nix) consoleKeyMap;
-in {
+in
+{
   nix = {
     settings = {
-      download-buffer-size = 250000000;
+      download-buffer-size = 200000000;
       auto-optimise-store = true;
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
   };
   time.timeZone = "America/New_York";
@@ -28,7 +30,7 @@ in {
   };
   environment.variables = {
     NIXOS_OZONE_WL = "1";
-    ZANEYOS_VERSION = "2.3";
+    ZANEYOS_VERSION = "2.4";
     ZANEYOS = "true";
   };
   console.keyMap = "${consoleKeyMap}";

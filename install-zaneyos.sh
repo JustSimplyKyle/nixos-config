@@ -205,7 +205,7 @@ echo -e "   • Asia/Tokyo, Asia/Shanghai, Australia/Sydney"
 echo ""
 read -rp "🌍 Enter your timezone: [America/Chicago] " timeZone
 if [ -z "$timeZone" ]; then
-  timeZone="America/Chicago"
+  timeZone="America/New_York"
 fi
 echo -e "✅ Selected timezone: ${GREEN}$timeZone${NC}"
 sed -i "s|time.timeZone = \".*\";|time.timeZone = \"$timeZone\";|" ./modules/core/system.nix
