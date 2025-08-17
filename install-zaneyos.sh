@@ -32,7 +32,7 @@ print_error() {
 
 # Function to print a success banner
 print_success_banner() {
-  echo -e "${GREEN}╔═════��═════════════════════════════════════════════════════════════════╗${NC}"
+  echo -e "${GREEN}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
   echo -e "${GREEN}║                 ZaneyOS Installation Successful!                      ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
   echo -e "${GREEN}║   Please reboot your system for changes to take full effect.          ║${NC}"
@@ -87,19 +87,29 @@ cd "$HOME" || exit 1
 echo -e "${GREEN}Current directory: $(pwd)${NC}"
 
 print_header "Hostname Configuration"
-echo -e "${RED}⚠️  CRITICAL WARNING: Do NOT use 'default' as your hostname!${NC}"
-echo -e "${RED}   This will overwrite the template host configuration!${NC}"
+
+# Critical warning about using "default" as hostname
+echo -e "${RED}⚠️  IMPORTANT WARNING: Do NOT use 'default' as your hostname!${NC}"
+echo -e "${RED}   The 'default' hostname is a template and will be overwritten during updates.${NC}"
+echo -e "${RED}   This will cause you to lose your configuration!${NC}"
 echo ""
-echo -e "💡 ${GREEN}Suggested hostnames:${NC}"
-echo -e "   • my-desktop, my-laptop, workstation"
-echo -e "   • gaming-rig, dev-machine, home-pc"
-echo -e "   • Use your actual computer name or model"
-echo ""
-read -rp "🏷️  Enter Your New Hostname: [my-desktop] " hostName
+echo -e "💡 Suggested hostnames: my-desktop, gaming-rig, workstation, nixos-laptop"
+read -rp "Enter Your New Hostname: [ my-desktop ] " hostName
 if [ -z "$hostName" ]; then
   hostName="my-desktop"
 fi
-echo -e "✅ Selected hostname: ${GREEN}$hostName${NC}"
+
+# Double-check if user accidentally entered "default"
+if [ "$hostName" = "default" ]; then
+  echo -e "${RED}❌ Error: You cannot use 'default' as hostname. Please choose a different name.${NC}"
+  read -rp "Enter a different hostname: " hostName
+  if [ -z "$hostName" ] || [ "$hostName" = "default" ]; then
+    echo -e "${RED}Setting hostname to 'my-desktop' to prevent configuration loss.${NC}"
+    hostName="my-desktop"
+  fi
+fi
+
+echo -e "${GREEN}✓ Hostname set to: $hostName${NC}"
 
 print_header "GPU Profile Detection"
 
@@ -127,7 +137,7 @@ if lspci | grep -qi 'vga\|3d'; then
   if $has_vm; then
     DETECTED_PROFILE="vm"
   elif $has_nvidia && $has_intel; then
-    DETECTED_PROFILE="nvidia-laptop"
+    DETECTED_PROFILE="hybrid"
   elif $has_nvidia; then
     DETECTED_PROFILE="nvidia"
   elif $has_amd; then
@@ -152,14 +162,19 @@ fi
 # If profile is still empty (either not detected or not confirmed), prompt manually
 if [ -z "$profile" ]; then
   echo -e "${RED}Automatic GPU detection failed or no specific profile found.${NC}"
-  printf "Enter Your Hardware Profile (GPU)\nOptions:\n[ amd ]\nnvidia\nnvidia-laptop\nintel\nvm\nPlease type out your choice: "
-  read -r profile
+  read -rp "Enter Your Hardware Profile (GPU)
+Options:
+[ amd ]
+nvidia
+nvidia-laptop
+intel
+vm
+Please type out your choice: " profile
   if [ -z "$profile" ]; then
     profile="amd"
   fi
   echo -e "${GREEN}Selected GPU profile: $profile${NC}"
 fi
-
 
 print_header "Backup Existing ZaneyOS (if any)"
 
@@ -182,99 +197,114 @@ else
 fi
 
 print_header "Cloning ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git --depth=1 -b stable-2.3  ~/zaneyos
+git clone https://gitlab.com/zaney/zaneyos.git --depth=1 -b main  ~/zaneyos
 cd ~/zaneyos || exit 1
+
+print_header "Git Configuration"
+echo "👤 Setting up git configuration for version control:"
+echo "  This is needed for system updates and configuration management."
+echo ""
+installusername=$(echo $USER)
+echo -e "Current username: ${GREEN}$installusername${NC}"
+read -rp "Enter your full name for git commits [ $installusername ]: " gitUsername
+if [ -z "$gitUsername" ]; then
+  gitUsername="$installusername"
+fi
+
+echo "📧 Examples: john@example.com, jane.doe@company.org"
+read -rp "Enter your email address for git commits [ $installusername@example.com ]: " gitEmail
+if [ -z "$gitEmail" ]; then
+  gitEmail="$installusername@example.com"
+fi
+
+echo -e "${GREEN}✓ Git name: $gitUsername${NC}"
+echo -e "${GREEN}✓ Git email: $gitEmail${NC}"
+
+print_header "Timezone Configuration"
+echo "🌎 Common timezones:"
+echo "  • US: America/New_York, America/Chicago, America/Denver, America/Los_Angeles"
+echo "  • Europe: Europe/London, Europe/Berlin, Europe/Paris, Europe/Rome"
+echo "  • Asia: Asia/Tokyo, Asia/Shanghai, Asia/Seoul, Asia/Kolkata"
+echo "  • Australia: Australia/Sydney, Australia/Melbourne"
+echo "  • UTC (Universal): UTC"
+read -rp "Enter your timezone [ America/New_York ]: " timezone
+if [ -z "$timezone" ]; then
+  timezone="America/New_York"
+fi
+echo -e "${GREEN}✓ Timezone set to: $timezone${NC}"
+
+print_header "Keyboard Layout Configuration"
+echo "🌍 Common keyboard layouts:"
+echo "  • us (US English) - default"
+echo "  • us-intl (US International)"
+echo "  • uk (UK English)"
+echo "  • de (German)"
+echo "  • fr (French)"
+echo "  • es (Spanish)"
+echo "  • it (Italian)"
+echo "  • ru (Russian)"
+echo "  • dvorak (Dvorak)"
+read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
+if [ -z "$keyboardLayout" ]; then
+  keyboardLayout="us"
+fi
+echo -e "${GREEN}✓ Keyboard layout set to: $keyboardLayout${NC}"
+
+print_header "Console Keymap Configuration"
+echo "⌨️  Console keymap (usually matches your keyboard layout):"
+echo "  Most common: us, uk, de, fr, es, it, ru"
+# Smart default: use keyboard layout as console keymap default if it's a common one
+defaultConsoleKeyMap="$keyboardLayout"
+if [[ ! "$keyboardLayout" =~ ^(us|uk|de|fr|es|it|ru|us-intl|dvorak)$ ]]; then
+  defaultConsoleKeyMap="us"
+fi
+read -rp "Enter your console keymap: [ $defaultConsoleKeyMap ] " consoleKeyMap
+if [ -z "$consoleKeyMap" ]; then
+  consoleKeyMap="$defaultConsoleKeyMap"
+fi
+echo -e "${GREEN}✓ Console keymap set to: $consoleKeyMap${NC}"
 
 print_header "Configuring Host and Profile"
 mkdir -p hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 
-installusername=$(echo $USER)
+git config --global user.name "$gitUsername"
+git config --global user.email "$gitEmail"
+git add .
+git config --global --unset-all user.name
+git config --global --unset-all user.email
 
-sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$hostName\"/" ./flake.nix
-sed -i "/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$profile\"/" ./flake.nix
+echo "Updating configuration files with working awk commands..."
 
-print_header "Timezone Configuration"
-echo -e "🌍 ${GREEN}Timezone examples:${NC}"
-echo -e "   • America/New_York (US Eastern)"
-echo -e "   • America/Chicago (US Central)  "
-echo -e "   • America/Denver (US Mountain)"
-echo -e "   • America/Los_Angeles (US Pacific)"
-echo -e "   • Europe/London, Europe/Paris, Europe/Berlin"
-echo -e "   • Asia/Tokyo, Asia/Shanghai, Australia/Sydney"
-echo ""
-read -rp "🌍 Enter your timezone: [America/Chicago] " timeZone
-if [ -z "$timeZone" ]; then
-  timeZone="America/New_York"
-fi
-echo -e "✅ Selected timezone: ${GREEN}$timeZone${NC}"
-sed -i "s|time.timeZone = \".*\";|time.timeZone = \"$timeZone\";|" ./modules/core/system.nix
-echo -e "✅ Updated timezone in configuration"
+# Update flake.nix (simple pattern replacements that work)
+cp ./flake.nix ./flake.nix.bak
+awk -v newhost="$hostName" '/^  host = / { gsub(/"[^"]*"/, "\"" newhost "\""); } { print }' ./flake.nix.bak > ./flake.nix
+cp ./flake.nix ./flake.nix.bak 
+awk -v newprof="$profile" '/^  profile = / { gsub(/"[^"]*"/, "\"" newprof "\""); } { print }' ./flake.nix.bak > ./flake.nix
+cp ./flake.nix ./flake.nix.bak
+awk -v newuser="$installusername" '/^  username = / { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./flake.nix.bak > ./flake.nix
+rm ./flake.nix.bak
 
-print_header "Git Configuration"
-echo -e "📝 ${GREEN}Git configuration info:${NC}"
-echo -e "   • This sets your identity for Git commits"
-echo -e "   • Use your real name and email for proper attribution"
-echo -e "   • This will be used for any future commits to your config"
-echo ""
-read -rp "📝 Enter your Git username: [Your Name] " gitUsername
-if [ -z "$gitUsername" ]; then
-  gitUsername="Your Name"
-fi
-echo -e "✅ Git username: ${GREEN}$gitUsername${NC}"
-echo ""
-read -rp "📧 Enter your Git email: [your.email@example.com] " gitEmail
-if [ -z "$gitEmail" ]; then
-  gitEmail="your.email@example.com"
-fi
-echo -e "✅ Git email: ${GREEN}$gitEmail${NC}"
-sed -i "s/gitUsername = \".*\";/gitUsername = \"$gitUsername\";/" ./hosts/$hostName/variables.nix
-sed -i "s/gitEmail = \".*\";/gitEmail = \"$gitEmail\";/" ./hosts/$hostName/variables.nix
-echo -e "✅ Updated Git configuration"
+# Update timezone in system.nix  
+cp ./modules/core/system.nix ./modules/core/system.nix.bak
+awk -v newtz="$timezone" '/^  time\.timeZone = / { gsub(/"[^"]*"/, "\"" newtz "\""); } { print }' ./modules/core/system.nix.bak > ./modules/core/system.nix
+rm ./modules/core/system.nix.bak
 
-print_header "Keyboard Layout Configuration"
-echo -e "⌨️  ${GREEN}Common keyboard layouts:${NC}"
-echo -e "   • us (US English - QWERTY)"
-echo -e "   • uk (UK English)"
-echo -e "   • de (German QWERTZ)"
-echo -e "   • fr (French AZERTY)"
-echo -e "   • es (Spanish)"
-echo -e "   • it (Italian)"
-echo -e "   • dvorak (Dvorak)"
-echo -e "   • colemak (Colemak)"
-echo ""
-read -rp "⌨️  Enter your keyboard layout: [us] " keyboardLayout
-if [ -z "$keyboardLayout" ]; then
-  keyboardLayout="us"
-fi
-echo -e "✅ Selected keyboard layout: ${GREEN}$keyboardLayout${NC}"
-sed -i "/^[[:space:]]*keyboardLayout[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
-echo -e "✅ Updated keyboard layout in configuration"
+# Update variables in host file
+cp ./hosts/$hostName/variables.nix ./hosts/$hostName/variables.nix.bak
+awk -v newuser="$gitUsername" '/^  gitUsername = / { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./hosts/$hostName/variables.nix.bak > ./hosts/$hostName/variables.nix
+cp ./hosts/$hostName/variables.nix ./hosts/$hostName/variables.nix.bak
+awk -v newemail="$gitEmail" '/^  gitEmail = / { gsub(/"[^"]*"/, "\"" newemail "\""); } { print }' ./hosts/$hostName/variables.nix.bak > ./hosts/$hostName/variables.nix
+cp ./hosts/$hostName/variables.nix ./hosts/$hostName/variables.nix.bak
+awk -v newkb="$keyboardLayout" '/^  keyboardLayout = / { gsub(/"[^"]*"/, "\"" newkb "\""); } { print }' ./hosts/$hostName/variables.nix.bak > ./hosts/$hostName/variables.nix
+cp ./hosts/$hostName/variables.nix ./hosts/$hostName/variables.nix.bak
+awk -v newckm="$consoleKeyMap" '/^  consoleKeyMap = / { gsub(/"[^"]*"/, "\"" newckm "\""); } { print }' ./hosts/$hostName/variables.nix.bak > ./hosts/$hostName/variables.nix
+rm ./hosts/$hostName/variables.nix.bak
 
-print_header "Console Keymap Configuration"
-echo -e "🗺️  ${GREEN}Console keymap info:${NC}"
-echo -e "   • This sets the keyboard layout for text consoles (TTY)"
-echo -e "   • Usually should match your keyboard layout above"
-echo -e "   • Uses same layout names as keyboard layout"
-echo ""
-read -rp "🗺️  Enter your console keymap: [$keyboardLayout] " consoleKeyMap
-if [ -z "$consoleKeyMap" ]; then
-  consoleKeyMap="$keyboardLayout"
-fi
-echo -e "✅ Selected console keymap: ${GREEN}$consoleKeyMap${NC}"
-sed -i "/^[[:space:]]*consoleKeyMap[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$consoleKeyMap\"/" ./hosts/$hostName/variables.nix
-echo -e "✅ Updated console keymap in configuration"
-
-print_header "Username Configuration"
-echo -e "👤 Using current username: ${GREEN}$installusername${NC}"
-sed -i "/^[[:space:]]*username[[:space:]]*=[[:space:]]*\"/ s/\"[^\"]*\"/\"$installusername\"/" ./flake.nix
-echo -e "✅ Updated username in configuration"
+echo "Configuration files updated successfully!"
 
 print_header "Generating Hardware Configuration -- Ignore ERROR: cannot access /bin"
 sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix
-
-print_header "Adding new host to Git"
-git add .
 
 print_header "Setting Nix Configuration"
 NIX_CONFIG="experimental-features = nix-command flakes"
