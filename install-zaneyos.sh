@@ -277,9 +277,10 @@ git config --global --unset-all user.email
 echo "Updating configuration files with working awk commands..."
 
 # Update flake.nix (simple pattern replacements that work)
+# Create backup first, before any changes
 cp ./flake.nix ./flake.nix.bak
-awk -v newhost="$hostName" '/^    host = / { gsub(/"[^"]*"/, "\"" newhost "\""); } { print }' ./flake.nix.bak > ./flake.nix
-cp ./flake.nix ./flake.nix.bak 
+# Use sed for hostname (more reliable)
+sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/s/\"[^\"]*\"/\"$hostName\"/" ./flake.nix.bak
 awk -v newprof="$profile" '/^    profile = / { gsub(/"[^"]*"/, "\"" newprof "\""); } { print }' ./flake.nix.bak > ./flake.nix
 cp ./flake.nix ./flake.nix.bak
 awk -v newuser="$installusername" '/^      username = / { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./flake.nix.bak > ./flake.nix
