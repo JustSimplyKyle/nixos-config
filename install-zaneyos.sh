@@ -278,11 +278,11 @@ echo "Updating configuration files with working awk commands..."
 
 # Update flake.nix (simple pattern replacements that work)
 cp ./flake.nix ./flake.nix.bak
-awk -v newhost="$hostName" '/^  host = / { gsub(/"[^"]*"/, "\"" newhost "\""); } { print }' ./flake.nix.bak > ./flake.nix
+awk -v newhost="$hostName" '/^    host = / { gsub(/"[^"]*"/, "\"" newhost "\""); } { print }' ./flake.nix.bak > ./flake.nix
 cp ./flake.nix ./flake.nix.bak 
-awk -v newprof="$profile" '/^  profile = / { gsub(/"[^"]*"/, "\"" newprof "\""); } { print }' ./flake.nix.bak > ./flake.nix
+awk -v newprof="$profile" '/^    profile = / { gsub(/"[^"]*"/, "\"" newprof "\""); } { print }' ./flake.nix.bak > ./flake.nix
 cp ./flake.nix ./flake.nix.bak
-awk -v newuser="$installusername" '/^  username = / { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./flake.nix.bak > ./flake.nix
+awk -v newuser="$installusername" '/^      username = / { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./flake.nix.bak > ./flake.nix
 rm ./flake.nix.bak
 
 # Update timezone in system.nix  
