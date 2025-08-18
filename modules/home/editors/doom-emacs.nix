@@ -15,14 +15,6 @@
     # LSP servers
     clang-tools # C/C++ LSP
     nil # Nix LSP
-    # Python support
-    python3
-    python311Packages.python-lsp-server
-    python311Packages.pylsp-mypy
-    python311Packages.python-lsp-black
-    python311Packages.pylsp-rope
-    black # Python formatter
-    isort # Python import sorter
   ];
 
   home.file.".doom.d/init.el".text = ''
@@ -88,7 +80,6 @@
      (json +lsp)
      markdown
      (nix +tree-sitter +lsp)
-     python
      toml
      yaml
 
@@ -133,21 +124,6 @@
     ;; Nix LSP (nil) configuration
     (with-eval-after-load 'lsp-nix-nil
       (setq lsp-nix-nil-auto-eval-inputs t))
-
-    ;; Python configuration
-    (after! python
-      (setq python-shell-interpreter "python3")
-      (setq python-shell-interpreter-args "-i")
-      ;; Use black for formatting
-      (set-formatter! 'black "black" :modes '(python-mode))
-      ;; Use isort for import sorting
-      (set-formatter! 'isort "isort" :modes '(python-mode)))
-
-    ;; Python LSP configuration
-    (after! lsp-pyright
-      (setq lsp-pyright-multi-root nil
-            lsp-pyright-auto-import-completions t
-            lsp-pyright-auto-search-paths t))
 
     ;; Company completion settings
     (after! company
