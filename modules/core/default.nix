@@ -1,6 +1,7 @@
-{ inputs
-, host
-, ...
+{
+  inputs,
+  host,
+  ...
 }:
 let
   # Import the host-specific variables.nix
@@ -15,15 +16,11 @@ in
     ./network.nix
     ./nfs.nix
     ./nh.nix
-    ./quickshell.nix
+    #./quickshell.nix  #Disabled for now not using it yet
     ./packages.nix
     ./printing.nix
     # Conditionally import the display manager module
-    (
-      if vars.displayManager == "tui"
-      then ./greetd.nix
-      else ./sddm.nix
-    )
+    (if vars.displayManager == "tui" then ./greetd.nix else ./sddm.nix)
     ./security.nix
     ./services.nix
     ./steam.nix
