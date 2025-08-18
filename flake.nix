@@ -25,7 +25,6 @@
     { nixpkgs
     , home-manager
     , nix-flatpak
-    , ...
     } @ inputs:
     let
       system = "x86_64-linux";
