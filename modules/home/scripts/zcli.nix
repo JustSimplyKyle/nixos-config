@@ -518,7 +518,7 @@ pkgs.writeShellScriptBin "zcli" ''
       echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo "Generating hardware.nix..."
-        sudo ${pkgs.nixos-generate-config}/bin/nixos-generate-config --show-hardware-config > "$HOME/$PROJECT/hosts/$hostname/hardware.nix"
+        sudo nixos-generate-config --show-hardware-config > "$HOME/$PROJECT/hosts/$hostname/hardware.nix"
         echo "hardware.nix generated."
       fi
 
