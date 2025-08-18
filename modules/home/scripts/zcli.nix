@@ -249,9 +249,9 @@ pkgs.writeShellScriptBin "zcli" ''
     done
     
     # Print friendly confirmation of selected options to stderr so it doesn't interfere with return value
-    if [[ ${#options_selected[@]} -gt 0 ]]; then
+    if [[ ''${#options_selected[@]} -gt 0 ]]; then
       echo "Options selected:" >&2
-      for option in "${options_selected[@]}"; do
+      for option in "''${options_selected[@]}"; do
         echo "  ✓ $option" >&2
       done
       echo >&2
