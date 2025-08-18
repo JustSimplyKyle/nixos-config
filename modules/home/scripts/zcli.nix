@@ -5,7 +5,59 @@
 }:
 let
   backupFilesString = pkgs.lib.strings.concatStringsSep " " backupFiles;
+  
+  # Create the get-doom script as a dependency
+  get-doom-script = pkgs.writeShellScriptBin "get-doom" ''
+    #!/usr/bin/env bash
+    set -e
+
+    # --- Icons ---
+    ICON_CHECK="✔"
+    ICON_INFO="ℹ"
+    ICON_ROCKET="🚀"
+
+    # --- Helper Functions ---
+    print_status() {
+      echo
+      echo "--- $ICON_INFO $1 ---"
+    }
+
+    print_success() {
+      echo "--- $ICON_CHECK $1 ---"
+    }
+
+    print_banner() {
+      echo "==============================="
+      echo " Doom Emacs Installer $ICON_ROCKET"
+      echo "==============================="
+    }
+
+    # --- Main Script ---
+    print_banner
+    EMACSDIR="$HOME/.emacs.d"
+
+    if [ -d "$EMACSDIR" ]; then
+      print_success "Doom Emacs is already installed."
+      exit 0
+    fi
+
+    print_status "Cloning Doom Emacs..."
+    ${pkgs.git}/bin/git clone --depth 1 https://github.com/doomemacs/doomemacs "$EMACSDIR"
+    print_success "Doom Emacs cloned."
+
+    print_status "Running Doom install..."
+    "$EMACSDIR/bin/doom" install
+    print_success "Doom install complete."
+
+    print_status "Running doom sync..."
+    "$EMACSDIR/bin/doom" sync
+    print_success "Doom sync complete."
+
+    echo
+    print_success "All done! Doom Emacs is ready to use."
+  '';
 in
+
 pkgs.writeShellScriptBin "zcli" ''
   #!${pkgs.bash}/bin/bash
   set -euo pipefail
@@ -74,7 +126,7 @@ pkgs.writeShellScriptBin "zcli" ''
     
     # Extract the host value from flake.nix
     if [ -f "$FLAKE_NIX_PATH" ]; then
-      flake_hostname=$(grep -E '^[[:space:]]*host[[:space:]]*=' "$FLAKE_NIX_PATH" | sed 's/.*=[[:space:]]*"\([^"]*\)".*/\1/')
+      flake_hostname=$(${pkgs.gnugrep}/bin/grep -E '^[[:space:]]*host[[:space:]]*=' "$FLAKE_NIX_PATH" | ${pkgs.gnused}/bin/sed 's/.*=[[:space:]]*"\([^"]*\)".*/\1/')
       
       if [ -z "$flake_hostname" ]; then
         echo "Error: Could not find 'host' variable in $FLAKE_NIX_PATH" >&2
@@ -159,19 +211,19 @@ pkgs.writeShellScriptBin "zcli" ''
     local has_amd=false
     local has_vm=false
 
-    if lspci &> /dev/null; then # Check if lspci is available
-      if lspci | grep -qi 'vga\|3d'; then
+    if ${pkgs.pciutils}/bin/lspci &> /dev/null; then # Check if lspci is available
+      if ${pkgs.pciutils}/bin/lspci | ${pkgs.gnugrep}/bin/grep -qi 'vga\|3d'; then
         while read -r line; do
-          if echo "$line" | grep -qi 'nvidia'; then
+          if echo "$line" | ${pkgs.gnugrep}/bin/grep -qi 'nvidia'; then
             has_nvidia=true
-          elif echo "$line" | grep -qi 'amd'; then
+          elif echo "$line" | ${pkgs.gnugrep}/bin/grep -qi 'amd'; then
             has_amd=true
-          elif echo "$line" | grep -qi 'intel'; then
+          elif echo "$line" | ${pkgs.gnugrep}/bin/grep -qi 'intel'; then
             has_intel=true
-          elif echo "$line" | grep -qi 'virtio\|vmware'; then
+          elif echo "$line" | ${pkgs.gnugrep}/bin/grep -qi 'virtio\|vmware'; then
             has_vm=true
           fi
-        done < <(lspci | grep -i 'vga\|3d')
+        done < <(${pkgs.pciutils}/bin/lspci | ${pkgs.gnugrep}/bin/grep -i 'vga\|3d')
 
         if "$has_vm"; then
           detected_profile="vm"
@@ -277,7 +329,7 @@ pkgs.writeShellScriptBin "zcli" ''
         read -p "This will remove all but the current generation. Continue (y/N)? " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-          nh clean all -v
+          ${pkgs.nh}/bin/nh clean all -v
         else
           echo "Cleanup cancelled."
         fi
@@ -285,7 +337,7 @@ pkgs.writeShellScriptBin "zcli" ''
         read -p "This will keep the last $keep_count generations. Continue (y/N)? " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-          nh clean all -k "$keep_count" -v
+          ${pkgs.nh}/bin/nh clean all -k "$keep_count" -v
         else
           echo "Cleanup cancelled."
         fi
@@ -293,14 +345,14 @@ pkgs.writeShellScriptBin "zcli" ''
 
       LOG_DIR="$HOME/zcli-cleanup-logs"
       mkdir -p "$LOG_DIR"
-      LOG_FILE="$LOG_DIR/zcli-cleanup-$(date +%Y-%m-%d_%H-%M-%S).log"
+      LOG_FILE="$LOG_DIR/zcli-cleanup-$(${pkgs.coreutils}/bin/date +%Y-%m-%d_%H-%M-%S).log"
       echo "Cleaning up old log files..." >> "$LOG_FILE"
-      find "$LOG_DIR" -type f -mtime +3 -name "*.log" -delete >> "$LOG_FILE" 2>&1
+      ${pkgs.findutils}/bin/find "$LOG_DIR" -type f -mtime +3 -name "*.log" -delete >> "$LOG_FILE" 2>&1
       echo "Cleanup process logged to $LOG_FILE"
       ;;
     diag)
       echo "Generating system diagnostic report..."
-      inxi --full > "$HOME/diag.txt"
+      ${pkgs.inxi}/bin/inxi --full > "$HOME/diag.txt"
       echo "Diagnostic report saved to $HOME/diag.txt"
       ;;
     help)
@@ -308,10 +360,10 @@ pkgs.writeShellScriptBin "zcli" ''
       ;;
     list-gens)
       echo "--- User Generations ---"
-      nix-env --list-generations | cat || echo "Could not list user generations."
+      ${pkgs.nix}/bin/nix-env --list-generations | ${pkgs.coreutils}/bin/cat || echo "Could not list user generations."
       echo ""
       echo "--- System Generations ---"
-      nix profile history --profile /nix/var/nix/profiles/system | cat || echo "Could not list system generations."
+      ${pkgs.nix}/bin/nix profile history --profile /nix/var/nix/profiles/system | ${pkgs.coreutils}/bin/cat || echo "Could not list system generations."
       ;;
     rebuild)
       verify_hostname
@@ -320,8 +372,8 @@ pkgs.writeShellScriptBin "zcli" ''
       # Parse additional arguments
       extra_args=$(parse_nh_args "$@")
       
-      echo "Starting NixOS rebuild for host: $(hostname)"
-      if eval "nh os switch --hostname '$PROFILE' $extra_args"; then
+      echo "Starting NixOS rebuild for host: $(${pkgs.nettools}/bin/hostname)"
+      if eval "${pkgs.nh}/bin/nh os switch --hostname '$PROFILE' $extra_args"; then
         echo "Rebuild finished successfully"
       else
         echo "Rebuild Failed" >&2
@@ -335,9 +387,9 @@ pkgs.writeShellScriptBin "zcli" ''
       # Parse additional arguments
       extra_args=$(parse_nh_args "$@")
       
-      echo "Starting NixOS rebuild (boot) for host: $(hostname)"
+      echo "Starting NixOS rebuild (boot) for host: $(${pkgs.nettools}/bin/hostname)"
       echo "Note: Configuration will be activated on next reboot"
-      if eval "nh os boot --hostname '$PROFILE' $extra_args"; then
+      if eval "${pkgs.nh}/bin/nh os boot --hostname '$PROFILE' $extra_args"; then
         echo "Rebuild-boot finished successfully"
         echo "New configuration set as boot default - restart to activate"
       else
@@ -351,7 +403,7 @@ pkgs.writeShellScriptBin "zcli" ''
       echo # move to a new line
       if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo "Running fstrim..."
-        sudo fstrim -v /
+        sudo ${pkgs.util-linux}/bin/fstrim -v /
         echo "fstrim complete."
       else
         echo "Trim operation cancelled."
@@ -364,8 +416,8 @@ pkgs.writeShellScriptBin "zcli" ''
       # Parse additional arguments
       extra_args=$(parse_nh_args "$@")
       
-      echo "Updating flake and rebuilding system for host: $(hostname)"
-      if eval "nh os switch --hostname '$PROFILE' --update $extra_args"; then
+      echo "Updating flake and rebuilding system for host: $(${pkgs.nettools}/bin/hostname)"
+      if eval "${pkgs.nh}/bin/nh os switch --hostname '$PROFILE' --update $extra_args"; then
         echo "Update and rebuild finished successfully"
       else
         echo "Update and rebuild Failed" >&2
@@ -381,7 +433,7 @@ pkgs.writeShellScriptBin "zcli" ''
         target_profile="$3"
       elif [ "$#" -eq 1 ]; then # zcli update-host (auto-detect)
         echo "Attempting to auto-detect hostname and GPU profile..."
-        target_hostname=$(hostname)
+        target_hostname=$(${pkgs.nettools}/bin/hostname)
         target_profile=$(detect_gpu_profile)
 
         if [ -z "$target_profile" ]; then
@@ -400,7 +452,7 @@ pkgs.writeShellScriptBin "zcli" ''
       echo "Updating $FLAKE_NIX_PATH..."
 
       # Update host
-      if sed -i "s/^[[:space:]]*host[[:space:]]*=[[:space:]]*\".*\"/    host = \"$target_hostname\"/" "$FLAKE_NIX_PATH"; then
+      if ${pkgs.gnused}/bin/sed -i "s/^[[:space:]]*host[[:space:]]*=[[:space:]]*\".*\"/    host = \"$target_hostname\"/" "$FLAKE_NIX_PATH"; then
         echo "Successfully updated host to: $target_hostname"
       else
         echo "Error: Failed to update host in $FLAKE_NIX_PATH" >&2
@@ -408,7 +460,7 @@ pkgs.writeShellScriptBin "zcli" ''
       fi
 
       # Update profile
-      if sed -i "s/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\".*\"/    profile = \"$target_profile\"/" "$FLAKE_NIX_PATH"; then
+      if ${pkgs.gnused}/bin/sed -i "s/^[[:space:]]*profile[[:space:]]*=[[:space:]]*\".*\"/    profile = \"$target_profile\"/" "$FLAKE_NIX_PATH"; then
         echo "Successfully updated profile to: $target_profile"
       else
         echo "Error: Failed to update profile in $FLAKE_NIX_PATH" >&2
@@ -438,7 +490,7 @@ pkgs.writeShellScriptBin "zcli" ''
       fi
 
       echo "Copying default host configuration..."
-      cp -r "$HOME/$PROJECT/hosts/default" "$HOME/$PROJECT/hosts/$hostname"
+      ${pkgs.coreutils}/bin/cp -r "$HOME/$PROJECT/hosts/default" "$HOME/$PROJECT/hosts/$hostname"
 
       detected_profile=""
       if [[ -n "$profile_arg" && "$profile_arg" =~ ^(intel|amd|nvidia|nvidia-hybrid|vm)$ ]]; then
@@ -460,18 +512,18 @@ pkgs.writeShellScriptBin "zcli" ''
       fi
 
       echo "Setting profile to '$detected_profile'..."
-      sed -i "s/profile = .*/profile = \"$detected_profile\";/" "$HOME/$PROJECT/hosts/$hostname/default.nix"
+      ${pkgs.gnused}/bin/sed -i "s/profile = .*/profile = \"$detected_profile\";/" "$HOME/$PROJECT/hosts/$hostname/default.nix"
 
       read -p "Generate new hardware.nix? (y/n) " -n 1 -r
       echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo "Generating hardware.nix..."
-        sudo nixos-generate-config --show-hardware-config > "$HOME/$PROJECT/hosts/$hostname/hardware.nix"
+        sudo ${pkgs.nixos-generate-config}/bin/nixos-generate-config --show-hardware-config > "$HOME/$PROJECT/hosts/$hostname/hardware.nix"
         echo "hardware.nix generated."
       fi
 
       echo "Adding new host to git..."
-      git -C "$HOME/$PROJECT" add .
+      ${pkgs.git}/bin/git -C "$HOME/$PROJECT" add .
       echo "hostname: $hostname added"
       ;;
     del-host)
@@ -491,8 +543,8 @@ pkgs.writeShellScriptBin "zcli" ''
       echo
       if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo "Deleting host '$hostname'..."
-        rm -rf "$HOME/$PROJECT/hosts/$hostname"
-        git -C "$HOME/$PROJECT" add .
+        ${pkgs.coreutils}/bin/rm -rf "$HOME/$PROJECT/hosts/$hostname"
+        ${pkgs.git}/bin/git -C "$HOME/$PROJECT" add .
         echo "hostname: $hostname removed"
       else
         echo "Deletion cancelled."
@@ -509,12 +561,7 @@ pkgs.writeShellScriptBin "zcli" ''
       case "$doom_subcommand" in
         install)
           echo "Installing Doom Emacs..."
-          if command -v get-doom >/dev/null; then
-            get-doom
-          else
-            echo "Error: get-doom script not found. Make sure doom-emacs-install.nix is enabled in your configuration." >&2
-            exit 1
-          fi
+          ${get-doom-script}/bin/get-doom
           ;;
         status)
           if [ -d "$HOME/.emacs.d" ] && [ -x "$HOME/.emacs.d/bin/doom" ]; then
@@ -537,7 +584,7 @@ pkgs.writeShellScriptBin "zcli" ''
           echo
           if [[ $REPLY =~ ^[Yy]$ ]]; then
             echo "Removing Doom Emacs..."
-            rm -rf "$HOME/.emacs.d"
+            ${pkgs.coreutils}/bin/rm -rf "$HOME/.emacs.d"
             echo "✔ Doom Emacs has been removed"
           else
             echo "Removal cancelled"
