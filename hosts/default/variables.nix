@@ -17,6 +17,8 @@
   vscodeEnable = false;
   # Note: This is evil-helix with VIM keybindings by default
   helixEnable = false;
+  #To install rebuild, then run zcli doom install
+  doomEmacsEnable = false;
 
   # Hyprland Settings
   # Examples:

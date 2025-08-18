@@ -16,6 +16,8 @@
   ghosttyEnable = true;
   vscodeEnable = true;
   helixEnable = true;
+  #To install rebuild, then run zcli doom install
+  doomEmacsEnable = false;
 
   # P10K or starship prompt
   userPrompt = "starship";

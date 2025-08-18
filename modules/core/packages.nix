@@ -32,12 +32,12 @@
     # Hyprland systeminfo QT  (Optional)
     #inputs.hyprsysteminfo.packages.${pkgs.system}.default
 
-    aider-chat # AI in terminal (Client only)
+    #aider-chat # AI in terminal (Optional: Client only)
     amfora # Fancy Terminal Browser For Gemini Protocol
     appimage-run # Needed For AppImage Support
     brave # Brave Browser
     brightnessctl # For Screen Brightness Control
-    #claude-code # Claude code terminal AI (Client only)
+    #claude-code # Claude code terminal AI (Optional: Client only)
     cliphist # Clipboard manager using rofi menu
     cmatrix # Matrix Movie Effect In Terminal
     cowsay # Great Fun Terminal Program
@@ -48,7 +48,7 @@
     ffmpeg # Terminal Video / Audio Editing
     file-roller # Archive Manager
     gedit # Simple Graphical Text Editor
-    gemini-cli # CLI AI client ONLY
+    #gemini-cli # CLI AI client ONLY (optional)
     gimp # Great Photo Editor
     glxinfo # needed for inxi diag util
     greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)

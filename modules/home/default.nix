@@ -8,6 +8,7 @@ let
     weztermEnable
     vscodeEnable
     helixEnable
+    doomEmacsEnable
     ;
 in
 {
@@ -19,8 +20,6 @@ in
     ./btop.nix
     ./bottom.nix
     ./cava.nix
-    ./editors/doom-emacs.nix
-    ./editors/doom-emacs-install.nix
     ./emoji.nix
     ./eza.nix
     ./fastfetch
@@ -55,6 +54,15 @@ in
   ]
   ++ (if helixEnable then [ ./evil-helix.nix ] else [ ])
   ++ (if vscodeEnable then [ ./vscode.nix ] else [ ])
+  ++ (
+    if doomEmacsEnable then
+      [
+        ./editors/doom-emacs-install.nix
+        ./editors/doom-emacs.nix
+      ]
+    else
+      [ ]
+  )
   ++ (if weztermEnable then [ ./wezterm.nix ] else [ ])
   ++ (if ghosttyEnable then [ ./ghostty.nix ] else [ ])
   ++ (if tmuxEnable then [ ./tmux.nix ] else [ ])

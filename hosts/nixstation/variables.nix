@@ -1,10 +1,29 @@
 {
   # Git Configuration ( For Pulling Software Repos )
-  gitUsername = "Tyler Kelley";
-  gitEmail = "tylerzanekelley@gmail.com";
+  gitUsername = "Tyler Kelly";
+  gitEmail = "tylerzanekelly@gmail.com";
+
+  # Set Displau Manager
+  # `tui` for Text login
+  # `sddm` for graphical GUI
+  # SDDM background is set with stylixImage
+  displayManager = "sddm";
+
+  # Emable/disable bundled applications
+  tmuxEnable = false;
+  alacrittyEnable = false;
+  weztermEnable = false;
+  ghosttyEnable = false;
+  vscodeEnable = false;
+  helixEnable = false;
+  #To install rebuild, then run zcli doom install
+  doomEmacsEnable = false;
+
+  # P10K or starship prompt
+  userPrompt = "starship";
 
   # Hyprland Settings
-  extraMonitorSettings = "";
+  extraMonitorSettings = "monitor=Virtual-1,1920x1080@75,auto,1";
 
   # Waybar Settings
   clock24h = false;
@@ -25,20 +44,43 @@
   # Enable Printing Support
   printEnable = false;
 
+  # Enable Thunar GUI File Manager
+  thunarEnable = true;
+
   # Set Stylix Image
+  # This will set your color palette
+  # Default background
+  # Add new images to ~/zaneyos/wallpapers
+  #stylixImage = ../../wallpapers/mountainscapedark.jpg;
   stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
+  #stylixImage = ../../wallpapers/Anime-Purple-eyes.png;
+  #stylixImage = ../../wallpapers/Rainnight.jpg;
+  #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
+  #stylixImage = ../../wallpapers/nix-wallpapers-strips-logo.jpg;
+  #stylixImage = ../../wallpapers/beautifulmountainscape.jpg;
 
   # Set Waybar
-  # Includes alternates such as waybar-simple.nix & waybar-ddubs.nix
-  waybarChoice = ../../modules/home/waybar/waybar-simple.nix;
+  # Available options:
+  #waybarChoice= ../../modules/home/waybar/waybar-simple.nix;
+  waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-jerry.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-dwm.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-dwm-2.nix;
 
   # Set Animation style
   # Available options are:
   # animations-def.nix  (default)
   # animations-end4.nix (end-4 project)
   # animations-dynamic.nix (ml4w project)
+  # animations-moving.nix (ml4w project)
   animChoice = ../../modules/home/hyprland/animations-end4.nix;
+  #animChoice = ../../modules/home/hyprland/animations-def.nix;
+  #animChoice = ../../modules/home/hyprland/animations-dynamic.nix;
+  #animChoice = ../../modules/home/hyprland/animations-moving.nix;
 
-  # Enable Thunar GUI File Manager
-  thunarEnable = false;
+  # Set network hostId if required (needed for zfs)
+  # Otherwise leave as-is
+  hostId = "5ab03f50";
 }
