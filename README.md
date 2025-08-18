@@ -221,6 +221,7 @@ You can still run the `install.sh` script if you want to.
 
 ```
 cp -r hosts/default hosts/<your-desired-hostname>
+git add .
 ```
 
 4. Edit `hosts/<your-desired-hostname>/variables.nix`.
