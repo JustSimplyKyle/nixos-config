@@ -10,20 +10,103 @@ pkgs.writeShellScriptBin "zcli" ''
   #!${pkgs.bash}/bin/bash
   set -euo pipefail
 
+  # --- Program info ---
+  #
+  # zcli - NixOS System Management CLI
+  # ==================================
+  #
+  #    Purpose: NixOS system management utility for ZaneyOS distribution
+  #     Author: Don Williams (ddubs) & Zaney
+  # Start Date: June 7th, 2025
+  #    Version: 1.0.2
+  #
+  # Architecture:
+  # - Nix-generated shell script using writeShellScriptBin
+  # - Configuration via Nix parameters (profile, backupFiles)
+  # - Uses 'nh' tool for NixOS operations, 'inxi' for diagnostics
+  # - Git integration for host configuration versioning
+  #
+  # Helper Functions:
+  # verify_hostname()     - Validates current hostname against flake.nix host variable
+  #                        Exits with error if mismatch or missing host directory
+  # detect_gpu_profile()  - Parses lspci output to identify GPU hardware
+  #                        Returns: nvidia/nvidia-laptop/amd/intel/vm/empty
+  # handle_backups()      - Removes files listed in BACKUP_FILES array from $HOME
+  # parse_nh_args()      - Parses command-line arguments for nh operations
+  # print_help()         - Outputs command usage and available operations
+  #
+  # Command Functions:
+  # cleanup              - Interactive cleanup of old generations via 'nh clean'
+  # diag                 - Generate system report using 'inxi --full'
+  # list-gens           - Display user/system generations via nix-env and nix profile
+  # rebuild             - NixOS rebuild using 'nh os switch'
+  # rebuild-boot        - NixOS rebuild for next boot using 'nh os boot'
+  # trim                - SSD optimization via 'sudo fstrim -v /'
+  # update              - Flake update + rebuild using 'nh os switch --update'
+  # update-host         - Modify flake.nix host/profile variables via sed
+  # add-host            - Add new host configuration
+  # del-host            - Delete host configuration
+  # doom [sub]          - Doom Emacs management (install/status/remove/update)
+  #
+  # Variables:
+  # PROJECT             - Base directory name (ddubsos/zaneyos)
+  # PROFILE             - Hardware profile from Nix parameter
+  # BACKUP_FILES        - Array of backup file paths to clean
+  # FLAKE_NIX_PATH      - Path to flake.nix for host/profile updates
+  #
+
+
   # --- Configuration ---
   PROJECT="zaneyos"   #ddubos or zaneyos
   PROFILE="${profile}"
   BACKUP_FILES_STR="${backupFilesString}"
-  VERSION="1.0.1"
+  VERSION="1.0.2"
   FLAKE_NIX_PATH="$HOME/$PROJECT/flake.nix"
 
   read -r -a BACKUP_FILES <<< "$BACKUP_FILES_STR"
 
   # --- Helper Functions ---
+  verify_hostname() {
+    local current_hostname
+    local flake_hostname
+    
+    current_hostname="$(hostname)"
+    
+    # Extract the host value from flake.nix
+    if [ -f "$FLAKE_NIX_PATH" ]; then
+      flake_hostname=$(grep -E '^[[:space:]]*host[[:space:]]*=' "$FLAKE_NIX_PATH" | sed 's/.*=[[:space:]]*"\([^"]*\)".*/\1/')
+      
+      if [ -z "$flake_hostname" ]; then
+        echo "Error: Could not find 'host' variable in $FLAKE_NIX_PATH" >&2
+        exit 1
+      fi
+      
+      if [ "$current_hostname" != "$flake_hostname" ]; then
+        echo "Error: Hostname mismatch!" >&2
+        echo "  Current hostname: '$current_hostname'" >&2
+        echo "  Flake.nix host:   '$flake_hostname'" >&2
+        echo "" >&2
+        echo "Hint: Run 'zcli update-host' to automatically update flake.nix" >&2
+        echo "      or manually edit $FLAKE_NIX_PATH" >&2
+        exit 1
+      fi
+    else
+      echo "Error: Flake.nix not found at $FLAKE_NIX_PATH" >&2
+      exit 1
+    fi
+    
+    # Also check if host folder exists
+    local folder="$HOME/$PROJECT/hosts/$current_hostname"
+    if [ ! -d "$folder" ]; then
+      echo "Error: Matching host not found in $PROJECT, Missing folder: $folder" >&2
+      exit 1
+    fi
+  }
+
   print_help() {
     echo "ZaneyOS CLI Utility -- version $VERSION"
     echo ""
-    echo "Usage: zcli [command]"
+    echo "Usage: zcli [command] [options]"
     echo ""
     echo "Commands:"
     echo "  cleanup         - Clean up old system generations. Can specify a number to keep."
@@ -36,6 +119,19 @@ pkgs.writeShellScriptBin "zcli" ''
     echo "  update          - Update the flake and rebuild the system."
     echo "  update-host     - Auto set host and profile in flake.nix."
     echo "                    (Opt: zcli update-host [hostname] [profile])"
+    echo ""
+    echo "Options for rebuild, rebuild-boot, and update commands:"
+    echo "  --dry, -n       - Show what would be done without doing it"
+    echo "  --ask, -a       - Ask for confirmation before proceeding"
+    echo "  --cores N       - Limit build to N cores (useful for VMs)"
+    echo "  --verbose, -v   - Show verbose output"
+    echo "  --no-nom        - Don't use nix-output-monitor"
+    echo ""
+    echo "Doom Emacs:"
+    echo "  doom install    - Install Doom Emacs using get-doom script."
+    echo "  doom status     - Check if Doom Emacs is installed."
+    echo "  doom remove     - Remove Doom Emacs installation."
+    echo "  doom update     - Update Doom Emacs (runs doom sync)."
     echo ""
     echo "  help            - Show this help message."
   }
@@ -95,6 +191,76 @@ pkgs.writeShellScriptBin "zcli" ''
     echo "$detected_profile" # Return the detected profile
   }
 
+  # --- Helper function to parse additional arguments ---
+  parse_nh_args() {
+    local args_string=""
+    local options_selected=()
+    shift # Remove the main command (rebuild, rebuild-boot, update)
+    
+    while [[ $# -gt 0 ]]; do
+      case $1 in
+        --dry|-n)
+          args_string="$args_string --dry"
+          options_selected+=("dry run mode (showing what would be done)")
+          shift
+          ;;
+        --ask|-a)
+          args_string="$args_string --ask"
+          options_selected+=("confirmation prompts enabled")
+          shift
+          ;;
+        --cores)
+          if [[ -n $2 && $2 =~ ^[0-9]+$ ]]; then
+            args_string="$args_string -- --cores $2"
+            options_selected+=("limited to $2 CPU cores")
+            shift 2
+          else
+            echo "Error: --cores requires a numeric argument" >&2
+            exit 1
+          fi
+          ;;
+        --verbose|-v)
+          args_string="$args_string --verbose"
+          options_selected+=("verbose output enabled")
+          shift
+          ;;
+        --no-nom)
+          args_string="$args_string --no-nom"
+          options_selected+=("nix-output-monitor disabled")
+          shift
+          ;;
+        --)
+          shift
+          args_string="$args_string -- $*"
+          options_selected+=("additional arguments: $*")
+          break
+          ;;
+        -*)
+          echo "Warning: Unknown flag '$1' - passing through to nh" >&2
+          args_string="$args_string $1"
+          options_selected+=("unknown flag '$1' passed through")
+          shift
+          ;;
+        *)
+          echo "Error: Unexpected argument '$1'" >&2
+          exit 1
+          ;;
+      esac
+    done
+    
+    # Print friendly confirmation of selected options to stderr so it doesn't interfere with return value
+    if [[ ${#options_selected[@]} -gt 0 ]]; then
+      echo "Options selected:" >&2
+      for option in "${options_selected[@]}"; do
+        echo "  ✓ $option" >&2
+      done
+      echo >&2
+    fi
+    
+    # Return only the args string
+    echo "$args_string"
+  }
+
   # --- Main Logic ---
   if [ "$#" -eq 0 ]; then
     echo "Error: No command provided." >&2
@@ -148,9 +314,14 @@ pkgs.writeShellScriptBin "zcli" ''
       nix profile history --profile /nix/var/nix/profiles/system | cat || echo "Could not list system generations."
       ;;
     rebuild)
+      verify_hostname
       handle_backups
+      
+      # Parse additional arguments
+      extra_args=$(parse_nh_args "$@")
+      
       echo "Starting NixOS rebuild for host: $(hostname)"
-      if nh os switch --hostname "$PROFILE"; then
+      if eval "nh os switch --hostname '$PROFILE' $extra_args"; then
         echo "Rebuild finished successfully"
       else
         echo "Rebuild Failed" >&2
@@ -158,10 +329,15 @@ pkgs.writeShellScriptBin "zcli" ''
       fi
       ;;
     rebuild-boot)
+      verify_hostname
       handle_backups
+      
+      # Parse additional arguments
+      extra_args=$(parse_nh_args "$@")
+      
       echo "Starting NixOS rebuild (boot) for host: $(hostname)"
       echo "Note: Configuration will be activated on next reboot"
-      if nh os boot --hostname "$PROFILE"; then
+      if eval "nh os boot --hostname '$PROFILE' $extra_args"; then
         echo "Rebuild-boot finished successfully"
         echo "New configuration set as boot default - restart to activate"
       else
@@ -182,9 +358,14 @@ pkgs.writeShellScriptBin "zcli" ''
       fi
       ;;
     update)
+      verify_hostname
       handle_backups
+      
+      # Parse additional arguments
+      extra_args=$(parse_nh_args "$@")
+      
       echo "Updating flake and rebuilding system for host: $(hostname)"
-      if nh os switch --hostname "$PROFILE" --update; then
+      if eval "nh os switch --hostname '$PROFILE' --update $extra_args"; then
         echo "Update and rebuild finished successfully"
       else
         echo "Update and rebuild Failed" >&2
@@ -316,6 +497,68 @@ pkgs.writeShellScriptBin "zcli" ''
       else
         echo "Deletion cancelled."
       fi
+      ;;
+    doom)
+      if [ "$#" -lt 2 ]; then
+        echo "Error: doom command requires a subcommand." >&2
+        echo "Usage: zcli doom [install|status|remove|update]" >&2
+        exit 1
+      fi
+
+      doom_subcommand="$2"
+      case "$doom_subcommand" in
+        install)
+          echo "Installing Doom Emacs..."
+          if command -v get-doom >/dev/null; then
+            get-doom
+          else
+            echo "Error: get-doom script not found. Make sure doom-emacs-install.nix is enabled in your configuration." >&2
+            exit 1
+          fi
+          ;;
+        status)
+          if [ -d "$HOME/.emacs.d" ] && [ -x "$HOME/.emacs.d/bin/doom" ]; then
+            echo "✔ Doom Emacs is installed at $HOME/.emacs.d"
+            echo "Version information:"
+            "$HOME/.emacs.d/bin/doom" version 2>/dev/null || echo "Could not get version information"
+          else
+            echo "✗ Doom Emacs is not installed"
+            echo "Run 'zcli doom install' to install it"
+          fi
+          ;;
+        remove)
+          if [ ! -d "$HOME/.emacs.d" ]; then
+            echo "Doom Emacs is not installed"
+            exit 0
+          fi
+
+          echo "Warning: This will completely remove Doom Emacs and all your configuration!"
+          read -p "Are you sure you want to continue? (y/N) " -n 1 -r
+          echo
+          if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo "Removing Doom Emacs..."
+            rm -rf "$HOME/.emacs.d"
+            echo "✔ Doom Emacs has been removed"
+          else
+            echo "Removal cancelled"
+          fi
+          ;;
+        update)
+          if [ ! -d "$HOME/.emacs.d" ] || [ ! -x "$HOME/.emacs.d/bin/doom" ]; then
+            echo "Error: Doom Emacs is not installed. Run 'zcli doom install' first." >&2
+            exit 1
+          fi
+
+          echo "Updating Doom Emacs..."
+          "$HOME/.emacs.d/bin/doom" sync
+          echo "✔ Doom Emacs update complete"
+          ;;
+        *)
+          echo "Error: Invalid doom subcommand '$doom_subcommand'" >&2
+          echo "Usage: zcli doom [install|status|remove|update]" >&2
+          exit 1
+          ;;
+      esac
       ;;
     *)
       echo "Error: Invalid command '$1'" >&2

@@ -13,35 +13,52 @@
 <div style="margin-left: 20px;">
 
 The `zcli` utility is a command-line tool designed to simplify the management of
-your `zaneyos` environment. It provides a set of commands to perform common
-tasks such as updating your system, managing hosts, and cleaning up old
-generations.
+your `zaneyos` environment. It provides a comprehensive set of commands to perform common
+tasks such as updating your system, managing hosts, cleaning up old generations,
+and managing Doom Emacs.
 
 To use it, open a terminal and type `zcli` followed by one of the commands
 listed below:
 
-- `cleanup`: Clean up old system generations. -- You can specify the number of
-  generations to keep.
+## Core System Commands:
+- `cleanup`: Clean up old system generations. You can specify the number of generations to keep.
 - `diag`: Create a system diagnostic report, saved to `~/diag.txt`.
 - `list-gens`: List user and system generations.
 - `rebuild`: Rebuild the NixOS system configuration.
+- `rebuild-boot`: Rebuild and set as boot default (activates on next restart).
 - `trim`: Trim filesystems to improve SSD performance.
 - `update`: Update the flake and rebuild the system.
-- `update-host`: Automatically set the host and profile in `flake.nix`. -- It
-  will get current hostname and run GPU detect code
-- `add-host`: Add a new host configuration. -- It runs hostname and GPU
-  auto-detect -- You can specify the `hostname` and GPU `profile`
-- `zcli add-host [hostname] [profile]` -- Profiles (GPU) are `amd`, `intel`,
-  `nvidia`, `nvidia-hybrid`, and `vm`
-- `del-host`: Delete a host configuration. `del-host [hostname]`
-- `help`: Show the help message.
+
+## Host Management:
+- `update-host`: Automatically set the host and profile in `flake.nix`. It will get current hostname and run GPU detect code.
+- `add-host`: Add a new host configuration with hostname and GPU auto-detection.
+- `del-host`: Delete a host configuration.
+
+**Usage:** `zcli add-host [hostname] [profile]`  
+**GPU Profiles:** `amd`, `intel`, `nvidia`, `nvidia-hybrid`, and `vm`
+
+## Advanced Options:
+The `rebuild`, `rebuild-boot`, and `update` commands support advanced options:
+- `--dry, -n`: Show what would be done without doing it
+- `--ask, -a`: Ask for confirmation before proceeding
+- `--cores N`: Limit build to N cores (useful for VMs)
+- `--verbose, -v`: Show verbose output
+- `--no-nom`: Don't use nix-output-monitor
+
+## Doom Emacs Management:
+- `doom install`: Install Doom Emacs using get-doom script
+- `doom status`: Check if Doom Emacs is installed and show version
+- `doom remove`: Remove Doom Emacs installation
+- `doom update`: Update Doom Emacs (runs doom sync)
+
+**Note:** Doom Emacs functionality requires `doom-emacs-install.nix` to be enabled in your configuration.
 
 ```text
 ❯ zcli
 Error: No command provided.
-ZaneyOS CLI Utility -- version 1.0
+ZaneyOS CLI Utility -- version 1.0.2
 
-Usage: zcli [command]
+Usage: zcli [command] [options]
 
 Commands:
   cleanup         - Clean up old system generations. Can specify a number to keep.
@@ -49,20 +66,42 @@ Commands:
                     (Filename: homedir/diag.txt)
   list-gens       - List user and system generations.
   rebuild         - Rebuild the NixOS system configuration.
+  rebuild-boot    - Rebuild and set as boot default (activates on next restart).
   trim            - Trim filesystems to improve SSD performance.
   update          - Update the flake and rebuild the system.
   update-host     - Auto set host and profile in flake.nix.
                     (Opt: zcli update-host [hostname] [profile])
-  add-host        - Adds a new host. (Opt: zcli add-host [hostname] [profile])
-  del-host        - Deletes a host. (Opt: zcli del-host [hostname])
+
+Options for rebuild, rebuild-boot, and update commands:
+  --dry, -n       - Show what would be done without doing it
+  --ask, -a       - Ask for confirmation before proceeding
+  --cores N       - Limit build to N cores (useful for VMs)
+  --verbose, -v   - Show verbose output
+  --no-nom        - Don't use nix-output-monitor
+
+Doom Emacs:
+  doom install    - Install Doom Emacs using get-doom script.
+  doom status     - Check if Doom Emacs is installed.
+  doom remove     - Remove Doom Emacs installation.
+  doom update     - Update Doom Emacs (runs doom sync).
 
   help            - Show this help message.
-~
-❯
+```
 
-ex: 
->zcli add-host myhost amd 
->zcli rebuild
+**Examples:**
+```bash
+# System management
+zcli rebuild --dry                # Show what would be rebuilt
+zcli update --cores 4             # Update with 4 CPU cores max
+zcli rebuild-boot --ask           # Rebuild for boot with confirmation
+
+# Host management
+zcli add-host myhost amd          # Add new host with AMD GPU
+zcli update-host                  # Auto-detect and update host info
+
+# Doom Emacs
+zcli doom install                 # Install Doom Emacs
+zcli doom status                  # Check installation status
 ```
 
 </div>

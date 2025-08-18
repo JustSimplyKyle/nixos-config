@@ -7,6 +7,17 @@
 
 # 🚀 **Current Release - ZaneyOS v2.4**
 
+#### 📅 **Updated: August 18th, 2025**
+
+- 🐍 **Doom Emacs Python Support**: Added comprehensive Python development environment to Doom Emacs
+  - 📦 **Language Server**: Integrated Python LSP server with full IntelliSense support
+  - 🎯 **Type Checking**: Added mypy integration for static type analysis
+  - 🖤 **Code Formatting**: Configured Black formatter for consistent Python code style
+  - 📋 **Import Organization**: Integrated isort for automatic import sorting
+  - 🔧 **Refactoring Support**: Added rope for advanced Python refactoring capabilities
+  - ⚙️ **Configuration**: Enhanced LSP settings with auto-import completions and search paths
+ 
+
 #### 📅 **Updated: August 11th, 2025**
 
 - 🔧 **NeoVIM Enhancement**: Fixed DirtytalkUpdate automation for programming spellcheck
