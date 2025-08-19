@@ -11,13 +11,14 @@ This guide provides safe upgrade scripts to migrate from ZaneyOS 2.3 to 2.4, han
 
 ## 📋 What the Upgrade Script Does
 
-1. **Full Backup**: Creates complete backup of your current system
-2. **Version Verification**: Confirms you're running ZaneyOS 2.3
-3. **Safe Upgrade**: Switches to main branch (2.4) and merges configurations
-4. **Variable Merging**: Automatically migrates all your settings to new format
-5. **Terminal Handling**: Ensures your preferred terminal is enabled in 2.4
-6. **Safe Build**: Uses `boot` option to avoid SDDM display issues
-7. **Revert Option**: Provides easy rollback if anything goes wrong
+1. **Pre-Upgrade Analysis**: Comprehensive analysis of your current configuration with detailed report
+2. **Full Backup**: Creates complete backup of your current system
+3. **Version Verification**: Confirms you're running ZaneyOS 2.3
+4. **Safe Upgrade**: Switches to main branch (2.4) and merges configurations
+5. **Variable Merging**: Automatically migrates all your settings to new format
+6. **Terminal Handling**: Ensures your preferred terminal is enabled in 2.4
+7. **Safe Build**: Uses `boot` option to avoid SDDM display issues
+8. **Revert Option**: Provides easy rollback if anything goes wrong
 
 ## 🛡️ Safety Features
 
@@ -36,9 +37,24 @@ cd ~/zaneyos
 ./upgrade-2.3-to-2.4.sh
 ```
 
-### Step 2: Follow the Prompts
+### Step 2: Review the Pre-Upgrade Analysis
 
-The script will:
+The script will first perform a comprehensive analysis of your current configuration:
+- **Analyze flake.nix** for custom inputs and current profile
+- **Scan all host configurations** and detect customizations
+- **Check global packages** in modules/core/packages.nix
+- **Detect shell customizations** (zsh, bash, eza personal files)
+- **Identify other custom modules** and personal files
+- **Generate a detailed report** saved as `~/zaneyos-upgrade-analysis-TIMESTAMP.txt`
+
+**The analysis will clearly show:**
+- ✅ **What WILL be automatically migrated** (variables, packages, configs)
+- ⚠️ **What requires manual attention** (custom inputs, personal shell files)
+- 📋 **Summary of all hosts and customizations** found
+
+### Step 3: Follow the Prompts
+
+After reviewing the analysis, the script will:
 - Create a backup (you'll see the location)
 - Ask for confirmation before proceeding
 - Download ZaneyOS 2.4 from main branch
@@ -46,7 +62,7 @@ The script will:
 - Build the new system
 - Prompt for reboot
 
-### Step 3: Reboot Your System
+### Step 4: Reboot Your System
 
 After successful build:
 ```bash

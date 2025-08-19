@@ -241,6 +241,217 @@ fi
 
 print_success "Verified: This appears to be ZaneyOS 2.3"
 
+# Comprehensive pre-check analysis
+perform_precheck_analysis() {
+    local analysis_file="$HOME/zaneyos-upgrade-analysis-$TIMESTAMP.txt"
+    
+    print_header "Pre-Upgrade Analysis"
+    print_info "Analyzing your current ZaneyOS configuration..."
+    print_info "Analysis report will be saved to: $analysis_file"
+    
+    {
+        echo "============================================"
+        echo "  ZaneyOS 2.3 → 2.4 Upgrade Analysis Report"
+        echo "  Generated: $(date)"
+        echo "  System: $(hostname)"
+        echo "============================================"
+        echo ""
+        
+        # Analyze flake.nix customizations
+        echo "🔧 FLAKE.NIX ANALYSIS:"
+        if [ -f "./flake.nix" ]; then
+            # Check for custom inputs
+            echo "📦 Custom Inputs Detected:"
+            custom_inputs=$(grep -A 20 "inputs = {" ./flake.nix | grep -v "nixpkgs\|home-manager\|hyprland\|stylix" | grep -E "\w+\.(url|github|gitlab)" || echo "  None detected")
+            echo "$custom_inputs"
+            echo ""
+            
+            # Check current profile
+            current_profile=$(grep 'profile = ' ./flake.nix | sed 's/.*= *"\([^"]*\)".*/\1/' || echo "Unknown")
+            echo "📍 Current Profile: $current_profile"
+            echo ""
+        else
+            echo "❌ flake.nix not found"
+        fi
+        
+        # Analyze host configurations
+        echo "🏠 HOST CONFIGURATIONS ANALYSIS:"
+        host_count=0
+        for dir in hosts/*/; do
+            hostname=$(basename "$dir")
+            if [ "$hostname" != "default" ]; then
+                ((host_count++))
+                echo "  📂 Host: $hostname"
+                
+                # Check which files exist
+                [ -f "$dir/variables.nix" ] && echo "    ✅ variables.nix (WILL BE MIGRATED)"
+                [ -f "$dir/hardware.nix" ] && echo "    ✅ hardware.nix (WILL BE PRESERVED)"
+                [ -f "$dir/host-packages.nix" ] && echo "    ✅ host-packages.nix (WILL BE PRESERVED)"
+                
+                # Check if default.nix is customized
+                if [ -f "$dir/default.nix" ]; then
+                    if ! cmp -s "$dir/default.nix" "./hosts/default/default.nix" 2>/dev/null; then
+                        echo "    ✅ default.nix (CUSTOMIZED - WILL BE PRESERVED)"
+                        echo "      📋 Custom imports detected:"
+                        grep -E "\./|\.\." "$dir/default.nix" | sed 's/^/        /' || echo "        (parsing error)"
+                    else
+                        echo "    📋 default.nix (standard template)"
+                    fi
+                fi
+                echo ""
+            fi
+        done
+        echo "📊 Total hosts to migrate: $host_count"
+        echo ""
+        
+        # Analyze global packages
+        echo "📦 GLOBAL PACKAGES ANALYSIS:"
+        if [ -f "./modules/core/packages.nix" ]; then
+            # Count total packages
+            package_count=$(grep -c "^[[:space:]]*[a-zA-Z]" ./modules/core/packages.nix | head -1)
+            echo "📊 Approximate package count: $package_count"
+            
+            # Check for custom additions (commented out packages that user might have enabled)
+            echo "🔍 Potentially customized packages:"
+            grep -E "^[[:space:]]*#[a-zA-Z]" ./modules/core/packages.nix | head -10 | sed 's/^/  /' || echo "  None detected"
+            echo "📋 packages.nix status: WILL BE ANALYZED AND PRESERVED IF CUSTOMIZED"
+        else
+            echo "❌ modules/core/packages.nix not found"
+        fi
+        echo ""
+        
+        # Analyze shell customizations
+        echo "🐚 SHELL CUSTOMIZATIONS ANALYSIS:"
+        shell_custom_found=false
+        
+        # Check zsh customizations
+        if [ -f "./modules/home/zsh/default.nix" ]; then
+            if ! cmp -s "./modules/home/zsh/default.nix" "./hosts/default/modules/home/zsh/default.nix" 2>/dev/null; then
+                echo "  ⚠️  modules/home/zsh/default.nix - CUSTOMIZED (REQUIRES MANUAL MERGE)"
+                shell_custom_found=true
+            fi
+        fi
+        
+        if [ -f "./modules/home/zsh/zshrc-personal.nix" ]; then
+            echo "  ⚠️  modules/home/zsh/zshrc-personal.nix - PERSONAL FILE (REQUIRES MANUAL MERGE)"
+            shell_custom_found=true
+        fi
+        
+        # Check bash customizations
+        if [ -f "./modules/home/bash.nix" ]; then
+            if ! cmp -s "./modules/home/bash.nix" "./hosts/default/modules/home/bash.nix" 2>/dev/null; then
+                echo "  ⚠️  modules/home/bash.nix - CUSTOMIZED (REQUIRES MANUAL MERGE)"
+                shell_custom_found=true
+            fi
+        fi
+        
+        if [ -f "./modules/home/bashrc-personal.nix" ]; then
+            echo "  ⚠️  modules/home/bashrc-personal.nix - PERSONAL FILE (REQUIRES MANUAL MERGE)"
+            shell_custom_found=true
+        fi
+        
+        # Check eza customizations
+        if [ -f "./modules/home/eza.nix" ]; then
+            if ! cmp -s "./modules/home/eza.nix" "./hosts/default/modules/home/eza.nix" 2>/dev/null; then
+                echo "  ⚠️  modules/home/eza.nix - CUSTOMIZED (REQUIRES MANUAL MERGE)"
+                shell_custom_found=true
+            fi
+        fi
+        
+        if [ "$shell_custom_found" = false ]; then
+            echo "  ✅ No shell customizations detected"
+        fi
+        echo ""
+        
+        # Check for other common customization locations
+        echo "🔍 OTHER CUSTOMIZATIONS ANALYSIS:"
+        other_custom_found=false
+        
+        # Check for custom modules
+        if [ -d "./modules" ]; then
+            echo "  📂 Checking modules directory for customizations..."
+            # Find any .nix files that might be custom
+            find ./modules -name "*.nix" -type f | while read -r file; do
+                if [[ "$file" =~ (personal|custom|local) ]]; then
+                    echo "  ⚠️  $file - PERSONAL/CUSTOM FILE (REQUIRES MANUAL MERGE)"
+                    other_custom_found=true
+                fi
+            done
+        fi
+        
+        # Check for wallpapers
+        if [ -d "./wallpapers" ]; then
+            wallpaper_count=$(find ./wallpapers -type f | wc -l)
+            if [ "$wallpaper_count" -gt 10 ]; then  # Assuming default has ~10 wallpapers
+                echo "  🖼️  Custom wallpapers detected: $wallpaper_count total (WILL BE PRESERVED)"
+            fi
+        fi
+        
+        if [ "$other_custom_found" = false ]; then
+            echo "  ✅ No other major customizations detected"
+        fi
+        echo ""
+        
+        # Migration summary
+        echo "============================================"
+        echo "📋 MIGRATION SUMMARY:"
+        echo "============================================"
+        echo ""
+        echo "✅ WILL BE AUTOMATICALLY MIGRATED:"
+        echo "   • All host configurations (variables.nix with 2.4 format conversion)"
+        echo "   • Hardware configurations (hardware.nix)"
+        echo "   • Host-specific packages (host-packages.nix)"
+        echo "   • Customized host imports (default.nix if modified)"
+        echo "   • Global packages (modules/core/packages.nix if customized)"
+        echo "   • Wallpapers and themes"
+        echo ""
+        echo "⚠️  REQUIRES MANUAL ATTENTION AFTER UPGRADE:"
+        if [ "$custom_inputs" != "  None detected" ]; then
+            echo "   • Custom flake.nix inputs - you'll need to re-add these"
+        fi
+        if [ "$shell_custom_found" = true ]; then
+            echo "   • Shell customizations (zsh/bash personal files and modifications)"
+        fi
+        if [ "$other_custom_found" = true ]; then
+            echo "   • Custom/personal module files"
+        fi
+        if [ "$custom_inputs" = "  None detected" ] && [ "$shell_custom_found" = false ] && [ "$other_custom_found" = false ]; then
+            echo "   • No manual intervention required - standard configuration detected!"
+        fi
+        echo ""
+        echo "📁 BACKUP LOCATION (after upgrade starts):"
+        echo "   ~/.config/zaneyos-backups/zaneyos-2.3-upgrade-backup-$TIMESTAMP/"
+        echo ""
+        echo "📝 POST-UPGRADE TODO:"
+        echo "   1. Reboot system after successful upgrade"
+        echo "   2. Verify all applications and settings work correctly"
+        if [ "$custom_inputs" != "  None detected" ] || [ "$shell_custom_found" = true ] || [ "$other_custom_found" = true ]; then
+            echo "   3. Manually merge any flagged customizations from backup"
+        fi
+        echo "   4. Review new 2.4 features and packages"
+        echo ""
+        echo "============================================"
+        echo "End of Analysis Report"
+        echo "============================================"
+        
+    } | tee "$analysis_file"
+    
+    print_success "Analysis complete! Report saved to: $analysis_file"
+    echo ""
+    
+    # Ask user if they want to continue after seeing the analysis
+    read -p "Based on this analysis, do you want to proceed with the upgrade? (Y/N): " -n 1 -r
+    echo ""
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        print_info "Upgrade cancelled by user after analysis review."
+        print_info "Analysis report is saved for your reference at: $analysis_file"
+        exit 0
+    fi
+}
+
+# Run the pre-check analysis
+perform_precheck_analysis
+
 # Create backup FIRST before making any changes
 if ! create_backup; then
     print_error "Failed to create backup. Aborting upgrade."
