@@ -1,14 +1,57 @@
 # 🚀 ZaneyOS Upgrade Procedure
 
-## This procedure is only for ZaneyOS v2.3 to v2.4
+## ⚠️ DEPRECATED - Use New Automated Upgrade System
 
-> **Note:**
+> **IMPORTANT:**
 >
-> - This guide applies only to upgrading ZaneyOS from v2.3 to v2.4.
-> - Do **NOT** use the `fu` or `fr` aliases for this upgrade.
-> - If your version of ZaneyOS v2.3 does not have the `zcli rebuild-boot` command:
->   - Do **NOT** use the `zcli` utility for this upgrade.
->   - Run `zcli` and check if `rebuild-boot` option is in the list.
+> This manual upgrade procedure has been **replaced** by a much safer and more comprehensive automated upgrade system.
+>
+> **Please use the new upgrade system instead:**
+> - See: `UPGRADE-2.3-to-2.4.md` for complete documentation
+> - Run: `./upgrade-2.3-to-2.4.sh` for automated upgrade
+> - The new system includes automatic backups, variable migration, and easy revert options
+
+---
+
+## 🆕 New Automated Upgrade System
+
+The new upgrade system provides:
+- **Complete backup** of your current system before any changes
+- **Automatic variable migration** from 2.3 to 2.4 format (handles 15+ variables)
+- **Terminal dependency handling** (critical for 2.4 compatibility)
+- **Safe build process** using `boot` instead of `switch` to avoid display issues
+- **One-command revert** if anything goes wrong
+- **Comprehensive logging** for troubleshooting
+
+### Quick Start:
+```bash
+cd ~/zaneyos
+./upgrade-2.3-to-2.4.sh
+```
+
+### For detailed instructions:
+```bash
+less UPGRADE-2.3-to-2.4.md
+```
+
+---
+
+## ⚠️ Why Use the New System?
+
+The manual process below is **incomplete and risky** because:
+- ❌ Only handles 6 variables (actual 2.4 has 15+ new variables)
+- ❌ No automatic backup system
+- ❌ No terminal dependency handling
+- ❌ No revert option if things go wrong
+- ❌ Missing critical variables like `doomEmacsEnable`, monitor settings, theme configuration
+- ❌ References outdated commands (`fr`, `fu` instead of `zcli`)
+
+---
+
+# 📜 Original Manual Procedure (DEPRECATED)
+
+> **⚠️ WARNING: This manual procedure is outdated and incomplete.**
+> **Use the automated upgrade system above instead.**
 
 ---
 

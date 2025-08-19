@@ -9,6 +9,21 @@
 
 #### 📅 **Updated: August 19th, 2025**
 
+- 🔄 **Upgrade System Enhancement**: Comprehensive upgrade infrastructure for ZaneyOS 2.3 → 2.4 migrations
+  - 🚀 **Automated Upgrade Script**: `upgrade-2.3-to-2.4.sh` with complete migration automation
+    - 💾 **Complete Backup System**: Timestamped backups with organized storage in `~/.config/zaneyos-backups/`
+    - 🔍 **Version Validation**: Automatic detection of ZaneyOS 2.3 vs 2.4+ to prevent incorrect upgrades
+    - 🧬 **Variable Migration**: Comprehensive migration of 15+ configuration variables from 2.3 to 2.4 format
+    - 🖥️ **Terminal Dependency Handling**: Automatic enabling of terminal applications (critical for 2.4 compatibility)
+    - 🎨 **Theme Preservation**: Migration of stylixImage, waybarChoice, animChoice, and monitor settings
+    - 🛡️ **Safe Build Process**: Uses `boot` instead of `switch` to prevent SDDM display manager conflicts
+    - 📝 **Comprehensive Logging**: Detailed logs with timestamps for troubleshooting
+  - ↩️ **One-Command Revert**: `revert-to-2.3.sh` and `upgrade-2.3-to-2.4.sh --revert` for easy rollback
+  - 📚 **Complete Documentation**: `UPGRADE-2.3-to-2.4.md` with detailed instructions and troubleshooting
+  - ⚠️ **Legacy Documentation**: Updated `ZaneyOS-Upgrade.md` to deprecate manual process and redirect to automated system
+  - 🔧 **Hardware Preservation**: Automatic migration of hardware.nix and host-specific configurations
+  - 🎯 **User Experience**: Interactive prompts, colored output, progress indicators, and clear error messages
+
 - 🛠️ **ZCLI Enhancement v1.0.2**: Major upgrade to the ZaneyOS CLI utility with comprehensive new features
   - 🔥 **Doom Emacs Management**: Complete lifecycle management for Doom Emacs
     - 🚀 `doom install` - Automated installation using get-doom script with all required packages

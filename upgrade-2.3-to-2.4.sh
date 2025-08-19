@@ -235,6 +235,7 @@ fi
 if grep -q "displayManager" ./hosts/default/variables.nix; then
   print_error "This appears to already be ZaneyOS 2.4 or newer"
   print_error "This upgrade script is only for 2.3 → 2.4 upgrades"
+  print_info "Current variables.nix already contains 2.4+ features"
   exit 1
 fi
 
