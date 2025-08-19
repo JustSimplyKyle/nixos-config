@@ -321,6 +321,12 @@ merge_variables() {
         local thunar_enable=$(grep 'thunarEnable' "$old_vars_file" | sed 's/.*= *\([^;]*\);.*/\1/')
         local clock_24h=$(grep 'clock24h' "$old_vars_file" | sed 's/.*= *\([^;]*\);.*/\1/')
         
+        # Extract additional 2.4 variables that might exist in 2.3
+        local doom_emacs_enable=$(grep 'doomEmacsEnable' "$old_vars_file" | sed 's/.*= *\([^;]*\);.*/\1/')
+        local intel_id=$(grep 'intelID' "$old_vars_file" | sed 's/.*= *"\([^"]*\)".*/\1/')
+        local nvidia_id=$(grep 'nvidiaID' "$old_vars_file" | sed 's/.*= *"\([^"]*\)".*/\1/')
+        local host_id=$(grep 'hostId' "$old_vars_file" | sed 's/.*= *"\([^"]*\)".*/\1/')
+        
         # Apply the values to new configuration
         [ -n "$git_username" ] && sed -i "s/gitUsername = \".*\";/gitUsername = \"$git_username\";/" "$new_vars_file"
         [ -n "$git_email" ] && sed -i "s/gitEmail = \".*\";/gitEmail = \"$git_email\";/" "$new_vars_file"
@@ -332,6 +338,12 @@ merge_variables() {
         [ -n "$print_enable" ] && sed -i "s/printEnable = .*/printEnable = $print_enable;/" "$new_vars_file"
         [ -n "$thunar_enable" ] && sed -i "s/thunarEnable = .*/thunarEnable = $thunar_enable;/" "$new_vars_file"
         [ -n "$clock_24h" ] && sed -i "s/clock24h = .*/clock24h = $clock_24h;/" "$new_vars_file"
+        
+        # Apply additional 2.4 variables if they existed in 2.3
+        [ -n "$doom_emacs_enable" ] && sed -i "s/doomEmacsEnable = .*/doomEmacsEnable = $doom_emacs_enable;/" "$new_vars_file"
+        [ -n "$intel_id" ] && sed -i "s/intelID = \".*\";/intelID = \"$intel_id\";/" "$new_vars_file"
+        [ -n "$nvidia_id" ] && sed -i "s/nvidiaID = \".*\";/nvidiaID = \"$nvidia_id\";/" "$new_vars_file"
+        [ -n "$host_id" ] && sed -i "s/hostId = \".*\";/hostId = \"$host_id\";/" "$new_vars_file"
         
         # Handle terminal-specific enables - CRITICAL for 2.4
         case "$terminal" in
@@ -420,12 +432,68 @@ merge_variables() {
         cp "$BACKUP_DIR/zaneyos/hosts/$hostname/hardware.nix" "./hosts/$hostname/"
         print_success "✓ Preserved hardware.nix for host: $hostname"
     fi
+    
+    # Also copy host-packages.nix if it exists (user's custom packages)
+    if [ -f "$BACKUP_DIR/zaneyos/hosts/$hostname/host-packages.nix" ]; then
+        cp "$BACKUP_DIR/zaneyos/hosts/$hostname/host-packages.nix" "./hosts/$hostname/"
+        print_success "✓ Preserved host-packages.nix for host: $hostname"
+    fi
+    
+    # Also copy default.nix if it was customized (compare with template first)
+    if [ -f "$BACKUP_DIR/zaneyos/hosts/$hostname/default.nix" ]; then
+        # Check if it's different from the template default.nix
+        if ! cmp -s "$BACKUP_DIR/zaneyos/hosts/$hostname/default.nix" "./hosts/default/default.nix"; then
+            cp "$BACKUP_DIR/zaneyos/hosts/$hostname/default.nix" "./hosts/$hostname/"
+            print_success "✓ Preserved customized default.nix for host: $hostname"
+        else
+            print_info "✓ Using template default.nix for host: $hostname (no customizations detected)"
+        fi
+    fi
 }
 
 # Process each host
 for hostname in "${HOST_DIRS[@]}"; do
     merge_variables "$hostname"
 done
+
+print_header "Checking Global Package Customizations"
+
+# Check if user has customized the global packages.nix file
+if [ -f "$BACKUP_DIR/zaneyos/modules/core/packages.nix" ]; then
+    print_info "Checking for custom packages in global packages.nix..."
+    
+    # Compare with new template to see if there are customizations
+    if ! cmp -s "$BACKUP_DIR/zaneyos/modules/core/packages.nix" "./modules/core/packages.nix"; then
+        print_warning "Custom packages detected in global packages.nix"
+        
+        # Create a backup of the new packages.nix
+        cp "./modules/core/packages.nix" "./modules/core/packages.nix.template"
+        
+        # Copy the user's customized version
+        cp "$BACKUP_DIR/zaneyos/modules/core/packages.nix" "./modules/core/packages.nix"
+        
+        print_success "✓ Preserved custom global packages.nix"
+        print_info "📋 Note: Your custom packages have been preserved"
+        print_info "📋 New template available at: modules/core/packages.nix.template"
+        print_info "📋 You may want to review for new packages to add from the template"
+        
+        # Offer to show differences
+        echo ""
+        read -p "Would you like to see what packages were added in 2.4? (Y/N): " -n 1 -r
+        echo ""
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            print_info "New packages available in ZaneyOS 2.4:"
+            echo -e "${CYAN}=== Differences between your packages.nix and 2.4 template ===${NC}"
+            diff -u "./modules/core/packages.nix" "./modules/core/packages.nix.template" || true
+            echo ""
+            print_info "You can manually add any new packages you want from the template"
+        fi
+    else
+        print_success "✓ No custom packages detected - using new 2.4 packages.nix"
+    fi
+else
+    print_warning "No backup found for modules/core/packages.nix - using defaults"
+fi
 
 print_header "Building ZaneyOS 2.4"
 

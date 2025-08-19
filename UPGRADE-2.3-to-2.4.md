@@ -72,6 +72,9 @@ Your system will now boot with:
 - Waybar theme choice
 - Animation settings
 - Hardware configuration
+- **Global packages** (modules/core/packages.nix customizations)
+- **Host-specific packages** (hosts/[hostname]/host-packages.nix)
+- **Custom module imports** (hosts/[hostname]/default.nix if customized)
 
 ### Terminal Handling:
 If you were using a specific terminal in 2.3:
