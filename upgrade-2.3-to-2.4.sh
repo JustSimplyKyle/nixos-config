@@ -363,6 +363,50 @@ perform_precheck_analysis() {
         fi
         echo ""
         
+        # Git repository analysis
+        echo "🔄 GIT REPOSITORY ANALYSIS:"
+        if [ -d ".git" ]; then
+            # Current branch and remote
+            current_branch=$(git branch --show-current 2>/dev/null || echo "unknown")
+            echo "  📍 Current branch: $current_branch"
+            
+            # Remote information
+            if git remote get-url origin >/dev/null 2>&1; then
+                remote_url=$(git remote get-url origin 2>/dev/null)
+                echo "  🌐 Remote origin: $remote_url"
+                
+                # Check if it's a fork or custom repo
+                if [[ "$remote_url" != *"zaney/zaneyos"* ]]; then
+                    echo "  ⚠️  CUSTOM REPOSITORY DETECTED!"
+                    echo "     This appears to be a fork or custom repository."
+                    echo "     Consider running the comparison tool for detailed analysis:"
+                    echo "     ./compare-zaneyos-config.sh -r $remote_url -b $current_branch"
+                fi
+            fi
+            
+            # Check for uncommitted changes
+            if git diff-index --quiet HEAD -- 2>/dev/null; then
+                echo "  ✅ No uncommitted changes"
+            else
+                echo "  ⚠️  UNCOMMITTED CHANGES DETECTED!"
+                echo "     You have uncommitted changes that won't be preserved."
+                echo "     Consider committing or stashing them before upgrade."
+                uncommitted_files=$(git status --porcelain | wc -l)
+                echo "     Number of modified files: $uncommitted_files"
+            fi
+            
+            # Last commit info
+            if git rev-parse HEAD >/dev/null 2>&1; then
+                last_commit=$(git log -1 --format="%h - %s (%cr)" 2>/dev/null)
+                echo "  📝 Last commit: $last_commit"
+            fi
+        else
+            echo "  ⚠️  Not a git repository"
+            echo "     Consider initializing git for better version control:"
+            echo "     git init && git add . && git commit -m 'Initial ZaneyOS configuration'"
+        fi
+        echo ""
+        
         # Check for other common customization locations
         echo "🔍 OTHER CUSTOMIZATIONS ANALYSIS:"
         other_custom_found=false
