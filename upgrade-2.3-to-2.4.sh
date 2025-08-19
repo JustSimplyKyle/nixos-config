@@ -358,6 +358,21 @@ perform_precheck_analysis() {
             fi
         fi
         
+        # Check Hyprland customizations
+        if [ -d "./modules/home/hyprland" ]; then
+            echo "  🪟 Checking Hyprland configurations..."
+            hyprland_files=$(find ./modules/home/hyprland -name "*.nix" -type f 2>/dev/null | wc -l)
+            if [ "$hyprland_files" -gt 0 ]; then
+                echo "  ⚠️  modules/home/hyprland/ - HYPRLAND CONFIGS DETECTED ($hyprland_files files)"
+                echo "     🚨 CRITICAL: Hyprland configs contain complex settings that CANNOT be auto-migrated"
+                echo "     📋 Files detected:"
+                find ./modules/home/hyprland -name "*.nix" -type f | sed 's|^./|      |' 2>/dev/null || echo "      (error listing files)"
+                echo "     ⚠️  These require careful manual review and migration after upgrade"
+                echo "     💡 Backup location will contain your current configs for reference"
+                shell_custom_found=true
+            fi
+        fi
+        
         if [ "$shell_custom_found" = false ]; then
             echo "  ✅ No shell customizations detected"
         fi
@@ -458,6 +473,10 @@ perform_precheck_analysis() {
         fi
         if [ "$other_custom_found" = true ]; then
             echo "   • Custom/personal module files"
+        fi
+        # Check for Hyprland configs to add to manual attention list
+        if [ -d "./modules/home/hyprland" ] && [ "$(find ./modules/home/hyprland -name '*.nix' -type f 2>/dev/null | wc -l)" -gt 0 ]; then
+            echo "   • 🚨 HYPRLAND CONFIGURATIONS - Cannot be auto-migrated, manual review required"
         fi
         if [ "$custom_inputs" = "  None detected" ] && [ "$shell_custom_found" = false ] && [ "$other_custom_found" = false ]; then
             echo "   • No manual intervention required - standard configuration detected!"
