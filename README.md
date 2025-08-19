@@ -154,16 +154,22 @@ Below are the keybindings for Hyprland, formatted for easy reference.
 
 ## Installation:
 
+> **⚠️ IMPORTANT:** These installation methods are for **NEW INSTALLATIONS ONLY**.
+> If you already have ZaneyOS installed and want to upgrade to v2.4, see the [Upgrade Instructions](#upgrading-from-zaneyos-23-to-24) below.
+
 <details>
-<summary><strong> ⬇️ Install with script </strong></summary>
+<summary><strong> ⬇️ Install with script (NEW INSTALLATIONS ONLY)</strong></summary>
 
 ### 📜 Script:
 
-This is the easiest and recommended way of starting out. The script is not meant
+This is the easiest and recommended way of starting out for **new installations**. The script is not meant
 to allow you to change every option that you can in the flake or help you
 install extra packages. It is simply here so you can get my configuration
 installed with as little chances of breakages and then fiddle to your hearts
 content!
+
+> **⚠️ WARNING:** This script will completely replace any existing ~/zaneyos directory.
+> Do NOT use this if you already have ZaneyOS installed and configured.
 
 Simply copy this and run it:
 
@@ -247,6 +253,60 @@ called `fr` that will rebuild the flake and you do not have to be in the
 `zaneyos` folder for it to work.
 
 </details>
+
+## Upgrading from ZaneyOS 2.3 to 2.4
+
+> **🚀 IMPORTANT:** If you already have ZaneyOS 2.3 installed, use the automated upgrade system instead of reinstalling!
+
+### ✅ Automated Upgrade Process:
+
+ZaneyOS includes a comprehensive upgrade system that safely migrates your configuration:
+
+```bash
+cd ~/zaneyos
+./upgrade-2.3-to-2.4.sh
+```
+
+### 🔍 What the Upgrade System Does:
+
+1. **Pre-Upgrade Analysis** - Comprehensive scan of your customizations
+2. **Complete Backup** - Full backup of your current configuration
+3. **Automatic Migration** - Preserves all your settings and customizations
+4. **Safe Upgrade** - Uses `boot` option to prevent display manager conflicts
+5. **Easy Revert** - One-command rollback if needed
+
+### 📋 What Gets Automatically Migrated:
+
+- ✅ All host configurations and variables
+- ✅ Hardware configurations  
+- ✅ Custom packages (both global and per-host)
+- ✅ Themes, wallpapers, and monitor settings
+- ✅ Git configuration and personal settings
+- ✅ Terminal preferences with automatic enabling
+
+### ⚠️ What Requires Manual Attention:
+
+- Custom flake.nix inputs
+- Personal shell configuration files (zshrc-personal.nix, etc.)
+- Custom module modifications
+
+### 📚 Complete Documentation:
+
+For detailed upgrade instructions, troubleshooting, and safety information:
+
+- **Read**: `UPGRADE-2.3-to-2.4.md` in your zaneyos directory
+- **Analysis Report**: Saved automatically as `~/zaneyos-upgrade-analysis-TIMESTAMP.txt`
+
+### 🔄 Easy Revert:
+
+If anything goes wrong, easily revert to 2.3:
+
+```bash
+cd ~/zaneyos
+./upgrade-2.3-to-2.4.sh --revert
+```
+
+---
 
 ### Special Recognitions:
 

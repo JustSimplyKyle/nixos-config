@@ -176,10 +176,32 @@ Please type out your choice: " profile
   echo -e "${GREEN}Selected GPU profile: $profile${NC}"
 fi
 
-print_header "Backup Existing ZaneyOS (if any)"
+print_header "⚠️  CRITICAL WARNING - Existing ZaneyOS Detected"
 
 backupname=$(date +"%Y-%m-%d-%H-%M-%S")
 if [ -d "zaneyos" ]; then
+  echo -e "${RED}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
+  echo -e "${RED}║                    ⚠️  IMPORTANT WARNING ⚠️                           ║${NC}"
+  echo -e "${RED}║                                                                       ║${NC}"
+  echo -e "${RED}║  An existing ZaneyOS installation was detected at ~/zaneyos           ║${NC}"
+  echo -e "${RED}║                                                                       ║${NC}"
+  echo -e "${RED}║  This installer will COMPLETELY REPLACE your existing configuration!  ║${NC}"
+  echo -e "${RED}║  All customizations, packages, and settings will be LOST!            ║${NC}"
+  echo -e "${RED}║                                                                       ║${NC}"
+  echo -e "${RED}║  If you want to UPGRADE from ZaneyOS 2.3 to 2.4:                    ║${NC}"
+  echo -e "${RED}║  1. Press Ctrl+C to cancel this installer                            ║${NC}"
+  echo -e "${RED}║  2. Run: cd ~/zaneyos && ./upgrade-2.3-to-2.4.sh                     ║${NC}"
+  echo -e "${RED}║                                                                       ║${NC}"
+  echo -e "${RED}║  The upgrade script preserves ALL your customizations!               ║${NC}"
+  echo -e "${RED}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
+  echo ""
+  echo -e "${YELLOW}If you REALLY want to do a fresh installation (losing all customizations):${NC}"
+  read -p "Type 'REPLACE' to continue with fresh install or Ctrl+C to cancel: " confirmation
+  if [ "$confirmation" != "REPLACE" ]; then
+    echo -e "${GREEN}Installation cancelled. Use the upgrade script instead!${NC}"
+    echo -e "${GREEN}Run: cd ~/zaneyos && ./upgrade-2.3-to-2.4.sh${NC}"
+    exit 0
+  fi
   echo -e "${GREEN}zaneyos exists, backing up to .config/zaneyos-backups folder.${NC}"
   if [ -d ".config/zaneyos-backups" ]; then
     echo -e "${GREEN}Moving current version of ZaneyOS to backups folder.${NC}"
