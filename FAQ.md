@@ -21,37 +21,40 @@ To use it, open a terminal and type `zcli` followed by one of the commands
 listed below:
 
 ## Core System Commands:
-- `cleanup`: Clean up old system generations. You can specify the number of generations to keep.
-- `diag`: Create a system diagnostic report, saved to `~/diag.txt`.
-- `list-gens`: List user and system generations.
-- `rebuild`: Rebuild the NixOS system configuration.
-- `rebuild-boot`: Rebuild and set as boot default (activates on next restart).
-- `trim`: Trim filesystems to improve SSD performance.
-- `update`: Update the flake and rebuild the system.
+- `cleanup`: Clean up old system generations. You can specify the number of generations to keep. Includes automated log cleanup for old build logs.
+- `diag`: Create a comprehensive system diagnostic report using `inxi --full`, saved to `~/diag.txt`. Perfect for troubleshooting.
+- `list-gens`: List both user and system generations with detailed information.
+- `rebuild`: Rebuild the NixOS system configuration with enhanced safety checks and backup file handling.
+- `rebuild-boot`: Rebuild and set as boot default (activates on next restart). Safer for major system changes and kernel updates.
+- `trim`: Trim filesystems to improve SSD performance with user confirmation prompts.
+- `update`: Update the flake and rebuild the system with comprehensive error handling.
 
 ## Host Management:
-- `update-host`: Automatically set the host and profile in `flake.nix`. It will get current hostname and run GPU detect code.
-- `add-host`: Add a new host configuration with hostname and GPU auto-detection.
-- `del-host`: Delete a host configuration.
+- `update-host`: Automatically set the host and profile in `flake.nix`. Features intelligent GPU detection and hostname validation.
+- `add-host`: Create new host configurations with automated GPU detection, hardware.nix generation, and git integration.
+- `del-host`: Safely delete host configurations with confirmation prompts to prevent accidental removal.
 
 **Usage:** `zcli add-host [hostname] [profile]`  
 **GPU Profiles:** `amd`, `intel`, `nvidia`, `nvidia-hybrid`, and `vm`
 
-## Advanced Options:
-The `rebuild`, `rebuild-boot`, and `update` commands support advanced options:
-- `--dry, -n`: Show what would be done without doing it
-- `--ask, -a`: Ask for confirmation before proceeding
-- `--cores N`: Limit build to N cores (useful for VMs)
-- `--verbose, -v`: Show verbose output
-- `--no-nom`: Don't use nix-output-monitor
+## Advanced Build Options:
+The `rebuild`, `rebuild-boot`, and `update` commands support enhanced options for fine-grained control:
+- `--dry, -n`: Preview mode - shows what would be done without executing (dry run)
+- `--ask, -a`: Interactive confirmation prompts for safety-critical operations
+- `--cores N`: Limit build operations to N CPU cores (essential for VMs and resource-constrained systems)
+- `--verbose, -v`: Enable detailed operation logs and verbose output for troubleshooting
+- `--no-nom`: Disable nix-output-monitor for traditional command-line output
+
+**Multiple options can be combined** for precise control over your build process.
 
 ## Doom Emacs Management:
-- `doom install`: Install Doom Emacs using get-doom script
-- `doom status`: Check if Doom Emacs is installed and show version
-- `doom remove`: Remove Doom Emacs installation
-- `doom update`: Update Doom Emacs (runs doom sync)
+Complete Doom Emacs lifecycle management with safety features:
+- `doom install`: Automated Doom Emacs installation using the get-doom script with all required packages
+- `doom status`: Check installation status and display version information for verification
+- `doom remove`: Safely remove Doom Emacs installation with confirmation prompts to prevent accidental deletion
+- `doom update`: Update Doom Emacs packages and configuration via `doom sync`
 
-**Note:** Doom Emacs functionality requires `doom-emacs-install.nix` to be enabled in your configuration.
+**Features:** Built-in safety checks, comprehensive error handling, and automatic dependency management.
 
 ```text
 ❯ zcli

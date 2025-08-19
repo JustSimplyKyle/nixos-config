@@ -7,16 +7,32 @@
 
 # 🚀 **Current Release - ZaneyOS v2.4**
 
-#### 📅 **Updated: August 18th, 2025**
+#### 📅 **Updated: August 19th, 2025**
 
-- 🐍 **Doom Emacs Python Support**: Added comprehensive Python development environment to Doom Emacs
-  - 📦 **Language Server**: Integrated Python LSP server with full IntelliSense support
-  - 🎯 **Type Checking**: Added mypy integration for static type analysis
-  - 🖤 **Code Formatting**: Configured Black formatter for consistent Python code style
-  - 📋 **Import Organization**: Integrated isort for automatic import sorting
-  - 🔧 **Refactoring Support**: Added rope for advanced Python refactoring capabilities
-  - ⚙️ **Configuration**: Enhanced LSP settings with auto-import completions and search paths
- 
+- 🛠️ **ZCLI Enhancement v1.0.2**: Major upgrade to the ZaneyOS CLI utility with comprehensive new features
+  - 🔥 **Doom Emacs Management**: Complete lifecycle management for Doom Emacs
+    - 🚀 `doom install` - Automated installation using get-doom script with all required packages
+    - ✅ `doom status` - Installation verification with version information display
+    - 🗑️ `doom remove` - Safe removal with confirmation prompts to prevent accidents
+    - 🔄 `doom update` - Package and configuration updates via doom sync
+  - ⚙️ **Advanced Build Options**: Enhanced command-line arguments for precise control
+    - 🔍 `--dry, -n` - Preview mode showing planned changes without execution
+    - ❓ `--ask, -a` - Interactive confirmation prompts for safety-critical operations
+    - 💻 `--cores N` - CPU core limiting for VMs and resource-constrained systems
+    - 📋 `--verbose, -v` - Detailed operation logging and verbose output
+    - 🎯 `--no-nom` - Disable nix-output-monitor for traditional output
+  - 🏠 **Enhanced Host Management**: Improved host configuration tools
+    - ➕ `add-host` - Create new host configurations with automated GPU detection
+    - ➖ `del-host` - Safely remove host configurations with confirmation prompts
+    - 🔄 `update-host` - Enhanced hostname/profile updating with validation
+  - 🧹 **System Maintenance**: Improved cleanup and diagnostic capabilities
+    - 🗂️ Automated log cleanup for old build logs during cleanup operations
+    - 🛠️ Enhanced diagnostic reporting with comprehensive system information
+    - ✂️ Safer trim operations with user confirmation prompts
+  - 🛡️ **Safety Features**: Built-in safeguards and error handling
+    - 🔒 Multiple confirmation prompts for destructive operations
+    - 📝 Comprehensive error handling and user feedback
+    - 🎛️ Multiple options can be combined for precise operational control
 
 #### 📅 **Updated: August 11th, 2025**
 
