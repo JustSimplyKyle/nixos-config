@@ -13,7 +13,12 @@ pkgs.writeShellScriptBin "note" ''
   BOLD='\033[1m'
   NC='\033[0m' # No Color
 
-  NOTES_FILE="$HOME/notes.txt"
+  # XDG-compliant notes directory and file
+  NOTES_DIR="$HOME/.local/share/notes"
+  NOTES_FILE="$NOTES_DIR/notes.txt"
+  
+  # Create notes directory if it doesn't exist
+  mkdir -p "$NOTES_DIR"
 
   # Function to display usage
   show_usage() {
@@ -67,6 +72,7 @@ pkgs.writeShellScriptBin "note" ''
     fi
     
     echo -e "''${BOLD}''${BLUE}📝 Your Notes''${NC}"
+    echo -e "''${GRAY}📁 $NOTES_FILE''${NC}"
     echo -e "''${GRAY}$(printf '%.0s─' {1..50})''${NC}"
     
     local in_note=false

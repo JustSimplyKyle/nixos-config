@@ -9,13 +9,16 @@
 
 #### 📅 **Updated: August 20th, 2025**
 
-- 📝 **Note Management Enhancement**: Added `note-from-clipboard` script for seamless clipboard-to-note workflow
+- 📝 **Note Management Enhancement**: Added `note-from-clipboard` script and XDG compliance improvements
   - 🚀 **Clipboard Integration**: One-command clipboard text capture using existing `note` infrastructure
   - 🎯 **Smart Content Detection**: Automatically detects text/plain clipboard content vs images/other formats
   - 📮 **Desktop Notifications**: Comprehensive user feedback for success, failure, and skipped operations
   - ⚡ **Instant Timestamping**: Leverages existing colorful note system with automatic timestamp generation
   - 🛡️ **Non-destructive**: Only processes text content, safely ignores non-text clipboard data
   - 💻 **Terminal Ready**: Available system-wide via PATH after rebuild
+  - 📁 **XDG Compliance**: Notes now saved to `~/.local/share/notes/notes.txt` following XDG Base Directory Specification
+  - 🔍 **File Location Display**: Shows full file path in output to prevent user confusion about note storage location
+  - 🛠️ **Auto-Directory Creation**: Creates notes directory automatically on first use
 
 #### 📅 **Updated: August 19th, 2025**
 
