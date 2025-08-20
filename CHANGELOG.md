@@ -7,6 +7,16 @@
 
 # 🚀 **Current Release - ZaneyOS v2.4**
 
+#### 📅 **Updated: August 20th, 2025**
+
+- 📝 **Note Management Enhancement**: Added `note-from-clipboard` script for seamless clipboard-to-note workflow
+  - 🚀 **Clipboard Integration**: One-command clipboard text capture using existing `note` infrastructure
+  - 🎯 **Smart Content Detection**: Automatically detects text/plain clipboard content vs images/other formats
+  - 📮 **Desktop Notifications**: Comprehensive user feedback for success, failure, and skipped operations
+  - ⚡ **Instant Timestamping**: Leverages existing colorful note system with automatic timestamp generation
+  - 🛡️ **Non-destructive**: Only processes text content, safely ignores non-text clipboard data
+  - 💻 **Terminal Ready**: Available system-wide via PATH after rebuild
+
 #### 📅 **Updated: August 19th, 2025**
 
 - 🔄 **Upgrade System Enhancement**: Comprehensive upgrade infrastructure for ZaneyOS 2.3 → 2.4 migrations
