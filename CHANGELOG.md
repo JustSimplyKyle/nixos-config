@@ -9,59 +9,93 @@
 
 #### 📅 **Updated: August 21st, 2025**
 
-- 📚 **Cheatsheets Library**: Centralized, human-friendly docs under `cheatsheets/`
+- 📚 **Cheatsheets Library**: Centralized, human-friendly docs under
+  `cheatsheets/`
   - 🔗 Quick Links and directory tree in `cheatsheets/README.md`
   - 🧩 Topics added:
-    - ✍️ Emacs — Getting started, File Explorer, Code Completion, Magit, Markdown
+    - ✍️ Emacs — Getting started, File Explorer, Code Completion, Magit,
+      Markdown
     - 🖥️ Terminals — Ghostty, Tmux, Alacritty, Kitty, WezTerm
     - 🪟 Hyprland — Keybindings (SUPERKEY notation) and Window Rules
     - 📂 Yazi — Keymap (navigation, selection, search, tabs, modes)
 
 #### 📅 **Updated: August 20th, 2025**
 
-- 📝 **Note Management Enhancement**: Added `note-from-clipboard` script and XDG compliance improvements
-  - 🚀 **Clipboard Integration**: One-command clipboard text capture using existing `note` infrastructure
-  - 🎯 **Smart Content Detection**: Automatically detects text/plain clipboard content vs images/other formats
-  - 📮 **Desktop Notifications**: Comprehensive user feedback for success, failure, and skipped operations
-  - ⚡ **Instant Timestamping**: Leverages existing colorful note system with automatic timestamp generation
-  - 🛡️ **Non-destructive**: Only processes text content, safely ignores non-text clipboard data
+- 📝 **Note Management Enhancement**: Added `note-from-clipboard` script and XDG
+  compliance improvements
+  - 🚀 **Clipboard Integration**: One-command clipboard text capture using
+    existing `note` infrastructure
+  - 🎯 **Smart Content Detection**: Automatically detects text/plain clipboard
+    content vs images/other formats
+  - 📮 **Desktop Notifications**: Comprehensive user feedback for success,
+    failure, and skipped operations
+  - ⚡ **Instant Timestamping**: Leverages existing colorful note system with
+    automatic timestamp generation
+  - 🛡️ **Non-destructive**: Only processes text content, safely ignores non-text
+    clipboard data
   - 💻 **Terminal Ready**: Available system-wide via PATH after rebuild
-  - 📁 **XDG Compliance**: Notes now saved to `~/.local/share/notes/notes.txt` following XDG Base Directory Specification
-  - 🔍 **File Location Display**: Shows full file path in output to prevent user confusion about note storage location
-  - 🛠️ **Auto-Directory Creation**: Creates notes directory automatically on first use
+  - 📁 **XDG Compliance**: Notes now saved to `~/.local/share/notes/notes.txt`
+    following XDG Base Directory Specification
+  - 🔍 **File Location Display**: Shows full file path in output to prevent user
+    confusion about note storage location
+  - 🛠️ **Auto-Directory Creation**: Creates notes directory automatically on
+    first use
 
 #### 📅 **Updated: August 19th, 2025**
 
-- 🔄 **Upgrade System Enhancement**: Comprehensive upgrade infrastructure for ZaneyOS 2.3 → 2.4 migrations
-  - 🚀 **Automated Upgrade Script**: `upgrade-2.3-to-2.4.sh` with complete migration automation
-    - 💾 **Complete Backup System**: Timestamped backups with organized storage in `~/.config/zaneyos-backups/`
-    - 🔍 **Version Validation**: Automatic detection of ZaneyOS 2.3 vs 2.4+ to prevent incorrect upgrades
-    - 🧬 **Variable Migration**: Comprehensive migration of 15+ configuration variables from 2.3 to 2.4 format
-    - 🖥️ **Terminal Dependency Handling**: Automatic enabling of terminal applications (critical for 2.4 compatibility)
-    - 🎨 **Theme Preservation**: Migration of stylixImage, waybarChoice, animChoice, and monitor settings
-    - 🛡️ **Safe Build Process**: Uses `boot` instead of `switch` to prevent SDDM display manager conflicts
-    - 📝 **Comprehensive Logging**: Detailed logs with timestamps for troubleshooting
-  - ↩️ **One-Command Revert**: `revert-to-2.3.sh` and `upgrade-2.3-to-2.4.sh --revert` for easy rollback
-  - 📚 **Complete Documentation**: `UPGRADE-2.3-to-2.4.md` with detailed instructions and troubleshooting
-  - ⚠️ **Legacy Documentation**: Updated `ZaneyOS-Upgrade.md` to deprecate manual process and redirect to automated system
-  - 🔧 **Hardware Preservation**: Automatic migration of hardware.nix and host-specific configurations
-  - 🎯 **User Experience**: Interactive prompts, colored output, progress indicators, and clear error messages
+- 🔄 **Upgrade System Enhancement**: Comprehensive upgrade infrastructure for
+  ZaneyOS 2.3 → 2.4 migrations
+  - 🚀 **Automated Upgrade Script**: `upgrade-2.3-to-2.4.sh` with complete
+    migration automation
+    - 💾 **Complete Backup System**: Timestamped backups with organized storage
+      in `~/.config/zaneyos-backups/`
+    - 🔍 **Version Validation**: Automatic detection of ZaneyOS 2.3 vs 2.4+ to
+      prevent incorrect upgrades
+    - 🧬 **Variable Migration**: Comprehensive migration of 15+ configuration
+      variables from 2.3 to 2.4 format
+    - 🖥️ **Terminal Dependency Handling**: Automatic enabling of terminal
+      applications (critical for 2.4 compatibility)
+    - 🎨 **Theme Preservation**: Migration of stylixImage, waybarChoice,
+      animChoice, and monitor settings
+    - 🛡️ **Safe Build Process**: Uses `boot` instead of `switch` to prevent SDDM
+      display manager conflicts
+    - 📝 **Comprehensive Logging**: Detailed logs with timestamps for
+      troubleshooting
+  - ↩️ **One-Command Revert**: `revert-to-2.3.sh` and
+    `upgrade-2.3-to-2.4.sh --revert` for easy rollback
+  - 📚 **Complete Documentation**: `UPGRADE-2.3-to-2.4.md` with detailed
+    instructions and troubleshooting
+  - ⚠️ **Legacy Documentation**: Updated `ZaneyOS-Upgrade.md` to deprecate
+    manual process and redirect to automated system
+  - 🔧 **Hardware Preservation**: Automatic migration of hardware.nix and
+    host-specific configurations
+  - 🎯 **User Experience**: Interactive prompts, colored output, progress
+    indicators, and clear error messages
 
-- 🛠️ **ZCLI Enhancement v1.0.2**: Major upgrade to the ZaneyOS CLI utility with comprehensive new features
+- 🛠️ **ZCLI Enhancement v1.0.2**: Major upgrade to the ZaneyOS CLI utility with
+  comprehensive new features
   - 🔥 **Doom Emacs Management**: Complete lifecycle management for Doom Emacs
-    - 🚀 `doom install` - Automated installation using get-doom script with all required packages
-    - ✅ `doom status` - Installation verification with version information display
-    - 🗑️ `doom remove` - Safe removal with confirmation prompts to prevent accidents
+    - 🚀 `doom install` - Automated installation using get-doom script with all
+      required packages
+    - ✅ `doom status` - Installation verification with version information
+      display
+    - 🗑️ `doom remove` - Safe removal with confirmation prompts to prevent
+      accidents
     - 🔄 `doom update` - Package and configuration updates via doom sync
-  - ⚙️ **Advanced Build Options**: Enhanced command-line arguments for precise control
+  - ⚙️ **Advanced Build Options**: Enhanced command-line arguments for precise
+    control
     - 🔍 `--dry, -n` - Preview mode showing planned changes without execution
-    - ❓ `--ask, -a` - Interactive confirmation prompts for safety-critical operations
-    - 💻 `--cores N` - CPU core limiting for VMs and resource-constrained systems
+    - ❓ `--ask, -a` - Interactive confirmation prompts for safety-critical
+      operations
+    - 💻 `--cores N` - CPU core limiting for VMs and resource-constrained
+      systems
     - 📋 `--verbose, -v` - Detailed operation logging and verbose output
     - 🎯 `--no-nom` - Disable nix-output-monitor for traditional output
   - 🏠 **Enhanced Host Management**: Improved host configuration tools
-    - ➕ `add-host` - Create new host configurations with automated GPU detection
-    - ➖ `del-host` - Safely remove host configurations with confirmation prompts
+    - ➕ `add-host` - Create new host configurations with automated GPU
+      detection
+    - ➖ `del-host` - Safely remove host configurations with confirmation
+      prompts
     - 🔄 `update-host` - Enhanced hostname/profile updating with validation
   - 🧹 **System Maintenance**: Improved cleanup and diagnostic capabilities
     - 🗂️ Automated log cleanup for old build logs during cleanup operations
@@ -71,21 +105,29 @@
     - 🔒 Multiple confirmation prompts for destructive operations
     - 📝 Comprehensive error handling and user feedback
     - 🎛️ Multiple options can be combined for precise operational control
+
 #### 📅 **Updated: August 11th, 2025**
 
-- 🔧 **NeoVIM Enhancement**: Fixed DirtytalkUpdate automation for programming spellcheck
+- 🔧 **NeoVIM Enhancement**: Fixed DirtytalkUpdate automation for programming
+  spellcheck
   - ✨ **Auto-download**: Wordlist now downloads automatically on first startup
   - 🔄 **Smart detection**: Only downloads if wordlist file doesn't exist
   - 💡 **Fallback**: Improved home activation script with better error handling
   - ⚡ **Performance**: Added `vim.schedule()` for non-blocking wordlist updates
-  - 🐛 **Bug Fix**: Re-enabled `programmingWordlist.enable = true` with proper automation
-  - 🎯 **User Experience**: Eliminates the manual `:DirtytalkUpdate` prompt mentioned in previous changelog
-  - 📚 **Resolves**: The issue referenced in changelog line 81-83 where users had to manually run the command
+  - 🐛 **Bug Fix**: Re-enabled `programmingWordlist.enable = true` with proper
+    automation
+  - 🎯 **User Experience**: Eliminates the manual `:DirtytalkUpdate` prompt
+    mentioned in previous changelog
+  - 📚 **Resolves**: The issue referenced in changelog line 81-83 where users
+    had to manually run the command
 
-- 🔧 **NeoVIM LSP Enhancement**: Enhanced Nix LSP configuration for better development experience
-  - 🎯 **Purpose**: Enables automatic evaluation of Nix inputs for better LSP functionality
-  - 📍 **Location**: Added nil LSP configuration with auto-eval-inputs in luaConfigPost
-  - 🚀 **Benefits**: 
+- 🔧 **NeoVIM LSP Enhancement**: Enhanced Nix LSP configuration for better
+  development experience
+  - 🎯 **Purpose**: Enables automatic evaluation of Nix inputs for better LSP
+    functionality
+  - 📍 **Location**: Added nil LSP configuration with auto-eval-inputs in
+    luaConfigPost
+  - 🚀 **Benefits**:
     - 💡 Better code completion for Nix files
     - 🔍 Enhanced error checking and navigation
     - 🧠 Improved IntelliSense for Nix expressions
@@ -96,7 +138,8 @@
 - ⚡ **ZCLI Enhancement**: Added `rebuild-boot` function to `zcli`
   - 🔄 Uses `nh os boot` instead of `nh os switch`
   - ⏭️ Configuration activates on next restart instead of immediately
-  - 🛡️ Safer for kernel updates, driver changes, and system-critical modifications
+  - 🛡️ Safer for kernel updates, driver changes, and system-critical
+    modifications
   - 📝 Added to help menu with proper documentation
 
 - 🐛 **Bug Fix**: Fixed typo in `detect_gpu_profile()` function

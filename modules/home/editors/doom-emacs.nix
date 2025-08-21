@@ -1,6 +1,7 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
-    emacs-pgtk
+    emacs-gtk
     git
     lazygit
     ripgrep
