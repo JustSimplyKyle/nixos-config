@@ -7,6 +7,16 @@
 
 # 🚀 **Current Release - ZaneyOS v2.4**
 
+#### 📅 **Updated: August 21st, 2025**
+
+- 📚 **Cheatsheets Library**: Centralized, human-friendly docs under `cheatsheets/`
+  - 🔗 Quick Links and directory tree in `cheatsheets/README.md`
+  - 🧩 Topics added:
+    - ✍️ Emacs — Getting started, File Explorer, Code Completion, Magit, Markdown
+    - 🖥️ Terminals — Ghostty, Tmux, Alacritty, Kitty, WezTerm
+    - 🪟 Hyprland — Keybindings (SUPERKEY notation) and Window Rules
+    - 📂 Yazi — Keymap (navigation, selection, search, tabs, modes)
+
 #### 📅 **Updated: August 11th, 2025**
 
 - 🔧 **NeoVIM Enhancement**: Fixed DirtytalkUpdate automation for programming spellcheck
