@@ -2,9 +2,26 @@
 
 ## 🚀 Summary of modules/home/terminals/tmux.nix
 
+### ⌨️ What is the Tmux Prefix?
+- The prefix is a special key you press before most tmux commands, so tmux can tell them apart from regular typing.
+- Notation guide used below:
+  - C-x = hold Control and press x (e.g., C-a means Control+a)
+  - M-x = hold Alt/Meta and press x (sometimes shown as Alt+x)
+  - S-x = hold Shift and press x (often implicit for uppercase letters)
+- Tmux default prefix is C-b (Control+b). In this config it’s changed to C-a (Control+a), which mirrors the historical GNU Screen workflow many users prefer.
+
+Quick examples (with prefix = C-a):
+- New window: press C-a then c
+- Next window: press C-a then n
+- Split horizontally: press C-a then |
+- Split vertically: press C-a then -
+- Resize left: press C-a then C-h (hold Control and press h)
+
 - Program
   - tmux enabled; prefix: C-a; key mode: vi; baseIndex: 1; pane-base-index: 1
-  - Terminal overrides RGB; terminal set to "wezterm"; shell: zsh
+    - baseIndex: window numbering starts at 1 instead of 0
+    - pane-base-index: pane numbering inside a window starts at 1 instead of 0
+  - Terminal overrides RGB; terminal set to "kitty"; shell: zsh
   - Mouse: enabled; 12-hour clock; history-limit: 5000; renumber-windows: on
 
 - Status/UX
