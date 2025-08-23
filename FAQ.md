@@ -1,7 +1,7 @@
-# 💬 ZaneyOS FAQ for v2.3
+# 💬 ZaneyOS FAQ for v2.4
 
-- **Revision v1.24**
-- **Date:** 16-August-2025
+- **Revision v1.25**
+- **Date:** 23-August-2025
 
 **⌨ Where can I see the Hyprland keybindings?**
 
@@ -801,34 +801,26 @@ settings = {
 <div style="margin-left: 20px;">
 
 <details>
-<summary> For versions v2.3+ </summary>
+<summary> For version v2.3 </summary>
 
-1. First backup your existing `zaneyos` directory.
+Use the automated v2.3 → v2.4 upgrade. See ZaneyOS-Upgrade.md and UPGRADE-2.3-to-2.4.md. To avoid overwriting your config before a backup is created, fetch just the script without modifying your working tree:
 
-- `cp -rpv ~/zaneyos ~/Backup-ZaneyOS`
+- Git (recommended):
+```bash
+git -C ~/zaneyos fetch origin
+git -C ~/zaneyos show origin/main:upgrade-2.3-to-2.4.sh > ~/upgrade-2.3-to-2.4.sh
+chmod +x ~/upgrade-2.3-to-2.4.sh
+```
+- Curl:
+```bash
+curl -fsSL https://gitlab.com/zaney/zaneyos/-/raw/main/upgrade-2.3-to-2.4.sh -o ~/upgrade-2.3-to-2.4.sh
+chmod +x ~/upgrade-2.3-to-2.4.sh
+```
+Then run the script: `~/upgrade-2.3-to-2.4.sh`. It will create a full backup before switching branches and migrate your hosts safely from the backup.
 
-_Any changes you made to the ZaneyOS config will need to be re-done_
-
-2. In the `zaneyos` directory run `git stash && git pull`
-
-3. Copy back your previously created host(s).
-
-- `cp -rpv ~/Backup-ZaneyOS/hosts/HOSTNAME  ~/zaneyos/hosts`
-
-4. If you did not use the `default` host during your initial install
-
-- Then do not copy the `default` host from your backup. The new default host
-  might have updates or fixes you will need for the next host you create.**
-- Then you will have to manually compare your backup to the new updated
-  `default` host template, and potentially merge the changes and overwrite your
-  `hardware.nix` file to the `~/zaneyos/hosts/default/hardware.nix` file.**
-
-5. In the `zaneyos` directory run `git add .` when you have finished copying
-   your host(s).
-
-6. For any other changes you've made. For example: hyprland keybinds, waybar
-   config, if you added additional packages to the `modules/packages.nix` file.
-   Those you will have to manually merge back into the new version.
+**IMPORTANT:**
+- Do NOT use the `fu` or `fr` aliases for this upgrade; the script uses a safe boot build.
+- If you have made extensive modifications, do not run the script. Read the docs above and migrate manually instead.
 
 </details>
 
@@ -1989,34 +1981,26 @@ settings = {
 <div style="margin-left: 20px;">
 
 <details>
-<summary> For versions v2.3+ </summary>
+<summary> For version v2.3 </summary>
 
-1. First backup your existing `zaneyos` directory.
+Use the automated v2.3 → v2.4 upgrade. See ZaneyOS-Upgrade.md and UPGRADE-2.3-to-2.4.md. To avoid overwriting your config before a backup is created, fetch just the script without modifying your working tree:
 
-- `cp -rpv ~/zaneyos ~/Backup-ZaneyOS`
+- Git (recommended):
+```bash
+git -C ~/zaneyos fetch origin
+git -C ~/zaneyos show origin/main:upgrade-2.3-to-2.4.sh > ~/upgrade-2.3-to-2.4.sh
+chmod +x ~/upgrade-2.3-to-2.4.sh
+```
+- Curl:
+```bash
+curl -fsSL https://gitlab.com/zaney/zaneyos/-/raw/main/upgrade-2.3-to-2.4.sh -o ~/upgrade-2.3-to-2.4.sh
+chmod +x ~/upgrade-2.3-to-2.4.sh
+```
+Then run the script: `~/upgrade-2.3-to-2.4.sh`. It will create a full backup before switching branches and migrate your hosts safely from the backup.
 
-_Any changes you made to the ZaneyOS config will need to be re-done_
-
-2. In the `zaneyos` directory run `git stash && git pull`
-
-3. Copy back your previously created host(s).
-
-- `cp -rpv ~/Backup-ZaneyOS/hosts/HOSTNAME  ~/zaneyos/hosts`
-
-4. If you did not use the `default` host during your initial install
-
-- Then do not copy the `default` host from your backup. The new default host
-  might have updates or fixes you will need for the next host you create.**
-- Then you will have to manually compare your backup to the new updated
-  `default` host template, and potentially merge the changes and overwrite your
-  `hardware.nix` file to the `~/zaneyos/hosts/default/hardware.nix` file.**
-
-5. In the `zaneyos` directory run `git add .` when you have finished copying
-   your host(s).
-
-6. For any other changes you've made. For example: hyprland keybinds, waybar
-   config, if you added additional packages to the `modules/packages.nix` file.
-   Those you will have to manually merge back into the new version.
+**IMPORTANT:**
+- Do NOT use the `fu` or `fr` aliases for this upgrade; the script uses a safe boot build.
+- If you have made extensive modifications, do not run the script. Read the docs above and migrate manually instead.
 
 </details>
 
