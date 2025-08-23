@@ -3,6 +3,12 @@
 - **Revision v1.25**
 - **Date:** 23-August-2025
 
+> IMPORTANT: Upgrading from v2.3 to v2.4?
+> - Strongly recommended: Read `ZaneyOS-Upgrade.md` fully before attempting the upgrade.
+> - It explains the automated upgrade, full backup, host migration, and revert process.
+> - Do NOT use the `fu` or `fr` aliases for this upgrade.
+> - If you've made extensive modifications, do not run the script—review the docs and migrate manually.
+
 **⌨ Where can I see the Hyprland keybindings?**
 
 - The SUPER key + K opens a searchable menu with the bindings
@@ -803,7 +809,9 @@ settings = {
 <details>
 <summary> For version v2.3 </summary>
 
-Use the automated v2.3 → v2.4 upgrade. See ZaneyOS-Upgrade.md and UPGRADE-2.3-to-2.4.md. To avoid overwriting your config before a backup is created, fetch just the script without modifying your working tree:
+Strongly recommended: Read `ZaneyOS-Upgrade.md` before proceeding. It details the safe, automated upgrade, backup, and revert process.
+
+Use the automated v2.3 → v2.4 upgrade. See `ZaneyOS-Upgrade.md` and `UPGRADE-2.3-to-2.4.md`. To avoid overwriting your config before a backup is created, fetch just the script without modifying your working tree:
 
 - Git (recommended):
 ```bash
