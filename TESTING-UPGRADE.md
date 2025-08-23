@@ -6,8 +6,24 @@ This branch (`ddubs-dev`) contains the upgrade scripts for safe testing before m
 
 ### Prerequisites for Testing:
 - A ZaneyOS 2.3 system (stable-2.3 branch)
-- Access to the ddubs-dev branch files
+- Access to the ddubs-dev or main branch files
 - Backup of your existing system (the script creates one, but manual backup recommended too)
+
+### Safely obtain the upgrade script (do NOT `git pull` yet)
+To avoid overwriting your local config before a backup exists, fetch just the script without altering your working tree:
+
+Option A — Using your existing git remote:
+```bash
+git -C ~/zaneyos fetch origin
+git -C ~/zaneyos show origin/main:upgrade-2.3-to-2.4.sh > ~/upgrade-2.3-to-2.4.sh
+chmod +x ~/upgrade-2.3-to-2.4.sh
+```
+
+Option B — Using curl:
+```bash
+curl -fsSL https://gitlab.com/zaney/zaneyos/-/raw/main/upgrade-2.3-to-2.4.sh -o ~/upgrade-2.3-to-2.4.sh
+chmod +x ~/upgrade-2.3-to-2.4.sh
+```
 
 ## 📋 Test Plan
 

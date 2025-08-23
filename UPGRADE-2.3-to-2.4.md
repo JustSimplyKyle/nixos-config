@@ -30,11 +30,33 @@ This guide provides safe upgrade scripts to migrate from ZaneyOS 2.3 to 2.4, han
 
 ## 🚀 How to Upgrade
 
+### Step 0: Get the upgrade script safely (do NOT git pull yet)
+
+To avoid overwriting your local configuration before a backup is created, fetch just the upgrade script without modifying your working tree.
+
+Option A — Using your existing git remote (recommended):
+```bash
+# Fetch the latest refs without touching your working tree
+git -C ~/zaneyos fetch origin
+
+# Write the script from origin/main into your home directory
+git -C ~/zaneyos show origin/main:upgrade-2.3-to-2.4.sh > ~/upgrade-2.3-to-2.4.sh
+chmod +x ~/upgrade-2.3-to-2.4.sh
+```
+
+Option B — Using curl (if you don't have a usable origin remote):
+```bash
+curl -fsSL https://gitlab.com/zaney/zaneyos/-/raw/main/upgrade-2.3-to-2.4.sh -o ~/upgrade-2.3-to-2.4.sh
+chmod +x ~/upgrade-2.3-to-2.4.sh
+```
+
+Both methods keep your local repo unchanged. The script will create a full backup before switching branches.
+
 ### Step 1: Run the Upgrade Script
 
 ```bash
-cd ~/zaneyos
-./upgrade-2.3-to-2.4.sh
+# You can run the script from anywhere; it operates on ~/zaneyos
+~/upgrade-2.3-to-2.4.sh
 ```
 
 ### Step 2: Review the Pre-Upgrade Analysis

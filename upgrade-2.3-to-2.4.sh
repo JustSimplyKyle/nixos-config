@@ -548,17 +548,22 @@ print_success "Successfully switched to ZaneyOS 2.4 (main branch)"
 
 print_header "Discovering Host Configurations"
 
-# Find all host directories (excluding default)
+# Important: Discover hosts from the BACKUP, not the current working tree
+# This ensures we preserve user hosts even if switching branches removed them
+print_info "Discovering custom hosts from backup to avoid any branch-change side effects..."
 HOST_DIRS=()
-for dir in hosts/*/; do
-    hostname=$(basename "$dir")
-    if [ "$hostname" != "default" ]; then
-        HOST_DIRS+=("$hostname")
-    fi
-done
+if [ -d "$BACKUP_DIR/zaneyos/hosts" ]; then
+    for dir in "$BACKUP_DIR/zaneyos/hosts"/*/; do
+        [ -d "$dir" ] || continue
+        hostname=$(basename "$dir")
+        if [ "$hostname" != "default" ]; then
+            HOST_DIRS+=("$hostname")
+        fi
+    done
+fi
 
 if [ ${#HOST_DIRS[@]} -eq 0 ]; then
-    print_error "No custom host configurations found"
+    print_error "No custom host configurations found in backup"
     print_error "This upgrade script requires at least one custom host configuration"
     exit 1
 fi

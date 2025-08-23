@@ -25,8 +25,20 @@ The new upgrade system provides:
 
 ### Quick Start:
 ```bash
-cd ~/zaneyos
-./upgrade-2.3-to-2.4.sh
+# Safely obtain the script without modifying your repo
+git -C ~/zaneyos fetch origin && \
+  git -C ~/zaneyos show origin/main:upgrade-2.3-to-2.4.sh > ~/upgrade-2.3-to-2.4.sh && \
+  chmod +x ~/upgrade-2.3-to-2.4.sh
+
+# Run the script (it will create a full backup before changing branches)
+~/upgrade-2.3-to-2.4.sh
+```
+
+Alternative (curl):
+```bash
+curl -fsSL https://gitlab.com/zaney/zaneyos/-/raw/main/upgrade-2.3-to-2.4.sh -o ~/upgrade-2.3-to-2.4.sh
+chmod +x ~/upgrade-2.3-to-2.4.sh
+~/upgrade-2.3-to-2.4.sh
 ```
 
 ### For detailed instructions:
