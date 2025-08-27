@@ -152,6 +152,11 @@ in
         new_on_top = 1;
         mfact = 0.5;
       };
+
+      # Ensure Xwayland windows render at integer scale; compositor scales them
+      xwayland = {
+        force_zero_scaling = true;
+      };
     };
 
     extraConfig = "
