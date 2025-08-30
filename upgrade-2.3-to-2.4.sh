@@ -172,6 +172,79 @@ cleanup_duplicates() {
   ' "$file_path" > "$file_path.tmp" && mv "$file_path.tmp" "$file_path"
 }
 
+# Git helper: switch to main safely even with uncommitted changes
+switch_to_main_handling_dirty() {
+  # Fetch main from origin
+  print_info "Fetching latest changes from origin..."
+  if ! git fetch origin main; then
+    print_error "Failed to fetch origin/main"
+    exit 1
+  fi
+
+  # Handle dirty worktree
+  if ! git diff-index --quiet HEAD -- 2>/dev/null; then
+    print_warning "UNCOMMITTED CHANGES DETECTED!"
+    echo "You can:"
+    echo "  • [S]tash changes (default)"
+    echo "  • [D]iscard changes (reset hard)"
+    echo "  • [A]bort upgrade"
+    read -p "Choose action [S/d/a]: " -r choice
+    case "${choice^^}" in
+      D)
+        print_warning "Discarding local changes (git reset --hard && git clean -fd)"
+        git reset --hard || { print_error "git reset failed"; exit 1; }
+        git clean -fd || { print_error "git clean failed"; exit 1; }
+        ;;
+      A)
+        print_info "Upgrade cancelled by user due to uncommitted changes."
+        exit 0
+        ;;
+      *)
+        local stash_name="pre-upgrade-stash-$(date +%F_%H-%M-%S)"
+        if git stash -u -m "$stash_name"; then
+          print_success "Changes stashed as: $stash_name"
+        else
+          print_error "Failed to stash changes"
+          exit 1
+        fi
+        ;;
+    esac
+  fi
+
+  # Ensure local main exists and tracks origin/main
+  if git show-ref --verify --quiet refs/heads/main; then
+    if ! git checkout main; then
+      print_error "Failed to checkout local main"
+      exit 1
+    fi
+  else
+    if ! git checkout -B main origin/main; then
+      print_error "Failed to create local main from origin/main"
+      exit 1
+    fi
+  fi
+
+  git branch --set-upstream-to=origin/main main >/dev/null 2>&1 || true
+
+  # Try fast-forward pull; if divergent, offer reset
+  if ! git pull --ff-only; then
+    print_warning "Fast-forward only pull failed (divergent branch)."
+    read -p "Resolve by [R]eset to origin/main (default) or [A]bort? [R/a]: " -r choice2
+    case "${choice2^^}" in
+      A)
+        print_info "Upgrade aborted by user."
+        exit 0
+        ;;
+      *)
+        print_warning "Resetting local main to origin/main"
+        git reset --hard origin/main || { print_error "git reset --hard origin/main failed"; exit 1; }
+        ;;
+    esac
+  fi
+
+  print_success "Successfully switched to ZaneyOS 2.4 (main branch)"
+}
+
 # Check command line arguments
 if [ "$1" = "--revert" ]; then
     revert_from_backup
@@ -548,15 +621,8 @@ fi
 
 print_header "Fetching ZaneyOS 2.4"
 
-# Fetch the latest from main branch
-print_info "Fetching latest changes from origin..."
-git fetch origin
-
-print_info "Switching to main branch (ZaneyOS 2.4)..."
-git checkout main
-git pull origin main
-
-print_success "Successfully switched to ZaneyOS 2.4 (main branch)"
+# Switch to main robustly, handling uncommitted changes and divergent branches
+switch_to_main_handling_dirty
 
 print_header "Discovering Host Configurations"
 
