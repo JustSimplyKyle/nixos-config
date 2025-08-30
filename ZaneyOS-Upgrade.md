@@ -1,3 +1,5 @@
+[English](ZaneyOS-Upgrade.md) | [Español](ZaneyOS-Upgrade.es.md)
+
 # 🚀 ZaneyOS Upgrade Procedure
 
 ## ⚠️ DEPRECATED - Use New Automated Upgrade System

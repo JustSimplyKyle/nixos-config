@@ -1,3 +1,5 @@
+[English](FAQ.md) | [Español](FAQ.es.md)
+
 # 💬 ZaneyOS FAQ for v2.4
 
 - **Revision v1.25**

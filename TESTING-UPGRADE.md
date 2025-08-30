@@ -1,3 +1,5 @@
+[English](TESTING-UPGRADE.md) | [Español](TESTING-UPGRADE.es.md)
+
 # Testing ZaneyOS 2.3 → 2.4 Upgrade Scripts
 
 ## 🧪 Testing Environment Setup

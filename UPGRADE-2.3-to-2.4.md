@@ -1,3 +1,5 @@
+[English](UPGRADE-2.3-to-2.4.md) | [Español](UPGRADE-2.3-to-2.4.es.md)
+
 # ZaneyOS 2.3 → 2.4 Upgrade Guide
 
 This guide provides safe upgrade scripts to migrate from ZaneyOS 2.3 to 2.4, handling all the breaking changes and ensuring your custom configuration is preserved.

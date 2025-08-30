@@ -1,3 +1,5 @@
+[English](zcli.md) | [Español](zcli.es.md)
+
 # ZaneyOS Command Line Utility (zcli) - Version 1.0.2
 
 zcli is a handy tool for performing common maintenance tasks on your ZaneyOS
