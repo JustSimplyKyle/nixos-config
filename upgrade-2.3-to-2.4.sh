@@ -159,6 +159,19 @@ print_failure_banner() {
   echo -e "${RED}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
 }
 
+# Cleanup helper: remove duplicate attribute keys in variables.nix
+cleanup_duplicates() {
+  local file_path="$1"
+  # Keep only the first non-comment occurrence of specific keys
+  awk '
+    BEGIN{si=0; ac=0; wc=0}
+    /^[[:space:]]*stylixImage[[:space:]]*=/ { if (si++) next }
+    /^[[:space:]]*animChoice[[:space:]]*=/ { if (ac++) next }
+    /^[[:space:]]*waybarChoice[[:space:]]*=/ { if (wc++) next }
+    { print }
+  ' "$file_path" > "$file_path.tmp" && mv "$file_path.tmp" "$file_path"
+}
+
 # Check command line arguments
 if [ "$1" = "--revert" ]; then
     revert_from_backup
@@ -231,15 +244,14 @@ if [ ! -f "./hosts/default/variables.nix" ]; then
   exit 1
 fi
 
-# Check if we have 2.4 features (this indicates we're not on 2.3)
+# Check if we have 2.4 features (this indicates the TEMPLATE is 2.4)
+# Do NOT abort: users may still have 2.3 host files to migrate.
 if grep -q "displayManager" ./hosts/default/variables.nix; then
-  print_error "This appears to already be ZaneyOS 2.4 or newer"
-  print_error "This upgrade script is only for 2.3 → 2.4 upgrades"
-  print_info "Current variables.nix already contains 2.4+ features"
-  exit 1
+  print_warning "Template variables.nix includes 2.4+ fields (displayManager found)."
+  print_info "Proceeding: we will still migrate host files from your 2.3 backup."
+else
+  print_success "Verified: Template appears to be ZaneyOS 2.3-style"
 fi
-
-print_success "Verified: This appears to be ZaneyOS 2.3"
 
 # Comprehensive pre-check analysis
 perform_precheck_analysis() {
@@ -700,6 +712,9 @@ merge_variables() {
                 fi
             fi
         fi
+
+        # Final safety: remove any duplicate keys that might have slipped in
+        cleanup_duplicates "$new_vars_file"
         
         print_success "Configuration merged for host: $hostname"
     else
