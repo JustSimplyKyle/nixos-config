@@ -172,6 +172,30 @@ cleanup_duplicates() {
   ' "$file_path" > "$file_path.tmp" && mv "$file_path.tmp" "$file_path"
 }
 
+# Prompt helpers for non-interactive mode
+prompt_yes() {
+  local message="$1"
+  if [ "${AUTO_YES:-}" = "1" ]; then
+    echo -e "$message Y"
+    REPLY=Y
+  else
+    read -p "$message " -n 1 -r
+    echo ""
+  fi
+}
+
+prompt_choice() {
+  # $1: prompt message, $2: default uppercase letter (e.g., S or R)
+  local message="$1"
+  local default_char="$2"
+  if [ "${AUTO_YES:-}" = "1" ]; then
+    echo -e "$message $default_char"
+    choice="$default_char"
+  else
+    read -p "$message " -r choice
+  fi
+}
+
 # Git helper: switch to main safely even with uncommitted changes
 switch_to_main_handling_dirty() {
   # Fetch main from origin
@@ -188,7 +212,7 @@ switch_to_main_handling_dirty() {
     echo "  • [S]tash changes (default)"
     echo "  • [D]iscard changes (reset hard)"
     echo "  • [A]bort upgrade"
-    read -p "Choose action [S/d/a]: " -r choice
+    prompt_choice "Choose action [S/d/a]:" "S"
     case "${choice^^}" in
       D)
         print_warning "Discarding local changes (git reset --hard && git clean -fd)"
@@ -229,8 +253,8 @@ switch_to_main_handling_dirty() {
   # Try fast-forward pull; if divergent, offer reset
   if ! git pull --ff-only; then
     print_warning "Fast-forward only pull failed (divergent branch)."
-    read -p "Resolve by [R]eset to origin/main (default) or [A]bort? [R/a]: " -r choice2
-    case "${choice2^^}" in
+    prompt_choice "Resolve by [R]eset to origin/main (default) or [A]bort? [R/a]:" "R"
+    case "${choice^^}" in
       A)
         print_info "Upgrade aborted by user."
         exit 0
@@ -588,8 +612,7 @@ perform_precheck_analysis() {
     echo ""
     
     # Ask user if they want to continue after seeing the analysis
-    read -p "Based on this analysis, do you want to proceed with the upgrade? (Y/N): " -n 1 -r
-    echo ""
+    prompt_yes "Based on this analysis, do you want to proceed with the upgrade? (Y/N):"
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
         print_info "Upgrade cancelled by user after analysis review."
         print_info "Analysis report is saved for your reference at: $analysis_file"
@@ -611,8 +634,7 @@ echo ""
 echo -e "${GREEN}✅ Backup created successfully!${NC}"
 echo -e "${YELLOW}📍 Backup location: $BACKUP_DIR${NC}"
 echo ""
-read -p "Continue with the upgrade to ZaneyOS 2.4? (Y/N): " -n 1 -r
-echo ""
+prompt_yes "Continue with the upgrade to ZaneyOS 2.4? (Y/N):"
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     print_info "Upgrade cancelled by user."
     print_info "Your backup is preserved at: $BACKUP_DIR"
@@ -839,8 +861,7 @@ if [ -f "$BACKUP_DIR/zaneyos/modules/core/packages.nix" ]; then
         
         # Offer to show differences
         echo ""
-        read -p "Would you like to see what packages were added in 2.4? (Y/N): " -n 1 -r
-        echo ""
+        prompt_yes "Would you like to see what packages were added in 2.4? (Y/N):"
         if [[ $REPLY =~ ^[Yy]$ ]]; then
             print_info "New packages available in ZaneyOS 2.4:"
             echo -e "${CYAN}=== Differences between your packages.nix and 2.4 template ===${NC}"
@@ -866,8 +887,7 @@ print_info "Detected profile: $PROFILE"
 
 # Build the system
 echo ""
-read -p "Ready to build ZaneyOS 2.4? This may take several minutes. (Y/N): " -n 1 -r
-echo ""
+prompt_yes "Ready to build ZaneyOS 2.4? This may take several minutes. (Y/N):"
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     print_info "Build cancelled. You can run this script again later."
     print_info "To revert to 2.3: $0 --revert"
@@ -916,8 +936,7 @@ if [ "$BUILD_SUCCESS" = true ]; then
     echo ""
     
     # Prompt for reboot
-    read -p "Would you like to reboot now? (Y/N): " -n 1 -r
-    echo ""
+    prompt_yes "Would you like to reboot now? (Y/N):"
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         print_info "Rebooting in 5 seconds... (Press Ctrl+C to cancel)"
         sleep 5
@@ -935,8 +954,7 @@ else
     echo -e "  • Review the log file: $LOG_FILE"
     echo ""
     
-    read -p "Would you like to automatically revert to ZaneyOS 2.3? (Y/N): " -n 1 -r
-    echo ""
+    prompt_yes "Would you like to automatically revert to ZaneyOS 2.3? (Y/N):"
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         revert_from_backup
     else
