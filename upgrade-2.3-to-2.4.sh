@@ -200,8 +200,8 @@ prompt_choice() {
 switch_to_main_handling_dirty() {
   # Fetch main from origin
   print_info "Fetching latest changes from origin..."
-  # Ensure remote-tracking branch refs/remotes/origin/main is updated
-  if ! git fetch origin +refs/heads/main:refs/remotes/origin/main; then
+  # Fetch main ref into FETCH_HEAD (works even if remote-tracking branch isn't configured)
+  if ! git fetch origin main; then
     print_error "Failed to fetch origin/main"
     exit 1
   fi
@@ -236,36 +236,14 @@ switch_to_main_handling_dirty() {
     esac
   fi
 
-  # Ensure local main exists and tracks origin/main
-  if git show-ref --verify --quiet refs/heads/main; then
-    if ! git checkout main; then
-      print_error "Failed to checkout local main"
-      exit 1
-    fi
-  else
-    if ! git checkout -B main origin/main; then
-      print_error "Failed to create local main from origin/main"
-      exit 1
-    fi
+  # Create or reset local main to fetched commit (FETCH_HEAD)
+  if ! git checkout -B main FETCH_HEAD; then
+    print_error "Failed to create/reset local main from FETCH_HEAD"
+    exit 1
   fi
 
+  # Set upstream if available, ignore errors if not
   git branch --set-upstream-to=origin/main main >/dev/null 2>&1 || true
-
-  # Try fast-forward pull; if divergent, offer reset
-  if ! git pull --ff-only; then
-    print_warning "Fast-forward only pull failed (divergent branch)."
-    prompt_choice "Resolve by [R]eset to origin/main (default) or [A]bort? [R/a]:" "R"
-    case "${choice^^}" in
-      A)
-        print_info "Upgrade aborted by user."
-        exit 0
-        ;;
-      *)
-        print_warning "Resetting local main to origin/main"
-        git reset --hard origin/main || { print_error "git reset --hard origin/main failed"; exit 1; }
-        ;;
-    esac
-  fi
 
   print_success "Successfully switched to ZaneyOS 2.4 (main branch)"
 }
