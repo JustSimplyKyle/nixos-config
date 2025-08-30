@@ -20,6 +20,9 @@ BACKUP_BASE_DIR="$HOME/.config/zaneyos-backups"
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 BACKUP_DIR="$BACKUP_BASE_DIR/zaneyos-2.3-upgrade-backup-$TIMESTAMP"
 
+# Target branch for 2.4 release (override by exporting BRANCH)
+BRANCH="${BRANCH:-stable-2.4}"
+
 # Define log file
 LOG_FILE="$HOME/zaneyos-upgrade-$TIMESTAMP.log"
 
@@ -196,13 +199,13 @@ prompt_choice() {
   fi
 }
 
-# Git helper: switch to main safely even with uncommitted changes
+# Git helper: switch to target branch safely even with uncommitted changes
 switch_to_main_handling_dirty() {
-  # Fetch main from origin
-  print_info "Fetching latest changes from origin..."
-  # Fetch main ref into FETCH_HEAD (works even if remote-tracking branch isn't configured)
-  if ! git fetch origin main; then
-    print_error "Failed to fetch origin/main"
+  # Fetch target branch from origin
+  print_info "Fetching latest changes from origin ($BRANCH)..."
+  # Fetch branch ref into FETCH_HEAD (works even if remote-tracking branch isn't configured)
+  if ! git fetch origin "$BRANCH"; then
+    print_error "Failed to fetch origin/$BRANCH"
     exit 1
   fi
 
@@ -236,16 +239,16 @@ switch_to_main_handling_dirty() {
     esac
   fi
 
-  # Create or reset local main to fetched commit (FETCH_HEAD)
-  if ! git checkout -B main FETCH_HEAD; then
-    print_error "Failed to create/reset local main from FETCH_HEAD"
+  # Create or reset local branch to fetched commit (FETCH_HEAD)
+  if ! git checkout -B "$BRANCH" FETCH_HEAD; then
+    print_error "Failed to create/reset local $BRANCH from FETCH_HEAD"
     exit 1
   fi
 
   # Set upstream if available, ignore errors if not
-  git branch --set-upstream-to=origin/main main >/dev/null 2>&1 || true
+  git branch --set-upstream-to="origin/$BRANCH" "$BRANCH" >/dev/null 2>&1 || true
 
-  print_success "Successfully switched to ZaneyOS 2.4 (main branch)"
+  print_success "Successfully switched to ZaneyOS 2.4 ($BRANCH branch)"
 }
 
 # Check command line arguments
@@ -261,7 +264,7 @@ echo ""
 echo -e "${YELLOW}📋 This script will:${NC}"
 echo -e "  • Create a complete backup of your current system"
 echo -e "  • Verify you're currently running ZaneyOS 2.3"
-echo -e "  • Upgrade to ZaneyOS 2.4 from main branch"
+echo -e "  • Upgrade to ZaneyOS 2.4 from $BRANCH"
 echo -e "  • Merge new 2.4 variables into your host configuration"
 echo -e "  • Handle terminal dependencies automatically"
 echo -e "  • Use safe 'boot' option to avoid SDDM display issues"

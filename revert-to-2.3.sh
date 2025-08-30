@@ -37,6 +37,9 @@ if [ ! -x "$UPGRADE_SCRIPT" ]; then
     chmod +x "$UPGRADE_SCRIPT"
 fi
 
+# Ensure the upgrade script targets the stable 2.4 branch for consistency
+export BRANCH="${BRANCH:-stable-2.4}"
+
 # Run the revert function
 echo -e "${GREEN}🔄 Starting revert process...${NC}"
 "$UPGRADE_SCRIPT" --revert
