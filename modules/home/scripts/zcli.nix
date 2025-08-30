@@ -9,7 +9,7 @@ let
   # Create the get-doom script as a dependency
   get-doom-script = pkgs.writeShellScriptBin "get-doom" ''
     #!/usr/bin/env bash
-    set -e
+    set -euo pipefail
 
     # --- Icons ---
     ICON_CHECK="✔"
@@ -32,13 +32,34 @@ let
       echo "==============================="
     }
 
+    is_doom_installed() {
+      local dir="$1"
+      [[ -x "$dir/bin/doom" ]] && [[ -f "$dir/core/doom.el" ]]
+    }
+
+    emacsdir_is_empty() {
+      local dir="$1"
+      [[ -d "$dir" ]] && [[ -z "$(ls -A "$dir" 2>/dev/null)" ]]
+    }
+
     # --- Main Script ---
     print_banner
     EMACSDIR="$HOME/.emacs.d"
 
-    if [ -d "$EMACSDIR" ]; then
+    if is_doom_installed "$EMACSDIR"; then
       print_success "Doom Emacs is already installed."
       exit 0
+    fi
+
+    if [[ -d "$EMACSDIR" ]]; then
+      if emacsdir_is_empty "$EMACSDIR"; then
+        print_status "Found empty $EMACSDIR; proceeding to install Doom Emacs into it..."
+      else
+        echo "Error: Found $EMACSDIR but it does not look like a Doom Emacs installation." >&2
+        echo "Refusing to overwrite a non-empty directory. Move it away and re-run, e.g.:" >&2
+        echo "  mv \"$EMACSDIR\" \"$EMACSDIR.bak\"" >&2
+        exit 1
+      fi
     fi
 
     print_status "Cloning Doom Emacs..."
@@ -557,19 +578,82 @@ pkgs.writeShellScriptBin "zcli" ''
         exit 1
       fi
 
+      # Ensure we're acting on a valid host and we can locate variables.nix
+      verify_hostname
+      current_hostname="$(hostname)"
+      host_vars_file="$HOME/$PROJECT/hosts/$current_hostname/variables.nix"
+
+      if [ ! -f "$host_vars_file" ]; then
+        echo "Error: Host variables file not found: $host_vars_file" >&2
+        echo "Please ensure your host folder exists and contains variables.nix." >&2
+        exit 1
+      fi
+
+      is_doom_enabled() {
+        # Return 0 if doomEmacsEnable = true; appears (ignoring leading spaces)
+        ${pkgs.gnugrep}/bin/grep -Eq '^[[:space:]]*doomEmacsEnable[[:space:]]*=[[:space:]]*true[[:space:]]*;' "$host_vars_file"
+      }
+
+      ensure_doom_enabled() {
+        # If the variable is present but false, flip it; if missing, append it
+        if ${pkgs.gnugrep}/bin/grep -Eq '^[[:space:]]*doomEmacsEnable[[:space:]]*=' "$host_vars_file"; then
+          ${pkgs.gnused}/bin/sed -i 's/^[[:space:]]*doomEmacsEnable[[:space:]]*=.*/  doomEmacsEnable = true;/' "$host_vars_file"
+        else
+          echo "" >> "$host_vars_file"
+          echo "  # Enabled by zcli doom on $(date)" >> "$host_vars_file"
+          echo "  doomEmacsEnable = true;" >> "$host_vars_file"
+        fi
+      }
+
       doom_subcommand="$2"
       case "$doom_subcommand" in
         install)
+          if ! is_doom_enabled; then
+            echo "✗ Doom Emacs is disabled for host '$current_hostname' (doomEmacsEnable = false)." >&2
+            echo "To enable, set doomEmacsEnable = true; in:" >&2
+            echo "  $host_vars_file" >&2
+            echo "and rebuild your system before installing Doom." >&2
+            echo
+            read -p "Enable Doom for this host now and rebuild? (y/N) " -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+              echo "Enabling Doom Emacs in $host_vars_file..."
+              ensure_doom_enabled
+              echo "Rebuilding system so user modules are applied..."
+              if ${pkgs.nh}/bin/nh os switch --hostname "$PROFILE"; then
+                echo "Rebuild complete. Proceeding with Doom installation."
+              else
+                echo "Error: Rebuild failed. Please fix the build and re-run 'zcli doom install'." >&2
+                exit 1
+              fi
+            else
+              echo "Aborting. Please enable doomEmacsEnable and rebuild before installing." >&2
+              exit 1
+            fi
+          fi
           echo "Installing Doom Emacs..."
           ${get-doom-script}/bin/get-doom
           ;;
         status)
-          if [ -d "$HOME/.emacs.d" ] && [ -x "$HOME/.emacs.d/bin/doom" ]; then
-            echo "✔ Doom Emacs is installed at $HOME/.emacs.d"
+          if [ -x "$HOME/.emacs.d/bin/doom" ] && [ -f "$HOME/.emacs.d/core/doom.el" ]; then
+            echo "✔ Doom Emacs appears installed at $HOME/.emacs.d"
+            if [ -f "$HOME/.doom.d/init.el" ]; then
+              echo "  • User config found: $HOME/.doom.d/init.el"
+            else
+              echo "  • Warning: User config (~/.doom.d) not found"
+            fi
             echo "Version information:"
             "$HOME/.emacs.d/bin/doom" version 2>/dev/null || echo "Could not get version information"
           else
-            echo "✗ Doom Emacs is not installed"
+            if [ -d "$HOME/.emacs.d" ]; then
+              if [ -z "$(ls -A "$HOME/.emacs.d" 2>/dev/null)" ]; then
+                echo "✗ Found empty ~/.emacs.d (not a valid Doom installation)"
+              else
+                echo "✗ ~/.emacs.d exists but Doom was not detected"
+              fi
+            else
+              echo "✗ Doom Emacs is not installed"
+            fi
             echo "Run 'zcli doom install' to install it"
           fi
           ;;
@@ -591,8 +675,8 @@ pkgs.writeShellScriptBin "zcli" ''
           fi
           ;;
         update)
-          if [ ! -d "$HOME/.emacs.d" ] || [ ! -x "$HOME/.emacs.d/bin/doom" ]; then
-            echo "Error: Doom Emacs is not installed. Run 'zcli doom install' first." >&2
+          if [ ! -x "$HOME/.emacs.d/bin/doom" ] || [ ! -f "$HOME/.emacs.d/core/doom.el" ]; then
+            echo "Error: Doom Emacs is not installed correctly. Run 'zcli doom install' first." >&2
             exit 1
           fi
 
