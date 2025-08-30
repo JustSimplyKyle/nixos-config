@@ -7,6 +7,44 @@
 
 # 🚀 **Current Release - ZaneyOS v2.4**
 
+#### 📅 **Updated: August 30th, 2025**
+
+- Merged `dev` branch to `main` in preparation of v2.4 release
+- SDDM is now default, but you can change back to TUI greetd
+- Now the `hosts/HOSTNAME/variables.nix` has options to enable apps and features
+
+```nix
+# Set Displau Manager
+  # `tui` for Text login
+  # `sddm` for graphical GUI (default)
+  # SDDM background is set with stylixImage
+  displayManager = "sddm";
+
+  # Emable/disable bundled applications
+  tmuxEnable = false;
+  alacrittyEnable = false;
+  weztermEnable = false;
+  ghosttyEnable = false;
+  vscodeEnable = false;
+  # Note: This is evil-helix with VIM keybindings by default
+  helixEnable = false;
+  #To install: Enable here, rebuild, then run zcli doom install
+  doomEmacsEnable = false;
+```
+
+- As a result of this change, you can't just `git pull` and rebuild
+- The new variables and other changes will cause the build to fail
+- If you are on `zaneyos v2.3` read the upgrade documentation
+- Began process to translate documents into Spanish (Machine translated)
+- README.es.md
+- FAQ.es.md
+- ZaneyOS-Upgrade.es.md
+- TESTING-UPGRADE.es.md
+- UPGRADE-2.3-to-2.4.es.md
+- zcli.es.md
+- Added `~/zaneyos/cheatsheets/project-guide.md`
+- This is an overview of how ZaneyOS is laid out
+
 #### 📅 **Updated: August 21st, 2025**
 
 - 📚 **Cheatsheets Library**: Centralized, human-friendly docs under
