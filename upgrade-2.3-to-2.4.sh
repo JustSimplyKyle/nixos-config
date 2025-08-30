@@ -200,7 +200,8 @@ prompt_choice() {
 switch_to_main_handling_dirty() {
   # Fetch main from origin
   print_info "Fetching latest changes from origin..."
-  if ! git fetch origin main; then
+  # Ensure remote-tracking branch refs/remotes/origin/main is updated
+  if ! git fetch origin +refs/heads/main:refs/remotes/origin/main; then
     print_error "Failed to fetch origin/main"
     exit 1
   fi
