@@ -22,6 +22,11 @@ Incluye el fondo de pantalla, scripts, aplicaciones, archivos de configuración 
 
 </div>
 
+### Chuletas y Guías
+
+- Guía para Principiantes de Nix: [English](cheatsheets/nix-beginner-guide.md) | [Español](cheatsheets/nix-beginner-guide.es.md)
+- Guía de Personalización de Hyprland: [English](cheatsheets/hyprland-customization-guide.md) | [Español](cheatsheets/hyprland-customization-guide.es.md)
+
 ### Ten en cuenta:
 
 > **Este proyecto tiene un [Wiki](https://zaney.org/wiki/zaneyos-2.3/). ¡Aprende a usar ZaneyOS aquí!**

@@ -22,6 +22,11 @@ This includes the wallpaper, scripts, applications, config files, and more.
 
 </div>
 
+### Cheatsheets and Guides
+
+- Nix Beginner Guide: [English](cheatsheets/nix-beginner-guide.md) | [Español](cheatsheets/nix-beginner-guide.es.md)
+- Hyprland Customization Guide: [English](cheatsheets/hyprland-customization-guide.md) | [Español](cheatsheets/hyprland-customization-guide.es.md)
+
 ### Please note:
 
 > **This project has a [Wiki](https://zaney.org/wiki/zaneyos-2.3/). Find out how
