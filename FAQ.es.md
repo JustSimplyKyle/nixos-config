@@ -2,8 +2,8 @@
 
 # 💬 Preguntas frecuentes de ZaneyOS para v2.4
 
-- **Revisión v1.25**
-- **Fecha:** 23-agosto-2025
+- **Revisión v1.26**
+- **Fecha:** 1 de septiembre de 2025
 
 > IMPORTANTE: ¿Actualizando de v2.3 a v2.4?
 > - Altamente recomendado: Lee `ZaneyOS-Upgrade.md` completamente antes de intentar la actualización.

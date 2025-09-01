@@ -50,6 +50,7 @@
 - SUPERKEY+F — Fullscreen
 - SUPERKEY+SHIFT+F — Toggle floating
 - SUPERKEY+ALT+F — Workspace option: allfloat
+- SUPERKEY+SHIFT+C — Exit Hyprland
 - SUPERKEY+SPACE — Toggle floating
 - SUPERKEY+SHIFT+SPACE — Workspace option: allfloat
 - SUPERKEY+SHIFT+M — swap_layout
