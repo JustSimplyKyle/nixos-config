@@ -222,7 +222,7 @@ nix-shell -p git vim
 2. Clone this repo & enter it:
 
 ```
-cd && git clone https://gitlab.com/zaney/zaneyos.git -b stable-2.3 ~/zaneyos 
+cd && git clone https://gitlab.com/zaney/zaneyos.git -b stable-2.4 --depth=1 ~/zaneyos 
 cd zaneyos
 
 You can still run the `install.sh` script if you want to.
