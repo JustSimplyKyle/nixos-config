@@ -191,7 +191,7 @@ Then:
 ![ZaneyOS Install Script Command](img/install-script.jpg)
 
 ```
-sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/stable-2.3/install-zaneyos.sh)
+sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/stable-2.4/install-zaneyos.sh)
 ```
 
 #### The install process will look something like this:
