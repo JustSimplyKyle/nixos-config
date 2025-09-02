@@ -182,7 +182,7 @@ Luego:
 ![Comando del script de instalación de ZaneyOS](img/install-script.jpg)
 
 ```
-sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/stable-2.3/install-zaneyos.sh)
+sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/stable-2.4/install-zaneyos.sh)
 ```
 
 #### El proceso de instalación se verá así:
