@@ -199,7 +199,7 @@
         margin: 0;
         padding: 0;
         font-family: "JetBrains Mono Nerd Font";
-        font-size: 10pt;
+        font-size: 14pt;
         font-weight: 700;
         padding-bottom: 0px;
       }

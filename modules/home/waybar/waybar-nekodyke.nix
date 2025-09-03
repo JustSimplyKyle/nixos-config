@@ -199,7 +199,7 @@ with lib; {
       ''
         * {
           font-family: JetBrainsMono Nerd Font Mono;
-          font-size: 18px;
+          font-size: 16px;
           border-radius: 0px;
           border: none;
           min-height: 0px;
