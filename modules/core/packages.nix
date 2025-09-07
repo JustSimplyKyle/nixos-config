@@ -48,11 +48,6 @@
     dysk # Disk space util nice formattting
     eza # Beautiful ls Replacement
     ffmpeg # Terminal Video / Audio Editing
-    docker-compose # Allows Controlling Docker From A Single File
-    duf # Utility For Viewing Disk Usage In Terminal
-    dysk # Disk space util nice formattting
-    eza # Beautiful ls Replacement
-    ffmpeg # Terminal Video / Audio Editing
     file-roller # Archive Manager
     gedit # Simple Graphical Text Editor
     #gemini-cli # CLI AI client ONLY (optional)
