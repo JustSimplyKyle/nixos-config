@@ -11,6 +11,7 @@ in
     bind = [
       "$modifier,Return,exec,${terminal}"
       "$modifier,K,exec,list-keybinds"
+      "$modifier ,R,exec,rofi-launcher"
       "$modifier SHIFT,Return,exec,rofi-launcher"
       "$modifier SHIFT,W,exec,web-search"
       "$modifier ALT,W,exec,wallsetter"

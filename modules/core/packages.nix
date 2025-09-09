@@ -82,6 +82,7 @@
     uwsm # Universal Wayland Session Manager (optional must be enabled)
     v4l-utils # Used For Things Like OBS Virtual Camera
     warp-terminal # Terminal with AI support build in
+    waypaper  # Change wallpaper
     wget # Tool For Fetching Files With Links
     ytmdl # Tool For Downloading Audio From YouTube
   ];
