@@ -7,6 +7,14 @@
 
 # 🚀 **Current Release - ZaneyOS v2.4**
 
+#### 📅 **Updated: September 9th, 2025**
+
+- 🛡️ Installer: Added defensive hostname validation and sanitization
+  - Prevents invalid hostnames (e.g., with dots) from causing Nix evaluation errors
+  - Auto-sanitizes to a compliant hostname (letters/digits with '-' or '_', 1–63 chars) and prompts for confirmation
+  - Explicitly rejects 'default' to avoid template overwrites
+- 🧩 Nix: Added assertion in modules/core/network.nix for clearer errors if an invalid hostname is provided
+
 #### 📅 **Updated: August 30th, 2025**
 
 - Merged `dev` branch to `main` in preparation of v2.4 release
