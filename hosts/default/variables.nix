@@ -33,8 +33,8 @@
   thunarEnable = true;
 
   # Set Stylix Image
-  stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
-  #stylixImage = ../../wallpapers/nix-wallpaper-stripes-logo.png;
+  #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
+  stylixImage = ../../wallpapers/nix-wallpaper-stripes-logo.png;
   #stylixImage = ../../wallpapers/beautifulmountainscape.png;
   #stylixImage = ../../wallpapers/mountainscapedark.jpg;
   #stylixImage = ../../wallpapers/Rainnight.jpg;
@@ -46,9 +46,9 @@
 
   #waybarChoice = ../../modules/home/waybar/Jerry-waybars.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-simple.nix;
-  waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-nekodyke.nix;
-  #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+  waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
 
   # Set Animation style

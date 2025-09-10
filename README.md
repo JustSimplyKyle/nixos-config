@@ -1,12 +1,12 @@
-# Black Don OS
+# ❄️BlackDonOS Powered by NixOS❄️
 
-A customized NixOS configuration based on [ZaneyOS](https://gitlab.com/zaney/zaneyos) by Don Williams, tailored for multiple host setups with NVIDIA GPU support.
+A customized NixOS configuration based on [ZaneyOS](https://gitlab.com/zaney/zaneyos) by Tyler Kelley, tailored for multiple host setups with NVIDIA GPU support.
 
 ![Black Don OS Desktop](img/desktop-screenshot.png)
 
 ## Overview
 
-Black Don OS is a personalized NixOS configuration that supports multiple host computers with different hardware profiles. It features a modern desktop environment with Hyprland, extensive customization options, and easy multi-host management.
+Black Don OS is a personalized NixOS configuration that supports multiple host computers with different hardware profiles. It features a modern minimal desktop environment with Hyprland, extensive customization options, and easy multi-host management.
 
 ## Features
 
@@ -43,7 +43,7 @@ If you want to install Black Don OS on a fresh NixOS system:
 
 The installer will:
 - Detect your hardware (GPU, etc.)
-- Guide you through hostname and user configuration  
+- Guide you through hostname and user configuration
 - Clone the repository and set up your configuration
 - Build and install Black Don OS
 - Create a personalized setup for your computer
@@ -121,11 +121,11 @@ Each host has its own directory under `hosts/` containing:
     monitor=HDMI-A-1,3440x1440@100.0,3330x1444,1.0
     monitor=eDP-1,2560x1600@165.02,6770x1558,1.33
   '';
-  
+
   # GPU IDs for NVIDIA Prime
   intelID = "PCI:34:0:0";
   nvidiaID = "PCI:1:0:0";
-  
+
   # Desktop preferences
   browser = "vivaldi";
   terminal = "kitty";
@@ -140,7 +140,7 @@ Each host has its own directory under `hosts/` containing:
 - No hybrid graphics
 - Best for gaming desktops
 
-### NVIDIA Laptop (`nvidia-laptop`) 
+### NVIDIA Laptop (`nvidia-laptop`)
 - NVIDIA + Intel hybrid graphics
 - NVIDIA Prime support
 - Power-efficient for laptops
@@ -249,7 +249,7 @@ dcli switch-host    # Interactive host switcher
 
 ### Shell Aliases
 - `fr` - Fast rebuild (`dcli rebuild`)
-- `fu` - Fast update (`dcli update`) 
+- `fu` - Fast update (`dcli update`)
 - `hosts` - List hosts (`dcli list-hosts`)
 - `switch` - Host switcher (`dcli switch-host`)
 
@@ -290,7 +290,7 @@ git merge upstream/stable-2.3
 # Generate diagnostic report
 dcli diag
 
-# Show detailed error trace  
+# Show detailed error trace
 nixos-rebuild build --flake .#HOST-NAME --show-trace
 
 # Clean build cache
@@ -319,7 +319,7 @@ hyprctl keyword monitor "HDMI-A-1,1920x1080@60,0x0,1"
 
 ## Credits
 
-- **ZaneyOS**: Original configuration by Don Williams
+- **ZaneyOS**: Original configuration by Tyler Kelley
 - **NixOS**: The foundation of this configuration
 - **Hyprland**: Wayland compositor
 - **Stylix**: System theming
