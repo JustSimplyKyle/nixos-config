@@ -2,6 +2,8 @@
 
 A customized NixOS configuration based on [ZaneyOS](https://gitlab.com/zaney/zaneyos) by Don Williams, tailored for multiple host setups with NVIDIA GPU support.
 
+![Black Don OS Desktop](img/desktop-screenshot.png)
+
 ## Overview
 
 Black Don OS is a personalized NixOS configuration that supports multiple host computers with different hardware profiles. It features a modern desktop environment with Hyprland, extensive customization options, and easy multi-host management.
