@@ -1,6 +1,7 @@
 MIT License
 
-Copyright (c) 2024 Tyler Kelley
+Copyright (c) 2024 Tyler Kelley (Original ZaneyOS)
+Copyright (c) 2025 Black Don (Black-Don-OS modifications)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +20,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+Black-Don-OS is a customized derivative of ZaneyOS, maintaining the same open-source
+MIT license. This project includes modifications and enhancements specifically
+tailored for multi-host NVIDIA-focused environments and YouTube content creation.
+
+Original ZaneyOS: https://gitlab.com/zaney/zaneyos
+Black-Don-OS: https://gitlab.com/theblackdon/black-don-os

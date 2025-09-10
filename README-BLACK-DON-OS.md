@@ -23,11 +23,32 @@ Black Don OS is a personalized NixOS configuration that supports multiple host c
 
 *Note: Cleaned up from original ZaneyOS - removed unused nixstation and zaneyos-23-vm hosts*
 
-## Quick Start
+## Installation
 
-### Setting Up a New Host
+### For New Users
 
-Use the included setup script to easily add new host configurations:
+If you want to install Black Don OS on a fresh NixOS system:
+
+1. **Boot from NixOS ISO** and ensure you have network access
+2. **Install git and pciutils** (for hardware detection):
+   ```bash
+   nix-shell -p git pciutils
+   ```
+3. **Run the installation script**:
+   ```bash
+   bash <(curl -s https://gitlab.com/theblackdon/black-don-os/-/raw/main/install-black-don-os.sh)
+   ```
+
+The installer will:
+- Detect your hardware (GPU, etc.)
+- Guide you through hostname and user configuration  
+- Clone the repository and set up your configuration
+- Build and install Black Don OS
+- Create a personalized setup for your computer
+
+### For Existing Black Don OS Users
+
+If you already have Black Don OS and want to add a new computer:
 
 ```bash
 ./setup-new-host.sh
@@ -37,7 +58,7 @@ This will guide you through:
 - Choosing a hostname
 - Selecting GPU profile (nvidia, nvidia-laptop, amd, intel, vm)
 - Configuring user settings
-- Creating installation guide
+- Creating installation guide for the new computer
 
 ### Building for a Specific Host
 
@@ -48,7 +69,6 @@ dcli deploy nix-desktop     # Build and switch
 
 # Using standard nix commands
 nixos-rebuild build --flake .#nix-desktop
-sudo nixos-rebuild switch --flake .#nix-desktop
 ```
 
 ### Installing on New Hardware
