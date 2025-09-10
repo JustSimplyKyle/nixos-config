@@ -2,7 +2,7 @@
 
 <div align="center">
 
-## ZaneyOS 🟰 Best ❄️ NixOS Configs
+## BlackDonOs 🟰 ❄️ Minimal But Powerful NixOS Config
 
 ** Updated: June 3rd,2025
 
