@@ -1,4 +1,4 @@
-{ username, ... }: {
+{username, ...}: {
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -17,7 +17,7 @@
       ];
       image = [
         {
-          path = "/home/${username}/.config/face.jpg";
+          path = "/home/${username}/.config/Blackdon.png";
           size = 150;
           border_size = 4;
           border_color = "rgb(0C96F9)";

@@ -1,22 +1,21 @@
-{ pkgs
-, inputs
-, username
-, host
-, profile
-, ...
-}:
-let
-  inherit (import ../../hosts/${host}/variables.nix) gitUsername;
-in
 {
-  imports = [ inputs.home-manager.nixosModules.home-manager ];
+  pkgs,
+  inputs,
+  username,
+  host,
+  profile,
+  ...
+}: let
+  inherit (import ../../hosts/${host}/variables.nix) gitUsername;
+in {
+  imports = [inputs.home-manager.nixosModules.home-manager];
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    extraSpecialArgs = { inherit inputs username host profile; };
+    extraSpecialArgs = {inherit inputs username host profile;};
     users.${username} = {
-      imports = [ ./../home ];
+      imports = [./../home];
       home = {
         username = "${username}";
         homeDirectory = "/home/${username}";
@@ -30,16 +29,16 @@ in
     description = "${gitUsername}";
     extraGroups = [
       "adbusers"
-      "docker" #access to docker as non-root
-      "libvirtd" #Virt manager/QEMU access
+      "docker"
+      "libvirtd" #For VirtManagerr
       "lp"
       "networkmanager"
       "scanner"
-      "wheel" #subdo access
-      "vboxusers" #Virtual Box
+      "wheel" # sudo access
+      "vboxusers" # For VirtualBox
     ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };
-  nix.settings.allowed-users = [ "${username}" ];
+  nix.settings.allowed-users = ["${username}"];
 }

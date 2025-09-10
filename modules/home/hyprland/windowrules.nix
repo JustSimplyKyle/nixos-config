@@ -7,10 +7,6 @@ in {
   wayland.windowManager.hyprland = {
     settings = {
       windowrule = [
-        #"noblur, xwayland:1" # Helps prevent odd borders/shadows for xwayland apps
-        # downside it can impact other xwayland apps
-        # This rule is a template for a more targeted approach
-        "noblur, class:^(\bresolve\b)$, xwayland:1" # Window rule for just resolve
         "tag +file-manager, class:^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt)$"
         "tag +terminal, class:^(com.mitchellh.ghostty|org.wezfurlong.wezterm|Alacritty|kitty|kitty-dropterm)$"
         "tag +browser, class:^(Brave-browser(-beta|-dev|-unstable)?)$"
@@ -47,6 +43,17 @@ in {
         "idleinhibit fullscreen, class:^(*)$"
         "idleinhibit fullscreen, title:^(*)$"
         "idleinhibit fullscreen, fullscreen:1"
+        # Moonlight
+        "center, class:^(Moonlight)$"
+        # Web Apps
+        "tile, class:^(dev.heppen.webapps.Github8240)$"
+        "tile, class:^(dev.heppen.webapps.Claude.ai9362)$"
+        "tile, class:^(dev.heppen.webapps.Mimiri8495)$"
+        "tile, class:^(dev.heppen.webapps.NixPackages5244)$"
+        "tile, class:^(dev.heppen.webapps.Messages4146)$"
+        "tile, class:^(dev.heppen.webapps.JitsiMeet9763)$"
+        "tile, class:^(dev.heppen.webapps.Restream8099)$"
+        "float, class:^(Emulator)$"
         "float, tag:settings*"
         "float, class:^([Ff]erdium)$"
         "float, title:^(Picture-in-Picture)$"

@@ -137,7 +137,7 @@ if lspci | grep -qi 'vga\|3d'; then
   if $has_vm; then
     DETECTED_PROFILE="vm"
   elif $has_nvidia && $has_intel; then
-    DETECTED_PROFILE="hybrid"
+    DETECTED_PROFILE="nvidia-laptop"  # Hybrid systems typically use nvidia-laptop profile
   elif $has_nvidia; then
     DETECTED_PROFILE="nvidia"
   elif $has_amd; then
@@ -176,32 +176,18 @@ Please type out your choice: " profile
   echo -e "${GREEN}Selected GPU profile: $profile${NC}"
 fi
 
-print_header "⚠️  CRITICAL WARNING - Existing ZaneyOS Detected"
+# Validate profile is supported
+valid_profiles=("amd" "nvidia" "nvidia-laptop" "intel" "vm")
+if [[ ! " ${valid_profiles[@]} " =~ " ${profile} " ]]; then
+  print_error "Invalid profile '$profile'. Valid options are: ${valid_profiles[*]}"
+  echo -e "${RED}Please run the script again and select a valid profile.${NC}"
+  exit 1
+fi
+
+print_header "Backup Existing ZaneyOS (if any)"
 
 backupname=$(date +"%Y-%m-%d-%H-%M-%S")
 if [ -d "zaneyos" ]; then
-  echo -e "${RED}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${RED}║                    ⚠️  IMPORTANT WARNING ⚠️                           ║${NC}"
-  echo -e "${RED}║                                                                       ║${NC}"
-  echo -e "${RED}║  An existing ZaneyOS installation was detected at ~/zaneyos           ║${NC}"
-  echo -e "${RED}║                                                                       ║${NC}"
-  echo -e "${RED}║  This installer will COMPLETELY REPLACE your existing configuration!  ║${NC}"
-  echo -e "${RED}║  All customizations, packages, and settings will be LOST!            ║${NC}"
-  echo -e "${RED}║                                                                       ║${NC}"
-  echo -e "${RED}║  If you want to UPGRADE from ZaneyOS 2.3 to 2.4:                    ║${NC}"
-  echo -e "${RED}║  1. Press Ctrl+C to cancel this installer                            ║${NC}"
-  echo -e "${RED}║  2. Run: cd ~/zaneyos && ./upgrade-2.3-to-2.4.sh                     ║${NC}"
-  echo -e "${RED}║                                                                       ║${NC}"
-  echo -e "${RED}║  The upgrade script preserves ALL your customizations!               ║${NC}"
-  echo -e "${RED}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
-  echo ""
-  echo -e "${YELLOW}If you REALLY want to do a fresh installation (losing all customizations):${NC}"
-  read -p "Type 'REPLACE' to continue with fresh install or Ctrl+C to cancel: " confirmation
-  if [ "$confirmation" != "REPLACE" ]; then
-    echo -e "${GREEN}Installation cancelled. Use the upgrade script instead!${NC}"
-    echo -e "${GREEN}Run: cd ~/zaneyos && ./upgrade-2.3-to-2.4.sh${NC}"
-    exit 0
-  fi
   echo -e "${GREEN}zaneyos exists, backing up to .config/zaneyos-backups folder.${NC}"
   if [ -d ".config/zaneyos-backups" ]; then
     echo -e "${GREEN}Moving current version of ZaneyOS to backups folder.${NC}"
@@ -219,7 +205,7 @@ else
 fi
 
 print_header "Cloning ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git --depth=1  ~/zaneyos
+git clone https://gitlab.com/zaney/zaneyos.git --depth=1 -b stable-2.3  ~/zaneyos
 cd ~/zaneyos || exit 1
 
 print_header "Git Configuration"
@@ -298,14 +284,17 @@ git config --global --unset-all user.email
 
 echo "Updating configuration files with working awk commands..."
 
-# Update flake.nix (simple pattern replacements that work)
+# Update flake.nix (fix pattern matching to handle leading whitespace)
 # Create backup first, before any changes
 cp ./flake.nix ./flake.nix.bak
-# Use sed for hostname (more reliable)
-sed -i "/^[[:space:]]*host[[:space:]]*=[[:space:]]*\"/s/\"[^\"]*\"/\"$hostName\"/" ./flake.nix.bak
-awk -v newprof="$profile" '/^    profile = / { gsub(/"[^"]*"/, "\"" newprof "\""); } { print }' ./flake.nix.bak > ./flake.nix
+# Update hostname with proper pattern matching
+awk -v newhost="$hostName" '/^[[:space:]]*host[[:space:]]*=/ { gsub(/"[^"]*"/, "\"" newhost "\""); } { print }' ./flake.nix.bak > ./flake.nix
 cp ./flake.nix ./flake.nix.bak
-awk -v newuser="$installusername" '/^      username = / { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./flake.nix.bak > ./flake.nix
+# Update profile with proper pattern matching
+awk -v newprof="$profile" '/^[[:space:]]*profile[[:space:]]*=/ { gsub(/"[^"]*"/, "\"" newprof "\""); } { print }' ./flake.nix.bak > ./flake.nix
+cp ./flake.nix ./flake.nix.bak
+# Update username with proper pattern matching
+awk -v newuser="$installusername" '/^[[:space:]]*username[[:space:]]*=/ { gsub(/"[^"]*"/, "\"" newuser "\""); } { print }' ./flake.nix.bak > ./flake.nix
 rm ./flake.nix.bak
 
 # Update timezone in system.nix  
@@ -325,6 +314,14 @@ awk -v newckm="$consoleKeyMap" '/^  consoleKeyMap = / { gsub(/"[^"]*"/, "\"" new
 rm ./hosts/$hostName/variables.nix.bak
 
 echo "Configuration files updated successfully!"
+
+# Verify the updates worked
+echo -e "${GREEN}Verifying configuration updates:${NC}"
+echo -e "  Host: $(grep -E '^[[:space:]]*host[[:space:]]*=' ./flake.nix | head -1 | sed 's/.*"\([^"]*\)".*/\1/')"
+echo -e "  Profile: $(grep -E '^[[:space:]]*profile[[:space:]]*=' ./flake.nix | head -1 | sed 's/.*"\([^"]*\)".*/\1/')"
+echo -e "  Username: $(grep -E '^[[:space:]]*username[[:space:]]*=' ./flake.nix | head -1 | sed 's/.*"\([^"]*\)".*/\1/')"
+echo -e "  Build target: ${GREEN}${profile}${NC} (flake configuration)"
+echo -e "  Host directory: ${GREEN}./hosts/${hostName}/${NC}"
 
 print_header "Generating Hardware Configuration -- Ignore ERROR: cannot access /bin"
 sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.nix

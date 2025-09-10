@@ -1,17 +1,16 @@
-{ host
-, config
-, pkgs
-, ...
-}:
-let
+{
+  host,
+  config,
+  pkgs,
+  ...
+}: let
   inherit
     (import ../../../hosts/${host}/variables.nix)
     extraMonitorSettings
     keyboardLayout
     stylixImage
     ;
-in
-{
+in {
   home.packages = with pkgs; [
     swww
     grim
@@ -40,12 +39,26 @@ in
     systemd = {
       enable = true;
       enableXdgAutostart = true;
-      variables = [ "--all" ];
+      variables = ["--all"];
     };
     xwayland = {
       enable = true;
     };
     settings = {
+      exec-once = [
+        "wl-paste --type text --watch cliphist store # Stores only text data"
+        "wl-paste --type image --watch cliphist store # Stores only image data"
+        "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "systemctl --user start hyprpolkitagent"
+        "killall -q swww;sleep .5 && swww init"
+        "killall -q waybar;sleep .5 && waybar"
+        "killall -q swaync;sleep .5 && swaync"
+        "nm-applet --indicator"
+        "pypr &"
+        "sleep 1.5 && swww img ${stylixImage}"
+      ];
+
       input = {
         kb_layout = "${keyboardLayout}";
         kb_options = [
@@ -78,8 +91,8 @@ in
       general = {
         "$modifier" = "SUPER";
         layout = "dwindle";
-        gaps_in = 6;
-        gaps_out = 8;
+        gaps_in = 5;
+        gaps_out = 5;
         border_size = 2;
         resize_on_border = true;
         "col.active_border" = "rgb(${config.lib.stylix.colors.base08}) rgb(${config.lib.stylix.colors.base0C}) 45deg";
@@ -101,7 +114,7 @@ in
 
         #  Application not responding (ANR) settings
         enable_anr_dialog = true;
-        anr_missed_pings = 15;
+        anr_missed_pings = 20;
       };
 
       dwindle = {
@@ -111,7 +124,7 @@ in
       };
 
       decoration = {
-        rounding = 10;
+        rounding = 2;
         blur = {
           enabled = true;
           size = 5;
@@ -141,9 +154,8 @@ in
       };
 
       render = {
-        # Disabling as no longer supported
-        #explicit_sync = 1; # Change to 1 to disable
-        #explicit_sync_kms = 1;
+        explicit_sync = 1; # Change to 1 to disable
+        explicit_sync_kms = 1;
         direct_scanout = 0;
       };
 

@@ -12,7 +12,7 @@
       };
 
       logo = {
-        source = ./nixos.png;
+        source = ./blackdontrans.png;
         type = "kitty-direct";
         height = 10;
         width = 20;
@@ -26,14 +26,8 @@
         "break"
         {
           type = "os";
-          key = "OS";
+          key = "OS - ZaneyOS v2.3.2";
           keyColor = "31";
-        }
-        {
-          type = "command";
-          key = " ├  ZaneyOS ";
-          keyColor = "31";
-          text = "echo v$" + "{ZANEYOS_VERSION}";
         }
         {
           type = "kernel";

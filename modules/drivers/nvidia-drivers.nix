@@ -1,3 +1,4 @@
+
 { lib
 , pkgs
 , config
@@ -11,7 +12,6 @@ in
   options.drivers.nvidia = {
     enable = mkEnableOption "Enable Nvidia Drivers";
   };
-
   config = mkIf cfg.enable {
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {

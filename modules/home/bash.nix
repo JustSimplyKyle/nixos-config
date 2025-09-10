@@ -1,4 +1,4 @@
-{ profile, ... }: {
+{profile, ...}: {
   programs.bash = {
     enable = false;
     enableCompletion = true;
@@ -10,13 +10,17 @@
     '';
     shellAliases = {
       sv = "sudo nvim";
-      fr = "nh os switch --hostname ${profile}";
-      fu = "nh os switch --hostname ${profile} --update";
-      zu = "sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/releases/latest/download/install-zaneyos.sh)";
+      fr = "dcli rebuild";
+      fu = "dcli update";
+      rebuild = "dcli rebuild";
+      update = "dcli update";
+      cleanup = "dcli cleanup";
       ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
       v = "nvim";
       cat = "bat";
       ".." = "cd ..";
+      hosts = "dcli list-hosts";
+      switch = "dcli switch-host";
     };
   };
 }

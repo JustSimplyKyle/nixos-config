@@ -1,25 +1,17 @@
-{
-  pkgs,
-  inputs,
-  ...
-}:
-{
+{pkgs, pkgs-unstable, lib, ...}: {
   programs = {
     neovim = {
-      enable = true;
-      defaultEditor = true;
+      enable = false;
+      defaultEditor = false;
     };
     firefox.enable = false; # Firefox is not installed by default
-    hyprland = {
-      enable = true; # set this so desktop file is created
-      withUWSM = false;
-    };
     dconf.enable = true;
     seahorse.enable = true;
+    hyprland.enable = true; #create desktop file and depedencies if you switch to GUI login MGR
+    hyprlock.enable = true; #resolve pam issue https://gitlab.com/Zaney/zaneyos/-/issues/164
     fuse.userAllowOther = true;
     mtr.enable = true;
     adb.enable = true;
-    hyprlock.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -27,32 +19,32 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "cursor"
+    "zed"
+    "flutter"
+    "jdk"
+    "claude"
+  ];
 
   environment.systemPackages = with pkgs; [
-    # Hyprland systeminfo QT  (Optional)
-    #inputs.hyprsysteminfo.packages.${pkgs.system}.default
-
-    #aider-chat # AI in terminal (Optional: Client only)
     amfora # Fancy Terminal Browser For Gemini Protocol
     appimage-run # Needed For AppImage Support
-    brave # Brave Browser
+    bottom # btop like util
     brightnessctl # For Screen Brightness Control
-    #claude-code # Claude code terminal AI (Optional: Client only)
-    cliphist # Clipboard manager using rofi menu
     cmatrix # Matrix Movie Effect In Terminal
     cowsay # Great Fun Terminal Program
-    discord  # Stable client 
-    discord-canary  # beta  client 
     docker-compose # Allows Controlling Docker From A Single File
     duf # Utility For Viewing Disk Usage In Terminal
-    dysk # Disk space util nice formattting
+    dysk # disk usage util
     eza # Beautiful ls Replacement
     ffmpeg # Terminal Video / Audio Editing
     file-roller # Archive Manager
+    gdu # graphical disk usage
     gedit # Simple Graphical Text Editor
-    #gemini-cli # CLI AI client ONLY (optional)
     gimp # Great Photo Editor
-    glxinfo # needed for inxi diag util
+    glxinfo # Needed for inxi -G GPU info
+    gping #graphical ping
     greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     htop # Simple Terminal Based System Monitor
     hyprpicker # Color Picker
@@ -65,25 +57,55 @@
     lshw # Detailed Hardware Information
     mpv # Incredible Video Player
     ncdu # Disk Usage Analyzer With Ncurses Interface
+    nitch # small fetch util
+    # Nix Language Packages
     nixfmt-rfc-style # Nix Formatter
-    nwg-displays # configure monitor configs via GUI
-    onefetch # provides zsaneyos build info on current system
+    nixd # Nix Language Server
+    nil # Nix Language Server
+    onefetch #shows current build info and stats
     pavucontrol # For Editing Audio Levels & Devices
     pciutils # Collection Of Tools For Inspecting PCI Devices
     picard # For Changing Music Metadata & Getting Cover Art
     pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
     playerctl # Allows Changing Media Volume Through Scripts
-    rhythmbox # audio player
+    rhythmbox
     ripgrep # Improved Grep
     socat # Needed For Screenshots
+    sox # audio support for FFMPEG
     unrar # Tool For Handling .rar Files
     unzip # Tool For Handling .zip Files
     usbutils # Good Tools For USB Devices
-    uwsm # Universal Wayland Session Manager (optional must be enabled)
     v4l-utils # Used For Things Like OBS Virtual Camera
-    warp-terminal # Terminal with AI support build in
-    waypaper  # Change wallpaper
+    waypaper # backup wallpaper GUI
     wget # Tool For Fetching Files With Links
     ytmdl # Tool For Downloading Audio From YouTube
+    # My apps
+    nwg-displays # Manage Displays
+    vivaldi # Browser
+    # Unstable Packages
+    pkgs-unstable.code-cursor # AI IDE
+    pkgs-unstable.zed-editor # Another AI IDE
+    pkgs-unstable.flutter # Flutter SDK
+    pkgs-unstable.jdk # Java Development Kit
+    pkgs-unstable.claude-code    # For native development
+    pkgs-unstable.nwg-dock-hyprland
+    teams-for-linux # Video Meetings
+    zoom-us # Video Meetings
+    telegram-desktop # Messaging App
+    android-studio # Android Studio
+    chromium # Browser
+    google-chrome # Browser
+    # Dev Packages
+    androidenv.androidPkgs.platform-tools  # This includes adb
+    androidenv.androidPkgs.emulator        # For Android emulator
+    androidenv.androidPkgs.ndk-bundle
+    # Firebase CLI
+    firebase-tools
+    quick-webapps
+    gum
+    gtk3
+    gtk4
+    localsend
+    pkgs-unstable.lightworks
   ];
 }

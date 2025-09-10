@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Only enable either docker or podman -- Not both
   virtualisation = {
     docker = {
@@ -13,7 +13,7 @@
 
     virtualbox.host = {
       enable = false;
-      enableExtensionPack = true;
+      enableExtensionPack = false;
     };
   };
 

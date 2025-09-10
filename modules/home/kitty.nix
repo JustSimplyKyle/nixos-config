@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
@@ -38,8 +38,7 @@
       map ctrl+shift+h         show_scrollback
 
       # Window management
-      map alt+n               new_window_with_cwd       #open in current dir
-      #map alt+n              new_os_window             #opens term in $HOME
+      map alt+n               new_os_window
       map alt+w               close_window
       map ctrl+shift+enter    launch --location=hsplit
       map ctrl+shift+s        launch --location=vsplit

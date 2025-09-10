@@ -5,9 +5,6 @@ _: {
     hyprland.enable = false;
     hyprlock.enable = false;
     ghostty.enable = false;
-    qt = {
-      enable = true;
-      platform = "qtct";
-    };
+    qt.enable = true;
   };
 }

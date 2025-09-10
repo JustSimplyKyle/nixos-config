@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   nixpkgs.config.allowUnfree = true;
 
   programs.vscode = {
@@ -13,7 +13,6 @@
           mads-hartmann.bash-ide-vscode
           tamasfe.even-better-toml
           zainchen.json
-          shd101wyy.markdown-preview-enhanced
         ];
       };
     };
