@@ -1,228 +1,339 @@
-<div align="center">
+# Black Don OS
 
-## ZaneyOS 🟰 Best ❄️ NixOS Configs
+A customized NixOS configuration based on [ZaneyOS](https://gitlab.com/zaney/zaneyos) by Don Williams, tailored for multiple host setups with NVIDIA GPU support.
 
-ZaneyOS is a simple way of reproducing my configuration on any NixOS system.
-This includes the wallpaper, scripts, applications, config files, and more.
+## Overview
 
-<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/img/demo.png" />
+Black Don OS is a personalized NixOS configuration that supports multiple host computers with different hardware profiles. It features a modern desktop environment with Hyprland, extensive customization options, and easy multi-host management.
 
-**Inspiration for the Waybar config
-[here](https://github.com/justinlime/dotfiles).**
+## Features
 
-</div>
+- 🖥️ **Multi-Host Support** - Easy configuration management for multiple computers
+- 🎮 **NVIDIA GPU Optimized** - Full support for NVIDIA graphics with proper drivers
+- 🌊 **Hyprland Desktop** - Modern Wayland compositor with beautiful animations
+- 🎨 **Stylix Integration** - System-wide theming and styling
+- 📦 **Flake-based Configuration** - Reproducible and declarative system management
+- 🔧 **Easy Host Setup** - Automated script for adding new computers
+- ⚡ **dcli Tool** - Custom CLI utility for multi-host system management
 
-> **This project has a [Wiki](https://zaney.org/wiki/zaneyos-2.3/). Find out how
-> to use ZaneyOS here!** **dwilliam62 have put a lot of effort into the
-> [FAQ](https://zaney.org/wiki/zaneyos-2.3/faq) so it should be accurate.
-> However, please if you notice that something is wrong with it create an issue
-> or reach out to us on Discord.**
+## Current Hosts
 
-#### 🍖 Requirements
+- **nixos-leno** - NVIDIA laptop (hybrid graphics)
+- **nix-desktop** - NVIDIA desktop (dedicated GPU)
 
-- You must be running on NixOS, version 23.11+.
-- The zaneyos folder (this repo) is expected to be in your home directory.
-- Must have installed using **GPT** & **UEFI**. Systemd-boot is what is
-  supported, for GRUB you will have to brave the internet for a how-to. ☺️
-- Manually editing your host specific files. The host is the specific computer
-  your installing on.
+*Note: Cleaned up from original ZaneyOS - removed unused nixstation and zaneyos-23-vm hosts*
 
-#### 🎹 Pipewire & Notification Menu Controls
+## Installation
 
-- We are using the latest and greatest audio solution for Linux. Not to mention
-  you will have media and volume controls in the notification center available
-  in the top bar.
+### For New Users
 
-#### 🏇 Optimized Workflow & Simple Yet Elegant Neovim
+If you want to install Black Don OS on a fresh NixOS system:
 
-- Using Hyprland for increased elegance, functionality, and effeciency.
-- No massive Neovim project here. This is my simple, easy to understand, yet
-  incredible Neovim setup.
+1. **Boot from NixOS ISO** and ensure you have network access
+2. **Install git and pciutils** (for hardware detection):
+   ```bash
+   nix-shell -p git pciutils
+   ```
+3. **Run the installation script**:
+   ```bash
+   bash <(curl -s https://gitlab.com/theblackdon/black-don-os/-/raw/main/install-black-don-os.sh)
+   ```
 
-#### 🖥️ Multi Host & User Configuration
+The installer will:
+- Detect your hardware (GPU, etc.)
+- Guide you through hostname and user configuration  
+- Clone the repository and set up your configuration
+- Build and install Black Don OS
+- Create a personalized setup for your computer
 
-- You can define separate settings for different host machines and users.
-- Easily specify extra packages for your users in the modules/core/user.nix
-  file.
-- Easy to understand file structure and simple, but encompassing, configuration.
+### For Existing Black Don OS Users
 
-#### 👼 An Incredible Community Focused On Support
+If you already have Black Don OS and want to add a new computer:
 
-- The entire idea of ZaneyOS is to make NixOS an approachable space that is
-  actually a great community that you want to be in.
-- Many people who are patient and happy to spend their free time helping you are
-  running ZaneyOS. Feel free to reach out on the Discord for any help with
-  anything.
-
-<div align="center">
-
-Please do yourself a favor and
-[read the wiki](https://zaney.org/wiki/zaneyos-2.3/).
-
-</div>
-
-#### 📦 How To Install Packages?
-
-- You can search the [Nix Packages](https://search.nixos.org/packages?) &
-  [Options](https://search.nixos.org/options?) pages for what a package may be
-  named or if it has options available that take care of configuration hurdles
-  you may face.
-- To add a package there are the sections for it in `modules/core/packages.nix`
-  and `modules/core/user.nix`. One is for programs available system wide and the
-  other for your users environment only.
-
-#### 🙋 Having Issues / Questions?
-
-- Please feel free to raise an issue on the repo, please label a feature request
-  with the title beginning with [feature request], thank you!
-- Contact me on [Discord](https://discord.gg/2cRdBs8) as well, for a potentially
-  faster response.
-
-# Hyprland Keybindings
-
-Below are the keybindings for Hyprland, formatted for easy reference.
-
-## Application Launching
-
-- `$modifier + Return` → Launch `Terminal`
-- `$modifier + K` → List keybinds
-- `$modifier + Shift + Return` → Launch `rofi-launcher`
-- `$modifier + Shift + W` → Open `web-search`
-- `$modifier + Alt + W` → Open `wallsetter`
-- `$modifier + Shift + N` → Run `swaync-client -rs`
-- `$modifier + W` → Launch `Web Browser`
-- `$modifier + Y` → Open `kitty` with `yazi`
-- `$modifier + E` → Open `emopicker9000`
-- `$modifier + S` → Take a screenshot
-- `$modifier + D` → Open `Discord`
-- `$modifier + O` → Launch `OBS Studio`
-- `$modifier + C` → Run `hyprpicker -a`
-- `$modifier + G` → Open `GIMP`
-- `$modifier + V` → Show clipboard history via `cliphist`
-- `$modifier + T` → Toggle terminal with `pypr`
-- `$modifier + M` → Open `pavucontrol`
-
-## Window Management
-
-- `$modifier + Q` → Kill active window
-- `$modifier + P` → Toggle pseudo tiling
-- `$modifier + Shift + I` → Toggle split mode
-- `$modifier + F` → Toggle fullscreen
-- `$modifier + Shift + F` → Toggle floating mode
-- `$modifier + Alt + F` → Float all windows
-- `$modifier + Shift + C` → Exit Hyprland
-
-## Window Movement
-
-- `$modifier + Shift + ← / → / ↑ / ↓` → Move window left/right/up/down
-- `$modifier + Shift + H / L / K / J` → Move window left/right/up/down
-- `$modifier + Alt + ← / → / ↑ / ↓` → Swap window left/right/up/down
-- `$modifier + Alt + 43 / 46 / 45 / 44` → Swap window left/right/up/down
-
-## Focus Movement
-
-- `$modifier + ← / → / ↑ / ↓` → Move focus left/right/up/down
-- `$modifier + H / L / K / J` → Move focus left/right/up/down
-
-## Workspaces
-
-- `$modifier + 1-10` → Switch to workspace 1-10
-- `$modifier + Shift + Space` → Move window to special workspace
-- `$modifier + Space` → Toggle special workspace
-- `$modifier + Shift + 1-10` → Move window to workspace 1-10
-- `$modifier + Control + → / ←` → Switch workspace forward/backward
-
-## Window Cycling
-
-- `Alt + Tab` → Cycle to next window
-- `Alt + Tab` → Bring active window to top
-
-## ⬇️ Install
-
-Don't forget to checkout the [FAQ](https://zaney.org/wiki/zaneyos-2.3/faq)
-
-### 📜 Script:
-
-This is the easiest and recommended way of starting out. The script is not meant
-to allow you to change every option that you can in the flake or help you
-install extra packages. It is simply here so you can get my configuration
-installed with as little chances of breakages and then fiddle to your hearts
-content!
-
-Simply copy this and run it:
-
-![ZaneyOS First Install Command](img/first-install-cmd.jpg)
-
-```
-nix-shell -p git curl pciutils
+```bash
+./setup-new-host.sh
 ```
 
-Then:
+This will guide you through:
+- Choosing a hostname
+- Selecting GPU profile (nvidia, nvidia-laptop, amd, intel, vm)
+- Configuring user settings
+- Creating installation guide for the new computer
 
-![ZaneyOS Install Script Command](img/install-script.jpg)
+### Building for a Specific Host
 
-```
-sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/stable-2.3/install-zaneyos.sh)
-```
+```bash
+# Using dcli (recommended)
+dcli build nix-desktop      # Build only (no activation)
+dcli deploy nix-desktop     # Build and switch
 
-#### The install process will look something like this:
-
-![First Part Of Install](img/1.jpg)
-
-![Second Part Of Install](img/2.jpg)
-
-#### After the install completes your environment will probably look broken. Just reboot and you will see this as your login:
-
-![Display Manager](img/3.jpg)
-
-#### Then after login you should see a screen like this:
-
-![Desktop Example](img/4.jpg)
-
-#### 🦽 Manual:
-
-1. Run this command to ensure Git & Vim are installed:
-
-```
-nix-shell -p git vim
+# Using standard nix commands
+nixos-rebuild build --flake .#nix-desktop
 ```
 
-2. Clone this repo & enter it:
+### Installing on New Hardware
+
+1. Boot NixOS installer ISO on target computer
+2. Follow the host-specific installation guide (e.g., `INSTALL-nix-desktop.md`)
+3. Clone this repository and run the installation commands
+
+## Directory Structure
 
 ```
-cd && git clone -b stable-2.3 --single-branch https://gitlab.com/Zaney/zaneyos.git
-cd zaneyos
+black-don-os/
+├── hosts/                    # Host-specific configurations
+│   ├── nixos-leno/          # Laptop configuration
+│   ├── nix-desktop/         # Desktop configuration
+│   └── default/             # Template host
+├── profiles/                 # Hardware profiles
+│   ├── nvidia/              # Desktop NVIDIA
+│   ├── nvidia-laptop/       # Laptop NVIDIA/Intel hybrid
+│   ├── amd/                 # AMD graphics
+│   ├── intel/               # Intel graphics
+│   └── vm/                  # Virtual machine
+├── modules/                  # System modules
+│   ├── core/                # Core system configuration
+│   ├── drivers/             # Hardware drivers
+│   └── home/                # Home manager configuration
+├── wallpapers/              # Desktop wallpapers
+├── setup-new-host.sh        # New host setup script
+├── flake.nix               # Main flake configuration
+└── INSTALL-*.md            # Host-specific install guides
 ```
 
-- _You should stay in this folder for the rest of the install_
+## Host Configuration
 
-3. Create the host folder for your machine(s) like so:
+Each host has its own directory under `hosts/` containing:
 
+- `default.nix` - Main host imports
+- `hardware.nix` - Hardware-specific configuration (generated by nixos-generate-config)
+- `variables.nix` - Host-specific settings (monitors, GPU IDs, preferences)
+- `host-packages.nix` - Host-specific package list
+
+### Key Settings in `variables.nix`
+
+```nix
+{
+  # Monitor configuration (host-specific)
+  extraMonitorSettings = ''
+    monitor=HDMI-A-1,3440x1440@100.0,3330x1444,1.0
+    monitor=eDP-1,2560x1600@165.02,6770x1558,1.33
+  '';
+  
+  # GPU IDs for NVIDIA Prime
+  intelID = "PCI:34:0:0";
+  nvidiaID = "PCI:1:0:0";
+  
+  # Desktop preferences
+  browser = "vivaldi";
+  terminal = "kitty";
+  stylixImage = ../../wallpapers/Valley.jpg;
+}
 ```
-cp -r hosts/default hosts/<your-desired-hostname>
-git add .
+
+## GPU Profiles
+
+### NVIDIA Desktop (`nvidia`)
+- Dedicated NVIDIA GPU
+- No hybrid graphics
+- Best for gaming desktops
+
+### NVIDIA Laptop (`nvidia-laptop`) 
+- NVIDIA + Intel hybrid graphics
+- NVIDIA Prime support
+- Power-efficient for laptops
+
+### AMD (`amd`)
+- AMD Radeon graphics
+- Open-source AMDGPU drivers
+
+### Intel (`intel`)
+- Intel integrated graphics
+- Lightweight and efficient
+
+### VM (`vm`)
+- Virtual machine optimized
+- Minimal graphics requirements
+
+## Installation Process
+
+### For New Computers
+
+1. **Boot NixOS Installer**
+   ```bash
+   # Download NixOS ISO and boot from USB
+   ```
+
+2. **Basic System Setup**
+   ```bash
+   # Partition disk, format, mount
+   sudo parted /dev/nvme0n1 -- mklabel gpt
+   # ... (see host-specific install guide)
+   ```
+
+3. **Clone Configuration**
+   ```bash
+   git clone https://gitlab.com/theblackdon/black-don-os.git
+   cd black-don-os
+   ```
+
+4. **Generate Hardware Config**
+   ```bash
+   sudo nixos-generate-config --show-hardware-config > ./hosts/YOUR-HOST/hardware.nix
+   ```
+
+5. **Install**
+   ```bash
+   sudo nixos-install --flake .#YOUR-HOST
+   ```
+
+### For Existing Systems
+
+Simply switch to a different host configuration:
+
+```bash
+# Using dcli (recommended)
+dcli deploy nix-desktop
+
+# Using interactive switcher
+./switch-host.sh
+
+# Using standard nix commands
+sudo nixos-rebuild switch --flake ~/black-don-os#nix-desktop
 ```
 
-4. Edit `hosts/<your-desired-hostname>/variables.nix`.
+## Customization
 
-5. Edit `flake.nix` and fill in your username, profile, and hostname.
+### Adding a New Host
 
-6. Generate your hardware.nix like so:
+1. Run the setup script: `./setup-new-host.sh`
+2. Customize `hosts/NEW-HOST/variables.nix`
+3. Test build: `nixos-rebuild build --flake .#NEW-HOST`
+4. Commit changes and follow installation guide
 
+### Updating Existing Hosts
+
+1. Edit host-specific files in `hosts/HOST-NAME/`
+2. Test changes: `dcli build HOST-NAME`
+3. Apply: `dcli deploy HOST-NAME` or `dcli rebuild` (for current host)
+
+### Adding System Packages
+
+- Edit `modules/core/packages.nix` for system-wide packages
+- Edit `hosts/HOST/host-packages.nix` for host-specific packages
+
+### Desktop Customization
+
+- Wallpapers: Add to `wallpapers/` and reference in `variables.nix`
+- Waybar themes: Choose in `variables.nix` `waybarChoice`
+- Animations: Select in `variables.nix` `animChoice`
+- Colors: Stylix handles theming from wallpaper
+
+## dcli - Don CLI Utility
+
+Black Don OS includes `dcli`, a custom command-line utility for managing your multi-host setup:
+
+### Common Commands
+```bash
+dcli help           # Show all commands
+dcli list-hosts     # List available hosts
+dcli rebuild        # Rebuild current host
+dcli update         # Update and rebuild current host
+dcli build HOST     # Build specific host (no activation)
+dcli deploy HOST    # Deploy to specific host
+dcli cleanup        # Clean old generations
+dcli switch-host    # Interactive host switcher
 ```
-nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname>/hardware.nix
+
+### Shell Aliases
+- `fr` - Fast rebuild (`dcli rebuild`)
+- `fu` - Fast update (`dcli update`) 
+- `hosts` - List hosts (`dcli list-hosts`)
+- `switch` - Host switcher (`dcli switch-host`)
+
+See [dcli.md](dcli.md) for complete documentation.
+
+## Development
+
+### Repository Management
+
+This is a fork of ZaneyOS with personal customizations:
+
+- **Origin**: Your fork at https://gitlab.com/theblackdon/black-don-os.git
+- **Upstream**: Original ZaneyOS at https://gitlab.com/zaney/zaneyos.git
+
+### Updating from Upstream
+
+```bash
+# Fetch updates from original ZaneyOS
+dcli pull           # Pull from your fork
+git fetch upstream  # Fetch from original ZaneyOS
+
+# Merge updates (be careful with conflicts)
+git merge upstream/stable-2.3
 ```
 
-7. Run this to enable flakes and install the flake replacing hostname with
-   whatever you put as the hostname:
+### Contributing Changes
 
+1. Make changes in feature branch
+2. Test on multiple hosts: `dcli build HOST-NAME`
+3. Update documentation
+4. Commit and push: `dcli commit "message"` && `dcli push`
+
+## Troubleshooting
+
+### Build Failures
+
+```bash
+# Generate diagnostic report
+dcli diag
+
+# Show detailed error trace  
+nixos-rebuild build --flake .#HOST-NAME --show-trace
+
+# Clean build cache
+dcli cleanup
 ```
-NIX_CONFIG="experimental-features = nix-command flakes" 
-sudo nixos-rebuild switch --flake .#profile
+
+### Hardware Detection
+
+```bash
+# Find GPU IDs for NVIDIA Prime
+lspci | grep VGA
+
+# Generate new hardware config
+sudo nixos-generate-config --show-hardware-config
 ```
 
-Now when you want to rebuild the configuration you have access to an alias
-called `fr` that will rebuild the flake and you do not have to be in the
-`zaneyos` folder for it to work.
+### Monitor Configuration
 
-Hope you enjoy!
+```bash
+# List available outputs
+hyprctl monitors
+
+# Test monitor setup
+hyprctl keyword monitor "HDMI-A-1,1920x1080@60,0x0,1"
+```
+
+## Credits
+
+- **ZaneyOS**: Original configuration by Don Williams
+- **NixOS**: The foundation of this configuration
+- **Hyprland**: Wayland compositor
+- **Stylix**: System theming
+- **Home Manager**: User environment management
+
+## License
+
+Based on ZaneyOS, following the same license terms. See [LICENSE](LICENSE) file for details.
+
+## Support
+
+For issues specific to Black Don OS customizations:
+- Check host-specific installation guides
+- Review the troubleshooting section
+- Refer to the original ZaneyOS documentation for base functionality
+
+---
+
+*Happy computing with Black Don OS! 🚀*
