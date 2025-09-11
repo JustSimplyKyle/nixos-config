@@ -82,6 +82,7 @@
     # My apps
     nwg-displays # Manage Displays
     vivaldi # Browser
+    youtube-music
     # Unstable Packages
     pkgs-unstable.code-cursor # AI IDE
     pkgs-unstable.zed-editor # Another AI IDE
