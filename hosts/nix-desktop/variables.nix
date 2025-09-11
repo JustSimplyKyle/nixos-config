@@ -1,6 +1,6 @@
 {
   # Git Configuration ( For Pulling Software Repos )
-  gitUsername = "Black Don";
+  gitUsername = "theblackdon";
   gitEmail = "rj.jones@flosstech.com";
 
   # Hyprland Settings
@@ -8,7 +8,9 @@
   # ex "monitor=HDMI-A-1, 1920x1080@60,auto,1"
   # You'll need to update this after installation based on your actual monitors
   extraMonitorSettings = ''
-    monitor=,preferred,auto,1
+  monitor=DP-1,3440x1440@180.0,2740x1455,1.0
+  monitor=DP-2,1920x1080@60.0,820x1714,1.0
+  monitor=DP-3,1920x1080@60.0,6180x1714,1.0
   '';
 
   # Waybar Settings

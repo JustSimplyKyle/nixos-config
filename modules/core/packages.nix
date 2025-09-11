@@ -87,7 +87,7 @@
     pkgs-unstable.zed-editor # Another AI IDE
     pkgs-unstable.flutter # Flutter SDK
     pkgs-unstable.jdk # Java Development Kit
-    pkgs-unstable.claude-code    # For native development
+    pkgs-unstable.claude-code # For native development
     pkgs-unstable.nwg-dock-hyprland
     teams-for-linux # Video Meetings
     zoom-us # Video Meetings

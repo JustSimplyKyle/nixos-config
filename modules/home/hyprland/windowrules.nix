@@ -46,13 +46,13 @@ in {
         # Moonlight
         "center, class:^(Moonlight)$"
         # Web Apps
-        "tile, class:^(dev.heppen.webapps.Github8240)$"
+        "tile, class:^(dev.heppen.webapps.Github8306)$"
         "tile, class:^(dev.heppen.webapps.Claude.ai9362)$"
         "tile, class:^(dev.heppen.webapps.Mimiri8495)$"
-        "tile, class:^(dev.heppen.webapps.NixPackages5244)$"
-        "tile, class:^(dev.heppen.webapps.Messages4146)$"
-        "tile, class:^(dev.heppen.webapps.JitsiMeet9763)$"
+        "tile, class:^(dev.heppen.webapps.NixPackages1585)$"
+        "tile, class:^(dev.heppen.webapps.Messages2354)$"
         "tile, class:^(dev.heppen.webapps.Restream8099)$"
+        "tile, class:^(dev.heppen.webapps.ProtonMail2716)$"
         "float, class:^(Emulator)$"
         "float, tag:settings*"
         "float, class:^([Ff]erdium)$"
