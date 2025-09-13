@@ -1,10 +1,12 @@
 {
   pkgs,
   host,
+  lib,
   ...
 }: let
-  inherit (import ../../hosts/${host}/variables.nix) stylixImage;
-in {
+  inherit (import ../../hosts/${host}/variables.nix) stylixImage stylixEnable;
+in
+lib.mkIf stylixEnable {
   # Styling Options
   stylix = {
     enable = true;

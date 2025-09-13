@@ -1,7 +1,7 @@
 {
   # Git Configuration ( For Pulling Software Repos )
-  gitUsername = "Don Williams";
-  gitEmail = "don.e.williams@gmail.com";
+  gitUsername = "username";
+  gitEmail = "email@gmail.com";
 
   # Hyprland Settings
   # ex "monitor=HDMI-A-1, 1920x1080@60,auto,1"
@@ -23,6 +23,8 @@
   intelID = "PCI:1:0:0";
   nvidiaID = "PCI:0:2:0";
 
+  ## Enable Features Here ##
+
   # Enable NFS
   enableNFS = true;
 
@@ -31,6 +33,15 @@
 
   # Enable Thunar GUI File Manager
   thunarEnable = true;
+
+  # Enable Controller Support For Gaming
+  controllerSupportEnable = false;
+
+  # Enable Flutter Development Environment
+  flutterdevEnable = false;
+
+  # Enable Stylix System Theming
+  stylixEnable = true;
 
   # Set Stylix Image
   #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;

@@ -107,7 +107,5 @@
     gtk3
     gtk4
     localsend
-    # Content Creation
-    pkgs-unstable.davinci-resolve
   ];
 }

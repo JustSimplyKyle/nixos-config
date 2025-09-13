@@ -46,7 +46,7 @@
       nix-desktop = mkHost { hostname = "nix-desktop"; profile = "nvidia"; username = "don"; };
     };
 
-    # Flutter development environment
+    # Flutter development environment (conditional per host)
     devShells = flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs-unstable {
@@ -63,9 +63,15 @@
           abiVersions = [ "arm64-v8a" ];
         };
         androidSdk = androidComposition.androidsdk;
-      in
-      {
-        default = with pkgs; mkShell rec {
+
+        # Check if any host has flutter development enabled
+        hostHasFlutter = hostname:
+          let
+            hostVars = import ./hosts/${hostname}/variables.nix;
+          in
+            hostVars.flutterdevEnable or false;
+
+        flutterShell = with pkgs; mkShell rec {
           ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
           buildInputs = [
             flutter
@@ -73,6 +79,11 @@
             jdk11
           ];
         };
+      in
+      {
+        default = if (hostHasFlutter "nix-desktop" || hostHasFlutter "nixos-leno")
+                  then flutterShell
+                  else pkgs.mkShell { buildInputs = []; };
       });
   };
 }

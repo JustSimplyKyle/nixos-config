@@ -18,13 +18,6 @@ Black Don OS is a personalized NixOS configuration that supports multiple host c
 - 🔧 **Easy Host Setup** - Automated script for adding new computers
 - ⚡ **dcli Tool** - Custom CLI utility for multi-host system management
 
-## Current Hosts
-
-- **nixos-leno** - NVIDIA laptop (hybrid graphics)
-- **nix-desktop** - NVIDIA desktop (dedicated GPU)
-
-*Note: Cleaned up from original ZaneyOS - removed unused nixstation and zaneyos-23-vm hosts*
-
 ## Installation
 
 ### For New Users
@@ -130,6 +123,14 @@ Each host has its own directory under `hosts/` containing:
   browser = "vivaldi";
   terminal = "kitty";
   stylixImage = ../../wallpapers/Valley.jpg;
+
+  # Modular Features (enable/disable per host)
+  enableNFS = true;
+  printEnable = false;
+  thunarEnable = true;
+  controllerSupportEnable = true;
+  flutterdevEnable = false;
+  stylixEnable = true;
 }
 ```
 

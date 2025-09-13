@@ -32,6 +32,15 @@
   # Enable Thunar GUI File Manager
   thunarEnable = true;
 
+  # Enable Controller Support For Gaming
+  controllerSupportEnable = true;
+
+  # Enable Flutter Development Environment
+  flutterdevEnable = false;
+
+  # Enable Stylix System Theming
+  stylixEnable = true;
+
   # Set Stylix Image
   #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
   #stylixImage = ../../wallpapers/nix-wallpaper-stripes-logo.png;

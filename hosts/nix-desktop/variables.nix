@@ -28,12 +28,15 @@
   nvidiaID = "PCI:1:0:0";  # Update this with your actual NVIDIA GPU ID
 
   # Enable/Disable Features
-  enableNFS = true;
-  printEnable = false;
-  thunarEnable = true;
+  enableNFS = true; # Enable NFS Support
+  printEnable = false; # Enable Printing Support
+  thunarEnable = true; # Enable Thunar File Manager
+  controllerSupportEnable = true; # Enable Controller Support For Gaming
+  flutterdevEnable = true; # Enable Flutter Development Environment
+  stylixEnable = true; # Enable Stylix System Theming
 
   # Styling
-  stylixImage = ../../wallpapers/Valley.jpg;
+  stylixImage = ../../wallpapers/City-asteroid-attack.jpg;
 
   # Waybar Choice
   waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;

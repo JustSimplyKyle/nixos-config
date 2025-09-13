@@ -2,7 +2,7 @@
 
 ######################################
 # Install script for Black-Don-OS
-# Author: Black Don (Based on ZaneyOS by Don Williams)
+# Author: Black Don (Based on ZaneyOS by Tyler Kelley)
 # Date: January 2025
 #######################################
 

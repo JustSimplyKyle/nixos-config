@@ -1,6 +1,12 @@
-{ config, lib, pkgs, ... }:
-
 {
+  host,
+  pkgs,
+  lib,
+  ...
+}: let
+  inherit (import ../../hosts/${host}/variables.nix) controllerSupportEnable;
+in
+lib.mkIf controllerSupportEnable {
   # Enable kernel modules for controller support
   boot.kernelModules = [
     "uinput"      # User input module for virtual devices

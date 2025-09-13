@@ -47,8 +47,8 @@ in {
         "center, class:^(Moonlight)$"
         # Web Apps
         "tile, class:^(dev.heppen.webapps.Github8306)$"
-        "tile, class:^(dev.heppen.webapps.Claude.ai9362)$"
-        "tile, class:^(dev.heppen.webapps.Mimiri8495)$"
+        "tile, class:^(dev.heppen.webapps.Descript5493)$"
+        "tile, class:^(dev.heppen.webapps.Clickup9509)$"
         "tile, class:^(dev.heppen.webapps.NixPackages1585)$"
         "tile, class:^(dev.heppen.webapps.Messages2354)$"
         "tile, class:^(dev.heppen.webapps.Restream8099)$"
