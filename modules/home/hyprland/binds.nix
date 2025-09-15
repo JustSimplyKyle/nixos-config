@@ -4,22 +4,16 @@
     browser
     terminal
     ;
-in {
-  wayland.windowManager.hyprland.settings = {
-    bind = [
+
+  # Import host-specific binds
+  hostBinds = import ./hosts/${host}/binds.nix {inherit host;};
+
+  # Default binds that all hosts inherit
+  defaultBinds = [
       "$modifier,T,exec,${terminal}"
-      # Web apps
-      "$modifier SHIFT,G,exec,gtk-launch dev.heppen.webapps.Github8306"
-      "$modifier SHIFT,M,exec,gtk-launch dev.heppen.webapps.Messages2354"
-      "$modifier SHIFT,R,exec,gtk-launch dev.heppen.webapps.Restream8099"
-      "$modifier,E,exec,gtk-launch dev.heppen.webapps.ProtonMail2716"
-      "$modifier SHIFT,U,exec,gtk-launch dev.heppen.webapps.Clickup9509"
-      "$modifier SHIFT,D,exec,gtk-launch dev.heppen.webapps.Descript5493"
       "$modifier SHIFT CTRL,D,exec,nwg-displays"
       "$modifier ALT,M,exec,appimage-run ./Moonlight-6.1.0-x86_64.AppImage"
       "$modifier,K,exec,list-keybinds"
-      "$modifier SHIFT,C,exec,kitty claude"
-      "$modifier SHIFT,P,exec,gtk-launch dev.heppen.webapps.NixPackages1585"
       "$modifier,Z,exec,pypr zoom"
       "$modifier,SPACE,exec,vicinae"
       #"$modifier,SPACE,exec,rofi-launcher"
@@ -111,9 +105,16 @@ in {
       ",XF86MonBrightnessUp,exec,brightnessctl set +5%"
     ];
 
-    bindm = [
-      "$modifier, mouse:272, movewindow"
-      "$modifier, mouse:273, resizewindow"
-    ];
+  # Default mouse binds
+  defaultBindm = [
+    "$modifier, mouse:272, movewindow"
+    "$modifier, mouse:273, resizewindow"
+  ];
+
+in {
+  wayland.windowManager.hyprland.settings = {
+    # Merge default binds with host-specific binds
+    bind = defaultBinds ++ hostBinds.bind;
+    bindm = defaultBindm ++ hostBinds.bindm;
   };
 }

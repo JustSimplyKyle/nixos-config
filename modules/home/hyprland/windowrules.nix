@@ -3,10 +3,12 @@
     (import ../../../hosts/${host}/variables.nix)
     extraMonitorSettings
     ;
-in {
-  wayland.windowManager.hyprland = {
-    settings = {
-      windowrule = [
+
+  # Import host-specific window rules
+  hostWindowRules = import ./hosts/${host}/windowrules.nix {inherit host;};
+
+  # Default window rules that all hosts inherit
+  defaultWindowRules = [
         "tag +file-manager, class:^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt)$"
         "tag +terminal, class:^(com.mitchellh.ghostty|org.wezfurlong.wezterm|Alacritty|kitty|kitty-dropterm)$"
         "tag +browser, class:^(Brave-browser(-beta|-dev|-unstable)?)$"
@@ -46,13 +48,6 @@ in {
         # Moonlight
         "center, class:^(Moonlight)$"
         # Web Apps
-        "tile, class:^(dev.heppen.webapps.Github8306)$"
-        "tile, class:^(dev.heppen.webapps.Descript5493)$"
-        "tile, class:^(dev.heppen.webapps.Clickup9509)$"
-        "tile, class:^(dev.heppen.webapps.NixPackages1585)$"
-        "tile, class:^(dev.heppen.webapps.Messages2354)$"
-        "tile, class:^(dev.heppen.webapps.Restream8099)$"
-        "tile, class:^(dev.heppen.webapps.ProtonMail2716)$"
         "float, class:^(Emulator)$"
         "float, tag:settings*"
         "float, class:^([Ff]erdium)$"
@@ -84,6 +79,12 @@ in {
         "noblur, tag:games*"
         "fullscreen, tag:games*"
       ];
+
+in {
+  wayland.windowManager.hyprland = {
+    settings = {
+      # Merge default window rules with host-specific window rules
+      windowrule = defaultWindowRules ++ hostWindowRules.windowrule;
     };
   };
 }
