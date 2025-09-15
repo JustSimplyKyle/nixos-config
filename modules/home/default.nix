@@ -32,6 +32,7 @@ in {
     ./swaync.nix
     ./tealdeer.nix
     ./tmux.nix
+    ./vicinae.nix
     ./virtmanager.nix
     ./vscode.nix
     waybarChoice

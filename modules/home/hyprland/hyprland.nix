@@ -55,6 +55,7 @@ in {
         "killall -q waybar;sleep .5 && waybar"
         "killall -q swaync;sleep .5 && swaync"
         "nm-applet --indicator"
+        "vicinae server &"
         "pypr &"
         "sleep 1.5 && swww img ${stylixImage}"
       ];

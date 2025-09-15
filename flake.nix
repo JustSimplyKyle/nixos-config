@@ -11,6 +11,7 @@
     nvf.url = "github:notashelf/nvf";
     stylix.url = "github:danth/stylix/release-25.05";
     flake-utils.url = "github:numtide/flake-utils";
+    vicinae.url = "github:vicinaehq/vicinae/24a71cac107f9b42f70ec2015e41ef02f617b1f1";
   };
 
   outputs = {nixpkgs, nixpkgs-unstable, flake-utils, ...} @ inputs: let

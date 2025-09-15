@@ -43,6 +43,9 @@
   # Enable Stylix System Theming
   stylixEnable = true;
 
+  # Enable Vicinae Launcher
+  vicinaeEnable = false;
+
   # Set Stylix Image
   #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
   stylixImage = ../../wallpapers/nix-wallpaper-stripes-logo.png;

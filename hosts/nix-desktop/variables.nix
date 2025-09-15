@@ -34,6 +34,7 @@
   controllerSupportEnable = true; # Enable Controller Support For Gaming
   flutterdevEnable = true; # Enable Flutter Development Environment
   stylixEnable = true; # Enable Stylix System Theming
+  vicinaeEnable = true; # Enable Vicinae Launcher
 
   # Styling
   stylixImage = ../../wallpapers/City-asteroid-attack.jpg;
