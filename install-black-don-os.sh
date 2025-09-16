@@ -396,6 +396,52 @@ cat > hosts/"$hostName"/variables.nix << EOF
 }
 EOF
 
+# Create host-specific Hyprland configuration files
+print_header "Creating Host-Specific Hyprland Configuration"
+echo -e "${GREEN}Creating Hyprland host-specific files for $hostName...${NC}"
+
+# Create the host-specific Hyprland directory
+mkdir -p modules/home/hyprland/hosts/"$hostName"
+
+# Create default binds.nix for the new host
+cat > modules/home/hyprland/hosts/"$hostName"/binds.nix << EOF
+{host, ...}: let
+  inherit
+    (import ../../../../hosts/\${host}/variables.nix)
+    browser
+    terminal
+    ;
+in {
+  # Host-specific binds for $hostName
+  # These will be merged with the default binds
+  bind = [
+    # Add $hostName-specific binds here
+  ];
+
+  bindm = [
+    # Add $hostName-specific mouse binds here
+  ];
+}
+EOF
+
+# Create default windowrules.nix for the new host
+cat > modules/home/hyprland/hosts/"$hostName"/windowrules.nix << EOF
+{host, ...}: let
+  inherit
+    (import ../../../../hosts/\${host}/variables.nix)
+    extraMonitorSettings
+    ;
+in {
+  # Host-specific window rules for $hostName
+  # These will be merged with the default window rules
+  windowrule = [
+    # Add $hostName-specific window rules here
+  ];
+}
+EOF
+
+echo -e "${GREEN}✓ Created Hyprland host-specific configuration files${NC}"
+
 # Update flake.nix to add the new host
 print_header "Updating Flake Configuration"
 

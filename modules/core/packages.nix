@@ -107,5 +107,6 @@
     gtk3
     gtk4
     localsend
+    obsidian
   ];
 }

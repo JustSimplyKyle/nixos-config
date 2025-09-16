@@ -18,5 +18,6 @@ in {
     "tile, class:^(dev.heppen.webapps.Restream8099)$"
     "tile, class:^(dev.heppen.webapps.ProtonMail2716)$"
     "tile, class:^(dev.heppen.webapps.ClaudeAI5594)$"
+    "tile, class:^(dev.heppen.webapps.GitLab9087)$"
   ];
 }

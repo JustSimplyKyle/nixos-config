@@ -19,6 +19,7 @@ in {
     "$modifier SHIFT,D,exec,gtk-launch dev.heppen.webapps.Descript5493"
     "$modifier SHIFT,P,exec,gtk-launch dev.heppen.webapps.NixPackages1585"
     "$modifier SHIFT,C,exec,gtk-launch dev.heppen.webapps.ClaudeAI5594"
+    "$modifier SHIFT,L,exec,gtk-launch dev.heppen.webapps.GitLab9087"
   ];
 
   bindm = [
