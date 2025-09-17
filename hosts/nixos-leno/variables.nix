@@ -42,7 +42,7 @@
   stylixEnable = true;
 
   # Enable Vicinae Launcher
-  vicinaeEnable = false;
+  vicinaeEnable = true;
 
   # Set Stylix Image
   #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;

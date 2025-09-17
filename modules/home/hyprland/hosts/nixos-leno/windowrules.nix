@@ -9,5 +9,12 @@ in {
   windowrule = [
     # Add laptop-specific window rules here
     # Example: "size 80% 80%, class:^(laptop-app)$"
+    "tile, class:^(dev.heppen.webapps.Github8240)$"
+    "tile, class:^(dev.heppen.webapps.Clickup5396)$"
+    "tile, class:^(dev.heppen.webapps.NixPackages5244)$"
+    "tile, class:^(dev.heppen.webapps.Messages4146)$"
+    "tile, class:^(dev.heppen.webapps.Restream8099)$"
+    "tile, class:^(dev.heppen.webapps.ProtonMail4649)$"
+    "tile, class:^(dev.heppen.webapps.Claude.ai9362)$"
   ];
 }
