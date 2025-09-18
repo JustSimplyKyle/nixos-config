@@ -35,9 +35,10 @@
   flutterdevEnable = true; # Enable Flutter Development Environment
   stylixEnable = true; # Enable Stylix System Theming
   vicinaeEnable = true; # Enable Vicinae Launcher
+  syncthingEnable = true; # Enable Syncthing File Synchronization
 
   # Styling
-  stylixImage = ../../wallpapers/City-asteroid-attack.jpg;
+  stylixImage = ../../wallpapers/black_hole_by_kurzgesagt.png;
 
   # Waybar Choice
   waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
