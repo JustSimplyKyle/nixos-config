@@ -36,7 +36,6 @@ in {
     ./virtmanager.nix
     ./vscode.nix
     waybarChoice
-    ./wezterm.nix
     ./wlogout
     ./xdg.nix
     ./yazi

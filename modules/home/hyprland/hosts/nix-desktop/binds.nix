@@ -19,7 +19,9 @@ in {
     "$modifier SHIFT,D,exec,gtk-launch dev.heppen.webapps.Descript5493"
     "$modifier SHIFT,P,exec,gtk-launch dev.heppen.webapps.NixPackages1585"
     "$modifier SHIFT,C,exec,gtk-launch dev.heppen.webapps.ClaudeAI5594"
+    "$modifier CTRL,C,exec,NIXPKGS_ALLOW_UNFREE=1 nix run github:k3d3/claude-desktop-linux-flake --impure"
     "$modifier SHIFT,L,exec,gtk-launch dev.heppen.webapps.GitLab9087"
+    "$modifier SHIFT,N,exec,obsidian"
   ];
 
   bindm = [
