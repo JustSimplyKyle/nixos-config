@@ -8,6 +8,8 @@ A customized NixOS configuration based on [ZaneyOS](https://gitlab.com/zaney/zan
 
 Black Don OS is a personalized NixOS configuration that supports multiple host computers with different hardware profiles. It features a modern minimal desktop environment with Hyprland, extensive customization options, and easy multi-host management.
 
+The configuration is built with modularity in mind - each host can have different features enabled or disabled (like NFS, printing, gaming controller support, Flutter development environment, etc.), custom keybinds and window rules, and personalized theming. It includes the Vicinae launcher by default for a smooth application launching experience.
+
 ## Features
 
 - 🖥️ **Multi-Host Support** - Easy configuration management for multiple computers
@@ -17,6 +19,9 @@ Black Don OS is a personalized NixOS configuration that supports multiple host c
 - 📦 **Flake-based Configuration** - Reproducible and declarative system management
 - 🔧 **Easy Host Setup** - Automated script for adding new computers
 - ⚡ **dcli Tool** - Custom CLI utility for multi-host system management
+- 🎛️ **Modular Features** - Toggle features per host (NFS, printing, gaming controllers, etc.)
+- ⌨️ **Per-Host Customization** - Host-specific keybinds and window rules for Hyprland
+- 🚀 **Vicinae Launcher** - Modern application launcher enabled by default
 
 ## Installation
 
@@ -26,12 +31,12 @@ If you want to install Black Don OS on a fresh NixOS system:
 
 1. **Boot from NixOS ISO** and ensure you have network access
 2. **Install git and pciutils** (for hardware detection):
-   ```bash
+   ```shell
    nix-shell -p git pciutils
    ```
 3. **Run the installation script**:
-   ```bash
-   bash <(curl -s https://gitlab.com/theblackdon/black-don-os/-/raw/main/install-black-don-os.sh)
+   ```shell
+   sh <(curl -sL https://gitlab.com/theblackdon/black-don-os/-/raw/bdos-1.0/install-black-don-os.sh)
    ```
 
 The installer will:
@@ -40,6 +45,11 @@ The installer will:
 - Clone the repository and set up your configuration
 - Build and install Black Don OS
 - Create a personalized setup for your computer
+
+**After Installation**: You may need to customize monitor settings and GPU IDs in your `hosts/YOUR-HOST/variables.nix` file:
+- **Monitor Configuration**: Update `extraMonitorSettings` with your actual monitor setup
+- **NVIDIA Prime**: Update `intelID` and `nvidiaID` with your actual GPU PCI IDs (find with `lspci | grep VGA`)
+- **Wallpapers**: Choose your preferred wallpaper from the `wallpapers/` directory
 
 ### For Existing Black Don OS Users
 
@@ -158,53 +168,6 @@ Each host has its own directory under `hosts/` containing:
 - Virtual machine optimized
 - Minimal graphics requirements
 
-## Installation Process
-
-### For New Computers
-
-1. **Boot NixOS Installer**
-   ```bash
-   # Download NixOS ISO and boot from USB
-   ```
-
-2. **Basic System Setup**
-   ```bash
-   # Partition disk, format, mount
-   sudo parted /dev/nvme0n1 -- mklabel gpt
-   # ... (see host-specific install guide)
-   ```
-
-3. **Clone Configuration**
-   ```bash
-   git clone https://gitlab.com/theblackdon/black-don-os.git
-   cd black-don-os
-   ```
-
-4. **Generate Hardware Config**
-   ```bash
-   sudo nixos-generate-config --show-hardware-config > ./hosts/YOUR-HOST/hardware.nix
-   ```
-
-5. **Install**
-   ```bash
-   sudo nixos-install --flake .#YOUR-HOST
-   ```
-
-### For Existing Systems
-
-Simply switch to a different host configuration:
-
-```bash
-# Using dcli (recommended)
-dcli deploy nix-desktop
-
-# Using interactive switcher
-./switch-host.sh
-
-# Using standard nix commands
-sudo nixos-rebuild switch --flake ~/black-don-os#nix-desktop
-```
-
 ## Customization
 
 ### Adding a New Host
@@ -275,13 +238,6 @@ git fetch upstream  # Fetch from original ZaneyOS
 # Merge updates (be careful with conflicts)
 git merge upstream/stable-2.3
 ```
-
-### Contributing Changes
-
-1. Make changes in feature branch
-2. Test on multiple hosts: `dcli build HOST-NAME`
-3. Update documentation
-4. Commit and push: `dcli commit "message"` && `dcli push`
 
 ## Troubleshooting
 
