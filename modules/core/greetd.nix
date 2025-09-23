@@ -1,10 +1,7 @@
+{ config, lib, pkgs, username, ... }:
 {
-  pkgs,
-  username,
-  ...
-}: {
   services.greetd = {
-    enable = true;
+    enable = lib.mkDefault true;
     vt = 3;
     settings = {
       default_session = {

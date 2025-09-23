@@ -1,0 +1,42 @@
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Dashboard file is missing, creating initial one.","time":"2025-09-22T17:45:15-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Dashboard file is created.","time":"2025-09-22T17:45:15-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Scheduler file is missing, creating initial one.","time":"2025-09-22T17:45:15-04:00"}
+{"error":null,"level":"error","location":"/home/don/black-don-os/database/scheduler.json","msg":"Unable to save device dashboard.","time":"2025-09-22T17:45:15-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"warning","msg":"Unable to create scheduler file.","time":"2025-09-22T17:45:15-04:00"}
+{"error":"open /home/don/black-don-os/database/scheduler.json: no such file or directory","file":"/home/don/black-don-os/database/scheduler.json","level":"error","msg":"Failed to decode json","time":"2025-09-22T17:45:15-04:00"}
+{"error":"invalid argument","file":"/home/don/black-don-os/database/scheduler.json","level":"error","msg":"Failed to decode json","time":"2025-09-22T17:45:15-04:00"}
+{"error":"invalid argument","file":"/home/don/black-don-os/database/scheduler.json","level":"error","msg":"Failed to close file.","time":"2025-09-22T17:45:15-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Dashboard file is found, checking for any upgrade...","time":"2025-09-22T17:45:30-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Nothing to upgrade.","time":"2025-09-22T17:45:30-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Scheduler file is missing, creating initial one.","time":"2025-09-22T17:45:30-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Scheduler file is created.","time":"2025-09-22T17:45:30-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Dashboard file is found, checking for any upgrade...","time":"2025-09-22T17:45:39-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Nothing to upgrade.","time":"2025-09-22T17:45:39-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Scheduler file is found, checking for any upgrade...","time":"2025-09-22T17:45:39-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Nothing to upgrade.","time":"2025-09-22T17:45:39-04:00"}
+{"error":"open /home/don/black-don-os/database/lcd/background.jpg: no such file or directory","level":"error","location":"/home/don/black-don-os/database/lcd/background.jpg","msg":"Unable to open LCD image","time":"2025-09-22T17:45:39-04:00"}
+{"caller":"LoadUserProfiles()","error":"open /home/don/black-don-os/database/temperatures/: no such file or directory","level":"fatal","location":"/home/don/black-don-os/database/temperatures/","msg":"Unable to read content of a folder","time":"2025-09-22T17:45:39-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Dashboard file is found, checking for any upgrade...","time":"2025-09-22T17:45:43-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Nothing to upgrade.","time":"2025-09-22T17:45:43-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Scheduler file is found, checking for any upgrade...","time":"2025-09-22T17:45:43-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Nothing to upgrade.","time":"2025-09-22T17:45:43-04:00"}
+{"error":"open /home/don/black-don-os/database/lcd/background.jpg: no such file or directory","level":"error","location":"/home/don/black-don-os/database/lcd/background.jpg","msg":"Unable to open LCD image","time":"2025-09-22T17:45:43-04:00"}
+{"caller":"LoadUserProfiles()","error":"open /home/don/black-don-os/database/temperatures/: no such file or directory","level":"fatal","location":"/home/don/black-don-os/database/temperatures/","msg":"Unable to read content of a folder","time":"2025-09-22T17:45:43-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Dashboard file is found, checking for any upgrade...","time":"2025-09-22T17:46:07-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Nothing to upgrade.","time":"2025-09-22T17:46:07-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Scheduler file is found, checking for any upgrade...","time":"2025-09-22T17:46:07-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Nothing to upgrade.","time":"2025-09-22T17:46:07-04:00"}
+{"error":"open /home/don/black-don-os/database/lcd/background.jpg: no such file or directory","level":"error","location":"/home/don/black-don-os/database/lcd/background.jpg","msg":"Unable to open LCD image","time":"2025-09-22T17:46:07-04:00"}
+{"caller":"LoadUserProfiles()","error":"open /home/don/black-don-os/database/temperatures/: no such file or directory","level":"fatal","location":"/home/don/black-don-os/database/temperatures/","msg":"Unable to read content of a folder","time":"2025-09-22T17:46:07-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Dashboard file is found, checking for any upgrade...","time":"2025-09-22T17:51:58-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Nothing to upgrade.","time":"2025-09-22T17:51:58-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Scheduler file is found, checking for any upgrade...","time":"2025-09-22T17:51:58-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Nothing to upgrade.","time":"2025-09-22T17:51:58-04:00"}
+{"error":"open /home/don/black-don-os/database/lcd/background.jpg: no such file or directory","level":"error","location":"/home/don/black-don-os/database/lcd/background.jpg","msg":"Unable to open LCD image","time":"2025-09-22T17:51:58-04:00"}
+{"caller":"LoadUserProfiles()","error":"open /home/don/black-don-os/database/temperatures/: no such file or directory","level":"fatal","location":"/home/don/black-don-os/database/temperatures/","msg":"Unable to read content of a folder","time":"2025-09-22T17:51:58-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Dashboard file is found, checking for any upgrade...","time":"2025-09-22T18:00:24-04:00"}
+{"file":"/home/don/black-don-os/dashboard.json","level":"info","msg":"Nothing to upgrade.","time":"2025-09-22T18:00:24-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Scheduler file is found, checking for any upgrade...","time":"2025-09-22T18:00:24-04:00"}
+{"file":"/home/don/black-don-os/database/scheduler.json","level":"info","msg":"Nothing to upgrade.","time":"2025-09-22T18:00:24-04:00"}
+{"error":"open /home/don/black-don-os/database/lcd/background.jpg: no such file or directory","level":"error","location":"/home/don/black-don-os/database/lcd/background.jpg","msg":"Unable to open LCD image","time":"2025-09-22T18:00:24-04:00"}
+{"caller":"LoadUserProfiles()","error":"open /home/don/black-don-os/database/temperatures/: no such file or directory","level":"fatal","location":"/home/don/black-don-os/database/temperatures/","msg":"Unable to read content of a folder","time":"2025-09-22T18:00:24-04:00"}

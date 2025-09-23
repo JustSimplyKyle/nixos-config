@@ -80,6 +80,8 @@
     wget # Tool For Fetching Files With Links
     ytmdl # Tool For Downloading Audio From YouTube
     # My apps
+    nemo # File Manager
+    nemo-fileroller # Archive Manager Integration For Nemo
     nwg-displays # Manage Displays
     vivaldi # Browser
     youtube-music
@@ -108,5 +110,6 @@
     gtk4
     localsend
     obsidian
+
   ];
 }

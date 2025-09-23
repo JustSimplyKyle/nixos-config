@@ -1,0 +1,21 @@
+{
+    "debug": false,
+    "listenPort": 27003,
+    "listenAddress": "127.0.0.1",
+    "cpuSensorChip": "",
+    "manual": false,
+    "frontend": true,
+    "metrics": false,
+    "memory": false,
+    "memorySmBus": "i2c-0",
+    "memoryType": 4,
+    "exclude": [],
+    "decodeMemorySku": true,
+    "memorySku": "",
+    "resumeDelay": 15000,
+    "logFile": "",
+    "logLevel": "info",
+    "enhancementKits": "",
+    "temperatureOffset": 0,
+    "amdGpuIndex": 0
+}

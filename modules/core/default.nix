@@ -5,6 +5,7 @@
     ./flatpak.nix
     ./fonts.nix
     ./greetd.nix
+    ./ly.nix
     ./hardware.nix
     ./network.nix
     ./nfs.nix

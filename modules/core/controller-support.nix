@@ -31,6 +31,12 @@ lib.mkIf controllerSupportEnable {
     # Nintendo Switch Pro Controller over Bluetooth
     KERNEL=="hidraw*", KERNELS=="*057E:2009*", MODE="0666", TAG+="uaccess"
 
+    # Nyxi Wizard 2 Controller (appears as Switch Pro Controller)
+    # Special rules to ensure back buttons are properly exposed to Steam Input
+    SUBSYSTEM=="input", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2009", ENV{ID_INPUT_JOYSTICK}=="1", TAG+="steam-controller"
+    SUBSYSTEM=="input", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2009", ENV{ID_INPUT_JOYSTICK}=="1", ENV{STEAM_INPUT_ENABLE}="1"
+    SUBSYSTEM=="input", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2009", ENV{ID_INPUT_JOYSTICK}=="1", RUN+="${pkgs.coreutils}/bin/chmod 666 /dev/input/event%n"
+
     # Nintendo Switch Joy-Con (L)
     KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2006", MODE="0666", TAG+="uaccess"
     KERNEL=="hidraw*", KERNELS=="*057E:2006*", MODE="0666", TAG+="uaccess"
