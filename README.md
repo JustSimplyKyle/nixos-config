@@ -36,7 +36,7 @@ If you want to install Black Don OS on a fresh NixOS system:
    ```
 3. **Run the installation script**:
    ```shell
-   sh <(curl -sL https://gitlab.com/theblackdon/black-don-os/-/raw/bdos-1.0/install-black-don-os.sh)
+   sh <(curl -sL https://gitlab.com/theblackdon/black-don-os/-/raw/bdos-beta-0.1/install-black-don-os.sh)
    ```
 
 The installer will:
