@@ -22,6 +22,7 @@ in {
     ./kitty.nix
     ./lazygit.nix
     ./nvf.nix
+    ./nwg-drawer.nix
     ./obs-studio.nix
     ./rofi
     ./qt.nix

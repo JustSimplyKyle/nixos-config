@@ -49,6 +49,8 @@
     htop # Simple Terminal Based System Monitor
     hyprpicker # Color Picker
     eog # For Image Viewing
+    alacritty # Terminal Emulator (default for niri)
+    fuzzel # Application Launcher (default for niri)
     inxi # CLI System Information Tool
     killall # For Killing All Instances Of Programs
     libnotify # For Notifications
@@ -78,18 +80,20 @@
     v4l-utils # Used For Things Like OBS Virtual Camera
     waypaper # backup wallpaper GUI
     wget # Tool For Fetching Files With Links
+    xwayland-satellite # Xwayland outside your Wayland compositor
     ytmdl # Tool For Downloading Audio From YouTube
     # My apps
     nemo # File Manager
     nemo-fileroller # Archive Manager Integration For Nemo
     nwg-displays # Manage Displays
+    nwg-drawer # drawer GUI
     vivaldi # Browser
     youtube-music
     # Unstable Packages
     pkgs-unstable.code-cursor # AI IDE
     pkgs-unstable.zed-editor # Another AI IDE
     pkgs-unstable.flutter # Flutter SDK
-    pkgs-unstable.jdk # Java Development Kit
+    pkgs-unstable.jdk # Java vivalDevelopment Kit
     pkgs-unstable.claude-code # For native development
     pkgs-unstable.nwg-dock-hyprland
     teams-for-linux # Video Meetings
@@ -110,6 +114,6 @@
     gtk4
     localsend
     obsidian
-
+    kdePackages.kmag
   ];
 }

@@ -14,4 +14,6 @@ lib.mkIf stylixEnable {
     ghostty.enable = false;
     qt.enable = true;
   };
+
+  services.nwg-drawer-stylix.enable = true;
 }

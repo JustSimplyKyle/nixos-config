@@ -17,7 +17,7 @@
   clock24h = false;
 
   # Program Options
-  browser = "vivaldi"; # Set Default Browser (google-chrome-stable for google-chrome)
+  browser = "io.github.zen_browser.zen"; # Set Default Browser (google-chrome-stable for google-chrome)
   terminal = "kitty"; # Set Default System Terminal
   keyboardLayout = "us";
   consoleKeyMap = "us";
@@ -42,7 +42,7 @@
   # services.displayManager.ly.enable = true; # ly with matrix animation
 
   # Styling
-  stylixImage = ../../wallpapers/black_hole_by_kurzgesagt.png;
+  stylixImage = ../../wallpapers/37.png;
 
   # Waybar Choice
   waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;

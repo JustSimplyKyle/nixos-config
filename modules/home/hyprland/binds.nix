@@ -19,7 +19,7 @@
       #"$modifier,SPACE,exec,rofi-launcher"
       "$modifier SHIFT,W,exec,web-search"
       "$modifier ALT,W,exec,wallsetter"
-      "$modifier,B,exec,${browser}"
+      #"$modifier,B,exec,${browser}"
       "$modifier,Y,exec,kitty -e yazi"
       "$modifier SHIFT,E,exec,emopicker9000"
       "$modifier SHIFT,S,exec,screenshootin"
