@@ -87,6 +87,7 @@
     nemo-fileroller # Archive Manager Integration For Nemo
     nwg-displays # Manage Displays
     nwg-drawer # drawer GUI
+    nwg-look # Look GUI
     vivaldi # Browser
     youtube-music
     # Unstable Packages
@@ -114,6 +115,5 @@
     gtk4
     localsend
     obsidian
-    kdePackages.kmag
   ];
 }
