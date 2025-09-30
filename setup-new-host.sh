@@ -155,6 +155,10 @@ mkdir -p "hosts/$newHostName"
 cp "hosts/$sourceHost/default.nix" "hosts/$newHostName/"
 cp "hosts/$sourceHost/host-packages.nix" "hosts/$newHostName/"
 
+# Create Hyprland host-specific configuration directory
+echo "Creating Hyprland host configuration: modules/home/hyprland/hosts/$newHostName"
+mkdir -p "modules/home/hyprland/hosts/$newHostName"
+
 # Create new variables.nix based on source but with new hostname-specific settings
 echo "Creating variables.nix for $newHostName..."
 
@@ -241,6 +245,54 @@ cat > "hosts/$newHostName/hardware.nix" << EOF
   # hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
 EOF
+
+# Create Hyprland binds configuration
+echo "Creating Hyprland binds configuration..."
+cat > "modules/home/hyprland/hosts/$newHostName/binds.nix" << 'EOF'
+{host, ...}: let
+  inherit
+    (import ../../../../hosts/${host}/variables.nix)
+    browser
+    terminal
+    ;
+in {
+  # Host-specific binds for $newHostName
+  # These will be merged with the default binds
+  bind = [
+    # Add your host-specific keybinds here
+    # Example: "$modifier SHIFT,A,exec,some-app"
+  ];
+
+  bindm = [
+    # Add your host-specific mouse binds here
+  ];
+}
+EOF
+
+# Replace the placeholder hostname in the binds file
+sed -i "s/\$newHostName/$newHostName/g" "modules/home/hyprland/hosts/$newHostName/binds.nix"
+
+# Create Hyprland window rules configuration
+echo "Creating Hyprland window rules configuration..."
+cat > "modules/home/hyprland/hosts/$newHostName/windowrules.nix" << 'EOF'
+{host, ...}: let
+  inherit
+    (import ../../../../hosts/${host}/variables.nix)
+    extraMonitorSettings
+    ;
+in {
+  # Host-specific window rules for $newHostName
+  # These will be merged with the default window rules
+  windowrule = [
+    # Add your host-specific window rules here
+    # Example: "float, class:^(some-app)$"
+    # Example: "tile, class:^(another-app)$"
+  ];
+}
+EOF
+
+# Replace the placeholder hostname in the window rules file
+sed -i "s/\$newHostName/$newHostName/g" "modules/home/hyprland/hosts/$newHostName/windowrules.nix"
 
 # Update flake.nix to include the new host
 print_header "Updating Flake Configuration"
@@ -345,121 +397,78 @@ cat > "INSTALL-$newHostName.md" << EOF
 # Installation Guide for $newHostName
 
 ## Prerequisites
-1. Install NixOS on your target computer using the minimal ISO
-2. Ensure you have git and network access
-3. Your target computer should have $gpuProfile hardware
+- Boot from NixOS minimal ISO (which includes git and network tools)
+- Target computer should have $gpuProfile hardware
+- Ensure hostname during installation matches: **$newHostName**
 
 ## Installation Steps
 
-### 1. Boot from NixOS ISO and set up basic system
+### 1. Clone Black Don OS configuration
 \`\`\`bash
-# Connect to network (if not using ethernet)
-sudo systemctl start wpa_supplicant
-sudo wpa_cli
-
-# Partition your disk (example for UEFI)
-sudo parted /dev/nvme0n1 -- mklabel gpt
-sudo parted /dev/nvme0n1 -- mkpart primary 512MiB -8GiB
-sudo parted /dev/nvme0n1 -- mkpart primary linux-swap -8GiB 100%
-sudo parted /dev/nvme0n1 -- mkpart ESP fat32 1MiB 512MiB
-sudo parted /dev/nvme0n1 -- set 3 esp on
-
-# Format partitions
-sudo mkfs.ext4 -L nixos /dev/nvme0n1p1
-sudo mkswap -L swap /dev/nvme0n1p2
-sudo mkfs.fat -F 32 -n boot /dev/nvme0n1p3
-
-# Mount partitions
-sudo mount /dev/disk/by-label/nixos /mnt
-sudo mkdir -p /mnt/boot
-sudo mount /dev/disk/by-label/boot /mnt/boot
-sudo swapon /dev/nvme0n1p2
+# Clone the repository
+git clone https://gitlab.com/theblackdon/black-don-os.git
+cd black-don-os
 \`\`\`
 
-### 2. Generate hardware configuration
+### 2. Run the installation script
 \`\`\`bash
-sudo nixos-generate-config --root /mnt
+# Make sure your hostname matches the one you created: $newHostName
+./install.sh
 \`\`\`
 
-### 3. Clone your configuration
-\`\`\`bash
-cd /mnt/home
-sudo mkdir -p $username
-sudo chown $username:users $username
-cd $username
+### 3. Post-installation configuration
 
-# Install git in temporary shell
-nix-shell -p git
+After installation, update the following in \`hosts/$newHostName/variables.nix\`:
 
-# Clone your Black Don OS configuration
-git clone https://gitlab.com/theblackdon/black-don-os.git zaneyos
-cd zaneyos
+**Monitor Configuration:**
+\`\`\`nix
+extraMonitorSettings = ''
+  monitor=HDMI-A-1,1920x1080@60,0x0,1
+  # Add your actual monitor configuration
+'';
 \`\`\`
 
-### 4. Update hardware configuration
-\`\`\`bash
-# Copy the generated hardware config to your host
-sudo cp /mnt/etc/nixos/hardware-configuration.nix ./hosts/$newHostName/hardware.nix
-\`\`\`
-
-### 5. Update GPU IDs (for NVIDIA systems)
+**GPU IDs (for NVIDIA systems only):**
 \`\`\`bash
 # Find your GPU IDs
 lspci | grep VGA
 
-# Edit variables.nix and update the GPU IDs:
-# intelID = "PCI:X:X:X";   # Your integrated GPU
-# nvidiaID = "PCI:X:X:X";  # Your NVIDIA GPU
+# Update in variables.nix:
+intelID = "PCI:0:2:0";   # Your integrated GPU
+nvidiaID = "PCI:1:0:0";  # Your NVIDIA GPU
 \`\`\`
 
-### 6. Update monitor configuration
-Edit \`hosts/$newHostName/variables.nix\` and configure your monitors in \`extraMonitorSettings\`.
-
-### 7. Install the system
+### 4. Rebuild with updated configuration
 \`\`\`bash
-# Enable flakes for installation
-export NIX_CONFIG="experimental-features = nix-command flakes"
-
-# Build and install
-sudo nixos-install --flake .#$newHostName --root /mnt
-
-# Set user password
-sudo nixos-enter --root /mnt -c 'passwd $username'
+dcli rebuild
 \`\`\`
 
-### 8. Reboot and enjoy
+## Building from Another Computer
+
+To deploy this configuration from your existing Black Don OS computer:
 \`\`\`bash
-sudo reboot
+dcli deploy $newHostName
 \`\`\`
 
-## Post-Installation
+## Configuration Details
+- **Hostname:** $newHostName
+- **GPU Profile:** $gpuProfile
+- **Username:** $username
+- **Git Name:** $gitUsername
+- **Git Email:** $gitEmail
 
-After rebooting into your new system:
-
-1. The configuration will be in \`/home/$username/zaneyos\`
-2. Make any additional customizations
-3. Rebuild with: \`sudo nixos-rebuild switch --flake ~/zaneyos#$newHostName\`
-
-## Building this configuration from another computer
-
-To build this configuration from your existing computer:
-\`\`\`bash
-sudo nixos-rebuild switch --flake ~/zaneyos#$newHostName
-\`\`\`
-
-## Notes
-- GPU Profile: $gpuProfile
-- Username: $username
-- Git Name: $gitUsername
-- Git Email: $gitEmail
-
-Remember to update the hardware.nix file with the actual hardware configuration from your new computer!
+## Important Notes
+- The install script will generate hardware.nix automatically
+- Ensure your hostname during installation matches **$newHostName** exactly
+- Update monitor settings and GPU IDs after first boot
+- Use \`dcli\` commands for system management
 EOF
 
 print_header "Summary"
 echo -e "${GREEN}✓ Created host configuration for: $newHostName${NC}"
 echo -e "${GREEN}✓ GPU Profile: $gpuProfile${NC}"
 echo -e "${GREEN}✓ Updated flake.nix with new host${NC}"
+echo -e "${GREEN}✓ Created Hyprland host-specific configs${NC}"
 echo -e "${GREEN}✓ Created installation guide: INSTALL-$newHostName.md${NC}"
 echo ""
 echo -e "${BLUE}Files created:${NC}"
@@ -468,6 +477,9 @@ echo -e "  📄 hosts/$newHostName/default.nix"
 echo -e "  📄 hosts/$newHostName/variables.nix"
 echo -e "  📄 hosts/$newHostName/hardware.nix (placeholder)"
 echo -e "  📄 hosts/$newHostName/host-packages.nix"
+echo -e "  📁 modules/home/hyprland/hosts/$newHostName/"
+echo -e "  📄 modules/home/hyprland/hosts/$newHostName/binds.nix"
+echo -e "  📄 modules/home/hyprland/hosts/$newHostName/windowrules.nix"
 echo -e "  📄 INSTALL-$newHostName.md"
 echo ""
 echo -e "${YELLOW}Next steps:${NC}"
