@@ -21,6 +21,7 @@ in {
     ./hyprland
     ./kitty.nix
     ./lazygit.nix
+    ./niri.nix
     ./nvf.nix
     ./nwg-drawer.nix
     ./obs-studio.nix
