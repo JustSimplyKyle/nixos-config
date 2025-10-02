@@ -30,7 +30,7 @@ with lib; {
         layer = "top";
         position = "top";
 
-        modules-center = [ "network" "pulseaudio" "cpu" "hyprland/workspaces" "memory" "disk" "clock" ]; # Eterna: [ "hyprland/window" ]
+        modules-center = [ "network" "pulseaudio" "cpu" "hyprland/workspaces" "niri/workspaces" "memory" "disk" "clock" ]; # Eterna: [ "hyprland/window" ]
         modules-left = [ "custom/startmenu" "hyprland/window" ]; # Eternal:  [ "hyprland/workspaces" "cpu" "memory" "network" ]
         modules-right = [ "tray" "idle_inhibitor" "custom/notification" "battery" "custom/exit" ]; # Eternal: [ "idle_inhibitor" "pulseaudio" "clock"  "custom/notification" "tray" ]
 
@@ -44,11 +44,16 @@ with lib; {
           on-scroll-up = "hyprctl dispatch workspace e+1";
           on-scroll-down = "hyprctl dispatch workspace e-1";
         };
+        "niri/workspaces" = {
+          format = "{name}";
+          format-icons = {
+            default = " ";
+            active = " ";
+            urgent = " ";
+          };
+        };
         "clock" = {
-          format = '' {:%H:%M}'';
-          /*
-            ''{: %I:%M %p}'';
-            */
+          format = " {:%I:%M %p}";
           tooltip = true;
           tooltip-format = "<big>{:%A, %d.%B %Y }</big><tt><small>{calendar}</small></tt>";
         };

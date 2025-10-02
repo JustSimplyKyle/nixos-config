@@ -1,7 +1,4 @@
 {pkgs, ...}: let
-  # Install any helper scripts shipped in modules/home/waybar/scripts into ~/.config/waybar/scripts
-  scriptsDir = ./scripts;
-  scripts = builtins.attrNames (builtins.readDir scriptsDir);
 
   # Inline, improved Cava script packaged via Nix so we don't rely on an external bash file
   waybarCava = pkgs.writeShellScriptBin "WaybarCava" ''
@@ -95,18 +92,6 @@
     crust = "#11111b";
   };
 in {
-  # Ensure bundled Waybar scripts are installed under ~/.config/waybar/scripts
-  home.file = builtins.listToAttrs (
-    map (name: {
-      name = ".config/waybar/scripts/" + name;
-      value = {
-        source = "${scriptsDir}/${name}";
-        executable = true;
-      };
-    })
-    scripts
-  );
-
   programs.waybar = {
     enable = true;
     package = pkgs.waybar;
@@ -118,19 +103,17 @@ in {
         exclusive = true;
         passthrough = false;
         position = "top";
+        height = 10;
         spacing = 3;
         "fixed-center" = true;
         ipc = true;
-        "margin-top" = 3;
+        "margin-top" = 4;
         "margin-left" = 8;
         "margin-right" = 8;
 
         modules-left = [
           "custom/separator#line"
           "custom/startmenu"
-          "custom/qs_wallpapers_apply"
-          "custom/separator#blank"
-          "custom/qs_vid_wallpapers_apply"
           "custom/separator#line"
           "custom/separator#blank"
           "custom/cava_mviz"
@@ -143,6 +126,7 @@ in {
         modules-center = [
           "custom/separator#line"
           "hyprland/workspaces#rw"
+          "niri/workspaces"
           "custom/separator#line"
         ];
 
@@ -421,11 +405,26 @@ in {
         };
 
         tray = {
-          "icon-size" = 20;
+          "icon-size" = 16;
           spacing = 4;
         };
 
         # ---------- Workspaces variants (from ModulesWorkspaces) ----------
+        "niri/workspaces" = {
+          format = "{icon}";
+          format-icons = {
+            "1" = "1";
+            "2" = "2";
+            "3" = "3";
+            "4" = "4";
+            "5" = "5";
+            "6" = "6";
+            "7" = "7";
+            "8" = "8";
+            "9" = "9";
+            "10" = "10";
+          };
+        };
         "hyprland/workspaces#rw" = {
           "disable-scroll" = true;
           "all-outputs" = true;
@@ -732,10 +731,8 @@ in {
 
         "custom/power" = {
           format = " ⏻ ";
-          "on-click" = "qs-wlogout";
-          "on-click-right" = "~/.config/waybar/scripts/power-menu.sh";
-          tooltip = true;
-          "tooltip-format" = "Power menu: Left-click for QS logout, Right-click for rofi power menu";
+          "on-click" = "sleep 0.1 && wlogout";
+          tooltip = false;
         };
         "custom/reboot" = {
           format = "󰜉";
@@ -841,13 +838,13 @@ in {
         font-family: "JetBrainsMono Nerd Font";
         font-weight: bold;
         min-height: 0;
-        font-size: 101%;
+        font-size: 95%;
         font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
       }
 
       window#waybar {
-        background-color: @base;
-        border-radius: 5px;
+        background-color: rgba(30, 30, 46, 0.95);
+        border-radius: 12px;
       }
 
       tooltip {
@@ -970,13 +967,13 @@ in {
         animation-iteration-count: infinite;
         animation-direction: alternate;
       }
-      #custom-lock, #custom-power { color: @red; border-radius: 15px; font-weight: bolder; padding-left: 1px; }
+      #custom-lock, #custom-power { color: @red; border-radius: 15px; font-weight: bolder; padding-left: 1px; margin-right: 8px; }
       #network { background-color: transparent; color: @mauve; }
       #backlight { color: @flamingo; }
       #custom-weather { color: @green; border-radius: 15px; background-color: transparent; }
       #custom-menu { color: #89b4fa; }
       #pulseaudio { background-color: transparent; color: @blue; }
-      #clock, #clock-calender { color: @green; }
+      #clock, #clock-calender { color: @text; background-color: transparent; }
       /* Use the same pale blue as clock for these icons */
       #custom-qs_wallpapers_apply,
       #custom-qs_vid_wallpapers_apply { color: @sapphire; }

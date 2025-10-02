@@ -43,8 +43,15 @@
 
       # Host-specific configurations
       nixos-leno = mkHost { hostname = "nixos-leno"; profile = "nvidia-laptop"; username = "don"; };
+<<<<<<< HEAD
       nix-desktop = mkHost { hostname = "nix-desktop"; profile = "nvidia"; username = "don"; };
       nix-deck = mkHost { hostname = "nix-deck"; profile = "amd"; username = "don"; };
+||||||| 798e6ba
+      nix-deck = mkHost { hostname = "nix-deck"; profile = "amd"; username = "don"; };
+      nix-deck = mkHost { hostname = "nix-deck"; profile = "amd"; username = "don"; };
+=======
+      nix-deck = mkHost { hostname = "nix-deck"; profile = "amd"; username = "don"; };
+>>>>>>> ae42ab59317092d732f8183b68fe5f015be85455
     };
 
     # Flutter development environment

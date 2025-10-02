@@ -14,7 +14,7 @@
   clock24h = false;
 
   # Program Options
-  browser = "vivaldi"; # Set Default Browser (google-chrome-stable for google-chrome)
+  browser = "io.github.zen_browser.zen"; # Set Default Browser (google-chrome-stable for google-chrome)
   terminal = "kitty"; # Set Default System Terminal
   keyboardLayout = "us";
   consoleKeyMap = "us";
@@ -42,7 +42,7 @@
   stylixEnable = true;
 
   # Enable Vicinae Launcher
-  vicinaeEnable = true;
+  vicinaeEnable = false;
 
   # Enable Syncthing File Synchronization
   syncthingEnable = true;
@@ -58,7 +58,7 @@
   #stylixImage = ../../wallpapers/mountainscapedark.jpg;
   #stylixImage = ../../wallpapers/Rainnight.jpg;
   #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
-  stylixImage = ../../wallpapers/Valley.jpg;
+  stylixImage = ../../wallpapers/55.png;
 
   # Set Waybar
   # Includes alternates such as:
@@ -68,8 +68,8 @@
   #waybarChoice = ../../modules/home/waybar/waybar-simple.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-nekodyke.nix;
-  waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
-  #waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+  waybarChoice = ../../modules/home/waybar/waybar-jerry.nix;
 
   # Set Animation style
   # Available options are:
