@@ -34,7 +34,7 @@
   controllerSupportEnable = true; # Enable Controller Support For Gaming
   flutterdevEnable = true; # Enable Flutter Development Environment
   stylixEnable = true; # Enable Stylix System Theming
-  vicinaeEnable = true; # Enable Vicinae Launcher
+  vicinaeEnable = false; # Enable Vicinae Launcher
   syncthingEnable = true; # Enable Syncthing File Synchronization
 
   # Display Manager Options (choose one - add to host's default.nix)
@@ -45,7 +45,7 @@
   stylixImage = ../../wallpapers/37.png;
 
   # Waybar Choice
-  waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+  waybarChoice = ../../modules/home/waybar/waybar-jak-catppuccin.nix;
 
   # Animation Choice
   animChoice = ../../modules/home/hyprland/animations-end4.nix;

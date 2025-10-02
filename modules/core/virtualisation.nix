@@ -9,6 +9,13 @@
 
     libvirtd = {
       enable = true;
+      onBoot = "start";
+      onShutdown = "shutdown";
+      qemu = {
+        runAsRoot = false;
+        ovmf.enable = true;
+        swtpm.enable = true;
+      };
     };
 
     virtualbox.host = {

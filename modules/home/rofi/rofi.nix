@@ -33,7 +33,7 @@
         };
         "window" = {
           transparency = "real";
-          width = mkLiteral "1000px";
+          width = mkLiteral "500px";
           location = mkLiteral "center";
           anchor = mkLiteral "center";
           fullscreen = false;
@@ -41,48 +41,26 @@
           y-offset = mkLiteral "0px";
           cursor = "default";
           enabled = true;
-          border-radius = mkLiteral "15px";
-          background-color = mkLiteral "@bg";
+          border-radius = mkLiteral "4px";
+          background-color = mkLiteral "#${config.stylix.base16Scheme.base00}D9";
         };
         "mainbox" = {
           enabled = true;
-          spacing = mkLiteral "0px";
-          orientation = mkLiteral "horizontal";
-          children = map mkLiteral [
-            "imagebox"
-            "listbox"
-          ];
-          background-color = mkLiteral "transparent";
-        };
-        "imagebox" = {
+          spacing = mkLiteral "20px";
           padding = mkLiteral "20px";
-          background-color = mkLiteral "transparent";
-          #background-image = mkLiteral ''url("~/Pictures/Wallpapers/Rainnight.jpg", height)'';   # uncomment to use image as background
           orientation = mkLiteral "vertical";
           children = map mkLiteral [
             "inputbar"
-            "dummy"
+            "listview"
             "mode-switcher"
           ];
-        };
-        "listbox" = {
-          spacing = mkLiteral "20px";
-          padding = mkLiteral "20px";
-          background-color = mkLiteral "transparent";
-          orientation = mkLiteral "vertical";
-          children = map mkLiteral [
-            "message"
-            "listview"
-          ];
-        };
-        "dummy" = {
           background-color = mkLiteral "transparent";
         };
         "inputbar" = {
           enabled = true;
           spacing = mkLiteral "10px";
           padding = mkLiteral "10px";
-          border-radius = mkLiteral "10px";
+          border-radius = mkLiteral "4px";
           background-color = mkLiteral "@bg-alt";
           text-color = mkLiteral "@foreground";
           children = map mkLiteral [
@@ -107,16 +85,18 @@
         };
         "mode-switcher" = {
           enabled = true;
-          spacing = mkLiteral "20px";
+          spacing = mkLiteral "10px";
           background-color = mkLiteral "transparent";
           text-color = mkLiteral "@foreground";
+          orientation = mkLiteral "horizontal";
         };
         "button" = {
-          padding = mkLiteral "15px";
-          border-radius = mkLiteral "10px";
+          padding = mkLiteral "12px 20px";
+          border-radius = mkLiteral "4px";
           background-color = mkLiteral "@bg-alt";
           text-color = mkLiteral "inherit";
           cursor = mkLiteral "pointer";
+          horizontal-align = mkLiteral "0.5";
         };
         "button selected" = {
           background-color = mkLiteral "@selected";
@@ -125,7 +105,7 @@
         "listview" = {
           enabled = true;
           columns = 1;
-          lines = 8;
+          lines = 4;
           cycle = true;
           dynamic = true;
           scrollbar = false;
@@ -142,7 +122,7 @@
           enabled = true;
           spacing = mkLiteral "15px";
           padding = mkLiteral "8px";
-          border-radius = mkLiteral "10px";
+          border-radius = mkLiteral "4px";
           background-color = mkLiteral "transparent";
           text-color = mkLiteral "@text-color";
           cursor = mkLiteral "pointer";

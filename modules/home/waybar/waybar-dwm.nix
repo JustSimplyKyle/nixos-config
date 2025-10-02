@@ -1,8 +1,13 @@
 {
   config,
   pkgs,
+  lib,
+  host,
   ...
-}: {
+}: let
+  inherit (import ../../../hosts/${host}/variables.nix) clock24h;
+  timeFormat = if clock24h then "%H:%M" else "%I:%M %p";
+in {
   home.packages = with pkgs; [waybar];
 
   programs.waybar = {
@@ -10,7 +15,7 @@
     settings = {
       mainBar = {
         layer = "top";
-        "modules-left" = ["hyprland/workspaces" "hyprland/window"];
+        "modules-left" = ["hyprland/workspaces" "niri/workspaces" "hyprland/window" "niri/window"];
         "modules-center" = ["clock"];
         "modules-right" = ["tray" "cpu" "memory" "idle_inhibitor" "pulseaudio" "bluetooth"];
         "hyprland/window" = {
@@ -18,8 +23,13 @@
           "max-length" = 333;
           "seperate-outputs" = true;
         };
+        "niri/window" = {
+          format = "{title}";
+          "max-length" = 333;
+          "seperate-outputs" = true;
+        };
         clock = {
-          format = "<span foreground='#282828'> </span><span>{:%I:%M %a %d}</span>";
+          format = "<span foreground='#282828'> </span><span>{:${timeFormat} %a %d}</span>";
           "tooltip-format" = "{calendar}";
           calendar = {
             mode = "month";
@@ -69,6 +79,21 @@
           "sort-by-number" = true;
           "on-click" = "activate";
           "all-outputs" = false;
+          "format-icons" = {
+            "1" = "1";
+            "2" = "2";
+            "3" = "3";
+            "4" = "4";
+            "5" = "5";
+            "6" = "6";
+            "7" = "7";
+            "8" = "8";
+            "9" = "9";
+            "10" = "10";
+          };
+        };
+        "niri/workspaces" = {
+          format = "{icon}";
           "format-icons" = {
             "1" = "1";
             "2" = "2";
