@@ -7,7 +7,11 @@
     firefox.enable = false; # Firefox is not installed by default
     dconf.enable = true;
     seahorse.enable = true;
-    hyprland.enable = true; #create desktop file and depedencies if you switch to GUI login MGR
+    hyprland = {
+      enable = true; # Create desktop file and dependencies if you switch to GUI login MGR
+      package = pkgs-unstable.hyprland; # Use unstable version for plugin compatibility
+      portalPackage = pkgs-unstable.xdg-desktop-portal-hyprland; # Use matching portal version
+    };
     hyprlock.enable = true; #resolve pam issue https://gitlab.com/Zaney/zaneyos/-/issues/164
     fuse.userAllowOther = true;
     mtr.enable = true;
@@ -82,16 +86,17 @@
     wget # Tool For Fetching Files With Links
     xwayland-satellite # Xwayland outside your Wayland compositor
     ytmdl # Tool For Downloading Audio From YouTube
-    # My apps
+    # Apps
     nemo # File Manager
     nemo-fileroller # Archive Manager Integration For Nemo
     nwg-displays # Manage Displays
     nwg-drawer # drawer GUI
     nwg-look # Look GUI
+    rofi-emoji-wayland
     vivaldi # Browser
     youtube-music
     # Unstable Packages
-    pkgs-unstable.code-cursor # AI IDE
+    #pkgs-unstable.code-cursor # AI IDE
     pkgs-unstable.zed-editor # Another AI IDE
     pkgs-unstable.flutter # Flutter SDK
     pkgs-unstable.jdk # Java vivalDevelopment Kit
@@ -100,6 +105,7 @@
     teams-for-linux # Video Meetings
     zoom-us # Video Meetings
     telegram-desktop # Messaging App
+    vesktop # Discord Alternative
     android-studio # Android Studio
     chromium # Browser
     google-chrome # Browser

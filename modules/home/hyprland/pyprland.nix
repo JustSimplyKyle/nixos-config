@@ -16,8 +16,8 @@
     max_size = "1920px 100%"
 
     [magnify]
-    scale = 2.0
-    width = 500
-    height = 500
+    scale = 1.0
+    width = 600
+    height = 600
   '';
 }

@@ -5,9 +5,8 @@
     waybar
     udiskie
     xwayland-satellite
-    xdg-desktop-portal-wlr
-    xdg-desktop-portal-gtk
     swww
+    # xdg-desktop-portal packages moved to system-level (modules/core/flatpak.nix)
   ];
 
   # Note: Niri config is managed at ~/.config/niri/config.kdl

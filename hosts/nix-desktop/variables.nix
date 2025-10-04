@@ -42,7 +42,7 @@
   # services.displayManager.ly.enable = true; # ly with matrix animation
 
   # Styling
-  stylixImage = ../../wallpapers/37.png;
+  stylixImage = ../../wallpapers/marvel-gambit.jpg;
 
   # Waybar Choice
   waybarChoice = ../../modules/home/waybar/waybar-jak-catppuccin.nix;

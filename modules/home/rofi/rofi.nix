@@ -21,8 +21,8 @@
         inherit (config.lib.formats.rasi) mkLiteral;
       in {
         "*" = {
-          bg = mkLiteral "#${config.stylix.base16Scheme.base00}";
-          bg-alt = mkLiteral "#${config.stylix.base16Scheme.base09}";
+          bg = mkLiteral "#1d1c2c";
+          bg-alt = mkLiteral "#1d1c2cCC";
           foreground = mkLiteral "#${config.stylix.base16Scheme.base01}";
           selected = mkLiteral "#${config.stylix.base16Scheme.base08}";
           active = mkLiteral "#${config.stylix.base16Scheme.base0B}";
@@ -42,7 +42,7 @@
           cursor = "default";
           enabled = true;
           border-radius = mkLiteral "4px";
-          background-color = mkLiteral "#${config.stylix.base16Scheme.base00}D9";
+          background-color = mkLiteral "#1d1c2cD9";
         };
         "mainbox" = {
           enabled = true;
