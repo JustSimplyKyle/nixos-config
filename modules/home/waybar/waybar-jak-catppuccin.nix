@@ -112,7 +112,6 @@ in {
         "margin-right" = 8;
 
         modules-left = [
-          "custom/separator#line"
           "custom/startmenu"
           "custom/separator#line"
           "custom/separator#blank"
@@ -858,7 +857,7 @@ in {
       tooltip label { color: @blue; }
 
       /* Extra spacing between NixOS start menu and CAVA */
-      #custom-startmenu { margin-left: 4px; margin-right: 8px; }
+      #custom-startmenu { margin-left: 8px; margin-right: 8px; font-size: 110%; }
       #custom-cava_mviz { margin-left: 4px; }
 
       #taskbar button, #workspaces button {
