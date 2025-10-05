@@ -14,7 +14,7 @@ in {
     "$modifier SHIFT,G,exec,gtk-launch dev.heppen.webapps.Github8306"
     "$modifier SHIFT,M,exec,gtk-launch dev.heppen.webapps.Messages2354"
     "$modifier SHIFT,R,exec,gtk-launch dev.heppen.webapps.Restream8099"
-    "$modifier,E,exec,gtk-launch dev.heppen.webapps.ProtonMail2716"
+    "$modifier SHIFT,E,exec,gtk-launch dev.heppen.webapps.ProtonMail2716"
     "$modifier SHIFT,U,exec,gtk-launch dev.heppen.webapps.Clickup9509"
     "$modifier SHIFT,D,exec,gtk-launch dev.heppen.webapps.Descript5493"
     "$modifier SHIFT,P,exec,gtk-launch dev.heppen.webapps.NixPackages1585"

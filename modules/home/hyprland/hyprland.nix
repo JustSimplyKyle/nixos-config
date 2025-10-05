@@ -2,6 +2,8 @@
   host,
   config,
   pkgs,
+  pkgs-unstable,
+  inputs,
   ...
 }: let
   inherit
@@ -18,8 +20,8 @@ in {
     wl-clipboard
     swappy
     ydotool
-    hyprpolkitagent
-    hyprland-qtutils # needed for banners and ANR messages
+    pkgs-unstable.hyprpolkitagent
+    pkgs-unstable.hyprland-qtutils # needed for banners and ANR messages
   ];
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
@@ -35,7 +37,11 @@ in {
   };
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprscrolling
+    ];
     systemd = {
       enable = true;
       enableXdgAutostart = true;
@@ -45,6 +51,24 @@ in {
       enable = true;
     };
     settings = {
+      # Plugin configuration
+      plugin = {
+        hyprexpo = {
+          columns = 2;
+          gap_size = 5;
+          bg_col = "rgb(111111)";
+          workspace_method = "center current"; # [center/first] [workspace] e.g. first 1 or center m+1
+          enable_gesture = true; # laptop touchpad
+          gesture_fingers = 3; # 3 or 4
+          gesture_distance = 300; # how far is the "max"
+          gesture_positive = true; # positive = swipe down. Negative = swipe up.
+        };
+        hyprscrolling = {
+          column_default_width = "onehalf";
+          column_widths = "onehalf twothirds one";
+        };
+      };
+
       exec-once = [
         "wl-paste --type text --watch cliphist store # Stores only text data"
         "wl-paste --type image --watch cliphist store # Stores only image data"
@@ -78,22 +102,11 @@ in {
         };
       };
 
-      gestures = {
-        workspace_swipe = 1;
-        workspace_swipe_fingers = 3;
-        workspace_swipe_distance = 500;
-        workspace_swipe_invert = 1;
-        workspace_swipe_min_speed_to_force = 30;
-        workspace_swipe_cancel_ratio = 0.5;
-        workspace_swipe_create_new = 1;
-        workspace_swipe_forever = 1;
-      };
-
       general = {
         "$modifier" = "SUPER";
-        layout = "dwindle";
+        layout = "scrolling";
         gaps_in = 5;
-        gaps_out = 5;
+        gaps_out = 7;
         border_size = 2;
         resize_on_border = true;
         "col.active_border" = "rgb(${config.lib.stylix.colors.base08}) rgb(${config.lib.stylix.colors.base0C}) 45deg";
@@ -152,12 +165,6 @@ in {
         enable_hyprcursor = false;
         warp_on_change_workspace = 2;
         no_warps = true;
-      };
-
-      render = {
-        explicit_sync = 1; # Change to 1 to disable
-        explicit_sync_kms = 1;
-        direct_scanout = 0;
       };
 
       master = {

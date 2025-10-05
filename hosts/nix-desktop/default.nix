@@ -4,8 +4,8 @@
     ./host-packages.nix
   ];
 
-  # Enable ly display manager with matrix animation
-   services.displayManager.ly.enable = true;
+  # Enable sddm display manager
+   services.displayManager.sddm.enable = true;
 
   # Enable niri window manager (commented out - using home-manager instead for better portal integration)
   # programs.niri.enable = true;

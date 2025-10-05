@@ -6,6 +6,7 @@
     ./fonts.nix
     ./greetd.nix
     ./ly.nix
+    ./sddm.nix
     ./hardware.nix
     ./network.nix
     ./nfs.nix

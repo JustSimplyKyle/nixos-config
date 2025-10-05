@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   inputs,
   username,
   host,
@@ -13,7 +14,7 @@ in {
     useUserPackages = true;
     useGlobalPkgs = false;
     backupFileExtension = "backup";
-    extraSpecialArgs = {inherit inputs username host profile;};
+    extraSpecialArgs = {inherit inputs username host profile pkgs-unstable;};
     users.${username} = {
       imports = [./../home];
       home = {

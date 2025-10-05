@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, pkgs-unstable, ...}: {
   xdg = {
     enable = true;
     mime.enable = true;
@@ -17,28 +17,7 @@
         "application/x-extension-xht" = "app.zen_browser.zen.desktop";
       };
     };
-    portal = {
-      enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-hyprland
-        pkgs.xdg-desktop-portal-wlr
-        pkgs.xdg-desktop-portal-gtk
-      ];
-      # Explicit portal configuration per desktop environment
-      config = {
-        # Hyprland uses its own portal + GTK fallback
-        hyprland = {
-          default = ["hyprland" "gtk"];
-        };
-        # Niri (Smithay-based) uses wlr portal + GTK fallback
-        niri = {
-          default = ["wlr" "gtk"];
-        };
-        # Common fallback for other environments
-        common = {
-          default = ["gtk"];
-        };
-      };
-    };
+    # Portal configuration moved to system-level (modules/core/flatpak.nix)
+    # to avoid package collisions between stable and unstable
   };
 }
