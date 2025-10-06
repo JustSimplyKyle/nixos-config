@@ -1,6 +1,9 @@
 {...}: {
   home.file.".config/rofi/config-long.rasi".text = ''
     @import "~/.config/rofi/config.rasi"
+    * {
+      font: "JetBrainsMono Nerd Font 14, Noto Color Emoji 14";
+    }
     window {
       width: 750px;
       border-radius: 20px;

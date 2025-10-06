@@ -6,14 +6,9 @@
   # Hyprland Settings
   # Configure your monitors here - this is host-specific
   # ex "monitor=HDMI-A-1, 1920x1080@60,auto,1"
-  # You'll need to update this after installation based on your actual monitors
+  # ROG Flow Z13 has a 13.4" touch display
   extraMonitorSettings = ''
-  monitor=DP-1,3440x1440@180.0,2740x1455,1.0
-  monitor=DP-2,1920x1080@60.0,820x1714,1.0
-  monitor=DP-3,1920x1080@60.0,6180x1714,1.0
-  workspace=1,monitor:DP-1
-  workspace=2,monitor:DP-2
-  workspace=3,monitor:DP-3
+  monitor=eDP-1,1920x1200@120,0x0,1.0
   '';
 
   # Waybar Settings
@@ -25,17 +20,17 @@
   keyboardLayout = "us";
   consoleKeyMap = "us";
 
-  # For Nvidia Prime support (update these IDs after hardware detection)
-  # Run 'lspci | grep VGA' to find your actual GPU IDs
+  # Intel iGPU only (no NVIDIA dGPU on this model)
+  # Run 'lspci | grep VGA' after installation to confirm your GPU ID
   intelID = "PCI:0:2:0";   # Update this with your actual integrated GPU ID
-  nvidiaID = "PCI:1:0:0";  # Update this with your actual NVIDIA GPU ID
+  nvidiaID = "";  # No NVIDIA GPU on this model
 
   # Enable/Disable Features
-  enableNFS = true; # Enable NFS Support
+  enableNFS = false; # Enable NFS Support
   printEnable = false; # Enable Printing Support
   thunarEnable = true; # Enable Thunar File Manager
   controllerSupportEnable = true; # Enable Controller Support For Gaming
-  flutterdevEnable = true; # Enable Flutter Development Environment
+  flutterdevEnable = false; # Enable Flutter Development Environment
   stylixEnable = true; # Enable Stylix System Theming
   vicinaeEnable = false; # Enable Vicinae Launcher
   syncthingEnable = true; # Enable Syncthing File Synchronization
@@ -52,10 +47,4 @@
 
   # Animation Choice
   animChoice = ../../modules/home/hyprland/animations-end4.nix;
-
-  # Startup Applications
-  startupApps = [
-    "[workspace 3 silent] vesktop"
-    "[workspace 3 silent] telegram-desktop"
-  ];
 }

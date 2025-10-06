@@ -16,6 +16,7 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs = {nixpkgs, nixpkgs-unstable, flake-utils, ...} @ inputs: let
@@ -33,6 +34,7 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
+        zen-browser = inputs.zen-browser.packages.${system}.default;
       };
       modules = [./profiles/${profile}];
     };
@@ -50,6 +52,7 @@
       nixos-leno = mkHost { hostname = "nixos-leno"; profile = "nvidia-laptop"; username = "don"; };
       nix-desktop = mkHost { hostname = "nix-desktop"; profile = "nvidia"; username = "don"; };
       nix-deck = mkHost { hostname = "nix-deck"; profile = "amd"; username = "don"; };
+      nix-lab = mkHost { hostname = "nix-lab"; profile = "intel"; username = "don"; };
     };
 
     # Flutter development environment

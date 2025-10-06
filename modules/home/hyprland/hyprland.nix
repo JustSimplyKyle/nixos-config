@@ -11,6 +11,7 @@
     extraMonitorSettings
     keyboardLayout
     stylixImage
+    startupApps
     ;
 in {
   home.packages = with pkgs; [
@@ -26,6 +27,17 @@ in {
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
   ];
+  systemd.user.services.ydotool = {
+    Unit = {
+      Description = "ydotool daemon";
+      PartOf = ["graphical-session.target"];
+    };
+    Service = {
+      ExecStart = "${pkgs.ydotool}/bin/ydotoold";
+      Restart = "always";
+    };
+    Install.WantedBy = ["hyprland-session.target"];
+  };
   # Place Files Inside Home Directory
   home.file = {
     "Pictures/Wallpapers" = {
@@ -58,6 +70,7 @@ in {
           gap_size = 5;
           bg_col = "rgb(111111)";
           workspace_method = "center current"; # [center/first] [workspace] e.g. first 1 or center m+1
+          skip_empty = true; # hide empty workspaces from overview
           enable_gesture = true; # laptop touchpad
           gesture_fingers = 3; # 3 or 4
           gesture_distance = 300; # how far is the "max"
@@ -65,7 +78,9 @@ in {
         };
         hyprscrolling = {
           column_default_width = "onehalf";
-          column_widths = "onehalf twothirds one";
+          column_widths = "onehalf one";
+          fullscreen_on_one_column = false;
+          focus_fit_method = 1;  # 0 = center, 1 = fit (left-align)
         };
       };
 
@@ -82,7 +97,7 @@ in {
         "vicinae server &"
         "pypr &"
         "sleep 1.5 && swww img ${stylixImage}"
-      ];
+      ] ++ startupApps;
 
       input = {
         kb_layout = "${keyboardLayout}";

@@ -22,7 +22,7 @@ in {
     "$modifier CTRL,C,exec,NIXPKGS_ALLOW_UNFREE=1 nix run github:k3d3/claude-desktop-linux-flake --impure"
     "$modifier SHIFT,L,exec,gtk-launch dev.heppen.webapps.GitLab9087"
     "$modifier SHIFT,N,exec,obsidian"
-    "$modifier,B,exec,flatpak run app.zen_browser.zen"
+    #"$modifier,B,exec,flatpak run app.zen_browser.zen"
     "Alt,Space,exec,nwg-drawer -mb 300 -mt 250"
   ];
 

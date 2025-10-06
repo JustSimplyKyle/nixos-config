@@ -12,10 +12,10 @@
       };
 
       logo = {
-        source = ./gambit-ace.png;
+        source = ./Moon-Knight.png;
         type = "kitty-direct";
         height = 10;
-        width = 20;
+        width = 30;
         padding = {
           top = 2;
           left = 2;

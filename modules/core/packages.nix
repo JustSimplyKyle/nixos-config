@@ -1,4 +1,4 @@
-{pkgs, pkgs-unstable, lib, ...}: {
+{pkgs, pkgs-unstable, lib, zen-browser, ...}: {
   programs = {
     neovim = {
       enable = false;
@@ -102,6 +102,8 @@
     pkgs-unstable.jdk # Java vivalDevelopment Kit
     pkgs-unstable.claude-code # For native development
     pkgs-unstable.nwg-dock-hyprland
+    popsicle
+    zen-browser # Zen Browser
     teams-for-linux # Video Meetings
     zoom-us # Video Meetings
     telegram-desktop # Messaging App

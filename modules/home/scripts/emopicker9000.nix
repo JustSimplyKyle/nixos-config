@@ -1,12 +1,7 @@
 {pkgs}:
 pkgs.writeShellScriptBin "emopicker9000" ''
-  # check if rofi is already running
-  if pidof rofi > /dev/null; then
-    pkill rofi
-  fi
-
-  # Get user selection via wofi from emoji file.
-  chosen=$(cat $HOME/.config/.emoji | ${pkgs.rofi-wayland}/bin/rofi -i -dmenu -config ~/.config/rofi/config-long.rasi | awk '{print $1}')
+  # Get user selection via fuzzel from emoji file.
+  chosen=$(cat $HOME/.config/.emoji | ${pkgs.fuzzel}/bin/fuzzel --dmenu --width 60 --lines 20 | awk '{print $1}')
 
   # Exit if none chosen.
   [ -z "$chosen" ] && exit
