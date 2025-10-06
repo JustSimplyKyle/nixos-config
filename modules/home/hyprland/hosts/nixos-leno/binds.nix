@@ -13,7 +13,7 @@ in {
     ## Web Apps ##
     "$modifier SHIFT,G,exec,gtk-launch dev.heppen.webapps.Github8240"
     "$modifier SHIFT,R,exec,gtk-launch dev.heppen.webapps.Restream8099"
-    "$modifier,E,exec,gtk-launch dev.heppen.webapps.ProtonMail4649"
+    "$modifier SHIFT,E,exec,gtk-launch dev.heppen.webapps.ProtonMail4649"
     "$modifier SHIFT,P,exec,gtk-launch dev.heppen.webapps.NixPackages5244"
     "$modifier SHIFT,C,exec,gtk-launch dev.heppen.webapps.Claude.ai9362"
     "$modifier SHIFT,U,exec,gtk-launch dev.heppen.webapps.Clickup5396"
