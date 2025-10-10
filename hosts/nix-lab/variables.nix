@@ -52,7 +52,6 @@
   controllerSupportEnable = true; # Enable Controller Support For Gaming
   flutterdevEnable = false; # Enable Flutter Development Environment
   stylixEnable = true; # Enable Stylix System Theming
-  vicinaeEnable = false; # Enable Vicinae Launcher
   syncthingEnable = true; # Enable Syncthing File Synchronization
 
   # Display Manager Options (choose one - add to host's default.nix)

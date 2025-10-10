@@ -72,7 +72,7 @@
         "opacity 0.9 0.9, class:^(obsidian)"
         "opacity 0.9 0.9, class:^(com.github.th_ch.youtube_music)"
         "opacity 0.9 0.8, tag:projects*"
-        "opacity 0.8 0.7, tag:im*"
+        "opacity 0.9 0.8, tag:im*"
         "opacity 0.9 0.8, tag:file-manager*"
         "opacity 0.8 0.7, tag:terminal*"
         "opacity 0.8 0.7, tag:terminal*"

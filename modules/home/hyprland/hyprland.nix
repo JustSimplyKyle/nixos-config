@@ -81,7 +81,6 @@ in {
         "killall -q waybar;sleep .5 && waybar"
         "killall -q swaync;sleep .5 && swaync"
         "nm-applet --indicator"
-        "vicinae server &"
         "pypr &"
         "sleep 1.5 && swww img ${stylixImage}"
       ] ++ startupApps;
@@ -109,7 +108,7 @@ in {
         layout = "scrolling";
         gaps_in = 5;
         gaps_out = 7;
-        border_size = 2;
+        border_size = 3;
         resize_on_border = true;
         "col.active_border" = "rgb(${config.lib.stylix.colors.base08}) rgb(${config.lib.stylix.colors.base0C}) 45deg";
         "col.inactive_border" = "rgb(${config.lib.stylix.colors.base01})";
@@ -166,7 +165,7 @@ in {
         no_hardware_cursors = 2; # change to 1 if want to disable
         enable_hyprcursor = false;
         warp_on_change_workspace = 2;
-        no_warps = true;
+        no_warps = false;
       };
 
       master = {
@@ -187,7 +186,7 @@ in {
       ${extraMonitorSettings}
       # To enable blur on waybar uncomment the line below
       # Thanks to SchotjeChrisman
-      #layerrule = blur,waybar
+      layerrule = blur,waybar
     ";
   };
 }

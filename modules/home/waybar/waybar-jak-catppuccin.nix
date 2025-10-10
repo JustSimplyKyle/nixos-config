@@ -953,10 +953,10 @@ in {
         padding-left: 6px;
       }
 
-      #idle_inhibitor.activated { color: @green; }
-      #idle_inhibitor.deactivated { color: @red; }
-      #mpris { color: @rosewater; }
-      #battery { color: @green; padding-left: 15px; border-radius: 15px 0 0 15px; }
+      #idle_inhibitor.activated { color: @text; }
+      #idle_inhibitor.deactivated { color: @text; }
+      #mpris { color: @text; }
+      #battery { color: @text; padding-left: 15px; border-radius: 15px 0 0 15px; }
       @keyframes blink { to { background-color: #ffffff; color: #333333; } }
       #battery.critical:not(.charging) {
         color: #f53c3c;
@@ -967,15 +967,15 @@ in {
         animation-direction: alternate;
       }
       #custom-lock, #custom-power { color: @red; border-radius: 15px; font-weight: bolder; padding-left: 1px; margin-right: 8px; }
-      #network { background-color: transparent; color: @mauve; }
-      #backlight { color: @flamingo; }
-      #custom-weather { color: @green; border-radius: 15px; background-color: transparent; }
+      #network { background-color: transparent; color: @text; }
+      #backlight { color: @text; }
+      #custom-weather { color: @text; border-radius: 15px; background-color: transparent; }
       #custom-menu { color: #89b4fa; }
-      #pulseaudio { background-color: transparent; color: @blue; }
+      #pulseaudio { background-color: transparent; color: @text; }
       #clock, #clock-calender { color: @text; background-color: transparent; }
-      /* Use the same pale blue as clock for these icons */
+      /* Use the same color as clock for these icons */
       #custom-qs_wallpapers_apply,
-      #custom-qs_vid_wallpapers_apply { color: @sapphire; }
+      #custom-qs_vid_wallpapers_apply { color: @text; }
 
       /* Focused window title */
       #window { color: @lavender; }

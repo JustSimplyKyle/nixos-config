@@ -57,7 +57,6 @@
   controllerSupportEnable = true; # Enable Controller Support For Gaming
   flutterdevEnable = true; # Enable Flutter Development Environment
   stylixEnable = true; # Enable Stylix System Theming
-  vicinaeEnable = false; # Enable Vicinae Launcher
   syncthingEnable = true; # Enable Syncthing File Synchronization
 
   # Display Manager Options (choose one - add to host's default.nix)
@@ -75,7 +74,7 @@
 
   # Startup Applications
   startupApps = [
-    "[workspace 3 silent] vesktop"
+    "[workspace 3 silent] sleep 1 & vesktop"
     "[workspace 3 silent] telegram-desktop"
   ];
 }

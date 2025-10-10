@@ -63,9 +63,6 @@
   # Enable Stylix System Theming
   stylixEnable = true;
 
-  # Enable Vicinae Launcher
-  vicinaeEnable = true;
-
   # Enable Syncthing File Synchronization
   syncthingEnable = true;
 
