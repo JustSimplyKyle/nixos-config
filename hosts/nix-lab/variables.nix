@@ -53,6 +53,7 @@
   flutterdevEnable = false; # Enable Flutter Development Environment
   stylixEnable = true; # Enable Stylix System Theming
   syncthingEnable = true; # Enable Syncthing File Synchronization
+  enableDankMaterialShell = false; # Enable Dank Material Shell (disables waybar automatically)
 
   # Display Manager Options (choose one - add to host's default.nix)
   # services.greetd.enable = true;           # greetd with tuigreet (default)

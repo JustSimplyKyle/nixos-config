@@ -9,6 +9,7 @@ in {
     ./bottom.nix
     ./btop.nix
     ./cava.nix
+    ./dank-material-shell
     ./emoji.nix
     ./eza.nix
     ./fastfetch

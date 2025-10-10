@@ -66,6 +66,9 @@
   # Enable Syncthing File Synchronization
   syncthingEnable = true;
 
+  # Enable Dank Material Shell (disables waybar automatically)
+  enableDankMaterialShell = false;
+
   # Display Manager Options (choose one - add to host's default.nix)
   # services.greetd.enable = true;           # greetd with tuigreet (default)
   # services.displayManager.ly.enable = true; # ly with matrix animation

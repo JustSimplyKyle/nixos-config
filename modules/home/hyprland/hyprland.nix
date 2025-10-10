@@ -15,6 +15,8 @@
     hyprexpoSettings
     hyprscrollingSettings
     ;
+  variables = import ../../../hosts/${host}/variables.nix;
+  enableDMS = variables.enableDankMaterialShell or false;
 in {
   home.packages = with pkgs; [
     swww
@@ -78,7 +80,13 @@ in {
         "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "systemctl --user start hyprpolkitagent"
         "killall -q swww;sleep .5 && swww init"
+      ] ++ (if enableDMS then [
+        # Launch Dank Material Shell via quickshell
+        "killall -q quickshell;sleep .5 && quickshell -c DankMaterialShell"
+      ] else [
+        # Launch waybar (default)
         "killall -q waybar;sleep .5 && waybar"
+      ]) ++ [
         "killall -q swaync;sleep .5 && swaync"
         "nm-applet --indicator"
         "pypr &"
@@ -180,13 +188,12 @@ in {
       };
     };
 
-    extraConfig = "
+    extraConfig = ''
       monitor=,preferred,auto,auto
       monitor=Virtual-1,1920x1080@60,auto,1
       ${extraMonitorSettings}
-      # To enable blur on waybar uncomment the line below
-      # Thanks to SchotjeChrisman
-      layerrule = blur,waybar
-    ";
+      # Enable blur on bar
+      ${if enableDMS then "layerrule = blur,quickshell" else "layerrule = blur,waybar"}
+    '';
   };
 }

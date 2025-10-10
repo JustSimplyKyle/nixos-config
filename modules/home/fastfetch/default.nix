@@ -12,10 +12,10 @@
       };
 
       logo = {
-        source = ./Moon-Knight.png;
+        source = ./blackdontrans.png;
         type = "kitty-direct";
         height = 10;
-        width = 30;
+        width = 20;
         padding = {
           top = 2;
           left = 2;

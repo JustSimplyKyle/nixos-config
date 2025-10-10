@@ -8,6 +8,7 @@
     blueman.enable = true; # Bluetooth Support
     tumbler.enable = true; # Image/video preview
     gnome.gnome-keyring.enable = true;
+    upower.enable = true; # Power management (required for DMS battery monitoring)
 
     smartd = {
       enable =

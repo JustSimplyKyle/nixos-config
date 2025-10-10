@@ -48,6 +48,10 @@
   printEnable = false; # Disabled for portable gaming device
   thunarEnable = true;
   controllerSupportEnable = true; # Enable Controller Support For Gaming
+  flutterdevEnable = false; # Enable Flutter Development Environment
+  stylixEnable = true; # Enable Stylix System Theming
+  syncthingEnable = true; # Enable Syncthing File Synchronization
+  enableDankMaterialShell = false; # Enable Dank Material Shell (disables waybar automatically)
 
   # Styling
   stylixImage = ../../wallpapers/marvel-gambit.jpg;

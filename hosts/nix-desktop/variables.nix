@@ -18,12 +18,12 @@
 
   # Hyprland Plugin Settings
   hyprexpoSettings = {
-    columns = 3;
+    columns = 2;
     gap_size = 5;
     bg_col = "rgb(111111)";
     workspace_method = "center current";
     skip_empty = true;
-    enable_gesture = false;
+    enable_gesture = true;
     gesture_fingers = 3;
     gesture_distance = 300;
     gesture_positive = true;
@@ -58,13 +58,14 @@
   flutterdevEnable = true; # Enable Flutter Development Environment
   stylixEnable = true; # Enable Stylix System Theming
   syncthingEnable = true; # Enable Syncthing File Synchronization
+  enableDankMaterialShell = true; # Enable Dank Material Shell (disables waybar automatically)
 
   # Display Manager Options (choose one - add to host's default.nix)
   # services.greetd.enable = true;           # greetd with tuigreet (default)
   # services.displayManager.ly.enable = true; # ly with matrix animation
 
   # Styling
-  stylixImage = ../../wallpapers/moon-knight.jpg;
+  stylixImage = ../../wallpapers/55.png;
 
   # Waybar Choice
   waybarChoice = ../../modules/home/waybar/waybar-jak-catppuccin.nix;
