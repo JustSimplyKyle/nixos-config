@@ -26,7 +26,7 @@
   hyprscrollingSettings = {
     column_default_width = "onehalf";
     column_widths = "onehalf one";
-    fullscreen_on_one_column = false;
+    fullscreen_on_one_column = true;
     focus_fit_method = 1;
   };
 

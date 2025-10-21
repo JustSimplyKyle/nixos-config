@@ -22,6 +22,9 @@
     };
   };
 
+  # Virtualization support for GNOME Boxes
+  virtualisation.libvirtd.enable = true;
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "cursor"
@@ -123,5 +126,8 @@
     gtk4
     localsend
     obsidian
+    gnome-boxes # Simple VM manager
+    quickemu # Fast VM creation tool
+    quickgui # Optional GUI for quickemu
   ];
 }
