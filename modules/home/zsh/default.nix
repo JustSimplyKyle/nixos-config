@@ -2,8 +2,12 @@
   profile,
   pkgs,
   lib,
+  host,
   ...
-}: {
+}: let
+  variables = import ../../../hosts/${host}/variables.nix;
+  defaultShell = variables.defaultShell or "zsh";
+in {
   imports = [
     ./zshrc-personal.nix
   ];
@@ -40,7 +44,15 @@
       }
     ];
 
-    initContent = ''
+    initExtra = ''
+      # Auto-launch Fish if configured as default shell
+      ${if defaultShell == "fish" then ''
+        if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]; then
+          shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+          exec fish $LOGIN_OPTION
+        fi
+      '' else ""}
+
       bindkey "\eh" backward-word
       bindkey "\ej" down-line-or-history
       bindkey "\ek" up-line-or-history

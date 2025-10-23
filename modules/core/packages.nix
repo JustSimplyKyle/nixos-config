@@ -1,4 +1,4 @@
-{pkgs, pkgs-unstable, lib, zen-browser, ...}: {
+{pkgs, lib, zen-browser, ...}: {
   programs = {
     neovim = {
       enable = false;
@@ -9,8 +9,8 @@
     seahorse.enable = true;
     hyprland = {
       enable = true; # Create desktop file and dependencies if you switch to GUI login MGR
-      package = pkgs-unstable.hyprland; # Use unstable version for plugin compatibility
-      portalPackage = pkgs-unstable.xdg-desktop-portal-hyprland; # Use matching portal version
+      package = pkgs.hyprland; # Using unstable nixpkgs for latest version
+      portalPackage = pkgs.xdg-desktop-portal-hyprland; # Use matching portal version
     };
     hyprlock.enable = true; #resolve pam issue https://gitlab.com/Zaney/zaneyos/-/issues/164
     fuse.userAllowOther = true;
@@ -95,16 +95,16 @@
     nwg-displays # Manage Displays
     nwg-drawer # drawer GUI
     nwg-look # Look GUI
-    rofi-emoji-wayland
+    rofi-emoji # rofi-emoji-wayland merged into rofi-emoji in nixpkgs-unstable
     vivaldi # Browser
     youtube-music
-    # Unstable Packages
-    #pkgs-unstable.code-cursor # AI IDE
-    pkgs-unstable.zed-editor # Another AI IDE
-    pkgs-unstable.flutter # Flutter SDK
-    pkgs-unstable.jdk # Java vivalDevelopment Kit
-    pkgs-unstable.claude-code # For native development
-    pkgs-unstable.nwg-dock-hyprland
+    # Development Tools
+    #code-cursor # AI IDE
+    zed-editor # Another AI IDE
+    flutter # Flutter SDK
+    jdk # Java Development Kit
+    claude-code # For native development
+    nwg-dock-hyprland
     popsicle
     zen-browser # Zen Browser
     teams-for-linux # Video Meetings

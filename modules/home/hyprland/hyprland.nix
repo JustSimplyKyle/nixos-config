@@ -2,7 +2,6 @@
   host,
   config,
   pkgs,
-  pkgs-unstable,
   inputs,
   ...
 }: let
@@ -16,7 +15,10 @@
     hyprscrollingSettings
     ;
   variables = import ../../../hosts/${host}/variables.nix;
-  enableDMS = variables.enableDankMaterialShell or false;
+  barChoice = variables.barChoice or "waybar";
+  # Legacy support
+  enableDMSLegacy = variables.enableDankMaterialShell or false;
+  actualBarChoice = if variables ? barChoice then barChoice else (if enableDMSLegacy then "dms" else "waybar");
 in {
   home.packages = with pkgs; [
     swww
@@ -25,8 +27,8 @@ in {
     wl-clipboard
     swappy
     ydotool
-    pkgs-unstable.hyprpolkitagent
-    pkgs-unstable.hyprland-qtutils # needed for banners and ANR messages
+    hyprpolkitagent
+    hyprland-qtutils # needed for banners and ANR messages
   ];
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
@@ -80,13 +82,18 @@ in {
         "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "systemctl --user start hyprpolkitagent"
         "killall -q swww;sleep .5 && swww init"
-      ] ++ (if enableDMS then [
-        # Launch Dank Material Shell via quickshell
-        "killall -q quickshell;sleep .5 && quickshell -c DankMaterialShell"
-      ] else [
-        # Launch waybar (default)
-        "killall -q waybar;sleep .5 && waybar"
-      ]) ++ [
+      ] ++ (
+        if actualBarChoice == "dms" then [
+          # Launch Dank Material Shell via quickshell
+          "killall -q quickshell;sleep .5 && quickshell -c DankMaterialShell"
+        ] else if actualBarChoice == "noctalia" then [
+          # Launch Noctalia Shell
+          "killall -q noctalia-shell;sleep .5 && noctalia-shell"
+        ] else [
+          # Launch waybar (default)
+          "killall -q waybar;sleep .5 && waybar"
+        ]
+      ) ++ [
         "killall -q swaync;sleep .5 && swaync"
         "nm-applet --indicator"
         "pypr &"
@@ -193,7 +200,9 @@ in {
       monitor=Virtual-1,1920x1080@60,auto,1
       ${extraMonitorSettings}
       # Enable blur on bar
-      ${if enableDMS then "layerrule = blur,quickshell" else "layerrule = blur,waybar"}
+      ${if actualBarChoice == "dms" then "layerrule = blur,quickshell"
+        else if actualBarChoice == "noctalia" then "layerrule = blur,noctalia"
+        else "layerrule = blur,waybar"}
     '';
   };
 }

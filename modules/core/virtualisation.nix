@@ -13,10 +13,7 @@
       onShutdown = "shutdown";
       qemu = {
         runAsRoot = false;
-        ovmf = {
-          enable = true;
-          packages = [pkgs.OVMFFull.fd]; # UEFI firmware for VMs
-        };
+        # ovmf submodule REMOVED: All OVMF images are now available by default in nixpkgs-unstable
         swtpm.enable = true; # TPM emulation
         verbatimConfig = ''
           user = "qemu-libvirtd"

@@ -2,14 +2,13 @@
   description = "Black Don OS (Based on ZaneyOS)";
 
   inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nvf.url = "github:notashelf/nvf";
-    stylix.url = "github:danth/stylix/release-25.05";
+    stylix.url = "github:danth/stylix";
     flake-utils.url = "github:numtide/flake-utils";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland-plugins = {
@@ -17,10 +16,18 @@
       inputs.hyprland.follows = "hyprland";
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    quickshell.url = "github:outfoxxed/quickshell";
+    quickshell = {
+      url = "github:outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
   };
 
-  outputs = {nixpkgs, nixpkgs-unstable, flake-utils, ...} @ inputs: let
+  outputs = {nixpkgs, flake-utils, ...} @ inputs: let
     system = "x86_64-linux";
 
     # Helper function to create a host configuration
@@ -31,10 +38,6 @@
         host = hostname;
         inherit profile;
         inherit username;
-        pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
         zen-browser = inputs.zen-browser.packages.${system}.default;
       };
       modules = [./profiles/${profile}];
@@ -59,7 +62,7 @@
     # Flutter development environment
     devShells = flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs-unstable {
+        pkgs = import nixpkgs {
           inherit system;
           config = {
             android_sdk.accept_license = true;

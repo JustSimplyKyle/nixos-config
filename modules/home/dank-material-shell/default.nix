@@ -8,7 +8,10 @@
 }:
 let
   variables = import ../../../hosts/${host}/variables.nix;
-  enableDMS = variables.enableDankMaterialShell or false;
+  barChoice = variables.barChoice or "waybar";
+  # Legacy support for enableDankMaterialShell
+  enableDMSLegacy = variables.enableDankMaterialShell or false;
+  enableDMS = (barChoice == "dms") || enableDMSLegacy;
 
   cfg = config.programs.dankMaterialShell;
 
@@ -37,7 +40,8 @@ let
       platforms = platforms.all;
     };
   };
-in {
+in
+{
   options.programs.dankMaterialShell = {
     enable = lib.mkEnableOption "Dank Material Shell";
   };
@@ -60,6 +64,9 @@ in {
         echo "📦 Installing DMS from GitHub flake..."
         nix profile install github:AvengeMedia/DankMaterialShell
         echo ""
+        echo "📦 Installing dgop for system monitoring..."
+        nix profile install github:AvengeMedia/dgop
+        echo ""
         echo "✅ DMS installed successfully!"
         echo "🚀 Configure it in ~/.config/dms/"
         echo ""
@@ -69,30 +76,57 @@ in {
       (writeShellScriptBin "dms-uninstall" ''
         echo "🗑️  Removing Dank Material Shell..."
         nix profile remove github:AvengeMedia/DankMaterialShell 2>/dev/null || true
+        nix profile remove github:AvengeMedia/dgop 2>/dev/null || true
         echo "✅ DMS uninstalled"
       '')
 
+      # DMS launcher script (for manual start or Niri autostart)
+      (writeShellScriptBin "dms-start" ''
+        echo "🚀 Starting Dank Material Shell..."
+        killall -q quickshell 2>/dev/null || true
+        sleep 0.5
+        quickshell -c DankMaterialShell &
+        echo "✅ DMS started"
+      '')
+
+      # DMS stop script
+      (writeShellScriptBin "dms-stop" ''
+        echo "🛑 Stopping Dank Material Shell..."
+        killall -q quickshell 2>/dev/null || true
+        echo "✅ DMS stopped"
+      '')
+
       # Required fonts for DMS
-      material-symbols-rounded  # Material Symbols Rounded (Google icon font)
+      material-symbols-rounded # Material Symbols Rounded (Google icon font)
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
 
       # Core utilities (required for DMS functionality)
-      wl-clipboard      # Clipboard support for Wayland
-      cliphist          # Clipboard history manager
-      brightnessctl     # Brightness control
-      hyprpicker        # Color picker for Hyprland
-      matugen           # Material Design color generation
+      wl-clipboard # Clipboard support for Wayland
+      cliphist # Clipboard history manager
+      brightnessctl # Brightness control
+      hyprpicker # Color picker for Hyprland
+      matugen # Material Design color generation
+
+      # System monitoring dependencies
+      # dgop will be installed via dms-install script since it's not in nixpkgs
+      lm_sensors # Hardware temperature monitoring
+      pciutils # lspci for GPU detection
+
+      # Network utilities (for WiFi module)
+      glib # Provides gdbus command for DBus communication (required for WiFi toggle)
+      networkmanager # Network management
+      networkmanagerapplet # NM applet for GUI
 
       # Audio visualization
-      cava              # Console-based audio visualizer
+      cava # Console-based audio visualizer
 
       # Wayland/Qt support
-      qt6.qtwayland     # Qt6 Wayland support
-      libsForQt5.qt5.qtwayland  # Qt5 Wayland support
+      qt6.qtwayland # Qt6 Wayland support
+      libsForQt5.qt5.qtwayland # Qt5 Wayland support
 
       # Optional but recommended
-      gammastep         # Screen temperature adjustment (blue light filter)
+      gammastep # Screen temperature adjustment (blue light filter)
     ];
 
     # Font configuration
@@ -104,7 +138,7 @@ in {
     # XDG directories are already managed by home-manager's xdg module
 
     # Warning message in home activation
-    home.activation.dmsWarning = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    home.activation.dmsWarning = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD echo ""
       $DRY_RUN_CMD echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
       $DRY_RUN_CMD echo "🎨 Dank Material Shell (DMS) is ENABLED"
@@ -112,13 +146,19 @@ in {
       $DRY_RUN_CMD echo ""
       $DRY_RUN_CMD echo "⚠️  Waybar has been automatically disabled"
       $DRY_RUN_CMD echo ""
-      $DRY_RUN_CMD echo "📦 To install DMS, run:"
-      $DRY_RUN_CMD echo "   $ dms-install"
+      $DRY_RUN_CMD echo "📦 If not yet installed, run: dms-install"
       $DRY_RUN_CMD echo ""
-      $DRY_RUN_CMD echo "🚀 After installation, configure at: ~/.config/dms/"
+      $DRY_RUN_CMD echo "🚀 Available commands:"
+      $DRY_RUN_CMD echo "   dms-start   - Start DMS manually"
+      $DRY_RUN_CMD echo "   dms-stop    - Stop DMS"
       $DRY_RUN_CMD echo ""
-      $DRY_RUN_CMD echo "🗑️  To uninstall DMS later, run:"
-      $DRY_RUN_CMD echo "   $ dms-uninstall"
+      $DRY_RUN_CMD echo "📝 For Niri users: Add to ~/.config/niri/config.kdl:"
+      $DRY_RUN_CMD echo "   spawn-at-startup \"dms-start\""
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "   (Hyprland users: autostart is already configured)"
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "⚙️  Configure at: ~/.config/dms/"
+      $DRY_RUN_CMD echo "🗑️  To uninstall: dms-uninstall"
       $DRY_RUN_CMD echo ""
       $DRY_RUN_CMD echo "📚 Docs: https://github.com/AvengeMedia/DankMaterialShell"
       $DRY_RUN_CMD echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

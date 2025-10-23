@@ -51,7 +51,15 @@
   flutterdevEnable = false; # Enable Flutter Development Environment
   stylixEnable = true; # Enable Stylix System Theming
   syncthingEnable = true; # Enable Syncthing File Synchronization
-  enableDankMaterialShell = false; # Enable Dank Material Shell (disables waybar automatically)
+
+  # Window Manager Choice
+  windowManager = "hyprland"; # Options: "niri" or "hyprland"
+
+  # Bar/Shell Choice
+  barChoice = "waybar"; # Options: "dms", "noctalia", or "waybar"
+
+  # Shell Choice
+  defaultShell = "zsh"; # Options: "fish" or "zsh"
 
   # Styling
   stylixImage = ../../wallpapers/marvel-gambit.jpg;

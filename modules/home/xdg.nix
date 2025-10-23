@@ -1,4 +1,4 @@
-{pkgs, pkgs-unstable, ...}: {
+{pkgs, ...}: {
   xdg = {
     enable = true;
     mime.enable = true;

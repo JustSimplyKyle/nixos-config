@@ -2,13 +2,21 @@
 {
   config,
   lib,
+  host,
   ...
-}: let
+}:
+let
   accent = "#${config.lib.stylix.colors.base0D}";
   background-alt = "#${config.lib.stylix.colors.base01}";
-in {
+
+  # Import variables to check shell choice
+  variables = import ../../hosts/${host}/variables.nix;
+  defaultShell = variables.defaultShell or "zsh";
+in
+{
   programs.starship = {
-    enable = true;
+    # Disable starship for Fish (it has its own custom prompt)
+    enable = defaultShell != "fish";
     settings = {
       add_newline = false;
       format = lib.concatStrings [
@@ -21,7 +29,9 @@ in {
         "\n"
         "$character"
       ];
-      directory = {style = accent;};
+      directory = {
+        style = accent;
+      };
 
       character = {
         success_symbol = "[❯](${accent})";

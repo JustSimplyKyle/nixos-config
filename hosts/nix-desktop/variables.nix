@@ -8,12 +8,12 @@
   # ex "monitor=HDMI-A-1, 1920x1080@60,auto,1"
   # You'll need to update this after installation based on your actual monitors
   extraMonitorSettings = ''
-  monitor=DP-1,3440x1440@180.0,2740x1455,1.0
-  monitor=DP-2,1920x1080@60.0,820x1714,1.0
-  monitor=DP-3,1920x1080@60.0,6180x1714,1.0
-  workspace=1,monitor:DP-1
-  workspace=2,monitor:DP-2
-  workspace=3,monitor:DP-3
+    monitor=DP-1,3440x1440@180.0,2740x1455,1.0
+    monitor=DP-2,1920x1080@60.0,820x1714,1.0
+    monitor=DP-3,1920x1080@60.0,6180x1714,1.0
+    workspace=1,monitor:DP-1
+    workspace=2,monitor:DP-2
+    workspace=3,monitor:DP-3
   '';
 
   # Hyprland Plugin Settings
@@ -47,8 +47,8 @@
 
   # For Nvidia Prime support (update these IDs after hardware detection)
   # Run 'lspci | grep VGA' to find your actual GPU IDs
-  intelID = "PCI:0:2:0";   # Update this with your actual integrated GPU ID
-  nvidiaID = "PCI:1:0:0";  # Update this with your actual NVIDIA GPU ID
+  intelID = "PCI:0:2:0"; # Update this with your actual integrated GPU ID
+  nvidiaID = "PCI:1:0:0"; # Update this with your actual NVIDIA GPU ID
 
   # Enable/Disable Features
   enableNFS = true; # Enable NFS Support
@@ -58,7 +58,15 @@
   flutterdevEnable = true; # Enable Flutter Development Environment
   stylixEnable = true; # Enable Stylix System Theming
   syncthingEnable = true; # Enable Syncthing File Synchronization
-  enableDankMaterialShell = true; # Enable Dank Material Shell (disables waybar automatically)
+
+  # Window Manager Choice
+  windowManager = "niri"; # Options: "niri" or "hyprland"
+
+  # Bar/Shell Choice
+  barChoice = "dms"; # Options: "dms", "noctalia", or "waybar"
+
+  # Shell Choice
+  defaultShell = "zsh"; # Options: "fish" or "zsh"
 
   # Display Manager Options (choose one - add to host's default.nix)
   # services.greetd.enable = true;           # greetd with tuigreet (default)

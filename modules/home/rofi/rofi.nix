@@ -6,7 +6,7 @@
   programs = {
     rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
+      package = pkgs.rofi; # rofi-wayland has been merged into rofi in nixpkgs-unstable
       extraConfig = {
         modi = "drun,filebrowser,run";
         show-icons = true;

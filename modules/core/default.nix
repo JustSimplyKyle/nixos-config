@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   imports = [
     ./boot.nix
     ./controller-support.nix
@@ -7,6 +8,7 @@
     ./greetd.nix
     ./ly.nix
     ./sddm.nix
+    ./sysc-greet.nix
     ./hardware.nix
     ./network.nix
     ./nfs.nix

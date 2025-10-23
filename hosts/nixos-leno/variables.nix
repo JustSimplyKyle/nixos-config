@@ -7,7 +7,7 @@
   # ex "monitor=HDMI-A-1, 1920x1080@60,auto,1"
   #
   extraMonitorSettings = ''
-  monitor=eDP-1,2560x1600@165.02,6770x1558,1.33
+    monitor=eDP-1,2560x1600@165.02,6770x1558,1.33
   '';
 
   # Hyprland Plugin Settings
@@ -40,8 +40,8 @@
   consoleKeyMap = "us";
 
   # For Nvidia Prime support with AMD
-  intelID = "PCI:34:0:0";  # AMD integrated GPU (renamed variable kept for compatibility)
-  nvidiaID = "PCI:1:0:0";  # NVIDIA discrete GPU
+  intelID = "PCI:34:0:0"; # AMD integrated GPU (renamed variable kept for compatibility)
+  nvidiaID = "PCI:1:0:0"; # NVIDIA discrete GPU
 
   # Enable NFS
   enableNFS = true;
@@ -64,8 +64,14 @@
   # Enable Syncthing File Synchronization
   syncthingEnable = true;
 
-  # Enable Dank Material Shell (disables waybar automatically)
-  enableDankMaterialShell = false;
+  # Window Manager Choice
+  windowManager = "niri"; # Options: "niri" or "hyprland"
+
+  # Bar/Shell Choice
+  barChoice = "dms"; # Options: "dms", "noctalia", or "waybar"
+
+  # Shell Choice
+  defaultShell = "fish"; # Options: "fish" or "zsh"
 
   # Display Manager Options (choose one - add to host's default.nix)
   # services.greetd.enable = true;           # greetd with tuigreet (default)

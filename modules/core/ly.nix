@@ -10,7 +10,7 @@
     settings = {
       animation = "matrix";
       save_file = "/etc/ly/save";
-      tty = 2;
+      # tty = 2;  # REMOVED: Default is now tty 1 in nixpkgs-unstable, conflicts if set
       hide_borders = true;
       min_refresh_delta = 5;
     };

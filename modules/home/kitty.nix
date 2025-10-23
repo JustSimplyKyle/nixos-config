@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
     settings = {
+      # Use fish shell
+      shell = "${pkgs.fish}/bin/fish";
+
       font_size = 12;
       wheel_scroll_min_lines = 1;
       window_padding_width = 4;
