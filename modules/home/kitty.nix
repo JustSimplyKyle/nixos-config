@@ -1,11 +1,16 @@
-{ pkgs, ... }:
+{ pkgs, host, ... }:
+let
+  variables = import ../../hosts/${host}/variables.nix;
+  defaultShell = variables.defaultShell or "zsh";
+  shellPackage = if defaultShell == "fish" then pkgs.fish else pkgs.zsh;
+in
 {
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
     settings = {
-      # Use fish shell
-      shell = "${pkgs.fish}/bin/fish";
+      # Use configured shell based on defaultShell variable
+      shell = "${shellPackage}/bin/${defaultShell}";
 
       font_size = 12;
       wheel_scroll_min_lines = 1;

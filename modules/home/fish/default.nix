@@ -108,11 +108,6 @@ in
 
     # Fish plugins for enhanced functionality
     plugins = [
-      # Tide - The ultimate Fish prompt (like Powerlevel10k for Fish)
-      {
-        name = "tide";
-        src = pkgs.fishPlugins.tide.src;
-      }
       # FZF integration for Fish
       {
         name = "fzf-fish";

@@ -71,7 +71,7 @@
   barChoice = "dms"; # Options: "dms", "noctalia", or "waybar"
 
   # Shell Choice
-  defaultShell = "fish"; # Options: "fish" or "zsh"
+  defaultShell = "zsh"; # Options: "fish" or "zsh"
 
   # Display Manager Options (choose one - add to host's default.nix)
   # services.greetd.enable = true;           # greetd with tuigreet (default)

@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.bat = {
     enable = true;
     config = {
@@ -17,7 +18,7 @@
     extraPackages = with pkgs.bat-extras; [
       batman
       batpipe
-      batgrep
+      # batgrep - disabled due to test failures
     ];
   };
   home.sessionVariables = {
