@@ -195,7 +195,9 @@ cat > "hosts/$newHostName/variables.nix" << EOF
   printEnable = false;
   thunarEnable = true;
 
-  # Styling
+  # Enable Stylix System Theming
+  stylixEnable = true;
+  # Set Stylix Image
   stylixImage = ../../wallpapers/Valley.jpg;
 
   # Waybar Choice

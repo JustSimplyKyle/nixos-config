@@ -306,6 +306,125 @@ if [ -z "$consoleKeyMap" ]; then
 fi
 echo -e "${GREEN}✓ Console keymap set to: $consoleKeyMap${NC}"
 
+print_header "Terminal Selection"
+echo "📟 Choose your default terminal emulator:"
+echo "  1. kitty       - Modern, GPU-accelerated (default)"
+echo "  2. alacritty   - Fast, GPU-accelerated"
+echo "  3. wezterm     - Feature-rich with multiplexing"
+echo "  4. foot        - Lightweight Wayland terminal"
+echo "  5. warp        - Modern with AI features"
+echo ""
+read -rp "Enter terminal choice [1-5] or name [ 1 ]: " terminalChoice
+case "$terminalChoice" in
+  1|""|kitty) terminal="kitty" ;;
+  2|alacritty) terminal="alacritty" ;;
+  3|wezterm) terminal="wezterm" ;;
+  4|foot) terminal="foot" ;;
+  5|warp) terminal="warp-terminal" ;;
+  *) terminal="$terminalChoice" ;;
+esac
+echo -e "${GREEN}✓ Terminal set to: $terminal${NC}"
+
+print_header "Browser Selection"
+echo "🌐 Choose your default web browser:"
+echo "  1. zen      - Zen browser (default)"
+echo "  2. vivaldi  - Privacy-focused, customizable"
+echo "  3. firefox  - Open source, privacy-focused"
+echo "  4. brave    - Privacy-focused with ad blocking"
+echo "  5. chromium - Open source Chrome"
+echo ""
+read -rp "Enter browser choice [1-5] or name [ 1 ]: " browserChoice
+case "$browserChoice" in
+  1|""|zen) browser="zen-browser" ;;
+  2|vivaldi) browser="vivaldi" ;;
+  3|firefox) browser="firefox" ;;
+  4|brave) browser="brave" ;;
+  5|chromium) browser="chromium" ;;
+  *) browser="$browserChoice" ;;
+esac
+echo -e "${GREEN}✓ Browser set to: $browser${NC}"
+
+print_header "Shell Selection"
+echo "🐚 Choose your default shell:"
+echo "  1. zsh     - Feature-rich with plugins (default)"
+echo "  2. bash    - Traditional Unix shell"
+echo "  3. fish    - User-friendly with autosuggestions"
+echo "  4. nushell - Modern structured shell"
+echo ""
+read -rp "Enter shell choice [1-4] or name [ 1 ]: " shellChoice
+case "$shellChoice" in
+  1|""|zsh) userShell="zsh" ;;
+  2|bash) userShell="bash" ;;
+  3|fish) userShell="fish" ;;
+  4|nushell|nu) userShell="nushell" ;;
+  *) userShell="$shellChoice" ;;
+esac
+echo -e "${GREEN}✓ Shell set to: $userShell${NC}"
+
+print_header "Bar/Shell Choice"
+echo "📊 Choose your status bar/shell system:"
+echo "  1. noctalia - Noctalia shell (default)"
+echo "  2. dms      - DMS (Desktop Management System)"
+echo "  3. waybar   - Waybar status bar"
+echo ""
+read -rp "Enter bar choice [1-3] or name [ 1 ]: " barChoiceInput
+case "$barChoiceInput" in
+  1|""|noctalia) barChoice="noctalia" ;;
+  2|dms) barChoice="dms" ;;
+  3|waybar) barChoice="waybar" ;;
+  *) barChoice="$barChoiceInput" ;;
+esac
+echo -e "${GREEN}✓ Bar choice set to: $barChoice${NC}"
+
+# If waybar is selected, also ask for the waybar theme
+if [ "$barChoice" = "waybar" ]; then
+  print_header "Waybar Theme Selection"
+  echo "📊 Choose your Waybar theme:"
+  echo "  1. jerry         - Jerry's theme (default)"
+  echo "  2. ddubs         - Don's default theme"
+  echo "  3. ddubs-2       - Don's alternative theme"
+  echo "  4. curved        - Curved design"
+  echo "  5. simple        - Minimalist design"
+  echo "  6. dwm           - DWM-style theme"
+  echo "  7. tony          - Tony's theme"
+  echo "  8. jak-catppuccin - Catppuccin theme"
+  echo "  9. nekodyke      - Nekodyke theme"
+  echo ""
+  read -rp "Enter waybar theme choice [1-9] [ 1 ]: " waybarThemeChoice
+  case "$waybarThemeChoice" in
+    1|""|jerry) waybarTheme="waybar-jerry.nix" ;;
+    2|ddubs) waybarTheme="waybar-ddubs.nix" ;;
+    3|ddubs-2) waybarTheme="waybar-ddubs-2.nix" ;;
+    4|curved) waybarTheme="waybar-curved.nix" ;;
+    5|simple) waybarTheme="waybar-simple.nix" ;;
+    6|dwm) waybarTheme="waybar-dwm.nix" ;;
+    7|tony) waybarTheme="waybar-tony.nix" ;;
+    8|jak-catppuccin|jak) waybarTheme="waybar-jak-catppuccin.nix" ;;
+    9|nekodyke) waybarTheme="waybar-nekodyke.nix" ;;
+    *) waybarTheme="$waybarThemeChoice" ;;
+  esac
+  echo -e "${GREEN}✓ Waybar theme set to: $waybarTheme${NC}"
+else
+  waybarTheme="waybar-jerry.nix"  # Set a default even if not using waybar
+fi
+
+print_header "Animation Style Selection"
+echo "✨ Choose your Hyprland animation style:"
+echo "  1. end4     - End4's animations (default)"
+echo "  2. dynamic  - Dynamic animations"
+echo "  3. moving   - Moving animations"
+echo "  4. def      - Default animations"
+echo ""
+read -rp "Enter animation choice [1-4] [ 1 ]: " animChoice
+case "$animChoice" in
+  1|""|end4) animStyle="animations-end4.nix" ;;
+  2|dynamic) animStyle="animations-dynamic.nix" ;;
+  3|moving) animStyle="animations-moving.nix" ;;
+  4|def) animStyle="animations-def.nix" ;;
+  *) animStyle="$animChoice" ;;
+esac
+echo -e "${GREEN}✓ Animation style set to: $animStyle${NC}"
+
 print_header "Configuring Host and Profile"
 
 # Check if hostname already exists
@@ -370,8 +489,9 @@ cat > hosts/"$hostName"/variables.nix << EOF
   clock24h = false;
 
   # Program Options
-  browser = "vivaldi"; # Set Default Browser (google-chrome-stable for google-chrome)
-  terminal = "kitty"; # Set Default System Terminal
+  browser = "$browser"; # Set Default Browser
+  terminal = "$terminal"; # Set Default System Terminal
+  defaultShell = "$userShell"; # Set Default Shell
   keyboardLayout = "$keyboardLayout";
   consoleKeyMap = "$consoleKeyMap";
 
@@ -385,14 +505,19 @@ cat > hosts/"$hostName"/variables.nix << EOF
   printEnable = false;
   thunarEnable = true;
 
-  # Styling
+  # Enable Stylix System Theming
+  stylixEnable = true;
+  # Set Stylix Image
   stylixImage = ../../wallpapers/Valley.jpg;
 
-  # Waybar Choice
-  waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+  # Bar/Shell Choice
+  barChoice = "$barChoice"; # Options: "dms", "noctalia", or "waybar"
+
+  # Waybar Theme (used when barChoice = "waybar")
+  waybarChoice = ../../modules/home/waybar/$waybarTheme;
 
   # Animation Choice
-  animChoice = ../../modules/home/hyprland/animations-end4.nix;
+  animChoice = ../../modules/home/hyprland/$animStyle;
 }
 EOF
 
