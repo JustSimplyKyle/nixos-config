@@ -306,6 +306,19 @@ if [ -z "$consoleKeyMap" ]; then
 fi
 echo -e "${GREEN}✓ Console keymap set to: $consoleKeyMap${NC}"
 
+print_header "Window Manager Selection"
+echo "🪟 Choose your window manager:"
+echo "  1. hyprland - Modern Wayland compositor with animations (default)"
+echo "  2. niri     - Scrollable-tiling Wayland compositor"
+echo ""
+read -rp "Enter window manager choice [1-2] or name [ 1 ]: " wmChoice
+case "$wmChoice" in
+  1|""|hyprland) windowManager="hyprland" ;;
+  2|niri) windowManager="niri" ;;
+  *) windowManager="$wmChoice" ;;
+esac
+echo -e "${GREEN}✓ Window manager set to: $windowManager${NC}"
+
 print_header "Terminal Selection"
 echo "📟 Choose your default terminal emulator:"
 echo "  1. kitty       - Modern, GPU-accelerated (default)"
@@ -504,6 +517,12 @@ cat > hosts/"$hostName"/variables.nix << EOF
   enableNFS = true;
   printEnable = false;
   thunarEnable = true;
+  controllerSupportEnable = false;
+  flutterdevEnable = false;
+  syncthingEnable = false;
+
+  # Window Manager Choice
+  windowManager = "$windowManager"; # Options: "niri" or "hyprland"
 
   # Enable Stylix System Theming
   stylixEnable = true;
