@@ -4,9 +4,9 @@
   pkgs,
   inputs,
   ...
-}: let
-  inherit
-    (import ../../../hosts/${host}/variables.nix)
+}:
+let
+  inherit (import ../../../hosts/${host}/variables.nix)
     extraMonitorSettings
     keyboardLayout
     stylixImage
@@ -18,8 +18,10 @@
   barChoice = variables.barChoice or "waybar";
   # Legacy support
   enableDMSLegacy = variables.enableDankMaterialShell or false;
-  actualBarChoice = if variables ? barChoice then barChoice else (if enableDMSLegacy then "dms" else "waybar");
-in {
+  actualBarChoice =
+    if variables ? barChoice then barChoice else (if enableDMSLegacy then "dms" else "waybar");
+in
+{
   home.packages = with pkgs; [
     swww
     grim
@@ -36,13 +38,13 @@ in {
   systemd.user.services.ydotool = {
     Unit = {
       Description = "ydotool daemon";
-      PartOf = ["graphical-session.target"];
+      PartOf = [ "graphical-session.target" ];
     };
     Service = {
       ExecStart = "${pkgs.ydotool}/bin/ydotoold";
       Restart = "always";
     };
-    Install.WantedBy = ["hyprland-session.target"];
+    Install.WantedBy = [ "hyprland-session.target" ];
   };
   # Place Files Inside Home Directory
   home.file = {
@@ -63,7 +65,7 @@ in {
     systemd = {
       enable = true;
       enableXdgAutostart = true;
-      variables = ["--all"];
+      variables = [ "--all" ];
     };
     xwayland = {
       enable = true;
@@ -82,23 +84,31 @@ in {
         "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "systemctl --user start hyprpolkitagent"
         "killall -q swww;sleep .5 && swww init"
-      ] ++ (
-        if actualBarChoice == "dms" then [
-          # Launch Dank Material Shell via quickshell
-          "killall -q quickshell;sleep .5 && quickshell -c DankMaterialShell"
-        ] else if actualBarChoice == "noctalia" then [
-          # Launch Noctalia Shell
-          "killall -q noctalia-shell;sleep .5 && noctalia-shell"
-        ] else [
-          # Launch waybar (default)
-          "killall -q waybar;sleep .5 && waybar"
-        ]
-      ) ++ [
+      ]
+      ++ (
+        if actualBarChoice == "dms" then
+          [
+            # Launch Dank Material Shell via quickshell
+            "killall -q quickshell;sleep .5 && quickshell -c DankMaterialShell"
+          ]
+        else if actualBarChoice == "noctalia" then
+          [
+            # Launch Noctalia Shell
+            "killall -q noctalia;sleep .5 && noctalia-shell"
+          ]
+        else
+          [
+            # Launch waybar (default)
+            "killall -q waybar;sleep .5 && waybar"
+          ]
+      )
+      ++ [
         "killall -q swaync;sleep .5 && swaync"
         "nm-applet --indicator"
         "pypr &"
         "sleep 1.5 && swww img ${stylixImage}"
-      ] ++ startupApps;
+      ]
+      ++ startupApps;
 
       input = {
         kb_layout = "${keyboardLayout}";
@@ -125,7 +135,8 @@ in {
         gaps_out = 7;
         border_size = 3;
         resize_on_border = true;
-        "col.active_border" = "rgb(${config.lib.stylix.colors.base08}) rgb(${config.lib.stylix.colors.base0C}) 45deg";
+        "col.active_border" =
+          "rgb(${config.lib.stylix.colors.base08}) rgb(${config.lib.stylix.colors.base0C}) 45deg";
         "col.inactive_border" = "rgb(${config.lib.stylix.colors.base01})";
       };
 
@@ -138,7 +149,7 @@ in {
         disable_splash_rendering = true;
         enable_swallow = false;
         vfr = true; # Variable Frame Rate
-        vrr = 2; #Variable Refresh Rate  Might need to set to 0 for NVIDIA/AQ_DRM_DEVICES
+        vrr = 2; # Variable Refresh Rate  Might need to set to 0 for NVIDIA/AQ_DRM_DEVICES
         # Screen flashing to black momentarily or going black when app is fullscreen
         # Try setting vrr to 0
 
@@ -200,9 +211,14 @@ in {
       monitor=Virtual-1,1920x1080@60,auto,1
       ${extraMonitorSettings}
       # Enable blur on bar
-      ${if actualBarChoice == "dms" then "layerrule = blur,quickshell"
-        else if actualBarChoice == "noctalia" then "layerrule = blur,noctalia"
-        else "layerrule = blur,waybar"}
+      ${
+        if actualBarChoice == "dms" then
+          "layerrule = blur,quickshell"
+        else if actualBarChoice == "noctalia" then
+          "layerrule = blur,noctalia"
+        else
+          "layerrule = blur,waybar"
+      }
     '';
   };
 }

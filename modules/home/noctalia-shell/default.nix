@@ -5,17 +5,24 @@
   inputs,
   host,
   ...
-}: let
-  variables = import ../../hosts/${host}/variables.nix;
+}:
+let
+  variables = import ../../../hosts/${host}/variables.nix;
   barChoice = variables.barChoice or "waybar";
   enableNoctalia = barChoice == "noctalia";
-in {
-  config = lib.mkIf enableNoctalia {
-    # Import Noctalia home-manager module
-    imports = [inputs.noctalia.homeModules.default];
+in
+{
+  # Import Noctalia home-manager module at top level
+  imports = lib.optionals enableNoctalia [
+    inputs.noctalia.homeModules.default
+  ];
 
+  config = lib.mkIf enableNoctalia {
     # Disable waybar when Noctalia is enabled
     programs.waybar.enable = lib.mkForce false;
+
+    # Install Noctalia package
+    home.packages = [ inputs.noctalia.packages.${pkgs.system}.default ];
 
     # Enable and configure Noctalia Shell
     programs.noctalia-shell = {
@@ -90,7 +97,7 @@ in {
     };
 
     # Warning message during activation
-    home.activation.noctaliaWarning = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    home.activation.noctaliaWarning = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD echo ""
       $DRY_RUN_CMD echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
       $DRY_RUN_CMD echo "🌙 Noctalia Shell is ENABLED"

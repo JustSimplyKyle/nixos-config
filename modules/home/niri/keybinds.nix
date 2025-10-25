@@ -2,8 +2,20 @@
   host,
   terminal,
   browser,
+  barChoice,
   ...
 }:
+let
+  # Determine launcher command based on barChoice
+  launcherCommand =
+    if barChoice == "noctalia" then
+      "noctalia-shell" "ipc" "call" "launcher" "toggle"
+    else if barChoice == "dms" then
+      "dms" "ipc" "call" "spotlight" "toggle"
+    # waybar or default
+    else
+      "rofi" "-show" "drun";
+in
 ''
   binds {
       // === System & Overview ===
@@ -15,7 +27,7 @@
       Mod+T hotkey-overlay-title="Open Terminal" { spawn "${terminal}"; }
       Mod+Y hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
       Mod+Space hotkey-overlay-title="Application Launcher" {
-          spawn "dms" "ipc" "call" "spotlight" "toggle";
+          spawn ${launcherCommand};
       }
 
       // === DMS Controls ===

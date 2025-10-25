@@ -68,7 +68,7 @@
   windowManager = "niri"; # Options: "niri" or "hyprland"
 
   # Bar/Shell Choice
-  barChoice = "dms"; # Options: "dms", "noctalia", or "waybar"
+  barChoice = "noctalia"; # Options: "dms", "noctalia", or "waybar"
 
   # Shell Choice
   defaultShell = "zsh"; # Options: "fish" or "zsh"

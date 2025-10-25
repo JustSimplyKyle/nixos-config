@@ -16,7 +16,14 @@ let
   barChoice = variables.barChoice or "waybar";
 
   # Import keybinds and window rules
-  keybindsModule = import ./keybinds.nix { inherit host terminal browser; };
+  keybindsModule = import ./keybinds.nix {
+    inherit
+      host
+      terminal
+      browser
+      barChoice
+      ;
+  };
   windowrulesModule = import ./windowrules.nix { inherit host; };
   layoutModule = import ./layout.nix { };
   startupModule = import ./startup.nix {
