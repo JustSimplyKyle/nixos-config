@@ -60,7 +60,7 @@
     gimp # Great Photo Editor
     glxinfo # Needed for inxi -G GPU info
     gping # graphical ping
-    greetd.tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
+    tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     htop # Simple Terminal Based System Monitor
     hyprpicker # Color Picker
     eog # For Image Viewing
@@ -134,6 +134,8 @@
     gtk4
     localsend
     obsidian
+    gamescope
+    protonup-qt
     gnome-boxes # Simple VM manager
     quickemu # Fast VM creation tool
     quickgui # Optional GUI for quickemu

@@ -264,7 +264,7 @@ cat > "hosts/$newHostName/default.nix" << EOF
     enable = true;
     settings = {
       default_session = {
-        command = "\${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd gamescope-session";
+        command = "\${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd gamescope-session";
         user = "$username";
       };
       initial_session = {

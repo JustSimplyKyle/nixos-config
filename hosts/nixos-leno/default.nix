@@ -6,9 +6,11 @@
   ];
   # Enable ly display manager with matrix animation
   services.displayManager.ly.enable = false;
-  services.displayManager.sddm.enable = lib.mkForce false;
 
-  # Sysc-greet display manager (disabled due to build issues)
+  # Enable SDDM display manager
+  services.displayManager.sddm.enable = true;
+
+  # Sysc-greet display manager
   services.sysc-greet.enable = false;
 
   # Keep niri available at system level for ly display manager to detect it

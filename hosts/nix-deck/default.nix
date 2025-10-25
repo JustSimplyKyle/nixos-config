@@ -4,7 +4,8 @@
   host,
   username,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware.nix
     ./host-packages.nix
@@ -20,7 +21,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd gamescope-session";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd gamescope-session";
         user = "don";
       };
       initial_session = {
@@ -73,6 +74,12 @@
   users.users.don = {
     isNormalUser = true;
     description = "don";
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" "input" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "audio"
+      "input"
+    ];
   };
 }

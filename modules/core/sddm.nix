@@ -4,72 +4,75 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   foreground = config.stylix.base16Scheme.base00;
   textColor = config.stylix.base16Scheme.base05;
   sddm-astronaut = pkgs.sddm-astronaut.override {
     embeddedTheme = "pixel_sakura";
     themeConfig =
-      if lib.hasSuffix "sakura_static.png" config.stylix.image
-      then {
-        FormPosition = "left";
-        Blur = "2.0";
-        TimeFormat = "hh:mm AP";
-      }
-      else if lib.hasSuffix "studio.png" config.stylix.image
-      then {
-        Background = pkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/anotherhadi/nixy-wallpapers/refs/heads/main/wallpapers/studio.gif";
-          sha256 = "sha256-qySDskjmFYt+ncslpbz0BfXiWm4hmFf5GPWF2NlTVB8=";
+      if lib.hasSuffix "sakura_static.png" config.stylix.image then
+        {
+          FormPosition = "left";
+          Blur = "2.0";
+          HourFormat = "h:mm AP";
+        }
+      else if lib.hasSuffix "studio.png" config.stylix.image then
+        {
+          Background = pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/anotherhadi/nixy-wallpapers/refs/heads/main/wallpapers/studio.gif";
+            sha256 = "sha256-qySDskjmFYt+ncslpbz0BfXiWm4hmFf5GPWF2NlTVB8=";
+          };
+          HeaderTextColor = "#${textColor}";
+          DateTextColor = "#${textColor}";
+          TimeTextColor = "#${textColor}";
+          HourFormat = "h:mm AP";
+          LoginFieldTextColor = "#${textColor}";
+          PasswordFieldTextColor = "#${textColor}";
+          UserIconColor = "#${textColor}";
+          PasswordIconColor = "#${textColor}";
+          WarningColor = "#${textColor}";
+          LoginButtonBackgroundColor = "#${foreground}";
+          SystemButtonsIconsColor = "#${foreground}";
+          SessionButtonTextColor = "#${textColor}";
+          VirtualKeyboardButtonTextColor = "#${textColor}";
+          DropdownBackgroundColor = "#${foreground}";
+          HighlightBackgroundColor = "#${textColor}";
+        }
+      else
+        {
+          FormPosition = "left";
+          Blur = "4.0";
+          Background = "${toString config.stylix.image}";
+          HeaderTextColor = "#${textColor}";
+          DateTextColor = "#${textColor}";
+          TimeTextColor = "#${textColor}";
+          HourFormat = "h:mm AP";
+          LoginFieldTextColor = "#${textColor}";
+          PasswordFieldTextColor = "#${textColor}";
+          UserIconColor = "#${textColor}";
+          PasswordIconColor = "#${textColor}";
+          WarningColor = "#${textColor}";
+          LoginButtonBackgroundColor = "#${config.stylix.base16Scheme.base01}";
+          SystemButtonsIconsColor = "#${textColor}";
+          SessionButtonTextColor = "#${textColor}";
+          VirtualKeyboardButtonTextColor = "#${textColor}";
+          DropdownBackgroundColor = "#${config.stylix.base16Scheme.base01}";
+          HighlightBackgroundColor = "#${textColor}";
+          FormBackgroundColor = "#${config.stylix.base16Scheme.base01}";
         };
-        HeaderTextColor = "#${textColor}";
-        DateTextColor = "#${textColor}";
-        TimeTextColor = "#${textColor}";
-        TimeFormat = "hh:mm AP";
-        LoginFieldTextColor = "#${textColor}";
-        PasswordFieldTextColor = "#${textColor}";
-        UserIconColor = "#${textColor}";
-        PasswordIconColor = "#${textColor}";
-        WarningColor = "#${textColor}";
-        LoginButtonBackgroundColor = "#${foreground}";
-        SystemButtonsIconsColor = "#${foreground}";
-        SessionButtonTextColor = "#${textColor}";
-        VirtualKeyboardButtonTextColor = "#${textColor}";
-        DropdownBackgroundColor = "#${foreground}";
-        HighlightBackgroundColor = "#${textColor}";
-      }
-      else {
-        FormPosition = "left";
-        Blur = "4.0";
-        Background = "${toString config.stylix.image}";
-        HeaderTextColor = "#${textColor}";
-        DateTextColor = "#${textColor}";
-        TimeTextColor = "#${textColor}";
-        TimeFormat = "hh:mm AP";
-        LoginFieldTextColor = "#${textColor}";
-        PasswordFieldTextColor = "#${textColor}";
-        UserIconColor = "#${textColor}";
-        PasswordIconColor = "#${textColor}";
-        WarningColor = "#${textColor}";
-        LoginButtonBackgroundColor = "#${config.stylix.base16Scheme.base01}";
-        SystemButtonsIconsColor = "#${textColor}";
-        SessionButtonTextColor = "#${textColor}";
-        VirtualKeyboardButtonTextColor = "#${textColor}";
-        DropdownBackgroundColor = "#${config.stylix.base16Scheme.base01}";
-        HighlightBackgroundColor = "#${textColor}";
-        FormBackgroundColor = "#${config.stylix.base16Scheme.base01}";
-      };
   };
-in {
+in
+{
   services.displayManager = {
     sddm = {
       package = pkgs.kdePackages.sddm;
-      extraPackages = [sddm-astronaut];
+      extraPackages = [ sddm-astronaut ];
       enable = true;
       wayland.enable = true;
       theme = "sddm-astronaut-theme";
     };
   };
 
-  environment.systemPackages = [sddm-astronaut];
+  environment.systemPackages = [ sddm-astronaut ];
 }

@@ -17,11 +17,11 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "Nomadcxx";
       repo = "sysc-greet";
-      rev = "main"; # You may want to pin to a specific commit
-      sha256 = ""; # Will need to be filled in after first build attempt
+      rev = "master";
+      sha256 = "sha256-SEAtVGxn2ZrNbHA+eS79sJCMytlhCFtVJ0l6/pj+b4w=";
     };
 
-    vendorHash = null; # Will need to be filled in after first build attempt
+    vendorHash = "sha256-n/WQaEWYPlVZs1xNOER1tx5I6FwoU0IahZFZZGD4saA=";
 
     buildPhase = ''
       go build -o sysc-greet ./cmd/sysc-greet

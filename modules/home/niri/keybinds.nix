@@ -229,7 +229,7 @@
       Mod+S { spawn "steam"; }
       Mod+Shift+O { spawn "flatpak" "run" "com.obsproject.Studio"; }
       Mod+Ctrl+O { spawn "obs"; }
-      Mod+Z { spawn "/home/don/.local/bin/zed-fix"; }
+      Mod+Z { spawn "zed-fix"; }
       Mod+F { spawn "nemo"; }
       Ctrl+Mod+V { spawn "virt-manager"; }
       Ctrl+Mod+E { spawn "emopicker9000"; }

@@ -1,36 +1,41 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs = {
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = false;
-      gamescopeSession.enable = true;
-      extraCompatPackages = [pkgs.proton-ge-bin];
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
 
       # Enable Steam Input for controller support
       package = pkgs.steam.override {
-        extraPkgs = pkgs: with pkgs; [
-          # Controller support libraries
-          libusb1
-          udev
-          SDL2
+        extraPkgs =
+          pkgs: with pkgs; [
+            # Controller support libraries
+            libusb1
+            udev
+            SDL2
 
-          # Additional libraries for better compatibility
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-        ];
+            # Additional libraries for better compatibility
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+            xorg.libXcomposite
+            xorg.libXdamage
+            xorg.libXrender
+            xorg.libXext
+
+            # Fix for Xwayland symbol errors
+            libkrb5
+            keyutils
+          ];
       };
     };
-
-    gamescope = {
-      enable = true;
-      capSysNice = true;
-      args = [
-        "--rt"
-        "--expose-wayland"
-      ];
-    };
   };
+
+  # System-level packages
+  environment.systemPackages = with pkgs; [
+    mangohud
+  ];
 }
