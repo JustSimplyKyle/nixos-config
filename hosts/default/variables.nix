@@ -1,14 +1,14 @@
 {
   # Git Configuration ( For Pulling Software Repos )
-  gitUsername = "username";
-  gitEmail = "email@gmail.com";
+  gitUsername = "theblackdon";
+  gitEmail = "rj.jones@flosstech.com";
 
   # Hyprland Settings
   # ex "monitor=HDMI-A-1, 1920x1080@60,auto,1"
   #
-  extraMonitorSettings = "
-    monitor = Virtual-1, 1920x1080@60,auto,1
-    ";
+  extraMonitorSettings = ''
+    monitor=eDP-1,2560x1600@165.02,6770x1558,1.33
+  '';
 
   # Hyprland Plugin Settings
   hyprexpoSettings = {
@@ -26,7 +26,7 @@
   hyprscrollingSettings = {
     column_default_width = "onehalf";
     column_widths = "onehalf one";
-    fullscreen_on_one_column = false;
+    fullscreen_on_one_column = true;
     focus_fit_method = 1;
   };
 
@@ -34,16 +34,14 @@
   clock24h = false;
 
   # Program Options
-  browser = "vivaldi"; # Set Default Browser (google-chrome-stable for google-chrome)
+  browser = "zen"; # Set Default Browser (google-chrome-stable for google-chrome)
   terminal = "kitty"; # Set Default System Terminal
   keyboardLayout = "us";
   consoleKeyMap = "us";
 
-  # For Nvidia Prime support
-  intelID = "PCI:1:0:0";
-  nvidiaID = "PCI:0:2:0";
-
-  ## Enable Features Here ##
+  # For Nvidia Prime support with AMD
+  intelID = "PCI:34:0:0"; # AMD integrated GPU (renamed variable kept for compatibility)
+  nvidiaID = "PCI:1:0:0"; # NVIDIA discrete GPU
 
   # Enable NFS
   enableNFS = true;
@@ -55,7 +53,7 @@
   thunarEnable = true;
 
   # Enable Controller Support For Gaming
-  controllerSupportEnable = false;
+  controllerSupportEnable = true;
 
   # Enable Flutter Development Environment
   flutterdevEnable = false;
@@ -67,10 +65,10 @@
   syncthingEnable = true;
 
   # Window Manager Choice
-  windowManager = "hyprland"; # Options: "niri" or "hyprland"
+  windowManager = "niri"; # Options: "niri" or "hyprland"
 
   # Bar/Shell Choice
-  barChoice = "waybar"; # Options: "dms", "noctalia", or "waybar"
+  barChoice = "noctalia"; # Options: "dms", "noctalia", or "waybar"
 
   # Shell Choice
   defaultShell = "zsh"; # Options: "fish" or "zsh"
@@ -81,11 +79,12 @@
 
   # Set Stylix Image
   #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;
-  stylixImage = ../../wallpapers/nix-wallpaper-stripes-logo.png;
+  #stylixImage = ../../wallpapers/nix-wallpaper-stripes-logo.png;
   #stylixImage = ../../wallpapers/beautifulmountainscape.png;
   #stylixImage = ../../wallpapers/mountainscapedark.jpg;
   #stylixImage = ../../wallpapers/Rainnight.jpg;
   #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
+  stylixImage = ../../wallpapers/55.png;
 
   # Set Waybar
   # Includes alternates such as:
@@ -95,8 +94,8 @@
   #waybarChoice = ../../modules/home/waybar/waybar-simple.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-nekodyke.nix;
-  waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
-  #waybarChoice = ../../modules/home/waybar/waybar-ddubs-2.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+  waybarChoice = ../../modules/home/waybar/waybar-jerry.nix;
 
   # Set Animation style
   # Available options are:
@@ -110,4 +109,8 @@
   #animChoice = ../../modules/home/hyprland/animations-dynamix.nix;
   #  Note: Moving changes window resizing it shrinks then pops back
   #animChoice = ../../modules/home/hyprland/animations-moving.nix;
+
+  # Startup Applications
+  startupApps = [
+  ];
 }

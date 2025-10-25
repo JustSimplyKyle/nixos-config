@@ -17,6 +17,9 @@
           numlock
       }
       touchpad {
+          // Natural scrolling inverts scroll direction
+          // Up swipe scrolls down, down swipe scrolls up (natural direction)
+          natural-scroll
       }
       /-mouse {
           accel-profile "adaptive"

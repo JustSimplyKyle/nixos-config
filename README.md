@@ -14,14 +14,16 @@ The configuration is built with modularity in mind - each host can have differen
 
 - 🖥️ **Multi-Host Support** - Easy configuration management for multiple computers
 - 🎮 **NVIDIA GPU Optimized** - Full support for NVIDIA graphics with proper drivers
+- 📊 **Modular Bar System** - Choose between Waybar, Dank Material Shell (DMS), or Noctalia Shell for your desktop bar
 - 🌊 **Hyprland Desktop** - Modern Wayland compositor with beautiful animations
+- 🪟 **Niri Desktop** - Scrollable-tiling Wayland compositor as an alternative to Hyprland
 - 🎨 **Stylix Integration** - System-wide theming and styling
 - 📦 **Flake-based Configuration** - Reproducible and declarative system management
 - 🔧 **Easy Host Setup** - Automated script for adding new computers
 - ⚡ **dcli Tool** - Custom CLI utility for multi-host system management
 - 🎛️ **Modular Features** - Toggle features per host (NFS, printing, gaming controllers, etc.)
 - ⌨️ **Per-Host Customization** - Host-specific keybinds and window rules for Hyprland
-- 🚀 **Vicinae Launcher** - Modern application launcher enabled by default
+
 
 ## Installation
 
