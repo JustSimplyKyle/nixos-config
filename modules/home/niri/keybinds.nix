@@ -9,12 +9,12 @@ let
   # Determine launcher command based on barChoice
   launcherCommand =
     if barChoice == "noctalia" then
-      "noctalia-shell" "ipc" "call" "launcher" "toggle"
+      ''"noctalia-shell" "ipc" "call" "launcher" "toggle"''
     else if barChoice == "dms" then
-      "dms" "ipc" "call" "spotlight" "toggle"
+      ''"dms" "ipc" "call" "spotlight" "toggle"''
     # waybar or default
     else
-      "rofi" "-show" "drun";
+      ''"rofi" "-show" "drun"'';
 in
 ''
   binds {
