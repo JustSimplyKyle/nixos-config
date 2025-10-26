@@ -3,6 +3,7 @@
   terminal,
   browser,
   barChoice,
+  hostKeybinds ? "",
   ...
 }:
 let
@@ -26,9 +27,7 @@ in
       // === Application Launchers ===
       Mod+T hotkey-overlay-title="Open Terminal" { spawn "${terminal}"; }
       Mod+Y hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-      Mod+Space hotkey-overlay-title="Application Launcher" {
-          spawn ${launcherCommand};
-      }
+      Mod+Space hotkey-overlay-title="Application Launcher" { spawn ${launcherCommand}; }
 
       // === DMS Controls ===
       Mod+Comma hotkey-overlay-title="DMS Settings" { spawn "ignis" "open-window" "Settings"; }
@@ -220,6 +219,11 @@ in
       Mod+Alt+Shift+S hotkey-overlay-title="Record Region" { spawn "ignis" "run-command" "recorder-record-region"; }
       Mod+Alt+Shift+W hotkey-overlay-title="Record Portal" { spawn "ignis" "run-command" "recorder-record-portal"; }
 
+      // === Noctalia Config Sync ===
+      Ctrl+Shift+S hotkey-overlay-title="Sync Noctalia GUI to Nix" {
+          spawn "sh" "-c" "/home/don/black-don-os/modules/home/noctalia-shell/sync-from-gui.py && notify-send 'Noctalia Config' 'Settings synced to Nix template' -i preferences-system";
+      }
+
       // === System Controls ===
       Mod+Escape hotkey-overlay-title="Ignis Power Menu" { spawn "ignis" "open-window" "PowerMenu"; }
       Mod+Alt+P { power-off-monitors; }
@@ -253,5 +257,7 @@ in
       Mod+P { set-dynamic-cast-monitor; }
       Mod+Shift+P { set-dynamic-cast-window; }
       Mod+Ctrl+P { clear-dynamic-cast-target; }
+
+      ${hostKeybinds}
   }
 ''

@@ -54,6 +54,7 @@
 
       # Host-specific configurations
       nixos-leno = mkHost { hostname = "nixos-leno"; profile = "nvidia-laptop"; username = "don"; };
+      leno-desktop = mkHost { hostname = "leno-desktop"; profile = "nvidia"; username = "don"; };
       nix-desktop = mkHost { hostname = "nix-desktop"; profile = "nvidia"; username = "don"; };
       nix-deck = mkHost { hostname = "nix-deck"; profile = "amd"; username = "don"; };
       nix-lab = mkHost { hostname = "nix-lab"; profile = "intel"; username = "don"; };

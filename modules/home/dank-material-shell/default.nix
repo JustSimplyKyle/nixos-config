@@ -61,14 +61,28 @@ in
         echo "🎨 Installing Dank Material Shell"
         echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
         echo ""
-        echo "📦 Installing DMS from GitHub flake..."
+        echo "📦 Installing DMS QML shell from GitHub flake..."
         nix profile install github:AvengeMedia/DankMaterialShell
         echo ""
         echo "📦 Installing dgop for system monitoring..."
         nix profile install github:AvengeMedia/dgop
         echo ""
+        echo "📦 Installing DMS CLI binary..."
+        DMS_VERSION="0.2.3"
+        DMS_CLI_URL="https://github.com/AvengeMedia/DankMaterialShell/releases/download/v$DMS_VERSION/dms-cli-amd64.gz"
+        INSTALL_DIR="$HOME/.local/bin"
+
+        mkdir -p "$INSTALL_DIR"
+        echo "   Downloading dms CLI from GitHub releases..."
+        ${pkgs.curl}/bin/curl -L "$DMS_CLI_URL" -o "/tmp/dms-cli-amd64.gz"
+        ${pkgs.gzip}/bin/gunzip -f "/tmp/dms-cli-amd64.gz"
+        ${pkgs.coreutils}/bin/chmod +x "/tmp/dms-cli-amd64"
+        ${pkgs.coreutils}/bin/mv "/tmp/dms-cli-amd64" "$INSTALL_DIR/dms"
+        echo "   Installed dms CLI to $INSTALL_DIR/dms"
+        echo ""
         echo "✅ DMS installed successfully!"
-        echo "🚀 Configure it in ~/.config/dms/"
+        echo "🚀 The 'dms' command is now available"
+        echo "📝 Configure it in ~/.config/dms/"
         echo ""
       '')
 
@@ -77,6 +91,7 @@ in
         echo "🗑️  Removing Dank Material Shell..."
         nix profile remove github:AvengeMedia/DankMaterialShell 2>/dev/null || true
         nix profile remove github:AvengeMedia/dgop 2>/dev/null || true
+        rm -f "$HOME/.local/bin/dms"
         echo "✅ DMS uninstalled"
       '')
 

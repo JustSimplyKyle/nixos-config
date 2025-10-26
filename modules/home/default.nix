@@ -1,4 +1,10 @@
-{inputs, host, lib, ...}: let
+{
+  inputs,
+  host,
+  lib,
+  ...
+}:
+let
   variables = import ../../hosts/${host}/variables.nix;
   inherit (variables) waybarChoice;
 
@@ -12,7 +18,8 @@
   legacyBarChoice = if enableDMS then "dms" else "waybar";
   actualBarChoice = if variables ? barChoice then barChoice else legacyBarChoice;
 
-in {
+in
+{
   imports = [
     ./amfora.nix
     ./bash.nix
@@ -41,7 +48,6 @@ in {
     ./starship.nix
     ./stylix.nix
     ./swappy.nix
-    ./swaync.nix
     ./tealdeer.nix
     ./tmux.nix
     ./virtmanager.nix
@@ -79,5 +85,6 @@ in {
   ]
   ++ lib.optionals (actualBarChoice == "waybar") [
     waybarChoice
+    ./swaync.nix # Only use swaync with waybar
   ];
 }

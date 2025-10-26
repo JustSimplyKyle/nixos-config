@@ -1,0 +1,151 @@
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  host,
+  ...
+}:
+let
+  variables = import ../../../hosts/${host}/variables.nix;
+  barChoice = variables.barChoice or "waybar";
+  enableNoctalia = barChoice == "noctalia";
+in
+{
+  imports = lib.optionals enableNoctalia [
+    inputs.noctalia.homeModules.default
+  ];
+
+  config = lib.mkIf enableNoctalia {
+    programs.waybar.enable = lib.mkForce false;
+    home.packages = [ inputs.noctalia.packages.${pkgs.system}.default ];
+
+    home.file.".config/noctalia/settings.json.template" = {
+      text = builtins.toJSON {
+        colorSchemes = {
+          predefinedScheme = "Catppuccin";
+          darkMode = true;
+          useWallpaperColors = false;
+        };
+        bar = {
+          position = "top";
+          density = "compact";
+          backgroundOpacity = 1;
+          floating = false;
+          marginHorizontal = 0.25;
+          marginVertical = 0.25;
+          showCapsule = true;
+          monitors = [ ];
+          widgets = {
+            left = [
+              {
+                id = "SystemMonitor";
+              }
+              {
+                id = "ActiveWindow";
+              }
+              {
+                id = "MediaMini";
+              }
+            ];
+            center = [
+              {
+                id = "Workspace";
+              }
+            ];
+            right = [
+              {
+                id = "ScreenRecorder";
+              }
+              {
+                id = "Tray";
+              }
+              {
+                id = "NotificationHistory";
+              }
+              {
+                id = "Battery";
+              }
+              {
+                id = "Volume";
+              }
+              {
+                id = "Brightness";
+              }
+              {
+                id = "Clock";
+              }
+              {
+                id = "ControlCenter";
+              }
+            ];
+          };
+        };
+        general = {
+          radiusRatio = 0.5;
+          animSpeed = 200;
+          animDisabled = false;
+          lockBehavior = "blur";
+          language = "en";
+        };
+        "location" = {
+          name = "Local";
+          tempUnit = "fahrenheit";
+          timeFormat = "12hr";
+          weekNumbering = "iso";
+          weatherEnabled = true;
+        };
+        audio = {
+          volumeIncrement = 5;
+          brightnessIncrement = 5;
+        };
+        notifications = {
+          "location" = "top_right";
+          lowUrgency = {
+            "location" = "top-right";
+            "timeout" = 5000;
+          };
+          normalUrgency = {
+            "location" = "top-right";
+            "timeout" = 10000;
+          };
+          criticalUrgency = {
+            "location" = "top-right";
+            "timeout" = 0;
+          };
+        };
+      };
+    };
+
+    home.activation.noctaliaSettingsInit = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      SETTINGS_FILE="$HOME/.config/noctalia/settings.json"
+      TEMPLATE_FILE="$HOME/.config/noctalia/settings.json.template"
+
+      if [ ! -f "$SETTINGS_FILE" ] || [ -L "$SETTINGS_FILE" ]; then
+        $DRY_RUN_CMD rm -f "$SETTINGS_FILE"
+        $DRY_RUN_CMD cp "$TEMPLATE_FILE" "$SETTINGS_FILE"
+        $DRY_RUN_CMD chmod 644 "$SETTINGS_FILE"
+      fi
+    '';
+
+    home.activation.noctaliaWarning = lib.hm.dag.entryAfter [ "noctaliaSettingsInit" ] ''
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+      $DRY_RUN_CMD echo "🌙 Noctalia Shell is ENABLED"
+      $DRY_RUN_CMD echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "⚠️  Waybar has been automatically disabled"
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "📝 Configuration: ~/.config/noctalia/settings.json (GUI-editable)"
+      $DRY_RUN_CMD echo "🎨 Settings synced from GUI (use ./sync-from-gui.py to update)"
+      $DRY_RUN_CMD echo "✏️  All GUI changes persist across reboots"
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "💡 To update Nix template from GUI changes:"
+      $DRY_RUN_CMD echo "   cd modules/home/noctalia-shell && ./sync-from-gui.py"
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "📚 Docs: https://docs.noctalia.dev"
+      $DRY_RUN_CMD echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+      $DRY_RUN_CMD echo ""
+    '';
+  };
+}

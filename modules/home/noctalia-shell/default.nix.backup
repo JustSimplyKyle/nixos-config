@@ -1,0 +1,141 @@
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  host,
+  ...
+}:
+let
+  variables = import ../../../hosts/${host}/variables.nix;
+  barChoice = variables.barChoice or "waybar";
+  enableNoctalia = barChoice == "noctalia";
+in
+{
+  # Import Noctalia home-manager module at top level
+  imports = lib.optionals enableNoctalia [
+    inputs.noctalia.homeModules.default
+  ];
+
+  config = lib.mkIf enableNoctalia {
+    # Disable waybar when Noctalia is enabled
+    programs.waybar.enable = lib.mkForce false;
+
+    # Install Noctalia package directly without using the home-manager module
+    # This way we have full control over config files
+    home.packages = [ inputs.noctalia.packages.${pkgs.system}.default ];
+
+    # Create writable Noctalia config directory with initial settings
+    # This allows GUI changes to persist while providing sane defaults
+    # Using 'force = false' means the file won't be overwritten if it already exists
+    home.file.".config/noctalia/settings.json" = {
+      text = builtins.toJSON {
+        # Color scheme configuration
+        colorSchemes = {
+          predefinedScheme = "Catppuccin";
+          darkMode = true;
+          useWallpaperColors = false;
+        };
+
+        # Bar configuration - customize through GUI
+        bar = {
+          position = "top";
+          density = "compact";
+          backgroundOpacity = 1;
+          floating = false;
+          marginHorizontal = 0.25;
+          marginVertical = 0.25;
+          showCapsule = true;
+          monitors = [ ];
+          widgets = {
+            left = [
+              { id = "SystemMonitor"; }
+              { id = "ActiveWindow"; }
+              { id = "MediaMini"; }
+            ];
+            center = [
+              { id = "Workspace"; }
+            ];
+            right = [
+              { id = "ScreenRecorder"; }
+              { id = "Tray"; }
+              { id = "NotificationHistory"; }
+              { id = "Battery"; }
+              { id = "Volume"; }
+              { id = "Brightness"; }
+              { id = "Clock"; }
+              { id = "ControlCenter"; }
+            ];
+          };
+        };
+
+        # General settings
+        general = {
+          radiusRatio = 0.5;
+          animSpeed = 200;
+          animDisabled = false;
+          lockBehavior = "blur";
+          language = "en";
+        };
+
+        # Location and time settings
+        location = {
+          name = "Local";
+          tempUnit = "fahrenheit";
+          timeFormat = "12hr";
+          weekNumbering = "iso";
+          weatherEnabled = true;
+        };
+
+        # Audio and brightness settings
+        audio = {
+          volumeIncrement = 5;
+          brightnessIncrement = 5;
+        };
+
+        # Notification settings
+        notifications = {
+          location = "top_right";
+          lowUrgency = {
+            location = "top-right";
+            timeout = 5000;
+          };
+          normalUrgency = {
+            location = "top-right";
+            timeout = 10000;
+          };
+          criticalUrgency = {
+            location = "top-right";
+            timeout = 0;
+          };
+        };
+      };
+
+      # Force overwrite on first generation, but allow user modifications after
+      force = false;
+    };
+
+    # Warning message during activation
+    home.activation.noctaliaWarning = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+      $DRY_RUN_CMD echo "🌙 Noctalia Shell is ENABLED"
+      $DRY_RUN_CMD echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "⚠️  Waybar has been automatically disabled"
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "📝 Configuration: ~/.config/noctalia/settings.json (GUI-editable)"
+      $DRY_RUN_CMD echo "🎨 Color scheme: Catppuccin (change in Noctalia GUI)"
+      $DRY_RUN_CMD echo "✏️  All GUI changes will persist across reboots"
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "💡 To sync GUI changes back to Nix config:"
+      $DRY_RUN_CMD echo "   1. Configure bar in GUI"
+      $DRY_RUN_CMD echo "   2. Copy settings: cat ~/.config/noctalia/settings.json"
+      $DRY_RUN_CMD echo "   3. Update: modules/home/noctalia-shell/default.nix"
+      $DRY_RUN_CMD echo ""
+      $DRY_RUN_CMD echo "📚 Docs: https://docs.noctalia.dev"
+      $DRY_RUN_CMD echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+      $DRY_RUN_CMD echo ""
+    '';
+  };
+}

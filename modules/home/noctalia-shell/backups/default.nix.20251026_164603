@@ -61,6 +61,15 @@ in
             ];
             left = [
               {
+                id = "SystemMonitor";
+                showCpuTemp = true;
+                showCpuUsage = true;
+                showDiskUsage = false;
+                showMemoryAsPercent = false;
+                showMemoryUsage = true;
+                showNetworkStats = false;
+              }
+              {
                 hideUnoccupied = false;
                 id = "Workspace";
                 labelMode = "index";
@@ -92,22 +101,22 @@ in
                 id = "Tray";
               }
               {
-                id = "SystemMonitor";
-                showCpuTemp = true;
-                showCpuUsage = true;
-                showDiskUsage = false;
-                showMemoryAsPercent = false;
-                showMemoryUsage = true;
-                showNetworkStats = false;
-              }
-              {
                 hideWhenZero = true;
                 id = "NotificationHistory";
                 showUnreadBadge = true;
               }
               {
                 displayMode = "onhover";
+                id = "Battery";
+                warningThreshold = 30;
+              }
+              {
+                displayMode = "onhover";
                 id = "Volume";
+              }
+              {
+                displayMode = "onhover";
+                id = "Brightness";
               }
               {
                 customIconPath = "/home/don/black-don-os/modules/home/fastfetch/blackdontrans.png";
@@ -191,10 +200,10 @@ in
         };
         dock = {
           backgroundOpacity = 1;
-          colorizeIcons = true;
-          displayMode = "exclusive";
+          colorizeIcons = false;
+          displayMode = "always_visible";
           floatingRatio = 1;
-          monitors = [ "DP-1" ];
+          monitors = [ ];
           onlySameOutput = true;
           pinnedApps = [ ];
           size = 1;
