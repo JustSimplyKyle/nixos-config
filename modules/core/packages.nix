@@ -3,6 +3,7 @@
   lib,
   zen-browser,
   helium-browser,
+  windowManager ? "hyprland",
   ...
 }:
 {
@@ -14,12 +15,12 @@
     firefox.enable = false; # Firefox is not installed by default
     dconf.enable = true;
     seahorse.enable = true;
-    hyprland = {
+    hyprland = lib.mkIf (windowManager == "hyprland") {
       enable = true; # Create desktop file and dependencies if you switch to GUI login MGR
       package = pkgs.hyprland; # Using unstable nixpkgs for latest version
       portalPackage = pkgs.xdg-desktop-portal-hyprland; # Use matching portal version
     };
-    hyprlock.enable = true; # resolve pam issue https://gitlab.com/Zaney/zaneyos/-/issues/164
+    hyprlock.enable = lib.mkIf (windowManager == "hyprland") true; # resolve pam issue https://gitlab.com/Zaney/zaneyos/-/issues/164
     fuse.userAllowOther = true;
     mtr.enable = true;
     adb.enable = true;
@@ -110,8 +111,8 @@
     # Development Tools
     #code-cursor # AI IDE
     zed-editor # Another AI IDE
-    flutter # Flutter SDK
-    jdk # Java Development Kit
+    # flutter # Flutter SDK
+    # jdk # Java Development Kit
     claude-code # For native development
     nwg-dock-hyprland
     popsicle
@@ -121,16 +122,31 @@
     zoom-us # Video Meetings
     telegram-desktop # Messaging App
     vesktop # Discord Alternative
+<<<<<<< HEAD
     #android-studio # Android Studio   # Need to make as a selectable option 
+||||||| parent of 208712f (Updated keybinds for noctalia and dms. for niri and hyprland)
+    android-studio # Android Studio
+=======
+    # android-studio # Android Studio
+>>>>>>> 208712f (Updated keybinds for noctalia and dms. for niri and hyprland)
     chromium # Browser
     google-chrome # Browser
     # Dev Packages
+<<<<<<< HEAD
     #androidenv.androidPkgs.platform-tools # This includes adb
     #androidenv.androidPkgs.emulator # For Android emulator
     #androidenv.androidPkgs.ndk-bundle
+||||||| parent of 208712f (Updated keybinds for noctalia and dms. for niri and hyprland)
+    androidenv.androidPkgs.platform-tools # This includes adb
+    androidenv.androidPkgs.emulator # For Android emulator
+    androidenv.androidPkgs.ndk-bundle
+=======
+    # androidenv.androidPkgs.platform-tools # This includes adb
+    # androidenv.androidPkgs.emulator # For Android emulator
+    # androidenv.androidPkgs.ndk-bundle
+>>>>>>> 208712f (Updated keybinds for noctalia and dms. for niri and hyprland)
     # Firebase CLI
     # firebase-tools # Temporarily disabled due to build issues with missing package-lock.json
-    webapp-manager
     gum
     gtk3
     gtk4

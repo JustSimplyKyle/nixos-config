@@ -55,14 +55,6 @@
           };
           modules = [
             ./profiles/${profile}
-            # Add custom packages overlay
-            {
-              nixpkgs.overlays = [
-                (final: prev: {
-                  webapp-manager = final.callPackage ./pkgs/webapp-manager { };
-                })
-              ];
-            }
           ];
         };
 
