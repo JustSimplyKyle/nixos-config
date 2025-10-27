@@ -588,12 +588,21 @@ else
   echo -e "${GREEN}Adding $hostName to flake.nix...${NC}"
 
   # Create a temporary file with the new host entry
+  # Find the nixosConfigurations section and add the new host after "default"
   awk -v hostname="$hostName" -v profile="$profile" -v username="$newUsername" '
-    /^      # Host-specific configurations/ {
+    /^        default = mkHost {/ {
+      # Found the default host, mark that we should add after the closing brace
+      in_default = 1
       print $0
-      getline
+      next
+    }
+    /^        };$/ && in_default {
+      # Closing brace of default host, add new host after it
       print $0
+      print ""
+      print "      # User-created host configuration"
       print "      " hostname " = mkHost { hostname = \"" hostname "\"; profile = \"" profile "\"; username = \"" username "\"; };"
+      in_default = 0
       next
     }
     { print $0 }
