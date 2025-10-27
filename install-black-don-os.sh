@@ -215,33 +215,45 @@ echo -e "${GREEN}✓ Username set to: $newUsername${NC}"
 print_header "Backup Existing Black-Don-OS (if any)"
 
 backupname=$(date +"%Y-%m-%d-%H-%M-%S")
-if [ -d "black-don-os" ]; then
-  echo -e "${GREEN}black-don-os exists, backing up to .config/black-don-os-backups folder.${NC}"
-  if [ -d ".config/black-don-os-backups" ]; then
-    echo -e "${GREEN}Moving current version of Black-Don-OS to backups folder.${NC}"
-    mv "$HOME"/black-don-os .config/black-don-os-backups/"$backupname"
-    sleep 1
+SKIP_CLONE=false
+
+if [ -d "$HOME/black-don-os/.git" ]; then
+  print_warning "Existing Black-Don-OS repo found at ~/black-don-os"
+  read -p "Reuse existing repo without recloning? (Y/n): " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Nn]$ ]]; then
+    echo -e "${GREEN}Using existing ~/black-don-os without recloning.${NC}"
+    SKIP_CLONE=true
   else
-    echo -e "${GREEN}Creating the backups folder & moving Black-Don-OS to it.${NC}"
-    mkdir -p .config/black-don-os-backups
-    mv "$HOME"/black-don-os .config/black-don-os-backups/"$backupname"
+    echo -e "${GREEN}Backing up existing repo to .config/black-don-os-backups folder.${NC}"
+    mkdir -p "$HOME/.config/black-don-os-backups"
+    mv "$HOME/black-don-os" "$HOME/.config/black-don-os-backups/$backupname"
     sleep 1
   fi
+elif [ -d "$HOME/black-don-os" ]; then
+  echo -e "${GREEN}~/black-don-os exists (non-git). Backing up to .config/black-don-os-backups folder.${NC}"
+  mkdir -p "$HOME/.config/black-don-os-backups"
+  mv "$HOME/black-don-os" "$HOME/.config/black-don-os-backups/$backupname"
+  sleep 1
 else
   echo -e "${GREEN}Thank you for choosing Black-Don-OS.${NC}"
   echo -e "${GREEN}I hope you find your time here enjoyable!${NC}"
 fi
 
 print_header "Cloning Black-Don-OS Repository"
-echo -e "Cloning from: ${BLUE}https://gitlab.com/theblackdon/black-don-os.git${NC}"
-git clone https://gitlab.com/theblackdon/black-don-os.git --depth=1 -b main ~/black-don-os
-if [ $? -ne 0 ]; then
-  print_error "Failed to clone Black-Don-OS repository"
-  exit 1
+if [ "$SKIP_CLONE" = true ]; then
+  echo -e "${GREEN}Skipping clone; using existing repo at ~/black-don-os${NC}"
+else
+  echo -e "Cloning from: ${BLUE}https://gitlab.com/theblackdon/black-don-os.git${NC}"
+  git clone https://gitlab.com/theblackdon/black-don-os.git --depth=1 -b main ~/black-don-os
+  if [ $? -ne 0 ]; then
+    print_error "Failed to clone Black-Don-OS repository"
+    exit 1
+  fi
 fi
 
 cd ~/black-don-os || exit 1
-echo -e "${GREEN}✓ Successfully cloned Black-Don-OS${NC}"
+echo -e "${GREEN}✓ Repository ready at ~/black-don-os${NC}"
 
 print_header "Git Configuration"
 echo "👤 Setting up git configuration for version control:"
@@ -581,28 +593,34 @@ print_header "Updating Flake Configuration"
 cp flake.nix flake.nix.backup
 
 # Check if the host is already in the flake
-if grep -q "\"$hostName\"" flake.nix; then
+if grep -q "\\\"$hostName\\\"" flake.nix; then
   echo -e "${GREEN}Host $hostName already exists in flake.nix${NC}"
 else
   # Add the new host to flake.nix
   echo -e "${GREEN}Adding $hostName to flake.nix...${NC}"
 
-  # Create a temporary file with the new host entry
-  # Find the nixosConfigurations section and add the new host after "default"
+  # Insert the new host inside the nixosConfigurations attrset, just before its closing brace
   awk -v hostname="$hostName" -v profile="$profile" -v username="$newUsername" '
-    /^        default = mkHost {/ {
-      # Found the default host, mark that we should add after the closing brace
-      in_default = 1
+    /nixosConfigurations = \{/ {
+      in_nc = 1
+      depth = 1
       print $0
       next
     }
-    /^        };$/ && in_default {
-      # Closing brace of default host, add new host after it
+    in_nc {
+      # Track brace depth to find the end of nixosConfigurations
+      opens = gsub(/\{/, "{")
+      closes = gsub(/\}/, "}")
+      depth += opens - closes
+      if (depth == 0) {
+        # Before printing the closing of nixosConfigurations, inject our host
+        print "      # User-created host configuration"
+        print "      " hostname " = mkHost { hostname = \"" hostname "\"; profile = \"" profile "\"; username = \"" username "\"; };"
+        print $0
+        in_nc = 0
+        next
+      }
       print $0
-      print ""
-      print "      # User-created host configuration"
-      print "      " hostname " = mkHost { hostname = \"" hostname "\"; profile = \"" profile "\"; username = \"" username "\"; };"
-      in_default = 0
       next
     }
     { print $0 }
@@ -654,7 +672,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     print_header "Manual Build Instructions"
     echo -e "You can manually build later with:"
     echo -e "${GREEN}cd ~/black-don-os${NC}"
-    echo -e "${GREEN}sudo nixos-rebuild boot --flake .#$hostName${NC}"
+    echo -e "${GREEN}sudo nixos-rebuild boot --flake ~/black-don-os#$hostName${NC}"
     exit 1
 fi
 
@@ -663,7 +681,7 @@ echo -e "${BLUE}Building configuration for $hostName...${NC}"
 echo -e "${YELLOW}This may take a while - please be patient${NC}"
 
 # Attempt the build
-if sudo nixos-rebuild boot --flake .#$hostName; then
+if sudo nixos-rebuild boot --flake ~/black-don-os#"$hostName"; then
   # Clean up git config
   git config --global --unset-all user.name || true
   git config --global --unset-all user.email || true
@@ -675,7 +693,7 @@ if sudo nixos-rebuild boot --flake .#$hostName; then
   echo -e "${BLUE}What's next:${NC}"
   echo -e "1. ${GREEN}Reboot your system${NC} to load Black-Don-OS"
   echo -e "2. Your configuration is in: ${GREEN}~/black-don-os${NC}"
-  echo -e "3. To update later: ${GREEN}cd ~/black-don-os && sudo nixos-rebuild switch --flake .#$hostName${NC}"
+  echo -e "3. To update later: ${GREEN}cd ~/black-don-os && sudo nixos-rebuild switch --flake ~/black-don-os#$hostName${NC}"
   echo -e "4. Read the documentation: ${GREEN}~/black-don-os/README-BLACK-DON-OS.md${NC}"
   echo ""
   echo -e "${YELLOW}Enjoy your Black-Don-OS experience!${NC}"
@@ -694,6 +712,6 @@ else
   echo ""
   echo -e "${YELLOW}Manual retry:${NC}"
   echo -e "cd ~/black-don-os"
-  echo -e "sudo nixos-rebuild boot --flake .#$hostName"
+  echo -e "sudo nixos-rebuild boot --flake ~/black-don-os#$hostName"
   exit 1
 fi
