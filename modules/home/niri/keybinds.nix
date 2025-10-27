@@ -243,8 +243,7 @@ in
       Mod+B { spawn "${browser}"; }
       Mod+D { spawn "vesktop"; }
       Mod+S { spawn "steam"; }
-      Mod+Shift+O { spawn "flatpak" "run" "com.obsproject.Studio"; }
-      Mod+Ctrl+O { spawn "obs"; }
+      Mod+Shift+O { spawn "obs"; }
       Mod+Z { spawn "zed-fix"; }
       Mod+F { spawn "nemo"; }
       Ctrl+Mod+V { spawn "virt-manager"; }

@@ -323,17 +323,13 @@ print_header "Terminal Selection"
 echo "📟 Choose your default terminal emulator:"
 echo "  1. kitty       - Modern, GPU-accelerated (default)"
 echo "  2. alacritty   - Fast, GPU-accelerated"
-echo "  3. wezterm     - Feature-rich with multiplexing"
-echo "  4. foot        - Lightweight Wayland terminal"
-echo "  5. warp        - Modern with AI features"
+echo "  3. ghostty     - Fast, feature-rich terminal"
 echo ""
-read -rp "Enter terminal choice [1-5] or name [ 1 ]: " terminalChoice
+read -rp "Enter terminal choice [1-3] or name [ 1 ]: " terminalChoice
 case "$terminalChoice" in
   1|""|kitty) terminal="kitty" ;;
   2|alacritty) terminal="alacritty" ;;
-  3|wezterm) terminal="wezterm" ;;
-  4|foot) terminal="foot" ;;
-  5|warp) terminal="warp-terminal" ;;
+  3|ghostty) terminal="ghostty" ;;
   *) terminal="$terminalChoice" ;;
 esac
 echo -e "${GREEN}✓ Terminal set to: $terminal${NC}"
@@ -348,7 +344,7 @@ echo "  5. chromium - Open source Chrome"
 echo ""
 read -rp "Enter browser choice [1-5] or name [ 1 ]: " browserChoice
 case "$browserChoice" in
-  1|""|zen) browser="zen-browser" ;;
+  1|""|zen) browser="zen" ;;
   2|vivaldi) browser="vivaldi" ;;
   3|firefox) browser="firefox" ;;
   4|brave) browser="brave" ;;
@@ -360,16 +356,12 @@ echo -e "${GREEN}✓ Browser set to: $browser${NC}"
 print_header "Shell Selection"
 echo "🐚 Choose your default shell:"
 echo "  1. zsh     - Feature-rich with plugins (default)"
-echo "  2. bash    - Traditional Unix shell"
-echo "  3. fish    - User-friendly with autosuggestions"
-echo "  4. nushell - Modern structured shell"
+echo "  2. fish    - User-friendly with autosuggestions"
 echo ""
-read -rp "Enter shell choice [1-4] or name [ 1 ]: " shellChoice
+read -rp "Enter shell choice [1-2] or name [ 1 ]: " shellChoice
 case "$shellChoice" in
   1|""|zsh) userShell="zsh" ;;
-  2|bash) userShell="bash" ;;
-  3|fish) userShell="fish" ;;
-  4|nushell|nu) userShell="nushell" ;;
+  2|fish) userShell="fish" ;;
   *) userShell="$shellChoice" ;;
 esac
 echo -e "${GREEN}✓ Shell set to: $userShell${NC}"
@@ -421,22 +413,8 @@ else
   waybarTheme="waybar-jerry.nix"  # Set a default even if not using waybar
 fi
 
-print_header "Animation Style Selection"
-echo "✨ Choose your Hyprland animation style:"
-echo "  1. end4     - End4's animations (default)"
-echo "  2. dynamic  - Dynamic animations"
-echo "  3. moving   - Moving animations"
-echo "  4. def      - Default animations"
-echo ""
-read -rp "Enter animation choice [1-4] [ 1 ]: " animChoice
-case "$animChoice" in
-  1|""|end4) animStyle="animations-end4.nix" ;;
-  2|dynamic) animStyle="animations-dynamic.nix" ;;
-  3|moving) animStyle="animations-moving.nix" ;;
-  4|def) animStyle="animations-def.nix" ;;
-  *) animStyle="$animChoice" ;;
-esac
-echo -e "${GREEN}✓ Animation style set to: $animStyle${NC}"
+# Automatically set animation style to end4
+animStyle="animations-end4.nix"
 
 print_header "Configuring Host and Profile"
 
@@ -454,26 +432,12 @@ fi
 
 mkdir -p hosts/"$hostName"
 
-# Check if we have a suitable source to copy from
-if [[ -d "hosts/nixos-leno" ]]; then
-  sourceHost="nixos-leno"
-elif [[ -d "hosts/nix-desktop" ]]; then
-  sourceHost="nix-desktop"
-else
-  # Find any host that's not default
-  sourceHost=""
-  for host_dir in hosts/*/; do
-    host_name=$(basename "$host_dir")
-    if [[ "$host_name" != "default" ]]; then
-      sourceHost="$host_name"
-      break
-    fi
-  done
+# Use default host as the source template
+sourceHost="default"
 
-  if [[ -z "$sourceHost" ]]; then
-    print_error "No suitable source host configuration found"
-    exit 1
-  fi
+if [[ ! -d "hosts/$sourceHost" ]]; then
+  print_error "Default host template not found at hosts/$sourceHost"
+  exit 1
 fi
 
 echo -e "${GREEN}Using $sourceHost as template${NC}"
