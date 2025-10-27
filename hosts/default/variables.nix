@@ -1,13 +1,13 @@
 {
   # Git Configuration ( For Pulling Software Repos )
-  gitUsername = "theblackdon";
-  gitEmail = "rj.jones@flosstech.com";
+  gitUsername = "user";
+  gitEmail = "user@example.com";
 
   # Hyprland Settings
   # ex "monitor=HDMI-A-1, 1920x1080@60,auto,1"
-  #
+  # Configure your monitors here - this is host-specific
   extraMonitorSettings = ''
-    monitor=eDP-1,2560x1600@165.02,6770x1558,1.33
+    monitor=,preferred,auto,1
   '';
 
   # Hyprland Plugin Settings
@@ -39,9 +39,10 @@
   keyboardLayout = "us";
   consoleKeyMap = "us";
 
-  # For Nvidia Prime support with AMD
-  intelID = "PCI:34:0:0"; # AMD integrated GPU (renamed variable kept for compatibility)
-  nvidiaID = "PCI:1:0:0"; # NVIDIA discrete GPU
+  # For Nvidia Prime support
+  # Run 'lspci | grep VGA' to find your actual GPU IDs
+  intelID = "PCI:0:2:0"; # Update with your integrated GPU ID
+  nvidiaID = "PCI:1:0:0"; # Update with your NVIDIA GPU ID
 
   # Enable NFS
   enableNFS = true;
@@ -53,7 +54,7 @@
   thunarEnable = true;
 
   # Enable Controller Support For Gaming
-  controllerSupportEnable = true;
+  controllerSupportEnable = false;
 
   # Enable Flutter Development Environment
   flutterdevEnable = false;
@@ -62,13 +63,13 @@
   stylixEnable = true;
 
   # Enable Syncthing File Synchronization
-  syncthingEnable = true;
+  syncthingEnable = false;
 
   # Window Manager Choice
   windowManager = "niri"; # Options: "niri" or "hyprland"
 
   # Bar/Shell Choice
-  barChoice = "noctalia"; # Options: "dms", "noctalia", or "waybar"
+  barChoice = "waybar"; # Options: "dms", "noctalia", or "waybar"
 
   # Shell Choice
   defaultShell = "zsh"; # Options: "fish" or "zsh"
