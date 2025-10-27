@@ -25,68 +25,136 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell";
     };
+    helium-browser = {
+      url = "github:fpletz/flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {nixpkgs, flake-utils, ...} @ inputs: let
-    system = "x86_64-linux";
+  outputs =
+    { nixpkgs, flake-utils, ... }@inputs:
+    let
+      system = "x86_64-linux";
 
-    # Helper function to create a host configuration
-    mkHost = {hostname, profile, username}: nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = {
-        inherit inputs;
-        host = hostname;
-        inherit profile;
-        inherit username;
-        zen-browser = inputs.zen-browser.packages.${system}.default;
-      };
-      modules = [./profiles/${profile}];
-    };
-
-  in {
-    nixosConfigurations = {
-      # GPU-based configurations (legacy)
-      amd = mkHost { hostname = "nixos-leno"; profile = "amd"; username = "don"; };
-      nvidia = mkHost { hostname = "nixos-leno"; profile = "nvidia"; username = "don"; };
-      nvidia-laptop = mkHost { hostname = "nixos-leno"; profile = "nvidia-laptop"; username = "don"; };
-      intel = mkHost { hostname = "nixos-leno"; profile = "intel"; username = "don"; };
-      vm = mkHost { hostname = "nixos-leno"; profile = "vm"; username = "don"; };
-
-      # Host-specific configurations
-      nixos-leno = mkHost { hostname = "nixos-leno"; profile = "nvidia-laptop"; username = "don"; };
-      leno-desktop = mkHost { hostname = "leno-desktop"; profile = "nvidia"; username = "don"; };
-      nix-desktop = mkHost { hostname = "nix-desktop"; profile = "nvidia"; username = "don"; };
-      nix-deck = mkHost { hostname = "nix-deck"; profile = "amd"; username = "don"; };
-      nix-lab = mkHost { hostname = "nix-lab"; profile = "intel"; username = "don"; };
-    };
-
-    # Flutter development environment
-    devShells = flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs {
+      # Helper function to create a host configuration
+      mkHost =
+        {
+          hostname,
+          profile,
+          username,
+        }:
+        nixpkgs.lib.nixosSystem {
           inherit system;
-          config = {
-            android_sdk.accept_license = true;
-            allowUnfree = true;
+          specialArgs = {
+            inherit inputs;
+            host = hostname;
+            inherit profile;
+            inherit username;
+            zen-browser = inputs.zen-browser.packages.${system}.default;
+            helium-browser = inputs.helium-browser.packages.${system}.helium-browser;
           };
-        };
-        buildToolsVersion = "33.0.2";
-        androidComposition = pkgs.androidenv.composeAndroidPackages {
-          buildToolsVersions = [ buildToolsVersion ];
-          platformVersions = [ "33" ];
-          abiVersions = [ "arm64-v8a" ];
-        };
-        androidSdk = androidComposition.androidsdk;
-      in
-      {
-        default = with pkgs; mkShell rec {
-          ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
-          buildInputs = [
-            flutter
-            androidSdk
-            jdk11
+          modules = [
+            ./profiles/${profile}
+            # Add custom packages overlay
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  webapp-manager = final.callPackage ./pkgs/webapp-manager { };
+                })
+              ];
+            }
           ];
         };
-      });
-  };
+
+    in
+    {
+      nixosConfigurations = {
+        # GPU-based configurations (legacy)
+        amd = mkHost {
+          hostname = "nixos-leno";
+          profile = "amd";
+          username = "don";
+        };
+        nvidia = mkHost {
+          hostname = "nixos-leno";
+          profile = "nvidia";
+          username = "don";
+        };
+        nvidia-laptop = mkHost {
+          hostname = "nixos-leno";
+          profile = "nvidia-laptop";
+          username = "don";
+        };
+        intel = mkHost {
+          hostname = "nixos-leno";
+          profile = "intel";
+          username = "don";
+        };
+        vm = mkHost {
+          hostname = "nixos-leno";
+          profile = "vm";
+          username = "don";
+        };
+
+        # Host-specific configurations
+        nixos-leno = mkHost {
+          hostname = "nixos-leno";
+          profile = "nvidia-laptop";
+          username = "don";
+        };
+        leno-desktop = mkHost {
+          hostname = "leno-desktop";
+          profile = "nvidia";
+          username = "don";
+        };
+        nix-desktop = mkHost {
+          hostname = "nix-desktop";
+          profile = "nvidia";
+          username = "don";
+        };
+        nix-deck = mkHost {
+          hostname = "nix-deck";
+          profile = "amd";
+          username = "don";
+        };
+        nix-lab = mkHost {
+          hostname = "nix-lab";
+          profile = "intel";
+          username = "don";
+        };
+      };
+
+      # Flutter development environment
+      devShells = flake-utils.lib.eachDefaultSystem (
+        system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            config = {
+              android_sdk.accept_license = true;
+              allowUnfree = true;
+            };
+          };
+          buildToolsVersion = "33.0.2";
+          androidComposition = pkgs.androidenv.composeAndroidPackages {
+            buildToolsVersions = [ buildToolsVersion ];
+            platformVersions = [ "33" ];
+            abiVersions = [ "arm64-v8a" ];
+          };
+          androidSdk = androidComposition.androidsdk;
+        in
+        {
+          default =
+            with pkgs;
+            mkShell rec {
+              ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
+              buildInputs = [
+                flutter
+                androidSdk
+                jdk11
+              ];
+            };
+        }
+      );
+    };
 }

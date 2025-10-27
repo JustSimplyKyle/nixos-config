@@ -6,10 +6,11 @@
   ...
 }:
 let
-  # Determine which bar to launch - returns the full spawn command
+  # Determine which bar to launch
   barStartupCommand =
     if barChoice == "dms" then
-      ''spawn-at-startup "dms-start"''
+      # ''spawn-at-startup "${builtins.getEnv "HOME"}/.local/bin/dms" "run"''
+      ''spawn-at-startup "dms" "run"''
     else if barChoice == "noctalia" then
       ''spawn-at-startup "noctalia-shell"''
     else
@@ -17,10 +18,10 @@ let
 in
 ''
   spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
+  ${barStartupCommand}
   spawn-at-startup "swww-daemon"
   spawn-at-startup "swww" "img" "${stylixImage}"
   spawn-at-startup "wal" "-R"
-  ${barStartupCommand}
   spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
   spawn-at-startup "/usr/lib/xdg-desktop-portal-gtk"
   spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"

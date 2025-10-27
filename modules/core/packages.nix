@@ -2,6 +2,7 @@
   pkgs,
   lib,
   zen-browser,
+  helium-browser,
   ...
 }:
 {
@@ -115,6 +116,7 @@
     nwg-dock-hyprland
     popsicle
     zen-browser # Zen Browser
+    helium-browser # Helium Browser
     teams-for-linux # Video Meetings
     zoom-us # Video Meetings
     telegram-desktop # Messaging App
@@ -128,7 +130,7 @@
     androidenv.androidPkgs.ndk-bundle
     # Firebase CLI
     # firebase-tools # Temporarily disabled due to build issues with missing package-lock.json
-    quick-webapps
+    webapp-manager
     gum
     gtk3
     gtk4

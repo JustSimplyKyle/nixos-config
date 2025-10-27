@@ -21,7 +21,7 @@
           // Up swipe scrolls down, down swipe scrolls up (natural direction)
           natural-scroll
       }
-      /-mouse {
+      mouse {
           accel-profile "adaptive"
           accel-speed 1.0
       }

@@ -56,7 +56,7 @@
   printEnable = false;
   thunarEnable = true;
   controllerSupportEnable = true;
-  flutterdevEnable = false;
+  flutterdevEnable = true;
   syncthingEnable = false;
 
   # Window Manager Choice
