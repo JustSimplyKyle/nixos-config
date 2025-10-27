@@ -121,13 +121,13 @@
     zoom-us # Video Meetings
     telegram-desktop # Messaging App
     vesktop # Discord Alternative
-    android-studio # Android Studio
+    #android-studio # Android Studio   # Need to make as a selectable option 
     chromium # Browser
     google-chrome # Browser
     # Dev Packages
-    androidenv.androidPkgs.platform-tools # This includes adb
-    androidenv.androidPkgs.emulator # For Android emulator
-    androidenv.androidPkgs.ndk-bundle
+    #androidenv.androidPkgs.platform-tools # This includes adb
+    #androidenv.androidPkgs.emulator # For Android emulator
+    #androidenv.androidPkgs.ndk-bundle
     # Firebase CLI
     # firebase-tools # Temporarily disabled due to build issues with missing package-lock.json
     webapp-manager
