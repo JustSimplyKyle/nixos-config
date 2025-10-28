@@ -3,9 +3,12 @@
   lib,
   zen-browser,
   helium-browser,
-  windowManager ? "hyprland",
+  host,
   ...
 }:
+let
+  inherit (import ../../hosts/${host}/variables.nix) windowManager;
+in
 {
   programs = {
     neovim = {
