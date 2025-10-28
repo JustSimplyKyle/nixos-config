@@ -3,9 +3,12 @@
   lib,
   pkgs,
   username,
-  flutterdevEnable ? false,
+  host,
   ...
 }:
+let
+  inherit (import ../../hosts/${host}/variables.nix) flutterdevEnable;
+in
 {
   config = lib.mkIf flutterdevEnable {
     # Allow unfree packages for Flutter development
