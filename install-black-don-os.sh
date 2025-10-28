@@ -244,8 +244,8 @@ print_header "Cloning Black-Don-OS Repository"
 if [ "$SKIP_CLONE" = true ]; then
   echo -e "${GREEN}Skipping clone; using existing repo at ~/black-don-os${NC}"
 else
-  echo -e "Cloning from: ${BLUE}https://gitlab.com/theblackdon/black-don-os.git${NC}"
-  git clone https://gitlab.com/theblackdon/black-don-os.git --depth=1 -b main ~/black-don-os
+  echo -e "Cloning from: ${BLUE}https://gitlab.com/theblackdon/black-don-os.git${NC} (branch: bdos-beta-0.4)"
+  git clone https://gitlab.com/theblackdon/black-don-os.git --depth=1 -b bdos-beta-0.4 ~/black-don-os
   if [ $? -ne 0 ]; then
     print_error "Failed to clone Black-Don-OS repository"
     exit 1
