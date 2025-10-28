@@ -39,8 +39,6 @@
     builtins.elem (lib.getName pkg) [
       "cursor"
       "zed"
-      "flutter"
-      "jdk"
       "claude"
     ];
 
@@ -111,7 +109,6 @@
     # Development Tools
     #code-cursor # AI IDE
     zed-editor # Another AI IDE
-    # flutter # Flutter SDK
     # jdk # Java Development Kit
     claude-code # For native development
     nwg-dock-hyprland
@@ -122,13 +119,10 @@
     zoom-us # Video Meetings
     telegram-desktop # Messaging App
     vesktop # Discord Alternative
-    #android-studio # Android Studio   # Need to make as a selectable option
     chromium # Browser
     google-chrome # Browser
-    # Dev Packages
-    # androidenv.androidPkgs.platform-tools # This includes adb
-    # androidenv.androidPkgs.emulator # For Android emulator
-    # androidenv.androidPkgs.ndk-bundle
+    # Note: Flutter and Android development packages are in modules/core/flutter-dev.nix
+    # Enable with flutterdevEnable = true in variables.nix
     # Firebase CLI
     # firebase-tools # Temporarily disabled due to build issues with missing package-lock.json
     gum

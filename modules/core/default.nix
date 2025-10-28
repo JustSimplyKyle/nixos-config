@@ -4,6 +4,7 @@
     ./boot.nix
     ./controller-support.nix
     ./flatpak.nix
+    ./flutter-dev.nix
     ./fonts.nix
     ./greetd.nix
     ./ly.nix
