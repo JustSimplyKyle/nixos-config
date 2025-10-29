@@ -122,7 +122,7 @@ if [ "$hostName" = "default" ]; then
 fi
 
 # Validate hostname format
-if [[ ! "$hostName" =~ ^[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]$|^[a-zA-Z0-9]$ ]]; then
+if [[ ! "$hostName" =~ ^[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?$ ]]; then
   print_error "Invalid hostname format. Use only letters, numbers, and hyphens."
   print_error "Setting hostname to 'my-desktop' to prevent issues."
   hostName="my-desktop"
@@ -517,6 +517,12 @@ cat > hosts/"$hostName"/variables.nix << EOF
   flutterdevEnable = false;
   syncthingEnable = false;
 
+  # Optional Package Groups (set to false for faster initial install)
+  # You can enable these later by editing this file and rebuilding
+  enableCommunicationApps = false;  # Teams, Zoom, Telegram, Discord
+  enableExtraBrowsers = false;      # Chromium, Google Chrome
+  enableProductivityApps = false;   # Obsidian, GNOME Boxes, QuickEmu
+
   # Window Manager Choice
   windowManager = "$windowManager"; # Options: "niri" or "hyprland"
 
@@ -599,32 +605,48 @@ else
   # Add the new host to flake.nix
   echo -e "${GREEN}Adding $hostName to flake.nix...${NC}"
 
-  # Insert the new host inside the nixosConfigurations attrset, just before its closing brace
-  awk -v hostname="$hostName" -v profile="$profile" -v username="$newUsername" '
-    /nixosConfigurations = \{/ {
-      in_nc = 1
-      depth = 1
-      print $0
-      next
-    }
-    in_nc {
-      # Track brace depth to find the end of nixosConfigurations
-      opens = gsub(/\{/, "{")
-      closes = gsub(/\}/, "}")
-      depth += opens - closes
-      if (depth == 0) {
-        # Before printing the closing of nixosConfigurations, inject our host
-        print "      # User-created host configuration"
-        print "      " hostname " = mkHost { hostname = \"" hostname "\"; profile = \"" profile "\"; username = \"" username "\"; };"
-        print $0
-        in_nc = 0
-        next
-      }
-      print $0
-      next
-    }
-    { print $0 }
-  ' flake.nix.backup > flake.nix
+  # Use a more robust sed-based approach to add the host
+  # Find the line with "default = mkHost" and add the new host after the closing brace of nixosConfigurations
+  if grep -q "default = mkHost" flake.nix; then
+    # Insert new host entry before the closing brace of nixosConfigurations
+    sed -i "/^      };$/i\\
+\\
+        # User-created host configuration\\
+        $hostName = mkHost {\\
+          hostname = \"$hostName\";\\
+          profile = \"$profile\";\\
+          username = \"$newUsername\";\\
+        };" flake.nix
+
+    if [ $? -eq 0 ]; then
+      echo -e "${GREEN}✓ Successfully added $hostName to flake.nix${NC}"
+    else
+      print_error "Failed to modify flake.nix with sed, trying alternative method..."
+      # Fallback: manual insertion at specific line
+      cp flake.nix.backup flake.nix
+
+      # Find the line number of the nixosConfigurations closing brace
+      closing_line=$(grep -n "^      };$" flake.nix | grep -A 2 "nixosConfigurations" | tail -1 | cut -d: -f1)
+
+      if [ -n "$closing_line" ]; then
+        # Insert before that line
+        sed -i "${closing_line}i\\
+\\
+        # User-created host configuration\\
+        $hostName = mkHost {\\
+          hostname = \"$hostName\";\\
+          profile = \"$profile\";\\
+          username = \"$newUsername\";\\
+        };" flake.nix
+      else
+        print_error "Could not find insertion point in flake.nix"
+        print_error "Manual flake.nix editing may be required"
+      fi
+    fi
+  else
+    print_error "Could not find default host in flake.nix"
+    print_error "Manual flake.nix editing may be required"
+  fi
 fi
 
 # Update timezone in system.nix
@@ -638,6 +660,31 @@ fi
 git add .
 
 echo -e "${GREEN}Configuration files updated successfully!${NC}"
+
+# Verify the flake.nix modification worked
+print_header "Validating Flake Configuration"
+if grep -q "\"$hostName\"" flake.nix; then
+  echo -e "${GREEN}✓ Host $hostName found in flake.nix${NC}"
+else
+  print_error "Host $hostName was not added to flake.nix!"
+  print_error "You may need to manually add it before building."
+  read -p "Continue anyway? (y/N): " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo -e "${RED}Installation cancelled. Please check flake.nix${NC}"
+    exit 1
+  fi
+fi
+
+# Validate flake syntax
+echo -e "${YELLOW}Checking flake syntax...${NC}"
+if nix flake metadata --no-write-lock-file . >/dev/null 2>&1; then
+  echo -e "${GREEN}✓ Flake syntax is valid${NC}"
+else
+  print_warning "Flake syntax check failed. This may cause build issues."
+  print_warning "Attempting to show flake anyway..."
+  nix flake show --no-write-lock-file . 2>&1 | head -20
+fi
 
 # Verify the updates worked
 echo -e "${GREEN}Verifying configuration updates:${NC}"
@@ -661,8 +708,18 @@ echo -e "  👤  Username: ${GREEN}$newUsername${NC}"
 echo -e "  🌍  Timezone: ${GREEN}$timezone${NC}"
 echo -e "  ⌨️   Keyboard: ${GREEN}$keyboardLayout${NC}"
 echo ""
+echo -e "${GREEN}⚡ Build Optimization Enabled!${NC}"
+echo -e "${GREEN}Large optional packages are disabled for faster initial install.${NC}"
+echo -e "After installation, you can enable optional apps by editing:"
+echo -e "${BLUE}~/black-don-os/hosts/$hostName/variables.nix${NC}"
+echo ""
+echo -e "Optional package groups you can enable later:"
+echo -e "  • ${YELLOW}enableCommunicationApps${NC} - Teams, Zoom, Telegram, Discord"
+echo -e "  • ${YELLOW}enableExtraBrowsers${NC} - Chromium, Google Chrome"
+echo -e "  • ${YELLOW}enableProductivityApps${NC} - Obsidian, GNOME Boxes, QuickEmu"
+echo ""
 echo -e "${YELLOW}This will build and apply your Black-Don-OS configuration.${NC}"
-echo -e "${YELLOW}The build process may take 10-30 minutes depending on your hardware.${NC}"
+echo -e "${YELLOW}The build process should take 10-20 minutes depending on your hardware.${NC}"
 echo ""
 
 read -p "Ready to run the build? (Y/N): " -n 1 -r

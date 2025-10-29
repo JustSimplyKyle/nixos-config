@@ -118,12 +118,8 @@ in
     popsicle
     zen-browser # Zen Browser
     helium-browser # Helium Browser
-    teams-for-linux # Video Meetings
-    zoom-us # Video Meetings
-    telegram-desktop # Messaging App
-    vesktop # Discord Alternative
-    chromium # Browser
-    google-chrome # Browser
+    # Communication apps moved to modules/core/communication.nix
+    # Extra browsers moved to modules/core/browsers-extra.nix
     # Note: Flutter and Android development packages are in modules/core/flutter-dev.nix
     # Enable with flutterdevEnable = true in variables.nix
     # Firebase CLI
@@ -132,11 +128,8 @@ in
     gtk3
     gtk4
     localsend
-    obsidian
+    # Productivity apps moved to modules/core/productivity.nix
     gamescope
     protonup-qt
-    gnome-boxes # Simple VM manager
-    quickemu # Fast VM creation tool
-    quickgui # Optional GUI for quickemu
   ];
 }

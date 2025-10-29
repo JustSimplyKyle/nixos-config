@@ -65,6 +65,15 @@
   # Enable Syncthing File Synchronization
   syncthingEnable = false;
 
+  # Enable Communication Apps (Teams, Zoom, Telegram, Discord)
+  enableCommunicationApps = false;
+
+  # Enable Extra Browsers (Chromium, Google Chrome)
+  enableExtraBrowsers = false;
+
+  # Enable Productivity Apps (Obsidian, GNOME Boxes, QuickEmu)
+  enableProductivityApps = false;
+
   # Window Manager Choice
   windowManager = "niri"; # Options: "niri" or "hyprland"
 

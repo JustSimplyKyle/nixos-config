@@ -2,6 +2,8 @@
 {
   imports = [
     ./boot.nix
+    ./browsers-extra.nix
+    ./communication.nix
     ./controller-support.nix
     ./flatpak.nix
     ./flutter-dev.nix
@@ -16,6 +18,7 @@
     ./nh.nix
     ./packages.nix
     ./printing.nix
+    ./productivity.nix
     ./security.nix
     ./services.nix
     ./starfish.nix
