@@ -47,64 +47,47 @@ Black Don OS installs directly on your hardware, replacing or dual-booting with 
 > 3. Done! The whole process takes about 30-45 minutes.
 
 #### Step 1: Create NixOS Installation Media
-1. Download the latest NixOS ISO from [nixos.org/download](https://nixos.org/download)
-2. Create a bootable USB drive with the ISO
+1. Download the **GNOME ISO** from [nixos.org/download](https://nixos.org/download)
+   - Choose "GNOME, 64-bit Intel/AMD" under "Graphical ISO image"
+2. Create a bootable USB drive with the ISO using:
+   - [Etcher](https://etcher.balena.io/) (Windows/Mac/Linux)
+   - [Rufus](https://rufus.ie/) (Windows)
+   - `dd` command (Linux)
 3. Boot your computer from the USB drive
 
 #### Step 2: Install Base NixOS System
-1. **Boot from the NixOS ISO** - you'll see a terminal
-2. **Connect to the internet**:
-   ```bash
-   # For WiFi (if needed)
-   sudo systemctl start wpa_supplicant
-   
-   # For ethernet, it should connect automatically
-   ping google.com  # Test connection
-   ```
+1. **Boot from the NixOS ISO** - you'll see the GNOME desktop
+2. **Connect to WiFi** (if needed) using the network icon in the top-right corner
+3. **Open the NixOS installer**:
+   - Double-click the "Install NixOS" icon on the desktop
+   - Or search for "Calamares" in the application menu
 
-3. **Partition your disk** (example for a simple setup):
-   ```bash
-   # WARNING: This will erase your disk! Adjust as needed.
-   # For a simple UEFI setup:
-   sudo parted /dev/sda -- mklabel gpt
-   sudo parted /dev/sda -- mkpart ESP fat32 1MiB 512MiB
-   sudo parted /dev/sda -- set 1 esp on
-   sudo parted /dev/sda -- mkpart primary 512MiB 100%
-   
-   # Format partitions
-   sudo mkfs.fat -F 32 -n boot /dev/sda1
-   sudo mkfs.ext4 -L nixos /dev/sda2
-   
-   # Mount filesystems
-   sudo mount /dev/disk/by-label/nixos /mnt
-   sudo mkdir -p /mnt/boot
-   sudo mount /dev/disk/by-label/boot /mnt/boot
-   ```
-
-4. **Install minimal NixOS**:
-   ```bash
-   sudo nixos-generate-config --root /mnt
-   sudo nixos-install
-   # Set root password when prompted
-   ```
+4. **Follow the graphical installer**:
+   - **Welcome**: Select your language
+   - **Location**: Choose your timezone
+   - **Keyboard**: Select your keyboard layout
+   - **Partitions**: Choose how to set up your disk
+     - "Erase disk" for a clean install (recommended for beginners)
+     - "Manual partitioning" for advanced users or dual-boot
+   - **Users**: Create your username and password
+   - **Summary**: Review your choices
+   - **Install**: Click "Install" and wait (takes 10-15 minutes)
 
 5. **Reboot into your new NixOS system**:
-   ```bash
-   reboot
-   # Remove the USB drive during reboot
-   ```
+   - Click "Restart now" when installation completes
+   - Remove the USB drive when prompted
 
 #### Step 3: Install Black Don OS
-1. **Log in as root** (or the user you created)
+1. **Log in to your new NixOS system** with the user you created
 
-2. **Connect to the internet again** (if needed)
+2. **Open a terminal** (press `Super` key and type "terminal")
 
-3. **Install dependencies**:
+3. **Install git** (if not already installed):
    ```bash
-   nix-shell -p git pciutils
+   nix-shell -p git
    ```
 
-4. **Clone and run the installer**:
+4. **Clone and run the Black Don OS installer**:
    ```bash
    git clone https://gitlab.com/theblackdon/black-don-os
    cd black-don-os
