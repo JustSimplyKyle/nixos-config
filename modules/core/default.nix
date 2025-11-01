@@ -1,6 +1,7 @@
 { inputs, ... }:
 {
   imports = [
+    ./ai-code-editors.nix
     ./boot.nix
     ./browsers-extra.nix
     ./communication.nix

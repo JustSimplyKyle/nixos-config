@@ -74,6 +74,9 @@
   # Enable Productivity Apps (Obsidian, GNOME Boxes, QuickEmu)
   enableProductivityApps = false;
 
+  # Enable AI Code Editors (cursor, claude-code, gemini-cli)
+  aiCodeEditorsEnable = false;
+
   # Enable Hyprlock (Hyprland lock screen)
   # Set to false if using DMS or Noctalia lock screens
   enableHyprlock = true;

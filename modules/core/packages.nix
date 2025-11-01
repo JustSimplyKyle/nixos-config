@@ -37,9 +37,7 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
-      "cursor"
       "zed"
-      "claude"
     ];
 
   environment.systemPackages = with pkgs; [
@@ -104,14 +102,12 @@
     youtube-music
     zen-browser # Default browser
     # Development Tools
-    #code-cursor # AI IDE
-    zed-editor # Another AI IDE
-    claude-code # For native development
+    zed-editor # Code editor with AI features
     popsicle
+    # AI code editors (cursor, claude-code, gemini-cli) moved to modules/core/ai-code-editors.nix
     gum
     gtk3
     gtk4
     localsend
-    # Gaming support (gamescope, protonup-qt, controllers) moved to modules/core/gaming-support.nix
   ];
 }
