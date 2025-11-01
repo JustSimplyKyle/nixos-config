@@ -1,0 +1,17 @@
+# Claude Code agent directories
+.claude/
+claude/
+
+# NixOS build artifacts
+result
+result-*
+
+# Temporary and editor files
+*~
+*.swp
+*.swo
+.*.swp
+.*.swo
+
+# Nix build directories
+.direnv/
