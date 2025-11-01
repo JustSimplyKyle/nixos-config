@@ -17,6 +17,26 @@ Black Don OS is a pre-configured NixOS setup that makes it easy to get started w
 
 ## ⚡ Quick Start
 
+### System Requirements
+
+**Minimum Requirements:**
+- **CPU**: 64-bit processor (x86_64)
+- **RAM**: 4 GB (8 GB recommended)
+- **Storage**: 30 GB free space (50 GB+ recommended)
+- **Graphics**: Any GPU with basic 3D acceleration
+- **Display**: 1280x720 or higher resolution
+- **Boot**: UEFI or Legacy BIOS support
+- **Internet**: Required during installation
+
+**Recommended for Best Experience:**
+- **CPU**: Modern quad-core processor (Intel i5/Ryzen 5 or better)
+- **RAM**: 16 GB or more
+- **Storage**: 100 GB+ SSD
+- **Graphics**: Dedicated GPU (NVIDIA/AMD) for best compositor performance
+- **Display**: 1920x1080 or higher, multi-monitor supported
+
+> **💡 Note:** Black Don OS works great on older hardware too! The minimal install is lightweight, and you can enable heavier features only if you want them.
+
 ### Installation
 
 Black Don OS installs directly on your hardware, replacing or dual-booting with your existing system.
