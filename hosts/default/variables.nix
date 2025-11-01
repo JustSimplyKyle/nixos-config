@@ -53,8 +53,8 @@
   # Enable Thunar GUI File Manager
   thunarEnable = true;
 
-  # Enable Controller Support For Gaming
-  controllerSupportEnable = false;
+  # Enable Gaming Support (controllers, gamescope, protonup-qt)
+  gamingSupportEnable = false;
 
   # Enable Flutter Development Environment
   flutterdevEnable = false;

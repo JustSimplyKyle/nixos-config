@@ -97,9 +97,6 @@
     wget # Tool For Fetching Files With Links
     xwayland-satellite # Xwayland outside your Wayland compositor
     ytmdl # Tool For Downloading Audio From YouTube
-    # Apps
-    nemo # File Manager
-    nemo-fileroller # Archive Manager Integration For Nemo
     nwg-displays # Manage Displays
     nwg-drawer # drawer GUI
     nwg-look # Look GUI
@@ -109,22 +106,12 @@
     # Development Tools
     #code-cursor # AI IDE
     zed-editor # Another AI IDE
-    # jdk # Java Development Kit
     claude-code # For native development
-    nwg-dock-hyprland
     popsicle
-    # Extra browsers (vivaldi, brave, helium, etc.) moved to modules/core/browsers-extra.nix
-    # Communication apps moved to modules/core/communication.nix
-    # Note: Flutter and Android development packages are in modules/core/flutter-dev.nix
-    # Enable with flutterdevEnable = true in variables.nix
-    # Firebase CLI
-    # firebase-tools # Temporarily disabled due to build issues with missing package-lock.json
     gum
     gtk3
     gtk4
     localsend
-    # Productivity apps moved to modules/core/productivity.nix
-    gamescope
-    protonup-qt
+    # Gaming support (gamescope, protonup-qt, controllers) moved to modules/core/gaming-support.nix
   ];
 }

@@ -4,7 +4,7 @@
     ./boot.nix
     ./browsers-extra.nix
     ./communication.nix
-    ./controller-support.nix
+    ./gaming-support.nix
     ./flatpak.nix
     ./flutter-dev.nix
     ./fonts.nix

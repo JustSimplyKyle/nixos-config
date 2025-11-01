@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  inherit (import ../../hosts/${host}/variables.nix) controllerSupportEnable;
+  inherit (import ../../hosts/${host}/variables.nix) gamingSupportEnable;
 in
-lib.mkIf controllerSupportEnable {
+lib.mkIf gamingSupportEnable {
   # Enable kernel modules for controller support
   boot.kernelModules = [
     "uinput"      # User input module for virtual devices
@@ -81,8 +81,12 @@ lib.mkIf controllerSupportEnable {
     SUBSYSTEM=="input", ATTRS{name}=="*Joy-Con*", MODE="0666", TAG+="uaccess"
   '';
 
-  # System packages for controller support
+  # System packages for gaming support
   environment.systemPackages = with pkgs; [
+    # Gaming tools
+    gamescope # Gaming-focused Wayland compositor
+    protonup-qt # Proton-GE and other compatibility tool installer
+
     # SDL2 with controller support
     SDL2
 
