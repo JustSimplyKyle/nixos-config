@@ -2,13 +2,9 @@
   pkgs,
   lib,
   zen-browser,
-  helium-browser,
   host,
   ...
 }:
-let
-  inherit (import ../../hosts/${host}/variables.nix) windowManager;
-in
 {
   programs = {
     neovim = {
@@ -18,12 +14,13 @@ in
     firefox.enable = false; # Firefox is not installed by default
     dconf.enable = true;
     seahorse.enable = true;
-    hyprland = lib.mkIf (windowManager == "hyprland") {
-      enable = true; # Create desktop file and dependencies if you switch to GUI login MGR
-      package = pkgs.hyprland; # Using unstable nixpkgs for latest version
-      portalPackage = pkgs.xdg-desktop-portal-hyprland; # Use matching portal version
+    # Hyprland always enabled - both WMs available at login
+    hyprland = {
+      enable = true; # Create desktop file and dependencies
+      package = pkgs.hyprland;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
-    hyprlock.enable = lib.mkIf (windowManager == "hyprland") true; # resolve pam issue https://gitlab.com/Zaney/zaneyos/-/issues/164
+    hyprlock.enable = true; # Resolve pam issue, can be disabled per-host via enableHyprlock
     fuse.userAllowOther = true;
     mtr.enable = true;
     adb.enable = true;
@@ -107,8 +104,8 @@ in
     nwg-drawer # drawer GUI
     nwg-look # Look GUI
     rofi-emoji # rofi-emoji-wayland merged into rofi-emoji in nixpkgs-unstable
-    vivaldi # Browser
     youtube-music
+    zen-browser # Default browser
     # Development Tools
     #code-cursor # AI IDE
     zed-editor # Another AI IDE
@@ -116,10 +113,8 @@ in
     claude-code # For native development
     nwg-dock-hyprland
     popsicle
-    zen-browser # Zen Browser
-    helium-browser # Helium Browser
+    # Extra browsers (vivaldi, brave, helium, etc.) moved to modules/core/browsers-extra.nix
     # Communication apps moved to modules/core/communication.nix
-    # Extra browsers moved to modules/core/browsers-extra.nix
     # Note: Flutter and Android development packages are in modules/core/flutter-dev.nix
     # Enable with flutterdevEnable = true in variables.nix
     # Firebase CLI

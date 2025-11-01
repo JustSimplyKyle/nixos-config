@@ -79,7 +79,7 @@
   enableHyprlock = true;
 
   # Bar/Shell Choice
-  barChoice = "waybar"; # Options: "dms", "noctalia", or "waybar"
+  barChoice = "dms"; # Options: "dms", "noctalia", or "waybar"
 
   # Shell Choice
   defaultShell = "zsh"; # Options: "fish" or "zsh"
