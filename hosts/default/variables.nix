@@ -74,18 +74,15 @@
   # Enable Productivity Apps (Obsidian, GNOME Boxes, QuickEmu)
   enableProductivityApps = false;
 
-  # Window Manager Choice
-  windowManager = "niri"; # Options: "niri" or "hyprland"
+  # Enable Hyprlock (Hyprland lock screen)
+  # Set to false if using DMS or Noctalia lock screens
+  enableHyprlock = true;
 
   # Bar/Shell Choice
   barChoice = "waybar"; # Options: "dms", "noctalia", or "waybar"
 
   # Shell Choice
   defaultShell = "zsh"; # Options: "fish" or "zsh"
-
-  # Display Manager Options (choose one - add to host's default.nix)
-  # services.greetd.enable = true;           # greetd with tuigreet (default)
-  # services.displayManager.ly.enable = true; # ly with matrix animation
 
   # Set Stylix Image
   #stylixImage = ../../wallpapers/AnimeGirlNightSky.jpg;

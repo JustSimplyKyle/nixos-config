@@ -59,11 +59,9 @@ in
     ./environment.nix
   ]
 
-  # Window Manager - conditional import based on windowManager variable
-  ++ lib.optionals (windowManager == "niri") [
+  # Window Managers - Both always available, user selects at login
+  ++ [
     ./niri
-  ]
-  ++ lib.optionals (windowManager == "hyprland") [
     ./hyprland
   ]
 
