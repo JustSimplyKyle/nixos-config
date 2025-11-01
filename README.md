@@ -92,7 +92,9 @@ extraMonitorSettings = ''
 
 After making changes, rebuild:
 ```bash
-sudo nixos-rebuild switch --flake ~/black-don-os#YOUR-HOSTNAME
+dcli rebuild
+# or simply use the alias:
+fr
 ```
 
 ## 🪟 Window Managers
@@ -161,8 +163,10 @@ They can have completely different settings, packages, and features enabled.
 
 ```bash
 cd ~/black-don-os
-git pull
-sudo nixos-rebuild switch --flake .#YOUR-HOSTNAME
+dcli pull      # Pull latest changes
+dcli update    # Update flake inputs and rebuild
+# or use the alias:
+fu             # Fast update
 ```
 
 ## 🆘 Troubleshooting
@@ -171,7 +175,11 @@ sudo nixos-rebuild switch --flake .#YOUR-HOSTNAME
 
 If the build fails, try:
 ```bash
-sudo nixos-rebuild switch --flake .#YOUR-HOSTNAME --show-trace
+# Generate diagnostic report
+dcli diag
+
+# Rebuild with detailed output
+sudo nixos-rebuild switch --flake ~/black-don-os#YOUR-HOSTNAME --show-trace
 ```
 
 ### Monitor Not Working
@@ -200,12 +208,32 @@ If using DMS or Noctalia lock screens:
 enableHyprlock = false;  # in variables.nix
 ```
 
+## 🛠️ dcli - Don's CLI Tool
+
+Black Don OS includes `dcli`, a powerful command-line utility for managing your system:
+
+### Quick Commands
+```bash
+dcli rebuild      # Rebuild current system
+dcli update       # Update and rebuild
+dcli list-hosts   # List available configurations
+dcli cleanup      # Remove old generations
+dcli diag         # Generate diagnostic report
+
+# Convenient aliases
+fr                # Fast rebuild (dcli rebuild)
+fu                # Fast update (dcli update)
+```
+
+See [dcli.md](dcli.md) for complete documentation.
+
 ## 💡 Tips for NixOS Newcomers
 
+- **Use dcli commands** - Simpler than remembering nixos-rebuild syntax
 - **Everything is declarative** - Your entire system is defined in text files
 - **Rebuilding is safe** - If something breaks, boot into the previous generation
-- **No reinstall needed** - Just edit files and rebuild
-- **Git is your friend** - Commit your changes to track your configuration history
+- **No reinstall needed** - Just edit files and rebuild with `fr`
+- **Git is your friend** - Use `dcli commit` to track your configuration changes
 - **Read the variables** - Most customization happens in `variables.nix`
 
 ## 🤝 Getting Help
