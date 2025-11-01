@@ -19,14 +19,72 @@ Black Don OS is a pre-configured NixOS setup that makes it easy to get started w
 
 ### Installation
 
-1. **Boot from NixOS ISO** and ensure you have network access
+Black Don OS installs directly on your hardware, replacing or dual-booting with your existing system.
 
-2. **Install dependencies**:
+> **📝 Note:** Don't be intimidated by the steps below! The process is straightforward:
+> 1. Boot NixOS ISO → Install base NixOS → Reboot
+> 2. Run Black Don OS installer → Reboot
+> 3. Done! The whole process takes about 30-45 minutes.
+
+#### Step 1: Create NixOS Installation Media
+1. Download the latest NixOS ISO from [nixos.org/download](https://nixos.org/download)
+2. Create a bootable USB drive with the ISO
+3. Boot your computer from the USB drive
+
+#### Step 2: Install Base NixOS System
+1. **Boot from the NixOS ISO** - you'll see a terminal
+2. **Connect to the internet**:
+   ```bash
+   # For WiFi (if needed)
+   sudo systemctl start wpa_supplicant
+   
+   # For ethernet, it should connect automatically
+   ping google.com  # Test connection
+   ```
+
+3. **Partition your disk** (example for a simple setup):
+   ```bash
+   # WARNING: This will erase your disk! Adjust as needed.
+   # For a simple UEFI setup:
+   sudo parted /dev/sda -- mklabel gpt
+   sudo parted /dev/sda -- mkpart ESP fat32 1MiB 512MiB
+   sudo parted /dev/sda -- set 1 esp on
+   sudo parted /dev/sda -- mkpart primary 512MiB 100%
+   
+   # Format partitions
+   sudo mkfs.fat -F 32 -n boot /dev/sda1
+   sudo mkfs.ext4 -L nixos /dev/sda2
+   
+   # Mount filesystems
+   sudo mount /dev/disk/by-label/nixos /mnt
+   sudo mkdir -p /mnt/boot
+   sudo mount /dev/disk/by-label/boot /mnt/boot
+   ```
+
+4. **Install minimal NixOS**:
+   ```bash
+   sudo nixos-generate-config --root /mnt
+   sudo nixos-install
+   # Set root password when prompted
+   ```
+
+5. **Reboot into your new NixOS system**:
+   ```bash
+   reboot
+   # Remove the USB drive during reboot
+   ```
+
+#### Step 3: Install Black Don OS
+1. **Log in as root** (or the user you created)
+
+2. **Connect to the internet again** (if needed)
+
+3. **Install dependencies**:
    ```bash
    nix-shell -p git pciutils
    ```
 
-3. **Clone and install**:
+4. **Clone and run the installer**:
    ```bash
    git clone https://gitlab.com/theblackdon/black-don-os
    cd black-don-os
@@ -35,12 +93,20 @@ Black Don OS is a pre-configured NixOS setup that makes it easy to get started w
 
 The installer will:
 - ✅ Detect your hardware automatically
-- ✅ Ask for hostname and username
+- ✅ Ask for hostname and username (only 3 questions!)
 - ✅ Generate hardware configuration
 - ✅ Build and install Black Don OS
 - ✅ Set up both Hyprland and Niri window managers
 
-**That's it!** After installation, you can choose between Hyprland or Niri at the login screen.
+5. **Reboot to complete installation**:
+   ```bash
+   reboot
+   ```
+
+**That's it!** After the final reboot, you'll see the SDDM login screen where you can:
+- Log in with your username
+- Choose between Hyprland or Niri from the session menu
+- Enjoy your new Black Don OS desktop!
 
 ### What You Get Out of the Box
 
