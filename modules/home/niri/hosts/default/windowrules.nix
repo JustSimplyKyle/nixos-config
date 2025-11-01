@@ -1,11 +1,6 @@
 { host, ... }:
-let
-  inherit (import ../../../../hosts/${host}/variables.nix)
-    extraMonitorSettings
-    ;
-in
 ''
-  // Host-specific window rules for ${host}
+  // Host-specific window rules for default
   // Add your custom window rules here
 
   // Example:

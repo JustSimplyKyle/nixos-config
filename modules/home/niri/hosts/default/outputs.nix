@@ -1,11 +1,6 @@
 { host, ... }:
-let
-  inherit (import ../../../../hosts/${host}/variables.nix)
-    extraMonitorSettings
-    ;
-in
 ''
-  // Host-specific output configuration for ${host}
+  // Host-specific output configuration for default
   // Configure your monitors here
 
   output "eDP-1" {

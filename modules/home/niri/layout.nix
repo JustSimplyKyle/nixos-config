@@ -23,14 +23,13 @@
       }
       mouse {
           accel-profile "adaptive"
-          accel-speed 1.5 
+          accel-speed 1.0
       }
       trackpoint {
       }
 
       focus-follows-mouse max-scroll-amount="0%"
-      warp-mouse-to-focus
-      hide-cursor-when-typing
+      warp-mouse-to-focus true
   }
 
   layout {

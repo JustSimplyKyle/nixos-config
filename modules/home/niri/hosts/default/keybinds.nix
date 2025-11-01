@@ -1,16 +1,10 @@
 { host, ... }:
-let
-  inherit (import ../../../../hosts/${host}/variables.nix)
-    browser
-    terminal
-    ;
-in
 ''
-  // Host-specific keybinds for ${host}
+  // Host-specific keybinds for default
   // Add your custom keybinds here
 
   // Example:
   // binds {
-  //   Mod+Shift+B { spawn "${browser}"; }
+  //   Mod+Shift+B { spawn "zen"; }
   // }
 ''

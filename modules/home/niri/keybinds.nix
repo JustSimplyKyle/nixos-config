@@ -22,13 +22,13 @@ let
     if barChoice == "noctalia" then
       ''
         // === Noctalia Controls ===
-        Mod+Comma hotkey-overlay-title="Noctalia Settings" {
+        Mod+Comma {
             spawn "noctalia-shell" "ipc" "call" "settings" "toggle";
         }
-        Mod+Alt+S hotkey-overlay-title="Noctalia Settings" {
+        Mod+Alt+S {
             spawn "noctalia-shell" "ipc" "call" "settings" "toggle";
         }
-        Mod+Shift+C hotkey-overlay-title="Noctalia Control Center" {
+        Mod+Shift+C {
             spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle";
         }
       ''
@@ -40,24 +40,24 @@ let
     if barChoice == "dms" then
       ''
         // === DMS Controls ===
-        Mod+Comma hotkey-overlay-title="DMS Settings" { spawn "ignis" "open-window" "Settings"; }
-        Mod+Shift+V hotkey-overlay-title="Clipboard Manager" {
+        Mod+Comma { spawn "ignis" "open-window" "Settings"; }
+        Mod+Shift+V {
             spawn "dms" "ipc" "call" "clipboard" "toggle";
         }
-        Mod+M hotkey-overlay-title="Task Manager" {
+        Mod+M {
             spawn "dms" "ipc" "call" "processlist" "toggle";
         }
-        Mod+Alt+S hotkey-overlay-title="Settings" {
+        Mod+Alt+S {
             spawn "dms" "ipc" "call" "settings" "toggle";
         }
-        Mod+N hotkey-overlay-title="Notification Center" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
-        Mod+Shift+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
+        Mod+N { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+        Mod+Shift+N { spawn "dms" "ipc" "call" "notepad" "toggle"; }
 
         // === Security ===
-        Mod+Alt+L hotkey-overlay-title="Lock Screen" {
+        Mod+Alt+L {
             spawn "dms" "ipc" "call" "lock" "lock";
         }
-        Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" {
+        Ctrl+Alt+Delete {
             spawn "dms" "ipc" "call" "processlist" "toggle";
         }
 
@@ -94,16 +94,16 @@ in
       Mod+Shift+Slash { show-hotkey-overlay; }
 
       // === Application Launchers ===
-      Mod+T hotkey-overlay-title="Open Terminal" { spawn "${terminal}"; }
-      Mod+Enter hotkey-overlay-title="Open Terminal" { spawn "${terminal}"; }
-      Mod+Y hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-      Mod+Space hotkey-overlay-title="Application Launcher" { spawn ${launcherCommand}; }
+      Mod+T { spawn "${terminal}"; }
+      Mod+Enter { spawn "${terminal}"; }
+      Mod+Y { spawn "fuzzel"; }
+      Mod+Space { spawn ${launcherCommand}; }
 
       ${noctaliaKeybinds}
       ${dmsKeybinds}
 
       // === Security ===
-      Super+L hotkey-overlay-title="Hyprlock" { spawn "hyprlock"; }
+      Super+L { spawn "hyprlock"; }
       Mod+Shift+Q { quit; }
 
       // === Keyboard Brightness Controls ===
@@ -246,17 +246,17 @@ in
       Alt+Print { screenshot-window; }
 
       // === Ignis Screen Recording ===
-      Mod+Alt+Shift+R hotkey-overlay-title="Record Screen" { spawn "ignis" "run-command" "recorder-record-screen"; }
-      Mod+Alt+Shift+S hotkey-overlay-title="Record Region" { spawn "ignis" "run-command" "recorder-record-region"; }
-      Mod+Alt+Shift+W hotkey-overlay-title="Record Portal" { spawn "ignis" "run-command" "recorder-record-portal"; }
+      Mod+Alt+Shift+R { spawn "ignis" "run-command" "recorder-record-screen"; }
+      Mod+Alt+Shift+S { spawn "ignis" "run-command" "recorder-record-region"; }
+      Mod+Alt+Shift+W { spawn "ignis" "run-command" "recorder-record-portal"; }
 
       // === Noctalia Config Sync ===
-      Ctrl+Shift+S hotkey-overlay-title="Sync Noctalia GUI to Nix" {
+      Ctrl+Shift+S {
           spawn "sh" "-c" "/home/don/black-don-os/modules/home/noctalia-shell/sync-from-gui.py && notify-send 'Noctalia Config' 'Settings synced to Nix template' -i preferences-system";
       }
 
       // === System Controls ===
-      Mod+Escape hotkey-overlay-title="Ignis Power Menu" { spawn "ignis" "open-window" "PowerMenu"; }
+      Mod+Escape { spawn "ignis" "open-window" "PowerMenu"; }
       Mod+Alt+P { power-off-monitors; }
 
       // === Custom Application Launchers ===
