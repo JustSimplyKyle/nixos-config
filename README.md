@@ -82,9 +82,9 @@ Black Don OS installs directly on your hardware, replacing or dual-booting with 
 
 2. **Open a terminal** (press `Super` key and type "terminal")
 
-3. **Install git** (if not already installed):
+3. **Install required tools**:
    ```bash
-   nix-shell -p git
+   nix-shell -p git pciutils
    ```
 
 4. **Clone and run the Black Don OS installer**:
