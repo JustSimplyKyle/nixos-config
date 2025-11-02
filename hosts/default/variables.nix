@@ -59,10 +59,11 @@
 
   # Enable Hyprlock (Hyprland lock screen)
   # Set to false if using DMS or Noctalia lock screens
-  enableHyprlock = true;
+  enableHyprlock = false;
 
   # Bar/Shell Choice
-  barChoice = "dms"; # Options: "dms" or "noctalia"
+  barChoice = "noctalia"; # Options: "dms" or "noctalia"
+  # NOTE: If you change barChoice to "dms", you must run 'dms-install' after rebuilding
 
   # Shell Choice
   defaultShell = "zsh"; # Options: "fish" or "zsh"

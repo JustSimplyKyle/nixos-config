@@ -116,11 +116,11 @@ The installer will:
 - **Browser**: Zen Browser
 - **Terminal**: Kitty
 - **Shell**: Zsh with starship prompt
-- **Bar**: DMS & the option for Noctalia with beautiful themes
+- **Bar**: Noctalia (DMS also available as an option)
 - **File Manager**: Thunar
 - **Window Managers**: Both Hyprland and Niri
 - **Theming**: Stylix for system-wide color coordination
-- **Feature Modules**: Enable multiple features like Gaming Support, and Additonal Browsers
+- **Feature Modules**: Enable multiple features like Gaming Support, and Additional Browsers
 
 ## 🎨 Customization
 
@@ -134,7 +134,8 @@ After installation, customize your system by editing:
 
 #### Change Bar
 ```nix
- barChoice = "dms"; # Options: "dms", "noctalia"
+barChoice = "noctalia"; # Options: "dms", "noctalia"
+# NOTE: If you change to "dms", run 'dms-install' after rebuilding
 ```
 
 #### Change Your Wallpaper

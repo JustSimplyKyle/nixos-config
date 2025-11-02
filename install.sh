@@ -158,7 +158,7 @@ echo -e "${BLUE}Default Settings (you can change these later):${NC}"
 echo -e "  Browser:       zen"
 echo -e "  Terminal:      kitty"
 echo -e "  Shell:         zsh"
-echo -e "  Bar:           dms"
+echo -e "  Bar:           noctalia"
 echo -e "  Window Mgrs:   Both Hyprland and Niri (choose at login)"
 echo -e "  Timezone:      America/New_York"
 echo -e "  Keyboard:      us"
@@ -229,10 +229,11 @@ cat > "hosts/$hostname/variables.nix" << EOF
   aiCodeEditorsEnable = false;       # Claude-code, gemini-cli, cursor
 
   # Desktop Environment
-  enableHyprlock = true;  # Set to false if using DMS/Noctalia lock screens
+  enableHyprlock = false;  # Set to false if using DMS/Noctalia lock screens
 
   # Bar/Shell Choice
-  barChoice = "dms";      # Options: "dms" or "noctalia"
+  barChoice = "noctalia";      # Options: "dms" or "noctalia"
+  # NOTE: If you change barChoice to "dms", you must run 'dms-install' after rebuilding
 
   # Shell Choice
   defaultShell = "zsh";   # Options: "fish" or "zsh"
@@ -423,18 +424,6 @@ fi
 export NIX_CONFIG="experimental-features = nix-command flakes"
 
 if sudo nixos-rebuild switch --flake .#"$hostname"; then
-  echo ""
-  print_header "Installing DMS Components"
-  echo ""
-  echo -e "${BLUE}Installing Dank Material Shell (DMS) components...${NC}"
-  echo ""
-
-  if dms-install; then
-    print_success "DMS installed successfully"
-  else
-    print_error "DMS installation failed - you can run 'dms-install' manually later"
-  fi
-
   echo ""
   print_header "Installation Successful!"
   echo ""
