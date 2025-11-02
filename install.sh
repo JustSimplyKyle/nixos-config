@@ -266,8 +266,120 @@ EOF
 print_success "Host configuration created"
 echo ""
 
+# Create Hyprland host-specific configuration files
+print_header "Creating Window Manager Host Configurations"
+mkdir -p "modules/home/hyprland/hosts/$hostname"
+
+# Create binds.nix for Hyprland
+cat > "modules/home/hyprland/hosts/$hostname/binds.nix" << 'EOF'
+{host, ...}: let
+  inherit
+    (import ../../../../hosts/${host}/variables.nix)
+    browser
+    terminal
+    ;
+in {
+  # Host-specific binds for $HOSTNAME
+  # These will be merged with the default binds
+  bind = [
+    # Add host-specific keybinds here
+  ];
+
+  bindm = [
+    # Add host-specific mouse binds here
+  ];
+}
+EOF
+
+# Replace $HOSTNAME placeholder with actual hostname
+sed -i "s/\$HOSTNAME/$hostname/g" "modules/home/hyprland/hosts/$hostname/binds.nix"
+
+# Create windowrules.nix for Hyprland
+cat > "modules/home/hyprland/hosts/$hostname/windowrules.nix" << 'EOF'
+{host, ...}: let
+  inherit
+    (import ../../../../hosts/${host}/variables.nix)
+    extraMonitorSettings
+    ;
+in {
+  # Host-specific window rules for $HOSTNAME
+  # These will be merged with the default window rules
+  windowrule = [
+    # Add host-specific window rules here
+  ];
+}
+EOF
+
+# Replace $HOSTNAME placeholder with actual hostname
+sed -i "s/\$HOSTNAME/$hostname/g" "modules/home/hyprland/hosts/$hostname/windowrules.nix"
+
+print_success "Hyprland configurations created"
+
+# Create Niri host-specific configuration files
+mkdir -p "modules/home/niri/hosts/$hostname"
+
+# Create keybinds.nix for Niri
+cat > "modules/home/niri/hosts/$hostname/keybinds.nix" << 'EOF'
+{ host, ... }:
+''
+  // Host-specific keybinds for $HOSTNAME
+  // Add your custom keybinds here
+
+  // Example:
+  // binds {
+  //   Mod+Shift+B { spawn "zen"; }
+  // }
+''
+EOF
+
+sed -i "s/\$HOSTNAME/$hostname/g" "modules/home/niri/hosts/$hostname/keybinds.nix"
+
+# Create outputs.nix for Niri
+cat > "modules/home/niri/hosts/$hostname/outputs.nix" << 'EOF'
+{ host, ... }:
+''
+  // Host-specific output configuration for $HOSTNAME
+  // Configure your monitors here
+
+  output "eDP-1" {
+    mode "1920x1080@60.000"
+    scale 1.0
+    position x=0 y=0
+  }
+
+  // Add more outputs as needed
+  // output "HDMI-A-1" {
+  //   mode "2560x1440@144.000"
+  //   scale 1.0
+  //   position x=1920 y=0
+  // }
+''
+EOF
+
+sed -i "s/\$HOSTNAME/$hostname/g" "modules/home/niri/hosts/$hostname/outputs.nix"
+
+# Create windowrules.nix for Niri
+cat > "modules/home/niri/hosts/$hostname/windowrules.nix" << 'EOF'
+{ host, ... }:
+''
+  // Host-specific window rules for $HOSTNAME
+  // Add your custom window rules here
+
+  // Example:
+  // window-rule {
+  //   match app-id="^firefox$"
+  //   default-column-width { proportion 0.5; }
+  // }
+''
+EOF
+
+sed -i "s/\$HOSTNAME/$hostname/g" "modules/home/niri/hosts/$hostname/windowrules.nix"
+
+print_success "Niri configurations created"
+echo ""
+
 # Add new host files to git so flake can see them
-git add hosts/"$hostname"/ 2>/dev/null || true
+git add hosts/"$hostname"/ modules/home/hyprland/hosts/"$hostname"/ modules/home/niri/hosts/"$hostname"/ 2>/dev/null || true
 
 # Update flake.nix
 print_header "Updating Flake Configuration"
