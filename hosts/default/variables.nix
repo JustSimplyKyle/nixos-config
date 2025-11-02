@@ -3,6 +3,9 @@
   gitUsername = "user";
   gitEmail = "user@example.com";
 
+  # System Configuration
+  timeZone = "America/New_York";
+
   # Hyprland Settings
   # ex "monitor=HDMI-A-1, 1920x1080@60,auto,1"
   # Configure your monitors here - this is host-specific

@@ -94,6 +94,42 @@ username=${username:-$current_user}
 print_success "Username: $username"
 echo ""
 
+# Get timezone
+print_header "Timezone Configuration"
+echo -e "${BLUE}Common timezones:${NC}"
+echo -e "  America/New_York (Eastern)"
+echo -e "  America/Chicago (Central)"
+echo -e "  America/Denver (Mountain)"
+echo -e "  America/Los_Angeles (Pacific)"
+echo -e "  Europe/London"
+echo -e "  Europe/Paris"
+echo -e "  Asia/Tokyo"
+echo -e "  Australia/Sydney"
+echo ""
+echo -e "${YELLOW}Tip: Find your timezone at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones${NC}"
+echo ""
+read -p "Enter timezone [America/New_York]: " timezone
+timezone=${timezone:-America/New_York}
+print_success "Timezone: $timezone"
+echo ""
+
+# Get keyboard layout
+print_header "Keyboard Configuration"
+echo -e "${BLUE}Common keyboard layouts:${NC}"
+echo -e "  us (US English)"
+echo -e "  uk (UK English)"
+echo -e "  de (German)"
+echo -e "  fr (French)"
+echo -e "  es (Spanish)"
+echo -e "  it (Italian)"
+echo -e "  jp (Japanese)"
+echo -e "  ru (Russian)"
+echo ""
+read -p "Enter keyboard layout [us]: " keyboard
+keyboard=${keyboard:-us}
+print_success "Keyboard layout: $keyboard"
+echo ""
+
 # Detect GPU
 print_header "Hardware Detection"
 DETECTED_PROFILE=""
@@ -152,6 +188,8 @@ echo ""
 print_header "Configuration Summary"
 echo -e "  Hostname:      ${GREEN}$hostname${NC}"
 echo -e "  Username:      ${GREEN}$username${NC}"
+echo -e "  Timezone:      ${GREEN}$timezone${NC}"
+echo -e "  Keyboard:      ${GREEN}$keyboard${NC}"
 echo -e "  GPU Profile:   ${GREEN}$profile${NC}"
 echo ""
 echo -e "${BLUE}Default Settings (you can change these later):${NC}"
@@ -160,8 +198,6 @@ echo -e "  Terminal:      kitty"
 echo -e "  Shell:         zsh"
 echo -e "  Bar:           noctalia"
 echo -e "  Window Mgrs:   Both Hyprland and Niri (choose at login)"
-echo -e "  Timezone:      America/New_York"
-echo -e "  Keyboard:      us"
 echo ""
 
 read -p "Continue with installation? [Y/n]: " proceed
@@ -193,6 +229,9 @@ cat > "hosts/$hostname/variables.nix" << EOF
   gitUsername = "$username";
   gitEmail = "$username@$hostname";
 
+  # System Configuration
+  timeZone = "$timezone";
+
   # Monitor Settings (update after installation for your displays)
   extraMonitorSettings = ''
     monitor=,preferred,auto,1
@@ -204,8 +243,8 @@ cat > "hosts/$hostname/variables.nix" << EOF
   # Default Applications
   browser = "zen";
   terminal = "kitty";
-  keyboardLayout = "us";
-  consoleKeyMap = "us";
+  keyboardLayout = "$keyboard";
+  consoleKeyMap = "$keyboard";
 
   # For Nvidia Prime support (update if using nvidia-laptop profile)
   # Run 'lspci | grep VGA' to find your actual GPU IDs

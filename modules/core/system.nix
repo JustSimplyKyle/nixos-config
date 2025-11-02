@@ -1,6 +1,8 @@
-{host, pkgs, ...}: let
-  inherit (import ../../hosts/${host}/variables.nix) consoleKeyMap;
-in {
+{ host, pkgs, ... }:
+let
+  inherit (import ../../hosts/${host}/variables.nix) consoleKeyMap timeZone;
+in
+{
   nix = {
     settings = {
       download-buffer-size = 250000000;
@@ -17,7 +19,7 @@ in {
       ];
     };
   };
-  time.timeZone = "America/New_York";
+  time.timeZone = "${timeZone}";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";

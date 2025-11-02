@@ -3,6 +3,9 @@
   gitUsername = "don";
   gitEmail = "don@nix-test";
 
+  # System Configuration
+  timeZone = "America/New_York";
+
   # Monitor Settings (update after installation for your displays)
   extraMonitorSettings = ''
     monitor=,preferred,auto,1
