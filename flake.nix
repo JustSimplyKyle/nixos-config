@@ -68,6 +68,18 @@
           profile = "amd";
           username = "user";
         };
+
+        nix-tester = mkHost {
+          hostname = "nix-tester";
+          profile = "intel";
+          username = "don";
+        };
+
+        nix-test = mkHost {
+          hostname = "nix-test";
+          profile = "intel";
+          username = "don";
+        };
       };
 
       # Flutter development environment

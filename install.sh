@@ -414,6 +414,7 @@ echo ""
 
 # Validate flake
 print_header "Validating Configuration"
+export NIX_CONFIG="experimental-features = nix-command flakes"
 if nix flake metadata --no-write-lock-file . >/dev/null 2>&1; then
   print_success "Flake syntax is valid"
 else
