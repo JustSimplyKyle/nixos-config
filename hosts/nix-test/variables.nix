@@ -30,22 +30,22 @@
 
   # Optional Features (disabled for faster initial install)
   # You can enable these later by setting to true and rebuilding
-  gamingSupportEnable = false;       # Gaming controllers, gamescope, protonup-qt
-  flutterdevEnable = false;          # Flutter development environment
-  syncthingEnable = false;           # Syncthing file synchronization
-  enableCommunicationApps = false;   # Discord, Teams, Zoom, Telegram
-  enableExtraBrowsers = false;       # Vivaldi, Brave, Firefox, Chromium, Helium
-  enableProductivityApps = false;    # Obsidian, GNOME Boxes, QuickEmu
-  aiCodeEditorsEnable = false;       # Claude-code, gemini-cli, cursor
+  gamingSupportEnable = false; # Gaming controllers, gamescope, protonup-qt
+  flutterdevEnable = false; # Flutter development environment
+  syncthingEnable = false; # Syncthing file synchronization
+  enableCommunicationApps = false; # Discord, Teams, Zoom, Telegram
+  enableExtraBrowsers = false; # Vivaldi, Brave, Firefox, Chromium, Helium
+  enableProductivityApps = false; # Obsidian, GNOME Boxes, QuickEmu
+  aiCodeEditorsEnable = false; # Claude-code, gemini-cli, cursor
 
   # Desktop Environment
-  enableHyprlock = true;  # Set to false if using DMS/Noctalia lock screens
+  enableHyprlock = true; # Set to false if using DMS/Noctalia lock screens
 
   # Bar/Shell Choice
-  barChoice = "dms";      # Options: "dms" or "noctalia"
+  barChoice = "noctalia"; # Options: "dms" or "noctalia"
 
   # Shell Choice
-  defaultShell = "zsh";   # Options: "fish" or "zsh"
+  defaultShell = "zsh"; # Options: "fish" or "zsh"
 
   # Theming
   stylixImage = ../../wallpapers/Valley.jpg;
@@ -53,5 +53,5 @@
   animChoice = ../../modules/home/hyprland/animations-end4.nix;
 
   # Startup Applications
-  startupApps = [];
+  startupApps = [ ];
 }

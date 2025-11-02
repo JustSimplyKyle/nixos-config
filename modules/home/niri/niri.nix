@@ -90,6 +90,7 @@ in
 
     environment {
       XDG_CURRENT_DESKTOP "niri"
+      GTK_USE_PORTAL "1"
       MOZ_ENABLE_WAYLAND "1"
       QT_QPA_PLATFORM "wayland"
       ELECTRON_OZONE_PLATFORM_HINT "wayland"
@@ -239,6 +240,23 @@ in
     };
     Install.WantedBy = [ "graphical-session.target" ];
   };
+
+  # XDG Desktop Portal configuration for Niri
+  xdg.configFile."xdg-desktop-portal/portals.conf".text = ''
+    [preferred]
+    default=gtk
+    org.freedesktop.impl.portal.FileChooser=gtk
+    org.freedesktop.impl.portal.Screenshot=gnome
+    org.freedesktop.impl.portal.ScreenCast=gnome
+  '';
+
+  xdg.configFile."xdg-desktop-portal/niri-portals.conf".text = ''
+    [preferred]
+    default=gtk
+    org.freedesktop.impl.portal.FileChooser=gtk
+    org.freedesktop.impl.portal.Screenshot=gnome
+    org.freedesktop.impl.portal.ScreenCast=gnome
+  '';
 
   # Place wallpapers in home directory
   home.file = {
