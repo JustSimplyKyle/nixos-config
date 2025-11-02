@@ -420,6 +420,18 @@ export NIX_CONFIG="experimental-features = nix-command flakes"
 
 if sudo nixos-rebuild switch --flake .#"$hostname"; then
   echo ""
+  print_header "Installing DMS Components"
+  echo ""
+  echo -e "${BLUE}Installing Dank Material Shell (DMS) components...${NC}"
+  echo ""
+
+  if dms-install; then
+    print_success "DMS installed successfully"
+  else
+    print_error "DMS installation failed - you can run 'dms-install' manually later"
+  fi
+
+  echo ""
   print_header "Installation Successful!"
   echo ""
   print_success "Black Don OS has been installed!"
@@ -431,6 +443,22 @@ if sudo nixos-rebuild switch --flake .#"$hostname"; then
   echo -e "  4. Rebuild: ${GREEN}sudo nixos-rebuild switch --flake ~/black-don-os#$hostname${NC}"
   echo ""
   echo -e "${YELLOW}Tip: Update your monitor settings in variables.nix for optimal display${NC}"
+  echo ""
+  echo -e "${GREEN}╔═══════════════════════════════════════════════════════════════╗${NC}"
+  echo -e "${GREEN}║${NC} ${YELLOW}IMPORTANT: A system restart is required to complete setup${NC}     ${GREEN}║${NC}"
+  echo -e "${GREEN}╚═══════════════════════════════════════════════════════════════╝${NC}"
+  echo ""
+  read -p "Would you like to restart now? [Y/n]: " restart_confirm
+  if [[ ! $restart_confirm =~ ^[Nn]$ ]]; then
+    echo ""
+    print_info "Restarting system in 5 seconds... (Ctrl+C to cancel)"
+    sleep 5
+    sudo reboot
+  else
+    echo ""
+    print_info "Please restart your system when ready to complete the installation"
+    echo -e "  Run: ${GREEN}sudo reboot${NC}"
+  fi
   echo ""
 else
   echo ""
