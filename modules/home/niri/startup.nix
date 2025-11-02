@@ -7,14 +7,12 @@
 }:
 let
   # Determine which bar to launch
-  # Note: waybar is handled by systemd service, not spawn-at-startup
+  # Note: waybar and dms are handled by systemd services, not spawn-at-startup
   barStartupCommand =
-    if barChoice == "dms" then
-      ''spawn-at-startup "${builtins.getEnv "HOME"}/.local/bin/dms" "run"''
-    else if barChoice == "noctalia" then
+    if barChoice == "noctalia" then
       ''spawn-at-startup "noctalia-shell"''
     else
-      ''// waybar started via systemd service'';
+      ''// ${barChoice} started via systemd service'';
 in
 ''
   spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"

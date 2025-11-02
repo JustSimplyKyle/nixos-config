@@ -142,6 +142,22 @@ in
     Install.WantedBy = [ "graphical-session.target" ];
   };
 
+  # DMS service for Niri (only when barChoice is dms)
+  systemd.user.services.dms-niri = lib.mkIf (barChoice == "dms") {
+    Unit = {
+      Description = "DMS Desktop Management Shell (Niri session)";
+      PartOf = "graphical-session.target";
+      After = "graphical-session.target";
+      ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
+    };
+    Service = {
+      ExecStart = "${config.home.homeDirectory}/.local/bin/dms run";
+      Restart = "on-failure";
+      RestartSec = "1s";
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+
   # XWayland satellite service for X11 app support
   systemd.user.services.xwayland-satellite = {
     Unit = {
