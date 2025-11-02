@@ -62,7 +62,7 @@
   enableHyprlock = true;
 
   # Bar/Shell Choice
-  barChoice = "dms"; # Options: "dms", "noctalia", or "waybar"
+  barChoice = "dms"; # Options: "dms" or "noctalia"
 
   # Shell Choice
   defaultShell = "zsh"; # Options: "fish" or "zsh"
@@ -76,7 +76,7 @@
   #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
   stylixImage = ../../wallpapers/55.png;
 
-  # Set Waybar
+  # Set Waybar (temporarily disabled - use DMS or Noctalia)
   # Includes alternates such as:
   # Just uncomment the one you want and comment out the others
 
@@ -85,7 +85,7 @@
   #waybarChoice = ../../modules/home/waybar/waybar-curved.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-nekodyke.nix;
   #waybarChoice = ../../modules/home/waybar/waybar-jerry.nix;
-  waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
 
   # Set Animation style
   # Available options are:

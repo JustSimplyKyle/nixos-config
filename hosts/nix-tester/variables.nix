@@ -40,8 +40,12 @@
 
   # Desktop Environment
   enableHyprlock = false; # Set to false if using DMS/Noctalia lock screens
-  barChoice = "dms";
-  defaultShell = "zsh";
+
+  # Bar/Shell Choice
+  barChoice = "dms"; # Options: "dms", "noctalia", or "waybar"
+
+  # Shell Choice
+  defaultShell = "zsh"; # Options: "fish" or "zsh"
 
   # Theming
   stylixImage = ../../wallpapers/Valley.jpg;

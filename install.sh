@@ -230,12 +230,16 @@ cat > "hosts/$hostname/variables.nix" << EOF
 
   # Desktop Environment
   enableHyprlock = true;  # Set to false if using DMS/Noctalia lock screens
-  barChoice = "dms";
-  defaultShell = "zsh";
+
+  # Bar/Shell Choice
+  barChoice = "dms";      # Options: "dms" or "noctalia"
+
+  # Shell Choice
+  defaultShell = "zsh";   # Options: "fish" or "zsh"
 
   # Theming
   stylixImage = ../../wallpapers/Valley.jpg;
-  waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;
+  #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;  # Waybar temporarily disabled
   animChoice = ../../modules/home/hyprland/animations-end4.nix;
 
   # Startup Applications
