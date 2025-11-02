@@ -116,10 +116,11 @@ The installer will:
 - **Browser**: Zen Browser
 - **Terminal**: Kitty
 - **Shell**: Zsh with starship prompt
-- **Bar**: Waybar with beautiful themes
+- **Bar**: DMS & the option for Noctalia with beautiful themes
 - **File Manager**: Thunar
 - **Window Managers**: Both Hyprland and Niri
 - **Theming**: Stylix for system-wide color coordination
+- **Feature Modules**: Enable multiple features like Gaming Support, and Additonal Browsers
 
 ## 🎨 Customization
 
@@ -130,6 +131,11 @@ After installation, customize your system by editing:
 ```
 
 ### Common Customizations
+
+#### Change Bar
+```nix
+ barChoice = "dms"; # Options: "dms", "noctalia"
+```
 
 #### Change Your Wallpaper
 ```nix
@@ -223,7 +229,7 @@ To install Black Don OS on another computer:
 ### Multiple Hosts
 
 Each computer gets its own directory under `hosts/`:
-- `hosts/my-desktop/` - Your desktop configuration  
+- `hosts/my-desktop/` - Your desktop configuration
 - `hosts/my-laptop/` - Your laptop configuration
 
 They can have completely different settings, packages, and features enabled.
@@ -316,7 +322,7 @@ See [dcli.md](dcli.md) for complete documentation.
 
 - **ZaneyOS** - Original configuration by Tyler Kelley
 - **NixOS** - The amazing Linux distribution
-- **Hyprland** - Modern Wayland compositor  
+- **Hyprland** - Modern Wayland compositor
 - **Niri** - Innovative scrollable compositor
 - **Stylix** - System-wide theming
 
