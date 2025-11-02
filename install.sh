@@ -240,12 +240,13 @@ cat > "hosts/$hostname/variables.nix" << EOF
 
   # Optional Features (disabled for faster initial install)
   # You can enable these later by setting to true and rebuilding
-  controllerSupportEnable = false;
-  flutterdevEnable = false;
-  syncthingEnable = false;
-  enableCommunicationApps = false;
-  enableExtraBrowsers = false;
-  enableProductivityApps = false;
+  gamingSupportEnable = false;       # Gaming controllers, gamescope, protonup-qt
+  flutterdevEnable = false;          # Flutter development environment
+  syncthingEnable = false;           # Syncthing file synchronization
+  enableCommunicationApps = false;   # Discord, Teams, Zoom, Telegram
+  enableExtraBrowsers = false;       # Vivaldi, Brave, Firefox, Chromium, Helium
+  enableProductivityApps = false;    # Obsidian, GNOME Boxes, QuickEmu
+  aiCodeEditorsEnable = false;       # Claude-code, gemini-cli, cursor
 
   # Desktop Environment
   enableHyprlock = true;  # Set to false if using DMS/Noctalia lock screens
@@ -264,6 +265,9 @@ EOF
 
 print_success "Host configuration created"
 echo ""
+
+# Add new host files to git so flake can see them
+git add hosts/"$hostname"/ 2>/dev/null || true
 
 # Update flake.nix
 print_header "Updating Flake Configuration"
@@ -290,6 +294,9 @@ else
   ' flake.nix > flake.nix.tmp && mv flake.nix.tmp flake.nix
 
   print_success "Added $hostname to flake.nix"
+
+  # Add updated flake.nix to git
+  git add flake.nix 2>/dev/null || true
 fi
 echo ""
 
