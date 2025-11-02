@@ -11,8 +11,6 @@ let
     keyboardLayout
     stylixImage
     startupApps
-    hyprexpoSettings
-    hyprscrollingSettings
     ;
   variables = import ../../../hosts/${host}/variables.nix;
   barChoice = variables.barChoice or "waybar";
@@ -58,10 +56,6 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprscrolling
-    ];
     systemd = {
       enable = true;
       enableXdgAutostart = true;
@@ -71,19 +65,13 @@ in
       enable = true;
     };
     settings = {
-      # Plugin configuration
-      plugin = {
-        hyprexpo = hyprexpoSettings;
-        hyprscrolling = hyprscrollingSettings;
-      };
-
       exec-once = [
         "wl-paste --type text --watch cliphist store # Stores only text data"
         "wl-paste --type image --watch cliphist store # Stores only image data"
         "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "systemctl --user start hyprpolkitagent"
-        "killall -q swww;sleep .5 && swww init"
+        "killall -q swww-daemon;sleep .5 && swww-daemon"
       ]
       ++ (
         if actualBarChoice == "dms" then
@@ -130,7 +118,7 @@ in
 
       general = {
         "$modifier" = "SUPER";
-        layout = "scrolling";
+        layout = "dwindle";
         gaps_in = 5;
         gaps_out = 7;
         border_size = 3;

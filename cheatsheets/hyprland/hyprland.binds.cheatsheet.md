@@ -32,12 +32,6 @@
 - SUPERKEY+C — Hyprpicker (color picker)
 - SHIFT+ALT+S — Hyprshot region (non-SUPER shortcut)
 
-## 🧭 Hyprland UI/Plugins
-- SUPERKEY+TAB — Hyprspace Overview toggle (all)
-- SUPERKEY+SHIFT+TAB — Hyprspace Overview close (all)
-- ALT+Space — Hyprexpo toggle
-- SUPERKEY+A — AGS Overview toggle
-
 ## 📸 Screenshots
 - SUPERKEY+S — screenshootin
 - SUPERKEY+SHIFT+S — screenshootin-satty
