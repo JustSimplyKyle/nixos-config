@@ -271,14 +271,23 @@ print_header "Updating Flake Configuration"
 if grep -q "\"$hostname\"" flake.nix; then
   print_info "Host already exists in flake.nix"
 else
-  # Add host to flake.nix
-  sed -i "/^      };$/i\\
-\\
-        $hostname = mkHost {\\
-          hostname = \"$hostname\";\\
-          profile = \"$profile\";\\
-          username = \"$username\";\\
-        };" flake.nix
+  # Add host to flake.nix right after the default host
+  # Use awk to insert at the right location (after default host closing brace, before nixosConfigurations closing brace)
+  awk -v hostname="$hostname" -v profile="$profile" -v username="$username" '
+    /username = "user";/ { in_default = 1 }
+    in_default && /^        };$/ {
+      print
+      print ""
+      print "        " hostname " = mkHost {"
+      print "          hostname = \"" hostname "\";"
+      print "          profile = \"" profile "\";"
+      print "          username = \"" username "\";"
+      print "        };"
+      in_default = 0
+      next
+    }
+    { print }
+  ' flake.nix > flake.nix.tmp && mv flake.nix.tmp flake.nix
 
   print_success "Added $hostname to flake.nix"
 fi
