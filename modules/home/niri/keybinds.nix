@@ -12,7 +12,7 @@ let
     if barChoice == "noctalia" then
       ''"noctalia-shell" "ipc" "call" "launcher" "toggle"''
     else if barChoice == "dms" then
-      ''"dms" "ipc" "call" "spotlight" "toggle"''
+      ''"${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "spotlight" "toggle"''
     # waybar or default
     else
       ''"rofi" "-show" "drun"'';
@@ -42,45 +42,45 @@ let
         // === DMS Controls ===
         Mod+Comma { spawn "ignis" "open-window" "Settings"; }
         Mod+Shift+V {
-            spawn "dms" "ipc" "call" "clipboard" "toggle";
+            spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "clipboard" "toggle";
         }
         Mod+M {
-            spawn "dms" "ipc" "call" "processlist" "toggle";
+            spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "processlist" "toggle";
         }
         Mod+Alt+S {
-            spawn "dms" "ipc" "call" "settings" "toggle";
+            spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "settings" "toggle";
         }
-        Mod+N { spawn "dms" "ipc" "call" "notifications" "toggle"; }
-        Mod+Shift+N { spawn "dms" "ipc" "call" "notepad" "toggle"; }
+        Mod+N { spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "notifications" "toggle"; }
+        Mod+Shift+N { spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "notepad" "toggle"; }
 
         // === Security ===
         Mod+Alt+L {
-            spawn "dms" "ipc" "call" "lock" "lock";
+            spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "lock" "lock";
         }
         Ctrl+Alt+Delete {
-            spawn "dms" "ipc" "call" "processlist" "toggle";
+            spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "processlist" "toggle";
         }
 
         // === Audio Controls ===
         XF86AudioRaiseVolume allow-when-locked=true {
-            spawn "dms" "ipc" "call" "audio" "increment" "3";
+            spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "audio" "increment" "3";
         }
         XF86AudioLowerVolume allow-when-locked=true {
-            spawn "dms" "ipc" "call" "audio" "decrement" "3";
+            spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "audio" "decrement" "3";
         }
         XF86AudioMute allow-when-locked=true {
-            spawn "dms" "ipc" "call" "audio" "mute";
+            spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "audio" "mute";
         }
         XF86AudioMicMute allow-when-locked=true {
-            spawn "dms" "ipc" "call" "audio" "micmute";
+            spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "audio" "micmute";
         }
 
         // === Monitor Brightness Controls ===
         XF86MonBrightnessUp allow-when-locked=true {
-           spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
+           spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "brightness" "increment" "5" "";
         }
         XF86MonBrightnessDown allow-when-locked=true {
-           spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
+           spawn "${builtins.getEnv "HOME"}/.local/bin/dms" "ipc" "call" "brightness" "decrement" "5" "";
         }
       ''
     else
@@ -95,7 +95,7 @@ in
 
       // === Application Launchers ===
       Mod+T { spawn "${terminal}"; }
-      Mod+Enter { spawn "${terminal}"; }
+      Mod+Return { spawn "${terminal}"; }
       Mod+Y { spawn "fuzzel"; }
       Mod+Space { spawn ${launcherCommand}; }
 

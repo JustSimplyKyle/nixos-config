@@ -158,7 +158,7 @@ echo -e "${BLUE}Default Settings (you can change these later):${NC}"
 echo -e "  Browser:       zen"
 echo -e "  Terminal:      kitty"
 echo -e "  Shell:         zsh"
-echo -e "  Bar:           waybar"
+echo -e "  Bar:           dms"
 echo -e "  Window Mgrs:   Both Hyprland and Niri (choose at login)"
 echo -e "  Timezone:      America/New_York"
 echo -e "  Keyboard:      us"
@@ -230,7 +230,7 @@ cat > "hosts/$hostname/variables.nix" << EOF
 
   # Desktop Environment
   enableHyprlock = true;  # Set to false if using DMS/Noctalia lock screens
-  barChoice = "waybar";
+  barChoice = "dms";
   defaultShell = "zsh";
 
   # Theming

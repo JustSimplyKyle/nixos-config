@@ -14,7 +14,7 @@ let
     if barChoice == "noctalia" then
       "noctalia-shell ipc call launcher toggle"
     else if barChoice == "dms" then
-      "dms ipc call spotlight toggle"
+      "$HOME/.local/bin/dms ipc call spotlight toggle"
     else
       "rofi-launcher";
 
@@ -34,19 +34,19 @@ let
     if barChoice == "dms" then
       [
         "$modifier,comma,exec,ignis open-window Settings"
-        "$modifier SHIFT,V,exec,dms ipc call clipboard toggle"
-        "$modifier,M,exec,dms ipc call processlist toggle"
-        "$modifier ALT,S,exec,dms ipc call settings toggle"
-        "$modifier,N,exec,dms ipc call notifications toggle"
-        "$modifier SHIFT,N,exec,dms ipc call notepad toggle"
-        "$modifier ALT,L,exec,dms ipc call lock lock"
-        "CTRL ALT,Delete,exec,dms ipc call processlist toggle"
-        ",XF86AudioRaiseVolume,exec,dms ipc call audio increment 3"
-        ",XF86AudioLowerVolume,exec,dms ipc call audio decrement 3"
-        ",XF86AudioMute,exec,dms ipc call audio mute"
-        ",XF86AudioMicMute,exec,dms ipc call audio micmute"
-        ",XF86MonBrightnessDown,exec,dms ipc call brightness decrement 5 ''"
-        ",XF86MonBrightnessUp,exec,dms ipc call brightness increment 5 ''"
+        "$modifier SHIFT,V,exec,$HOME/.local/bin/dms ipc call clipboard toggle"
+        "$modifier,M,exec,$HOME/.local/bin/dms ipc call processlist toggle"
+        "$modifier ALT,S,exec,$HOME/.local/bin/dms ipc call settings toggle"
+        "$modifier,N,exec,$HOME/.local/bin/dms ipc call notifications toggle"
+        "$modifier SHIFT,N,exec,$HOME/.local/bin/dms ipc call notepad toggle"
+        "$modifier ALT,L,exec,$HOME/.local/bin/dms ipc call lock lock"
+        "CTRL ALT,Delete,exec,$HOME/.local/bin/dms ipc call processlist toggle"
+        ",XF86AudioRaiseVolume,exec,$HOME/.local/bin/dms ipc call audio increment 3"
+        ",XF86AudioLowerVolume,exec,$HOME/.local/bin/dms ipc call audio decrement 3"
+        ",XF86AudioMute,exec,$HOME/.local/bin/dms ipc call audio mute"
+        ",XF86AudioMicMute,exec,$HOME/.local/bin/dms ipc call audio micmute"
+        ",XF86MonBrightnessDown,exec,$HOME/.local/bin/dms ipc call brightness decrement 5 ''"
+        ",XF86MonBrightnessUp,exec,$HOME/.local/bin/dms ipc call brightness increment 5 ''"
       ]
     else
       [ ];

@@ -28,8 +28,8 @@
       trackpoint {
       }
 
-      focus-follows-mouse max-scroll-amount="0%"
-      warp-mouse-to-focus true
+      focus-follows-mouse
+      warp-mouse-to-focus
   }
 
   layout {

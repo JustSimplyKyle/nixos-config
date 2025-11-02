@@ -1,7 +1,8 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 let
   terminal = "kitty";
@@ -20,7 +21,8 @@ let
   base0E = "D2A6FF";
   base0F = "E6B673";
 in
-with lib; {
+with lib;
+{
   # Configure & Theme Waybar
   programs.waybar = {
     enable = true;
@@ -30,9 +32,23 @@ with lib; {
         layer = "top";
         position = "top";
 
-        modules-center = [ "network" "pulseaudio" "cpu" "hyprland/workspaces" "niri/workspaces" "memory" "disk" "clock" ]; # Eterna: [ "hyprland/window" ]
-        modules-left = [ "custom/startmenu" "hyprland/window" ]; # Eternal:  [ "hyprland/workspaces" "cpu" "memory" "network" ]
-        modules-right = [ "tray" "idle_inhibitor" "custom/notification" "battery" "custom/exit" ]; # Eternal: [ "idle_inhibitor" "pulseaudio" "clock"  "custom/notification" "tray" ]
+        modules-center = [
+          "network"
+          "pulseaudio"
+          "cpu"
+          "niri/workspaces"
+          "memory"
+          "disk"
+          "clock"
+        ]; # Eterna: [ "hyprland/window" ]
+        modules-left = [ "custom/startmenu" ]; # Eternal:  [ "hyprland/workspaces" "cpu" "memory" "network" ]
+        modules-right = [
+          "tray"
+          "idle_inhibitor"
+          "custom/notification"
+          "battery"
+          "custom/exit"
+        ]; # Eternal: [ "idle_inhibitor" "pulseaudio" "clock"  "custom/notification" "tray" ]
 
         "hyprland/workspaces" = {
           format = "{name}";
@@ -80,7 +96,13 @@ with lib; {
           #on-click = "${terminal} -e sh -c df -h ; read";
         };
         "network" = {
-          format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
+          format-icons = [
+            "󰤯"
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
           format-ethernet = " {bandwidthDownBits}";
           format-wifi = " {bandwidthDownBits}";
           format-disconnected = "󰤮";
@@ -104,7 +126,11 @@ with lib; {
             phone = "";
             portable = "";
             car = "";
-            default = [ "" "" "" ];
+            default = [
+              ""
+              ""
+              ""
+            ];
           };
           on-click = "pavucontrol";
         };
@@ -129,7 +155,7 @@ with lib; {
         };
         "custom/notification" = {
           tooltip = false;
-          format = "{icon} {}";
+          format = "{icon} {text}";
           format-icons = {
             notification = "<span foreground='red'><sup></sup></span>";
             none = "";
@@ -154,7 +180,18 @@ with lib; {
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
           format-plugged = "󱘖 {capacity}%";
-          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = [
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
           on-click = "";
           tooltip = false;
         };

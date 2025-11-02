@@ -55,7 +55,8 @@ in
   };
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    # Use stable package from nixpkgs to avoid version parsing issues
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd = {
       enable = true;
       enableXdgAutostart = true;
@@ -77,7 +78,7 @@ in
         if actualBarChoice == "dms" then
           [
             # Launch Dank Material Shell via quickshell
-            "killall -q quickshell;sleep .5 && quickshell -c DankMaterialShell"
+            "killall -q quickshell;sleep .5 && $HOME/.local/bin/dms run"
           ]
         else if actualBarChoice == "noctalia" then
           [
@@ -153,7 +154,7 @@ in
       };
 
       decoration = {
-        rounding = 2;
+        rounding = 8;
         blur = {
           enabled = true;
           size = 5;

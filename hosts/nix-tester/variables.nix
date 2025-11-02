@@ -39,8 +39,8 @@
   aiCodeEditorsEnable = false; # Claude-code, gemini-cli, cursor
 
   # Desktop Environment
-  enableHyprlock = true; # Set to false if using DMS/Noctalia lock screens
-  barChoice = "waybar";
+  enableHyprlock = false; # Set to false if using DMS/Noctalia lock screens
+  barChoice = "dms";
   defaultShell = "zsh";
 
   # Theming

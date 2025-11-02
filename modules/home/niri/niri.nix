@@ -2,6 +2,7 @@
   host,
   config,
   pkgs,
+  lib,
   ...
 }:
 let
@@ -113,6 +114,33 @@ in
 
     screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
   '';
+
+  # Systemd services for Niri session
+  systemd.user.targets.niri-session = {
+    Unit = {
+      Description = "Niri compositor session";
+      Documentation = "man:systemd.special(7)";
+      BindsTo = "graphical-session.target";
+      Wants = "graphical-session-pre.target";
+      After = "graphical-session-pre.target";
+    };
+  };
+
+  # Waybar service for Niri (only when barChoice is waybar)
+  systemd.user.services.waybar-niri = lib.mkIf (barChoice == "waybar") {
+    Unit = {
+      Description = "Waybar status bar (Niri session)";
+      PartOf = "graphical-session.target";
+      After = "graphical-session.target";
+      ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
+    };
+    Service = {
+      ExecStart = "${pkgs.waybar}/bin/waybar";
+      Restart = "on-failure";
+      RestartSec = "1s";
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
 
   # XWayland satellite service for X11 app support
   systemd.user.services.xwayland-satellite = {
