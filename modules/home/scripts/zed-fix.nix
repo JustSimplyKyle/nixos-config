@@ -1,12 +1,16 @@
 { pkgs }:
 
 pkgs.writeShellScriptBin "zed-fix" ''
+
+  # Commented out for now incase want to fallback here (feel free to remove)
   # Launch Zed and trigger a layout recalculation to fix input handling
-  zeditor &
-  sleep 0.6
+  # zeditor &
+  # sleep 0.6
 
   # Resize window slightly and back to force layout recalculation
-  niri msg action set-column-width "-1%"
-  sleep 0.3
-  niri msg action set-column-width "+1%"
+  # niri msg action set-column-width "-1%"
+  # sleep 0.3
+  # niri msg action set-column-width "+1%"
+
+  env -u WAYLAND_DISPLAY zeditor
 ''
