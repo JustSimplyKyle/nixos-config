@@ -206,7 +206,6 @@ in
       After = [
         "graphical-session.target"
         "pipewire.service"
-        "xdg-desktop-portal.service"
       ];
       PartOf = [ "graphical-session.target" ];
       Requires = [ "pipewire.service" ];
@@ -228,7 +227,6 @@ in
       Description = "Portal service (GTK/GNOME implementation)";
       After = [
         "graphical-session.target"
-        "xdg-desktop-portal.service"
       ];
       PartOf = [ "graphical-session.target" ];
     };
