@@ -12,6 +12,8 @@ let
   windowManager = variables.windowManager or "hyprland";
   barChoice = variables.barChoice or "waybar";
   defaultShell = variables.defaultShell or "zsh";
+  useNvidia = variables.useNvidia or false;
+
 
   # Legacy variable support (backwards compatibility)
   enableDMS = variables.enableDankMaterialShell or false;
@@ -85,4 +87,9 @@ in
     waybarChoice
     ./swaync.nix # Only use swaync with waybar
   ];
+
+  # Allows usage in other modules for overriding settings
+  _module.args = {
+    inherit useNvidia;
+  };
 }
