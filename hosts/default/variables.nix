@@ -27,6 +27,9 @@
   intelID = "PCI:0:2:0"; # Update with your integrated GPU ID
   nvidiaID = "PCI:1:0:0"; # Update with your NVIDIA GPU ID
 
+  # Enable Nvidia cudaSupport for specific applications (obs-studio)
+  useNvidia = false;
+
   # Enable NFS
   enableNFS = true;
 

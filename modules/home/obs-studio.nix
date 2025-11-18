@@ -1,7 +1,14 @@
-{ pkgs, ... }:
+{ 
+  pkgs,
+  useNvidia,
+  ... 
+}:
 {
   programs.obs-studio = {
     enable = true;
+    package = pkgs.obs-studio.override {
+      cudaSupport = useNvidia; # Set in host/variables.nix
+    };
     #enableVirtualCamera = true;
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs
