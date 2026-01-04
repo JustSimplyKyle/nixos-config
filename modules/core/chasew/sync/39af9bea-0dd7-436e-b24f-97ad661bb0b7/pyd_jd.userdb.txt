@@ -1,0 +1,28 @@
+# Rime user dictionary
+#@/db_name	pyd_jd
+#@/db_type	userdb
+#@/rime_version	1.8.5
+#@/tick	20
+#@/user_id	39af9bea-0dd7-436e-b24f-97ad661bb0b7
+bu2:VUIO 	不	c=1 d=1 t=20
+dao4:VAII di3:OVUA 	到底	c=1 d=0.985112 t=20
+de5:UIUA 	的	c=1 d=0.99005 t=20
+gan4:VVII ma2:UAOO 	幹麼	c=0 d=0.099005 t=20
+kun4:IAVV nan2:AOIO 	困難	c=0 d=0.0985112 t=20
+kun4:IAVV nan2:AOIO ne5:OAVU 	困難呢	c=1 d=0.99005 t=20
+le5:AII 	了	c=1 d=1 t=20
+lv4:AAAV 	綠	c=1 d=1 t=20
+ne5:OAVU 	呢	c=0 d=0.0985112 t=20
+ni3:IUAI 	你	c=0 d=0.0985112 t=20
+ni3:IUAI zhi1:OUOO 	你只	c=1 d=1 t=20
+qi4:UVVA 	氣	c=1 d=0.995012 t=20
+ren2:II 	人	c=1 d=0.995012 t=20
+shi4:OIVI bu4:VUIO 	是不	c=1 d=1 t=20
+wei3:IVVA da4:VUOO 	偉大	c=1 d=0.985112 t=20
+wo3:UVIV men5:IOIA 	我們	c=3 d=2.9163 t=20
+wo4:IUAV men2:OIAA dao2:IUVA 	握門捯	c=1 d=1 t=20
+you3:VUUU 	有	c=2 d=1.98012 t=20
+zai4:VUVO 	在	c=0 d=0.099005 t=20
+zai4:VUVO gan4:VVII ma2:UAOO 	在幹麼	c=1 d=1.06412 t=20
+zai4:VUVO gan4:VVII ma2:UAOO ni3:IUAI 	在幹麼你	c=1 d=0.99005 t=20
+zhi1:UVOO 	知	c=1 d=0.995012 t=20

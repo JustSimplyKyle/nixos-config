@@ -1,0 +1,21 @@
+var:
+  last_build_time: 1767516100
+  option:
+    extended_charset: false
+    full_shape: false
+    simplification: false
+    zh_hans: false
+    zh_hant_tw: true
+  previously_selected_schema: chasew
+  schema_access_time:
+    chasew: 1767199010
+    colemak: 1761474000
+    combo_pinyin: 1756036123
+    double_pinyin_flypy: 1676733268
+    frim: 1676639307
+    iridium_bpmf: 1742128312
+    liur: 1761057739
+    sydx: 1695952072
+    temp: 1678104248
+    terra_pinyin: 1676733254
+    test: 1678106874

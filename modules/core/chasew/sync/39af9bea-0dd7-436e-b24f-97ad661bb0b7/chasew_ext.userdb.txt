@@ -1,0 +1,556 @@
+# Rime user dictionary
+#@/db_name	chasew_ext
+#@/db_type	userdb
+#@/rime_version	1.9.0
+#@/tick	496
+#@/user_id	39af9bea-0dd7-436e-b24f-97ad661bb0b7
+a1 	啊	c=0 d=0.0923116 t=496
+an4 	岸	c=1 d=0.923116 t=496
+an4 	按	c=2 d=1.76174 t=496
+an4 jian4 	按鍵	c=2 d=1.72851 t=496
+an4 jian4 dou1 shi4 	按鍵都是	c=1 d=0.677057 t=496
+ba3 	把	c=1 d=0.904837 t=496
+ban3 	版	c=0 d=0.0985112 t=496
+ban3 ben3 	版本	c=1 d=0.986371 t=496
+bao1 han2 	包含	c=0 d=0.0810584 t=496
+bao3 hu4 	保護	c=0 d=0.0980199 t=496
+bi3 	比	c=1 d=0.985112 t=496
+bi4 xu1 	必須	c=0 d=0.070822 t=496
+bian1 ma3 	編碼	c=1 d=0.826959 t=496
+biao1 zhun3 	標準	c=0 d=0.193446 t=496
+biao1 zhun3 biao3 da2 	標準表達	c=1 d=0.970446 t=496
+biao1 zhun3 jian4 pan2 shi3 yong4 	標準鍵盤使用	c=1 d=0.618783 t=496
+biao1 zhun3 zhu4 yin1 jian4 pan2 shu1 ru4 yao4 an4 si4 ge5 	標準注音鍵盤輸入要按四個	c=1 d=0.771052 t=496
+biao3 da2 	表達	c=0 d=0.0965605 t=496
+bu2 guo4 	不過	c=0 d=0.099005 t=496
+bu2 guo4 zhe4 yang4 	不過這樣	c=1 d=0.995012 t=496
+bu2 lun4 	不論	c=0 d=0.0932394 t=496
+bu2 lun4 zao3 wan3 	不論早晚	c=1 d=0.937067 t=496
+bu4 	不	c=0 d=0.0856415 t=496
+bu4 chu1 lai2 	不出來	c=0 d=0.0960789 t=496
+bu4 fen4 	部分	c=0 d=0.0640824 t=496
+bu4 fen4 an4 jian4 	部分按鍵	c=1 d=0.644036 t=496
+bu4 guan3 	不管	c=1 d=0.878095 t=496
+bu4 guan3 shun4 xu4 	不管順序	c=1 d=0.790759 t=496
+bu4 tong2 	不同	c=0 d=0.0869358 t=496
+bu4 tong2 de5 	不同的	c=0 d=0.0574072 t=496
+bu4 tong2 jie4 mian4 	不同介面	c=1 d=0.873716 t=496
+cai3 yong4 	採用	c=0 d=0.0737123 t=496
+cao1 zuo4 	操作	c=0 d=0.0822835 t=496
+cao3 chang3 	草場	c=1 d=0.927743 t=496
+cao3 ping2 	草坪	c=1 d=0.904837 t=496
+ceng2 	層	c=1 d=1 t=496
+cha1 dian3 	差點	c=0 d=0.0955997 t=496
+cha1 dian3 jiu4 you3 	差點就有	c=1 d=0.960789 t=496
+cha1 yi4 	差異	c=1 d=0.904837 t=496
+chang2 chun1 	常春	c=1 d=0.891366 t=496
+chang2 yong4 	常用	c=0 d=0.0831104 t=496
+cheng1 wei2 	稱為	c=1 d=0.704688 t=496
+cheng2 xian4 	呈現	c=0 d=0.083527 t=496
+chi1 	吃	c=1 d=0.937067 t=496
+chong2 xin1 	重新	c=0 d=0.097531 t=496
+chong2 xin1 kai1 fa1 	重新開發	c=1 d=0.980199 t=496
+chu3 li3 	處理	c=1 d=0.960789 t=496
+chuan2 tong3 	傳統	c=0 d=0.155141 t=496
+chuan2 tong3 de5 	傳統的	c=0 d=0.0704688 t=496
+chuan2 tong3 de5 zhu4 yin1 shu1 ru4 	傳統的注音輸入	c=1 d=0.70822 t=496
+chuan2 tong3 zhu4 yin1 geng4 duo1 	傳統注音更多	c=1 d=0.985112 t=496
+chuan2 tong3 zhu4 yin1 shu1 ru4 fa3 	傳統注音輸入法	c=1 d=0.574072 t=496
+ci3 duan4 	此段	c=1 d=0.970446 t=496
+ci4 jian4 	次建	c=1 d=0.97531 t=496
+cong1 cui4 	蔥翠	c=0 d=0.0891366 t=496
+cong2 ni3 	從你	c=1 d=0.900325 t=496
+cong2 xiao4 	從校	c=1 d=0.909373 t=496
+cong2 ye4 ren2 yuan2 	從業人員	c=0 d=0.088692 t=496
+da1 pei4 	搭配	c=0 d=0.227206 t=496
+da1 pei4 wu4 li3 jian4 pan2 da3 zi4 xiao4 guo3 geng4 jia1 	搭配物理鍵盤打字效果更佳	c=1 d=0.847894 t=496
+da1 pei4 zuo3 you4 yu3 you4 shou3 	搭配左右與右手	c=1 d=0.687289 t=496
+da3 	打	c=0 d=0.144465 t=496
+da3 bu4 chu1 lai2 	打不出來	c=1 d=1.06362 t=496
+da3 chu1 lai2 	打出來	c=0 d=0.0985112 t=496
+da3 zi4 	打字	c=0 d=0.0843665 t=496
+da4 	大	c=1 d=1 t=496
+da4 dao4 	大到	c=1 d=0.99005 t=496
+da4 fu2 	大幅	c=0 d=0.156666 t=496
+da4 fu2 suo1 duan3 shu1 ru4 shi2 jian1 	大幅縮短輸入時間	c=1 d=0.755784 t=496
+da4 ye4 	大業	c=1 d=0.937067 t=496
+dai4 	代	c=0 d=0.16091 t=496
+dai4 biao3 	代表	c=1 d=0.585669 t=496
+dan4 	但	c=1 d=0.993446 t=496
+dan4 yin1 fu2 de5 zi4 	但音符的字	c=1 d=0.99005 t=496
+dan4 zhui1 yin1 shu1 ru4 fa3 de5 jian4 pan2 	但追音輸入法的鍵盤	c=1 d=0.628135 t=496
+dan4 zhui1 yin1 shu1 ru4 fa3 zhi3 yao4 	但追音輸入法只要	c=1 d=0.786628 t=496
+dang1 ran2 	當然	c=1 d=1 t=496
+dang1 zhong1 	當中	c=1 d=0.891366 t=496
+dao4 	到	c=1 d=0.97531 t=496
+dao4 di3 	到底	c=1 d=0.995012 t=496
+de5 	的	c=14 d=6.9498 t=496
+de5 liang3 an4 dou1 shi4 	的兩岸都是	c=1 d=0.882497 t=496
+deng3 	等	c=1 d=0.904837 t=496
+di2 que4 	的確	c=1 d=0.946485 t=496
+di3 xian4 	底線	c=0 d=0.0818731 t=496
+di4 fang1 	地方	c=0 d=0.0574072 t=496
+di4 si4 	第四	c=0 d=0.16091 t=496
+di4 si4 dai4 ban3 ben3 	第四代版本	c=2 d=1.67492 t=496
+dou1 	都	c=0 d=0.0810584 t=496
+dou1 bao1 han2 le5 yi1 tao4 	都包含了一套	c=1 d=0.814647 t=496
+dou1 ke3 yi3 	都可以	c=1 d=0.744532 t=496
+dou1 shi4 	都是	c=2 d=1.69027 t=496
+dou1 shi4 cai3 yong4 	都是採用	c=1 d=0.740818 t=496
+dou1 shi4 tai2 wan1 ren2 	都是台灣人	c=1 d=0.951229 t=496
+dou1 you3 	都有	c=1 d=0.873716 t=496
+dui4 	對	c=1 d=0.918512 t=496
+dui4 ying4 	對應	c=0 d=0.0946485 t=496
+dui4 ying4 dao4 you3 	對應到有	c=1 d=0.951229 t=496
+duo1 yin1 	多音	c=2 d=1.57363 t=496
+duo1 zi4 	多字	c=0 d=0.0995012 t=496
+fa1 zhan3 dao4 	發展到	c=0 d=0.0798516 t=496
+fa3 	法	c=2 d=1.83785 t=496
+fa3 lv4 	法律	c=0 d=0.088692 t=496
+fa3 lv4 cong2 ye4 ren2 yuan2 	法律從業人員	c=1 d=0.891366 t=496
+fa3 yuan4 	法院	c=1 d=0.97531 t=496
+fa3 yuan4 chang2 yong4 wen2 shu1 	法院常用文書	c=1 d=0.83527 t=496
+fa3 yuan4 zao4 zi4 	法院造字	c=1 d=0.831104 t=496
+fang1 shi4 	方式	c=0 d=0.071177 t=496
+fang4 qi4 	放棄	c=1 d=0.99005 t=496
+fen1 fen1 	紛紛	c=0 d=0.0891366 t=496
+fen1 zhong1 	分鐘	c=1 d=0.826959 t=496
+fu2 hao4 	符號	c=0 d=0.0600496 t=496
+fu4 za2 	複雜	c=0 d=0.0985112 t=496
+gai1 	該	c=1 d=1.02911 t=496
+gai1 zen3 me5 	該怎麼	c=1 d=0.960789 t=496
+gan4 	幹	c=1 d=1.14779 t=496
+gan4 ma2 	幹嘛	c=0 d=0.0980199 t=496
+gan4 mei2 shi4 	幹沒事	c=1 d=0.99005 t=496
+gang1 	剛	c=1 d=0.995012 t=496
+ge4 	個	c=1 d=0.634448 t=496
+ge5 	個	c=5 d=3.17616 t=496
+ge5 an4 jian4 	個按鍵	c=1 d=0.819088 t=496
+gen1 	根	c=1 d=1.06797 t=496
+gen1 ju4 	根據	c=0 d=0.0856415 t=496
+geng4 duo1 	更多	c=0 d=0.0980199 t=496
+geng4 jia1 	更佳	c=0 d=0.0843665 t=496
+gong1 neng2 	功能	c=1 d=0.980789 t=496
+gong1 neng2 de5 	功能的	c=1 d=0.882497 t=496
+gong1 si1 	公司	c=0 d=0.0909373 t=496
+gong4 	共	c=1 d=0.955997 t=496
+gou4 mai3 	購買	c=0 d=0.099005 t=496
+gu3 fen4 you3 xian4 gong1 si1 	股份有限公司	c=0 d=0.0955997 t=496
+gu4 shi4 	故事	c=1 d=0.970446 t=496
+guo3 ran2 shi4 	果然是	c=0 d=0.0980199 t=496
+guo3 ran2 shi4 you3 qian2 ren2 	果然是有錢人	c=1 d=0.985112 t=496
+guo4 de5 	過的	c=0 d=0.0869358 t=496
+hai2 hao3 	還好	c=1 d=0.913931 t=496
+hai2 shi4 	還是	c=0 d=0.0574072 t=496
+hai2 shi4 you3 yi3 xia4 bu4 tong2 de5 di4 fang1 	還是有以下不同的地方	c=1 d=0.57695 t=496
+hai2 yao4 	還要	c=0 d=0.0985112 t=496
+hai2 you3 	還有	c=0 d=0.145728 t=496
+hai2 you3 hui2 bao4 	還有回報	c=1 d=0.955997 t=496
+hao2 wu2 	毫無	c=0 d=0.0818731 t=496
+hao3 	好	c=1 d=0.941765 t=496
+hao3 le5 	好了	c=0 d=0.0895834 t=496
+hao3 ma5 	好嗎	c=0 d=0.0869358 t=496
+hao3 xiang4 	好像	c=1 d=0.980199 t=496
+he2 shen1 	河身	c=0 d=0.0873716 t=496
+hen3 	很	c=0 d=0.0839457 t=496
+hen3 zheng4 chang2 de5 	很正常的	c=1 d=0.843665 t=496
+hou4 lai2 	後來	c=0 d=0.0960789 t=496
+hou4 lai2 si1 fa3 yuan4 wei3 tuo1 	後來司法院委託	c=1 d=0.965605 t=496
+hua4 shuo1 	話說	c=1 d=0.99005 t=496
+hui2 bao4 	回報	c=0 d=0.0951229 t=496
+hui4 ke2 gen1 	會殼跟	c=1 d=0.941765 t=496
+huo4 	或	c=0 d=0.071177 t=496
+ji1 ben3 	基本	c=0 d=0.0594521 t=496
+ji1 ben3 zhu4 yin1 fu2 hao4 	基本注音符號	c=1 d=0.597501 t=496
+ji1 guan1 	機關	c=2 d=1.5747 t=496
+ji2 	及	c=4 d=2.94845 t=496
+ji2 ke3 	即可	c=1 d=0.856415 t=496
+ji2 wei2 	即為	c=0 d=0.0970446 t=496
+jia1 shang4 	加上	c=1 d=0.860708 t=496
+jian3 cheng1 	簡稱	c=0 d=0.0694197 t=496
+jian4 	鍵	c=6 d=4.30686 t=496
+jian4 pan2 	鍵盤	c=0 d=0.285156 t=496
+jiang1 	將	c=0 d=0.0715338 t=496
+jiao4 zheng4 	校正	c=1 d=0.873716 t=496
+jie1 jin4 	接近	c=0 d=0.0937067 t=496
+jie4 mian4 	介面	c=0 d=0.229872 t=496
+jie4 mian4 ji2 cao1 zuo4 	介面及操作	c=1 d=0.826959 t=496
+jin4 liang4 	盡量	c=0 d=0.0937067 t=496
+jin4 liang4 jie1 jin4 	盡量接近	c=1 d=0.941765 t=496
+jiu4 	就	c=0 d=0.0995012 t=496
+jiu4 you3 	就有	c=0 d=0.0955997 t=496
+ju1 	居	c=0 d=0.0909373 t=496
+ju1 de5 lou2 shang4 wang4 qu4 	居的樓上望去	c=1 d=0.913931 t=496
+ju3 li4 lai2 shuo1 	舉例來說	c=1 d=0.759572 t=496
+ju4 zi5 	句子	c=1 d=1.09206 t=496
+ju4 zi5 ji2 wei2 	句子即為	c=1 d=0.97531 t=496
+kai1 	開	c=1 d=0.782705 t=496
+kai1 fa1 	開發	c=2 d=1.61404 t=496
+kai1 fa1 le5 	開發了	c=1 d=0.960789 t=496
+kai1 fang4 	開放	c=0 d=0.0985112 t=496
+kan4 	看	c=1 d=1.06557 t=496
+ke3 	可	c=0 d=0.0860708 t=496
+ke3 bu4 guan3 shun4 xu4 	可不管順序	c=1 d=0.865022 t=496
+ke3 xi2 	可惜	c=0 d=0.0946485 t=496
+ke3 yi3 	可以	c=1 d=1.14069 t=496
+ke3 yi3 da3 	可以打	c=1 d=0.900325 t=496
+ke3 yi3 da4 fu2 suo1 duan3 shu1 ru4 shi2 jian1 	可以大幅縮短輸入時間	c=1 d=0.818731 t=496
+ke3 yi3 shi4 	可以是	c=1 d=0.941765 t=496
+ke3 yi3 xi3 	可以洗	c=1 d=0.995012 t=496
+kou3 zhong1 	口中	c=0 d=0.0900325 t=496
+kou3 zhong1 shuo1 chu1 	口中說出	c=1 d=0.904837 t=496
+kuang1 jia4 	框架	c=0 d=0.0771052 t=496
+la1 	啦	c=1 d=0.918512 t=496
+lai2 	來	c=1 d=0.977421 t=496
+le5 	了	c=2 d=1.97816 t=496
+li3 jie3 	理解	c=0 d=0.099005 t=496
+li3 mian4 	裡面	c=0 d=0.0814647 t=496
+li4 ru2 	例如	c=2 d=1.58616 t=496
+li4 shi3 	歷史	c=1 d=0.951229 t=496
+li4 yong4 	利用	c=1 d=0.980199 t=496
+lian4 xi2 	練習	c=1 d=0.873716 t=496
+lian4 yu4 	煉獄	c=1 d=0.88692 t=496
+liang3 	兩	c=0 d=0.0677057 t=496
+liang3 an4 	兩岸	c=0 d=0.0878095 t=496
+liang3 ge5 	兩個	c=0 d=0.198114 t=496
+liang3 ge5 yin1 	兩個音	c=2 d=1.62016 t=496
+liang3 ge5 yin1 an4 jian4 	兩個音按鍵	c=2 d=1.32732 t=496
+liang3 ge5 yin1 dou1 shi4 	兩個音都是	c=1 d=0.657047 t=496
+ling4 yi1 fang1 mian4 	另一方面	c=1 d=0.99005 t=496
+lou2 shang4 	樓上	c=0 d=0.0909373 t=496
+lou4 	漏	c=0 d=0.0869358 t=496
+lou4 shen2 me5 	漏什麼	c=1 d=0.873716 t=496
+lu4 xu4 	陸續	c=0 d=0.0878095 t=496
+lu4 xu4 you3 	陸續有	c=1 d=0.882497 t=496
+luo2 ji2 	邏輯	c=0 d=0.071177 t=496
+lv4 shi1 	律師	c=1 d=0.88692 t=496
+ma1 	嗎	c=0 d=0.254149 t=496
+mai3 	買	c=0 d=0.0995012 t=496
+mei2 	沒	c=1 d=0.972017 t=496
+mei2 shi4 	沒事	c=0 d=0.0985112 t=496
+mei3 	每	c=0 d=0.0802519 t=496
+mei3 ge5 	每個	c=0 d=0.0690734 t=496
+mei3 ge5 zi4 	每個字	c=1 d=1.0347 t=496
+mei3 ge5 zi4 de5 zhu4 yin1 fu2 hao4 bi4 xu1 yi1 shun4 xu4 	每個字的注音符號必須依順序	c=1 d=0.71177 t=496
+mei3 ge5 zi4 de5 zhu4 yin1 li4 yong4 san1 ge5 an4 jian4 	每個字的注音利用三個按鍵	c=1 d=0.860708 t=496
+mei3 yi2 tao4 	每一套	c=1 d=0.806541 t=496
+mei3 zi4 	每字	c=1 d=0.726149 t=496
+mian3 fei4 	免費	c=1 d=0.744532 t=496
+miao3 	秒	c=2 d=1.59329 t=496
+ming4 ming2 wei2 	命名為	c=1 d=0.980199 t=496
+mo2 shi4 	模式	c=1 d=0.927743 t=496
+mu4 qian2 	目前	c=0 d=0.174849 t=496
+mu4 qian2 de5 	目前的	c=1 d=0.755784 t=496
+mu4 qian2 ye3 kai1 fang4 	目前也開放	c=1 d=0.99005 t=496
+mu4 qian2 zheng4 zai4 	目前正在	c=1 d=0.869358 t=496
+na4 	那	c=1 d=0.882497 t=496
+na4 gai1 	那該	c=1 d=0.932394 t=496
+na4 hui4 	那會	c=0 d=0.0865022 t=496
+na4 hui4 shi4 	那會是	c=1 d=0.869358 t=496
+na4 me5 	那麼	c=0 d=0.0715338 t=496
+na4 me5 si1 fa3 yuan4 zhi4 hui4 xing2 	那麼司法院智慧型	c=1 d=0.718924 t=496
+na4 shi4 	那是	c=1 d=0.985112 t=496
+nan2 	男	c=1 d=0.865022 t=496
+nan2 	難	c=1 d=0.918512 t=496
+nan2 du4 	難度	c=0 d=0.0847894 t=496
+nan2 you3 	男友	c=0 d=0.097531 t=496
+neng2 	能	c=0 d=0.0856415 t=496
+neng2 gen1 ju4 	能根據	c=1 d=0.860708 t=496
+ni2 ge5 	尼個	c=1 d=0.97531 t=496
+ni3 	你	c=0 d=0.242783 t=496
+ni3 ke3 yi3 ma1 	你可以嗎	c=1 d=1 t=496
+ni3 shi4 	你是	c=0 d=0.097531 t=496
+ni3 shi4 ta1 nan2 you3 	你是他男友	c=1 d=0.980199 t=496
+ni3 zai4 	你在	c=0 d=0.0980199 t=496
+ni3 zhen1 de5 shi4 hao2 wu2 di3 xian4 	你真的是毫無底線	c=1 d=0.822835 t=496
+ni3 zhi1 dao4 ni3 zai4 gan4 ma2 ma1 	你知道你在幹嘛嗎	c=1 d=0.985112 t=496
+nian2 	年	c=2 d=1.68708 t=496
+nian3 	輾	c=1 d=0.970446 t=496
+niu2 	牛	c=2 d=1.91202 t=496
+nou2 	獳	c=1 d=0.965605 t=496
+nou2 	羺	c=1 d=0.955997 t=496
+pa4 	怕	c=1 d=0.965605 t=496
+pai2 lie4 zu3 he2 	排列組合	c=1 d=1.07284 t=496
+pi1 huang2 	匹黃	c=1 d=0.951229 t=496
+pi1 ping2 	批評	c=0 d=0.0923116 t=496
+qi2 	其	c=1 d=0.718924 t=496
+qi2 shi2 	其實	c=1 d=0.909373 t=496
+qi2 shi2 dou1 shi4 zi4 ran2 shu1 ru4 fa3 de5 	其實都是自然輸入法的	c=1 d=0.869358 t=496
+qi3 	起	c=2 d=1.33916 t=496
+qian2 hou4 	前後	c=0 d=0.0860708 t=496
+qie3 	且	c=0 d=0.0927743 t=496
+qie3 gong1 neng2 yu3 	且功能與	c=1 d=0.932394 t=496
+qing1 chu3 	清楚	c=1 d=1 t=496
+qing2 xing2 	情形	c=1 d=0.927743 t=496
+qing3 qia4 	請洽	c=1 d=0.778801 t=496
+qu3 ming2 	取名	c=0 d=0.0980199 t=496
+qu3 ming2 wei2 	取名為	c=1 d=0.985112 t=496
+qu4 	去	c=0 d=0.0909373 t=496
+ran3 ti3 	染體	c=1 d=0.937067 t=496
+ren2 gong1 zhi4 hui4 	人工智慧	c=0 d=0.0748264 t=496
+ren2 gong1 zhi4 hui4 xuan3 zi4 	人工智慧選字	c=1 d=0.752014 t=496
+ren4 he2 	任何	c=0 d=0.0737123 t=496
+reng2 	仍	c=0 d=0.0694197 t=496
+reng2 jian3 cheng1 	仍簡稱	c=1 d=0.697676 t=496
+ru2 guo3 	如果	c=0 d=0.120711 t=496
+ru2 guo3 ba3 	如果把	c=1 d=0.697676 t=496
+ru2 guo3 xi2 guan4 zhi1 hou4 	如果習慣之後	c=1 d=0.814647 t=496
+ru2 he2 	如何	c=1 d=0.985112 t=496
+ru2 xia4 	如下	c=0 d=0.0637628 t=496
+ru2 xia4 tu2 	如下圖	c=1 d=0.640824 t=496
+ru2 yao4 	如要	c=1 d=0.767206 t=496
+ruan3 	軟	c=1 d=0.941765 t=496
+ruan3 ti3 	軟體	c=4 d=3.29956 t=496
+san1 	三	c=1 d=0.815431 t=496
+san1 ge5 	三個	c=0 d=0.152375 t=496
+san1 ge5 jian4 	三個鍵	c=1 d=0.790571 t=496
+san1 ge5 jian4 de5 ren4 he2 shun4 xu4 	三個鍵的任何順序	c=1 d=0.740818 t=496
+shang4 	上	c=3 d=2.33786 t=496
+shen2 me5 	什麼	c=3 d=2.74091 t=496
+sheng1 diao4 	聲調	c=0 d=0.127755 t=496
+sheng1 diao4 dou1 shi4 liang3 zu3 	聲調都是兩組	c=1 d=0.680451 t=496
+sheng1 diao4 fu2 hao4 	聲調符號	c=1 d=0.603506 t=496
+shi2 jian1 	時間	c=0 d=0.156666 t=496
+shi2 shu4 	十數	c=1 d=0.946485 t=496
+shi2 yong4 	實用	c=1 d=0.771052 t=496
+shi3 	使	c=1 d=0.774916 t=496
+shi3 yong4 	使用	c=4 d=2.33932 t=496
+shi3 yong4 jie4 mian4 	使用介面	c=1 d=0.913931 t=496
+shi4 	是	c=1 d=1.15066 t=496
+shi4 xiu1 	是修	c=1 d=0.995012 t=496
+shi4 yi2 tao4 	是一套	c=1 d=0.965605 t=496
+shu1 ji4 guan1 	書記官	c=1 d=0.980199 t=496
+shu1 ru4 	輸入	c=5 d=3.44019 t=496
+shu1 ru4 de5 qian2 hou4 wen2 	輸入的前後文	c=1 d=0.865022 t=496
+shu1 ru4 fa3 	輸入法	c=10 d=6.29907 t=496
+shu1 ru4 fa3 kuang1 jia4 	輸入法框架	c=1 d=0.774916 t=496
+shu1 ru4 fa3 ruan3 ti3 	輸入法軟體	c=1 d=0.860708 t=496
+shu1 ru4 fang1 shi4 huo4 shu1 ru4 luo2 ji2 	輸入方式或輸入邏輯	c=1 d=0.715338 t=496
+shu1 ru4 xu1 qiu2 de5 zhi4 hui4 xing2 	輸入需求的智慧型	c=1 d=0.99005 t=496
+shui3 	水	c=2 d=1.65921 t=496
+shun4 jian1 	瞬間	c=0 d=0.0733447 t=496
+shun4 xu4 	順序	c=1 d=1.05776 t=496
+shuo1 chu1 	說出	c=0 d=0.0900325 t=496
+shuo1 de5 	說的	c=1 d=1 t=496
+si1 fa3 yuan4 	司法院	c=5 d=3.16861 t=496
+si1 fa3 yuan4 suo3 shu3 ji1 guan1 	司法院所屬機關	c=1 d=0.782705 t=496
+si1 fa3 yuan4 zhi4 hui4 	司法院智慧	c=1 d=0.99005 t=496
+si4 ge5 	四個	c=0 d=0.0767206 t=496
+si4 hu1 	似乎	c=1 d=0.985112 t=496
+si4 ji4 	四季	c=1 d=0.88692 t=496
+suan3 	匴	c=2 d=1.54812 t=496
+sui1 ran2 	雖然	c=0 d=0.0904837 t=496
+suo1 duan3 	縮短	c=0 d=0.156666 t=496
+suo3 	所	c=2 d=1.30828 t=496
+suo3 da3 chu1 lai2 	所打出來	c=1 d=0.99005 t=496
+suo3 shu3 	所屬	c=2 d=1.56724 t=496
+ta1 	他	c=1 d=1.17793 t=496
+ta1 hai2 lai2 	他還來	c=1 d=0.895834 t=496
+tai2 wan1 ren2 	台灣人	c=0 d=0.0946485 t=496
+tai4 	太	c=0 d=0.0946485 t=496
+tai4 ke3 xi2 	太可惜	c=1 d=0.951229 t=496
+tai4 ke3 xi2 le5 	太可惜了	c=1 d=0.955997 t=496
+tai4 yi1 	太醫	c=1 d=0.955997 t=496
+ti2 gong1 	提供	c=1 d=0.70822 t=496
+tian1 qi4 	天氣	c=0 d=0.0995012 t=496
+ting1 le5 	聽了	c=1 d=0.980199 t=496
+tong1 ren2 	通人	c=1 d=0.737123 t=496
+tong2 	同	c=1 d=0.740818 t=496
+tong2 shi2 	同時	c=0 d=0.0718924 t=496
+tong3 	統	c=3 d=2.94062 t=496
+tu2 	圖	c=0 d=0.0637628 t=496
+tui1 chu1 	推出	c=1 d=0.985112 t=496
+wa1 kao4 	哇靠	c=1 d=0.818731 t=496
+wan2 quan2 	完全	c=0 d=0.0856415 t=496
+wang3 ji4 	網際	c=1 d=0.909373 t=496
+wang4 	望	c=0 d=0.0909373 t=496
+wei2 	為	c=0 d=0.0980199 t=496
+wei3 tuo1 	委託	c=0 d=0.0960789 t=496
+wen2 	文	c=0 d=0.0860708 t=496
+wen2 shu1 	文書	c=0 d=0.0831104 t=496
+wen2 zi4 	文字	c=1 d=0.852144 t=496
+wen3 	桽	c=1 d=1 t=496
+wen4 ti2 	問題	c=2 d=1.57345 t=496
+wo3 	我	c=2 d=1.99344 t=496
+wo3 wan2 quan2 bu4 	我完全不	c=1 d=0.860708 t=496
+wo3 wu2 fa3 li3 jie3 	我無法理解	c=1 d=0.995012 t=496
+wo3 xiang3 xiang4 zhong1 de5 hai2 yao4 fu4 za2 xu3 duo1 	我想像中的還要複雜許多	c=1 d=0.99005 t=496
+wo3 zi4 ji3 	我自己	c=0 d=0.099005 t=496
+wo3 zi4 ji3 mei2 kan4 	我自己沒看	c=1 d=0.995012 t=496
+wu2 fa3 	無法	c=0 d=0.099005 t=496
+wu2 lun4 	無論	c=0 d=0.0843665 t=496
+wu2 lun4 shi4 	無論是	c=1 d=0.847894 t=496
+wu4 li3 	物理	c=0 d=0.0843665 t=496
+xi1 wang4 	希望	c=0 d=0.0891366 t=496
+xi2 guan4 	習慣	c=0 d=0.0810584 t=496
+xi3 	洗	c=0 d=0.099005 t=496
+xi3 ma1 	洗嗎	c=1 d=0.951229 t=496
+xi4 tong3 	系統	c=2 d=1.9605 t=496
+xia4 	下	c=1 d=1.0603 t=496
+xian4 shang4 	線上	c=0 d=0.099005 t=496
+xian4 shang4 gou4 mai3 	線上購買	c=1 d=0.995012 t=496
+xiang1 dang1 	相當	c=1 d=0.798516 t=496
+xiang1 dang1 yu2 	相當於	c=1 d=0.737123 t=496
+xiang1 dang1 yu2 mei3 ge5 zi4 de5 shu1 ru4 zi4 gen1 	相當於每個字的輸入字根	c=1 d=0.869358 t=496
+xiang3 ru4 	想入	c=0 d=0.0891366 t=496
+xiang3 ru4 fen1 fen1 	想入紛紛	c=1 d=0.895834 t=496
+xiang3 xiang4 	想像	c=0 d=0.0985112 t=496
+xiao4 guo3 	效果	c=0 d=0.0843665 t=496
+xin1 de5 	新的	c=1 d=0.970446 t=496
+xing2 	型	c=2 d=1.52007 t=496
+xiu1 	修	c=3 d=2.73272 t=496
+xiu1 gai3 	修改	c=0 d=0.0843665 t=496
+xiu1 hao3 le5 	修好了	c=1 d=0.964524 t=496
+xu1 qiu2 	需求	c=0 d=0.0985112 t=496
+xu2 kai3 zhe2 	徐凱哲	c=1 d=0.946485 t=496
+xu3 duo1 	許多	c=0 d=0.0985112 t=496
+xu4 	序	c=0 d=0.070822 t=496
+xuan3 	選	c=1 d=0.927743 t=496
+xuan3 zi4 	選字	c=2 d=1.77703 t=496
+xue1 yong3 qian1 	薛詠謙	c=2 d=1.99501 t=496
+ya3 2 	亞ˊ	c=1 d=0.83527 t=496
+ya4 	軋	c=1 d=0.831104 t=496
+yan3 	眼	c=1 d=0.826959 t=496
+yao1 	邀	c=1 d=0.609571 t=496
+yao4 	要	c=0 d=0.197521 t=496
+yao4 zai4 zhe4 zhong3 tian1 qi4 xia4 mai3 	要在這種天氣下買	c=1 d=1 t=496
+ye3 	也	c=0 d=0.236626 t=496
+ye3 da3 bu4 chu1 lai2 	也打不出來	c=1 d=0.985112 t=496
+ye3 shi4 	也是	c=0 d=0.0904837 t=496
+ye3 xi1 wang4 	也希望	c=1 d=0.895834 t=496
+yi1 	一	c=5 d=3.1814 t=496
+yi1 ban1 	一般	c=1 d=0.612626 t=496
+yi1 shun4 	依順	c=0 d=0.070822 t=496
+yi1 tao4 	一套	c=0 d=0.0810584 t=496
+yi1 yin1 duo1 zi4 	一音多字	c=1 d=1 t=496
+yi1 zhong3 	一種	c=0 d=0.0748264 t=496
+yi1 zhong3 ying4 yong4 ruan3 ti3 	一種應用軟體	c=1 d=0.752014 t=496
+yi1 zi4 	一字	c=0 d=0.0913931 t=496
+yi2 tao4 	一套	c=1 d=1.03164 t=496
+yi2 xia4 	一下	c=1 d=0.960789 t=496
+yi3 	以	c=1 d=0.83527 t=496
+yi3 	已	c=1 d=0.818731 t=496
+yi3 jing1 	已經	c=0 d=0.0798516 t=496
+yi3 xia4 	以下	c=0 d=0.0574072 t=496
+yi4 qi3 	一起	c=0 d=0.0718924 t=496
+yi4 wu4 	義務	c=0 d=0.0980199 t=496
+yin1 	因	c=1 d=0.856415 t=496
+yin1 	音	c=1 d=0.90414 t=496
+yin1 ci3 	因此	c=1 d=0.843665 t=496
+yin1 fu2 	音符	c=0 d=0.0985112 t=496
+yin1 wei2 	因為	c=1 d=0.923116 t=496
+ying1 gai1 	應該	c=0 d=0.0995012 t=496
+ying1 gai1 jiu4 xiu1 hao3 le5 	應該就修好了	c=1 d=1 t=496
+ying1 wen2 	英文	c=2 d=1.7485 t=496
+ying4 yong4 	應用	c=0 d=0.0839457 t=496
+ying4 yong4 ruan3 ti3 	應用軟體	c=0 d=0.0748264 t=496
+ying4 yong4 xi4 tong3 	應用系統	c=1 d=0.843665 t=496
+yong3 yuan3 	永遠	c=0 d=0.0937067 t=496
+yong3 yuan3 you3 	永遠有	c=1 d=0.941765 t=496
+yong4 	用	c=1 d=0.579842 t=496
+you2 	由	c=0 d=0.099005 t=496
+you2 yu2 	由於	c=1 d=0.878095 t=496
+you3 	有	c=1 d=1.10894 t=496
+you3 qian2 ren2 	有錢人	c=0 d=0.0980199 t=496
+you3 xian4 gong1 si1 	有限公司	c=1 d=0.97531 t=496
+you3 yi4 wu4 yao4 bao3 hu4 ta1 	有義務要保護他	c=1 d=0.985112 t=496
+you4 	又	c=1 d=0.951229 t=496
+you4 shou3 	右手	c=0 d=0.0683861 t=496
+yu2 	於	c=4 d=2.72442 t=496
+yu3 	與	c=3 d=2.64809 t=496
+yu3 	語	c=1 d=0.767206 t=496
+yu4 	育	c=7 d=6.57245 t=496
+yu4 du2 	育讀	c=1 d=0.965605 t=496
+yu4 yue4 4 	育嶽ˋ	c=1 d=0.960789 t=496
+yuan1 yang1 	鴛鴦	c=1 d=1 t=496
+yuan2 lai2 	原來	c=0 d=0.0927743 t=496
+yuan2 lai2 zi4 ran2 shu1 ru4 fa3 	原來自然輸入法	c=1 d=0.932394 t=496
+yuan3 	遠	c=0 d=0.097531 t=496
+yuan4 	院	c=1 d=0.71177 t=496
+yue1 	約	c=1 d=0.806541 t=496
+yue1 yao4 	約要	c=1 d=0.778801 t=496
+yue4 	嶽	c=10 d=9.324 t=496
+yue4 	月	c=1 d=0.980199 t=496
+yue4 4 	嶽ˋ	c=2 d=2.0172 t=496
+yue4 du2 	閱讀	c=1 d=1 t=496
+yue4 xuan3 chuang1 	越選窗	c=1 d=0.970446 t=496
+za2 men5 	咱們	c=1 d=0.946485 t=496
+zai4 	在	c=2 d=1.68876 t=496
+zai4 an4 jian4 de5 shun4 jian1 	在按鍵的瞬間	c=1 d=0.737123 t=496
+zai4 da1 pei4 	在搭配	c=1 d=0.748264 t=496
+zai4 ji1 	在基	c=2 d=1.85086 t=496
+zan4 yang2 	讚揚	c=1 d=1.04924 t=496
+zan4 yang2 ma1 	讚揚嗎	c=1 d=0.937067 t=496
+zao3 wan3 	早晚	c=0 d=0.0932394 t=496
+zao4 zi4 	造字	c=0 d=0.0826959 t=496
+ze2 shi4 	則是	c=0 d=0.119725 t=496
+ze2 shi4 xiu1 gai3 	則是修改	c=1 d=0.847894 t=496
+zen3 	怎	c=0 d=0.0923116 t=496
+zen3 me5 	怎麼	c=0 d=0.0955997 t=496
+zen3 pi1 ping2 de5 a1 	怎批評的啊	c=1 d=0.927743 t=496
+zhe3 	者	c=1 d=0.694197 t=496
+zhe4 	這	c=0 d=0.0873716 t=496
+zhe4 bi3 	這筆	c=1 d=0.97531 t=496
+zhe4 he2 shen1 	這河身	c=1 d=0.878095 t=496
+zhe4 li3 	這裡	c=1 d=0.852144 t=496
+zhe4 yang4 	這樣	c=0 d=0.099005 t=496
+zhe4 zhong3 	這種	c=0 d=0.0995012 t=496
+zhen1 de5 	真的	c=1 d=0.913931 t=496
+zhen1 de5 shi4 	真的是	c=1 d=0.904837 t=496
+zhen1 dui4 	針對	c=1 d=0.970446 t=496
+zheng4 chang2 de5 	正常的	c=0 d=0.0839457 t=496
+zheng4 zai4 	正在	c=0 d=0.0865022 t=496
+zhi1 dao4 	知道	c=0 d=0.170017 t=496
+zhi1 dao4 zai4 gan4 	知道在幹	c=1 d=0.865022 t=496
+zhi1 hou4 	之後	c=1 d=0.980199 t=496
+zhi1 yuan2 	支援	c=1 d=0.822835 t=496
+zhi1 yuan2 zhui1 yin1 shu1 ru4 fa3 	支援追音輸入法	c=1 d=0.918512 t=496
+zhi3 shi4 	只是	c=1 d=0.822835 t=496
+zhi3 yao4 	只要	c=0 d=0.0782705 t=496
+zhi3 yong4 dao4 	只用到	c=1 d=0.631284 t=496
+zhi4 hui4 	智慧	c=1 d=1.06895 t=496
+zhi4 hui4 gong1 si1 	智慧公司	c=1 d=0.913931 t=496
+zhi4 hui4 xing2 	智慧型	c=2 d=1.39964 t=496
+zhi4 hui4 xing2 shu1 ru4 fa3 	智慧型輸入法	c=1 d=0.951229 t=496
+zhi4 hui4 xing2 shu1 ru4 fa3 ruan3 ti3 	智慧型輸入法軟體	c=1 d=0.763379 t=496
+zhi4 jin1 	至今	c=0 d=0.0798516 t=496
+zhi4 jin1 yi3 jing1 fa1 zhan3 dao4 di4 si4 dai4 	至今已經發展到第四代	c=1 d=0.802519 t=496
+zhong1 	中	c=1 d=1.03558 t=496
+zhong3 	種	c=4 d=2.86061 t=496
+zhong3 shu1 ru4 zu3 he2 	種輸入組合	c=1 d=0.909373 t=496
+zhu4 yin1 	注音	c=2 d=1.70112 t=496
+zhu4 yin1 fu2 hao4 	注音符號	c=1 d=0.793721 t=496
+zhu4 yin1 fu2 hao4 tong2 shi2 yi4 qi3 shu1 ru4 	注音符號同時一起輸入	c=1 d=0.722527 t=496
+zhu4 yin1 hai2 you3 yi1 zi4 	注音還有一字	c=1 d=0.918512 t=496
+zhu4 yin1 shi4 	注音是	c=1 d=0.995012 t=496
+zhu4 yin1 shu1 ru4 fa3 	注音輸入法	c=1 d=0.923116 t=496
+zhui1 yin1 	追音	c=4 d=3.22622 t=496
+zhui1 yin1 ban3 	追音版	c=3 d=2.04877 t=496
+zhui1 yin1 ban3 ruan3 ti3 	追音版軟體	c=1 d=0.733447 t=496
+zhui1 yin1 shu1 ru4 	追音輸入	c=1 d=0.955997 t=496
+zhui1 yin1 shu1 ru4 fa3 	追音輸入法	c=8 d=5.96613 t=496
+zhui1 yin1 shu1 ru4 fa3 de5 kai1 fa1 nan2 du4 	追音輸入法的開發難度	c=1 d=0.852144 t=496
+zhui1 yin1 shu1 ru4 fa3 de5 shi3 yong4 jie4 mian4 lai2 cheng2 xian4 	追音輸入法的使用介面來呈現	c=1 d=0.839457 t=496
+zhui1 yin1 shu1 ru4 fa3 mei3 ge5 zi4 gen1 pai2 lie4 zu3 he2 yuan3 bi3 	追音輸入法每個字根排列組合遠比	c=1 d=0.980199 t=496
+zhui1 yin1 shu1 ru4 fa3 sui1 ran2 ye3 shi4 	追音輸入法雖然也是	c=1 d=0.909373 t=496
+zhui1 yin1 shu1 ru4 fa3 ze2 shi4 jiang1 	追音輸入法則是將	c=1 d=0.718924 t=496
+zi1 xun4 	資訊	c=0 d=0.0955997 t=496
+zi1 xun4 gu3 fen4 you3 xian4 gong1 si1 	資訊股份有限公司	c=1 d=0.960789 t=496
+zi1 xun4 shi4 	資訊室	c=1 d=0.786628 t=496
+zi4 	字	c=3 d=2.45122 t=496
+zi4 dong4 	自動	c=0 d=0.0865022 t=496
+zi4 dong4 xuan3 zi4 	自動選字	c=1 d=0.869358 t=496
+zi4 gen1 	字根	c=0 d=0.0865022 t=496
+zi4 ran2 shu1 ru4 fa3 	自然輸入法	c=4 d=3.00338 t=496
+zi4 ran2 shu1 ru4 fa3 ruan3 ti3 	自然輸入法軟體	c=2 d=1.71716 t=496
+zi4 ran2 shu1 ru4 fa3 ruan3 ti3 zai4 li3 mian4 	自然輸入法軟體在裡面	c=1 d=0.818731 t=496
+zi4 ran2 shu1 ru4 fa3 zhui1 yin1 ban3 	自然輸入法追音版	c=1 d=0.995012 t=496
+zu3 	組	c=0 d=0.0677057 t=496
+zu3 he2 	組合	c=1 d=0.981848 t=496
+zui4 	最	c=0 d=0.0891366 t=496
+zui4 cong1 cui4 	最蔥翠	c=1 d=0.895834 t=496
+zui4 jin4 	最近	c=0 d=0.0869358 t=496
+zui4 jin4 guo4 de5 hao3 ma5 	最近過的好嗎	c=1 d=0.873716 t=496
+zui4 zao3 	最早	c=0 d=0.099005 t=496
+zui4 zao3 ban3 ben3 you2 	最早版本由	c=1 d=0.995012 t=496
+zuo3 you4 	左右	c=0 d=0.0683861 t=496

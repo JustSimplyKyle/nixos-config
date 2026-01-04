@@ -1,0 +1,16 @@
+# Rime dictionary
+# encoding: utf-8
+#
+# A dictionary file as a stub; expanding the dictionary for the most basic use
+# cases for now
+#
+# Copied from iridium_bpmf_ext
+
+---
+name: chasew_ext
+version: 0.1
+sort: by_weight
+use_preset_vocabulary: true
+import_tables:
+  - mcbopomofo
+...
