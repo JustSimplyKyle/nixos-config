@@ -111,5 +111,9 @@
     gtk3
     gtk4
     localsend
+    (
+        pkgs.bottles.override { removeWarningPopup = true; }
+    )
+    bottles
   ];
 }

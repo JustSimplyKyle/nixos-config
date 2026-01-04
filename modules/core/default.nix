@@ -32,6 +32,7 @@
     ./virtualisation.nix
     ./xserver.nix
     ./fcitx5.nix
+    ./tailscale.nix
     inputs.stylix.nixosModules.stylix
   ];
 }
