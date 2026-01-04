@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     # Additional VM management tools
     spice-gtk # Better VM display performance
-    win-virtio # Windows guest drivers (for testing Windows)
+    virtio-win # Windows guest drivers (for testing Windows)
   ];
 
   dconf.settings = {

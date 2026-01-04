@@ -9,7 +9,7 @@
   muted = "#" + config.lib.stylix.colors.base03;
 in {
   programs.fzf = {
-    enable = true;
+    enable = false;
     enableZshIntegration = true;
     enableFishIntegration = true;
     colors = lib.mkForce {
@@ -29,9 +29,9 @@ in {
       "--prompt='--> '"
       "-i"
       "--no-bold"
-      "--bind='enter:execute(nvim {})'"
-      "--preview='bat --style=numbers --color=always --line-range :500 {}'"
-      "--preview-window=right:60%:wrap"
+      "--bind='enter:execute(hx {})'"
+      # "--preview='bat --style=numbers --color=always --line-range :500 {}'"
+      # "--preview-window=right:60%:wrap"
     ];
   };
 }

@@ -3,6 +3,7 @@
   lib,
   pkgs,
   host,
+  inputs,
   ...
 }:
 let
@@ -11,10 +12,7 @@ in
 {
   config = lib.mkIf enableCommunicationApps {
     environment.systemPackages = with pkgs; [
-      teams-for-linux # Video Meetings
-      zoom-us # Video Meetings
-      telegram-desktop # Messaging App
-      vesktop # Discord Alternative
+      inputs.nixpkgs-stable.legacyPackages.${pkgs.system}.vesktop
     ];
   };
 }

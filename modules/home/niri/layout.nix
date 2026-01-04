@@ -22,59 +22,182 @@
           natural-scroll
       }
       mouse {
-          accel-profile "adaptive"
-          accel-speed 1.0
+          accel-profile "flat"
+          accel-speed -0.2
       }
       trackpoint {
       }
 
-      focus-follows-mouse
-      warp-mouse-to-focus
+      focus-follows-mouse max-scroll-amount="0%"
   }
 
   layout {
-      gaps 9
+    // Set gaps around windows in logical pixels.
+    gaps 16
+    always-center-single-column
 
-      center-focused-column "never"
-      always-center-single-column
+    // When to center a column when changing focus, options are:
+    // - "never", default behavior, focusing an off-screen column will keep at the left
+    //   or right edge of the screen.
+    // - "always", the focused column will always be centered.
+    // - "on-overflow", focusing a column will center it if it doesn't fit
+    //   together with the previously focused column.
+    center-focused-column "on-overflow"
 
-      preset-column-widths {
-          proportion 0.5
-          proportion 0.66667
-          proportion 1.0
-      }
+    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
+    preset-column-widths {
+        // Proportion sets the width as a fraction of the output width, taking gaps into account.
+        // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
+        // The default preset widths are 1/3, 1/2 and 2/3 of the output.
+        // proportion 0.33333
+        proportion 0.5
+        // proportion 0.66667
+        proportion 0.75
 
-      default-column-width { proportion 0.5; }
+        // Fixed sets the width in logical pixels exactly.
+        // fixed 1920
+    }
 
-      border {
-          width 2
-          active-color "#cba6f7"
-          inactive-color "#45475a"
-          urgent-color "#f5c2e7"
-      }
+    // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
+    // preset-window-heights { }
 
-      focus-ring {
-          off
-          width 2
-          active-color   "#808080"
-          inactive-color "#505050"
-      }
+    // You can change the default width of the new windows.
+    default-column-width { proportion 0.5; }
+    // If you leave the brackets empty, the windows themselves will decide their initial width.
+    // default-column-width {}
 
-      shadow {
-          softness 30
-          spread 5
-          offset x=0 y=5
-          color "#0007"
-      }
+    // By default focus ring and border are rendered as a solid background rectangle
+    // behind windows. That is, they will show up through semitransparent windows.
+    // This is because windows using client-side decorations can have an arbitrary shape.
+    //
+    // If you don't like that, you should uncomment `prefer-no-csd` below.
+    // Niri will draw focus ring and border *around* windows that agree to omit their
+    // client-side decorations.
 
-      struts {
-      }
-  }
+    //
+    // Alternatively, you can override it with a window rule called
+    // `draw-border-with-background`.
 
-  /-layer-rule {
-      match namespace="^quickshell$"
-      place-within-backdrop true
-  }
+    // You can change how the focus ring looks.
+    focus-ring {
+        // Uncomment this line to disable the focus ring.
+        // off
+
+        // How many logical pixels the ring extends out from the windows.
+        width 4
+
+        // Colors can be set in a variety of ways:
+        // - CSS named colors: "red"
+        // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
+        // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
+
+        // Color of the ring on the active monitor.
+        active-color "#808080"
+        
+        // Color of the ring on inactive monitors.
+        inactive-color "#505050"
+
+        // You can also use gradients. They take precedence over solid colors.
+        // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
+        // The angle is the same as in linear-gradient, and is optional,
+        // defaulting to 180 (top-to-bottom gradient).
+        // You can use any CSS linear-gradient tool on the web to set these up.
+        // Changing the color space is also supported, check the wiki for more info.
+        //
+        // active-gradient from="#80c8ff" to="#bbddff" angle=45
+
+        // You can also color the gradient relative to the entire view
+        // of the workspace, rather than relative to just the window itself.
+        // To do that, set relative-to="workspace-view".
+        //
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+    }
+    tab-indicator {
+        place-within-column
+        hide-when-single-tab
+        position "top"
+        corner-radius 15
+        active-color "#ff7f80"
+        width 20
+        gaps-between-tabs 4
+        gap 8
+        length total-proportion=1.0
+        inactive-color "#7f80ff"
+    }
+
+    // You can also add a border. It's similar to the focus ring, but always visible.
+    border {
+        // The settings are the same as for the focus ring.
+        // If you enable the border, you probably want to disable the focus ring.
+        off
+
+        width 4
+        active-color "#cba6f7"
+        inactive-color "#45475a"
+
+        // Color of the border around windows that request your attention.
+        urgent-color "#f5c2e7"
+
+        // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+    }
+
+    // You can enable drop shadows for windows.
+    shadow {
+        // Uncomment the next line to enable shadows.
+        // on
+
+        // By default, the shadow draws only around its window, and not behind it.
+        // Uncomment this setting to make the shadow draw behind its window.
+        //
+        // Note that niri has no way of knowing about the CSD window corner
+        // radius. It has to assume that windows have square corners, leading to
+        // shadow artifacts inside the CSD rounded corners. This setting fixes
+        // those artifacts.
+        // 
+        // However, instead you may want to set prefer-no-csd and/or
+        // geometry-corner-radius. Then, niri will know the corner radius and
+        // draw the shadow correctly, without having to draw it behind the
+        // window. These will also remove client-side shadows if the window
+        // draws any.
+        // 
+        // draw-behind-window true
+
+        // You can change how shadows look. The values below are in logical
+        // pixels and match the CSS box-shadow properties.
+
+        // Softness controls the shadow blur radius.
+        softness 30
+
+        // Spread expands the shadow.
+        spread 5
+
+        // Offset moves the shadow relative to the window.
+        offset x=0 y=5
+
+        // You can also change the shadow color and opacity.
+        color "#0007"
+    }
+
+    default-column-display "normal"
+
+    // Struts shrink the area occupied by windows, similarly to layer-shell panels.
+    // You can think of them as a kind of outer gaps. They are set in logical pixels.
+    // Left and right struts will cause the next window to the side to always be visible.
+    // Top and bottom struts will simply add outer gaps in addition to the area occupied by
+    // layer-shell panels and regular gaps.
+    struts {
+        // left 64
+        // right 64
+        // top 64
+        // bottom 64
+    }
+}
+
+layer-rule {
+  match namespace="^noctalia-overview*"
+  place-within-backdrop true
+}
 
   overview {
       backdrop-color "#1e1e2e"
@@ -89,36 +212,52 @@
       zoom 0.5
   }
 
-  animations {
-      workspace-switch {
-          spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
-      }
-      window-open {
-          duration-ms 150
-          curve "ease-out-expo"
-      }
-      window-close {
-          duration-ms 150
-          curve "ease-out-quad"
-      }
-      horizontal-view-movement {
-          spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
-      }
-      window-movement {
-          spring damping-ratio=0.75 stiffness=323 epsilon=0.0001
-      }
-      window-resize {
-          spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
-      }
-      config-notification-open-close {
-          spring damping-ratio=0.65 stiffness=923 epsilon=0.001
-      }
-      screenshot-ui-open {
-          duration-ms 200
-          curve "ease-out-quad"
-      }
-      overview-open-close {
-          spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
-      }
-  }
+    animations {
+        // Uncomment to turn off all animations.
+        // You can also put "off" into each individual animation to disable it.
+        // off
+
+        // Slow down all animations by this factor. Values below 1 speed them up instead.
+        // slowdown 3.0
+
+        // Individual animations.
+
+        workspace-switch {
+            spring damping-ratio=0.75 stiffness=150 epsilon=0.0001
+        }
+
+        window-open {
+            spring damping-ratio=0.577 stiffness=300 epsilon=0.0001
+        }
+
+        window-close {
+            spring damping-ratio=0.577 stiffness=300 epsilon=0.0001
+        }
+
+        horizontal-view-movement {
+            spring damping-ratio=0.75 stiffness=150 epsilon=0.0001
+        }
+
+        window-movement {
+            spring damping-ratio=0.75 stiffness=150 epsilon=0.0001
+        }
+
+        window-resize {
+            // spring damping-ratio=0.75 stiffness=150 epsilon=0.0001
+            spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+        }
+
+        config-notification-open-close {
+            spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
+        }
+
+        screenshot-ui-open {
+            duration-ms 150
+            curve "ease-out-quad"
+        }
+
+        overview-open-close {
+            spring damping-ratio=0.75 stiffness=150 epsilon=0.0001
+        }
+    }
 ''

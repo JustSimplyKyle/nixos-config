@@ -20,10 +20,6 @@
   }
 
   // Opacity rules for specific applications
-  window-rule {
-      match app-id=r#"^(kitty|thunar|org\.telegram\.desktop|discord|vesktop|org\.gnome\.Nautilus|nemo)$"#
-      opacity 0.9
-  }
 
   // Launch vesktop and Telegram on DP-3 monitor
   window-rule {

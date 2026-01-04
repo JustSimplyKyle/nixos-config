@@ -46,7 +46,7 @@
   flutterdevEnable = false;
 
   # Enable Stylix System Theming
-  stylixEnable = true;
+  stylixEnable = false;
 
   # Enable Syncthing File Synchronization
   syncthingEnable = false;
@@ -81,7 +81,7 @@
   #stylixImage = ../../wallpapers/mountainscapedark.jpg;
   #stylixImage = ../../wallpapers/Rainnight.jpg;
   #stylixImage = ../../wallpapers/zaney-wallpaper.jpg;
-  stylixImage = ../../wallpapers/55.png;
+  #stylixImage = ../../wallpapers/55.png;
 
   # Set Waybar (temporarily disabled - use DMS or Noctalia)
   # Includes alternates such as:

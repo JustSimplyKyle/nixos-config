@@ -42,6 +42,8 @@
 
   environment.systemPackages = with pkgs; [
     amfora # Fancy Terminal Browser For Gemini Protocol
+    feishin
+    motrix
     appimage-run # Needed For AppImage Support
     bottom # btop like util
     brightnessctl # For Screen Brightness Control
@@ -56,7 +58,7 @@
     gdu # graphical disk usage
     gedit # Simple Graphical Text Editor
     gimp # Great Photo Editor
-    glxinfo # Needed for inxi -G GPU info
+    mesa-demos # Needed for inxi -G GPU info
     gping # graphical ping
     tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
     htop # Simple Terminal Based System Monitor
@@ -99,7 +101,7 @@
     nwg-drawer # drawer GUI
     nwg-look # Look GUI
     rofi-emoji # rofi-emoji-wayland merged into rofi-emoji in nixpkgs-unstable
-    youtube-music
+    pear-desktop
     zen-browser # Default browser
     # Development Tools
     zed-editor # Code editor with AI features

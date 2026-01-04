@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    better-focus.url = "path:/home/kyle/coding/better-focus";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +21,7 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell";
+      # inputs.quickshell.follows = "quickshell";
     };
     helium-browser = {
       url = "github:fpletz/flake";
@@ -65,6 +67,12 @@
           username = "user";
         };
 
+        nixos-desktop = mkHost {
+          hostname = "nixos-desktop";
+          profile = "amd";
+          username = "kyle";
+        };
+
         nix-tester = mkHost {
           hostname = "nix-tester";
           profile = "intel";
@@ -77,6 +85,7 @@
           username = "don";
         };
       };
+      nixpkgs.config.allowUnfree = true;
 
       # Flutter development environment
       devShells = flake-utils.lib.eachDefaultSystem (

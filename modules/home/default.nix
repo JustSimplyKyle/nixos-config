@@ -1,7 +1,9 @@
 {
   inputs,
+  config,
   host,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -31,9 +33,9 @@ in
     ./btop.nix
     ./cava.nix
     ./emoji.nix
+    ./helix.nix
+    ./zellij.nix
     ./eza.nix
-    ./fastfetch
-    ./fzf.nix
     ./gh.nix
     ./ghostty.nix
     ./git.nix
@@ -41,7 +43,6 @@ in
     ./htop.nix
     ./kitty.nix
     ./lazygit.nix
-    ./nvf.nix
     ./nwg-drawer.nix
     ./obs-studio.nix
     ./rofi
@@ -59,12 +60,11 @@ in
     ./yazi
     ./zoxide.nix
     ./environment.nix
+    ./better-focus.nix
   ]
 
-  # Window Managers - Both always available, user selects at login
   ++ [
     ./niri
-    ./hyprland
   ]
 
   # Shell - conditional import based on defaultShell variable
@@ -92,4 +92,21 @@ in
   _module.args = {
     inherit useNvidia;
   };
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowBroken = true;
+      allowInsecure = false;
+    };
+
+    overlays =
+      # Apply each overlay found in the /overlays directory
+      let overlay_path = ../../overlays; in with builtins;
+      map (n: import (overlay_path + ("/" + n)))
+          (filter (n: match ".*\\.nix" n != null ||
+                      pathExists (overlay_path + ("/" + n + "/default.nix")))
+                  (attrNames (readDir overlay_path)));
+  };
+
 }

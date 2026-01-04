@@ -15,3 +15,4 @@ result-*
 
 # Nix build directories
 .direnv/
+modules/home/noctalia-shell/backups

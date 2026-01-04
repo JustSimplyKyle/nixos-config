@@ -56,7 +56,9 @@ let
     else
       "";
 
+      
 in
+
 {
   # Install Niri and related packages
   home.packages = with pkgs; [

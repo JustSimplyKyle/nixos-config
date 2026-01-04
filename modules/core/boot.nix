@@ -4,9 +4,13 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [ "v4l2loopback" ];
+    kernelParams = [ "hid_apple.fnmode=2" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     kernel.sysctl = { "vm.max_map_count" = 2147483642; };
-    loader.systemd-boot.enable = true;
+    loader.systemd-boot = {
+      enable = true;
+      configurationLimit = 5;
+    };
     loader.efi.canTouchEfiVariables = true;
     # Appimage Support
     binfmt.registrations.appimage = {
