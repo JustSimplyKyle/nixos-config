@@ -43,7 +43,21 @@ in
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     # Common libraries needed for Android tools
-    stdenv.cc.cc.lib
+  stdenv.cc.cc
+    xorg.libX11
+    xorg.libXext
+    xorg.libXcursor
+    xorg.libXinerama
+    xorg.libXrandr
+    libv4l
+    libpulseaudio
+    freeglut
+    alsa-lib
+    icu
+    libunwind
+    glib
+    nss
+    nspr
     zlib
     openssl
     libGL
