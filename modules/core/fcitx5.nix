@@ -1,21 +1,35 @@
-{ pkgs, ... }:
-let
-my-fcitx5-rime = pkgs.fcitx5-rime.override {
-    rimeDataPkgs = [];
-  };
-in
-{
+{ pkgs, ... }: {
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
       ignoreUserConfig = true;
-      addons = [
-        my-fcitx5-rime    
-        pkgs.qt6Packages.fcitx5-chinese-addons
+      addons = with pkgs; [
+        fcitx5-fluent
+        (fcitx5-rime.override {
+          rimeDataPkgs = [
+            # Wrap local files so they end up in the 'share/rime-data' subpath
+            (runCommand "chasew-rime-data" {} ''
+              mkdir -p $out/share/rime-data
+              cp -r ${./chasew}/* $out/share/rime-data/
+      '')
+            rime-data
+          ];
+        })
+        qt6Packages.fcitx5-chinese-addons
       ];
       settings = {
+       # This is the correct path for UI/Theme settings
+        addons.classicui.globalSection = {
+          Theme = "FluentDark-solid";
+          # Use "Sans" followed by the size to change size without hardcoding a font
+          Font = "Sans 14";
+          MenuFont = "Sans 14";
+          TrayFont = "Sans 14";
+          # Use "True"/"False" strings because Fcitx5 is case-sensitive with booleans
+          VerticalCandidateList = "False";
+        };
         globalOptions = {
           "Hotkey" = {
             EnumerateWithTriggerKeys = false;

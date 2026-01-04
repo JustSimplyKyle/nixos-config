@@ -1,0 +1,64 @@
+# Rime user dictionary
+#@/db_name	iridium_bpmf_ext
+#@/db_type	userdb
+#@/rime_version	1.8.5
+#@/tick	36
+#@/user_id	39af9bea-0dd7-436e-b24f-97ad661bb0b7
+a5 	啊	c=0 d=0.0965605 t=36
+a5 2 ma4 	啊ˊ罵	c=1 d=0.995012 t=36
+ai4 	愛	c=0 d=0.0995012 t=36
+b1 	ㄅ	c=0 d=0.0995012 t=36
+chuang2 shang4 	床上	c=1 d=0.960789 t=36
+dang1 ran2 shi4 	當然是	c=0 d=0.0995012 t=36
+dang1 ran2 shi4 jia3 de5 	當然是假的	c=1 d=1 t=36
+dang1 wo3 men5 	當我們	c=0 d=0.0985112 t=36
+dang1 wo3 men5 shi4 hao3 peng2 you3 shi2 hou4 	當我們是好朋友時候	c=1 d=0.99005 t=36
+dao4 di3 	到底	c=1 d=0.99005 t=36
+dao4 di3 zai4 	到底在	c=0 d=0.196062 t=36
+dao4 di3 zai4 gan3 ai4 	到底在感愛	c=1 d=1 t=36
+ei4 	欸	c=1 d=1 t=36
+feng4 ci4 	諷刺	c=0 d=0.0941765 t=36
+gan3 	感	c=0 d=0.0995012 t=36
+gan4 ma2 	幹嘛	c=0 d=0.0985112 t=36
+ge2 wai4 	格外	c=0 d=0.0941765 t=36
+ge2 wai4 feng4 ci4 	格外諷刺	c=1 d=0.946485 t=36
+hao3 	好	c=0 d=0.097531 t=36
+hao3 peng2 you3 	好朋友	c=0 d=0.0985112 t=36
+hao3 wan2 	好玩	c=0 d=0.0965605 t=36
+jia3 de5 	假的	c=0 d=0.0995012 t=36
+kun4 huo4 	困惑	c=0 d=0.097531 t=36
+ma5 	嗎	c=1 d=1.16226 t=36
+mai3 	買	c=0 d=0.0965605 t=36
+mai3 bing1 gei3 ta1 ma5 	買兵給他嗎	c=1 d=1 t=36
+ni3 	你	c=0 d=0.188362 t=36
+ni3 ye3 yao4 	你也要	c=0 d=0.0995012 t=36
+ni3 ye3 yao4 qu4 si3 ma5 	你也要去死嗎	c=1 d=1 t=36
+ni3 ye4 yao4 qu4 si3 ma5 	你頁要去死嗎	c=1 d=0.995012 t=36
+nv3 peng2 you3 	女朋友	c=0 d=0.0965605 t=36
+nve4 dai4 	虐待	c=0 d=0.0965605 t=36
+nve4 dai4 nv3 peng2 you3 hao3 wan2 mai3 a5 	虐待女朋友好玩買啊	c=1 d=0.970446 t=36
+q1 k1 	ㄑㄎ	c=2 d=1.99501 t=36
+qin3 	寢	c=1 d=1 t=36
+qing1 chu3 	清楚	c=1 d=1 t=36
+qu4 si3 	去死	c=0 d=0.198506 t=36
+shi2 hou4 	時候	c=0 d=0.0985112 t=36
+shi4 	是	c=1 d=1.09753 t=36
+shi4 ma5 	是嗎	c=1 d=0.965605 t=36
+suo3 yi3 	所以	c=1 d=1.07976 t=36
+suo3 yi3 ta1 	所以他	c=1 d=0.951229 t=36
+t1 	ㄊ	c=2 d=1.99501 t=36
+ta1 	他	c=1 d=1.0847 t=36
+tang3 zai4 	躺在	c=0 d=0.0951229 t=36
+tang3 zai4 ni3 	躺在你	c=1 d=0.955997 t=36
+wo3 	我	c=1 d=1.17383 t=36
+wo3 dao4 di3 zai4 gan4 ma2 	我到底在幹嘛	c=1 d=0.99005 t=36
+wo3 hao3 kun4 huo4 	我好困惑	c=1 d=0.980199 t=36
+wo3 men5 	我們	c=2 d=1.98012 t=36
+wo3 shi4 shei2 	我是誰	c=0 d=0.0995012 t=36
+wo3 shi4 shei2 b1 	我是誰ㄅ	c=1 d=1 t=36
+yao4 	要	c=0 d=0.099005 t=36
+ye4 	頁	c=0 d=0.099005 t=36
+yi3 	以	c=1 d=0.995012 t=36
+yi3 	迤	c=1 d=1 t=36
+yu4 shi4 	浴室	c=1 d=1 t=36
+zhan4 ting2 	暫停	c=2 d=1.99501 t=36

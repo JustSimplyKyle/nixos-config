@@ -1,0 +1,36 @@
+__build_info:
+  rime_version: 1.8.5
+  timestamps:
+    default: 1674054438
+    default.custom: 1678104432
+    key_bindings: 1674054438
+    key_bindings.custom: 0
+    punctuation: 1674054438
+    punctuation.custom: 0
+    test.custom: 0
+    test.schema: 1678106743
+engine:
+  processors:
+    - speller
+    - express_editor
+  segmentors:
+    - abc_segmentor
+    - fallback_segmentor
+  translators:
+    - echo_translator
+    - table_translator
+menu:
+  page_size: 10
+schema:
+  author:
+    - "佛振 <chen.sst@gmail.com>"
+  description: |
+    朙月拼音，兼容智能ABC雙拼方案。
+
+  name: "智能ABC雙拼"
+  schema_id: test
+  version: 0.9
+speller:
+  auto_select: true
+translator:
+  dictionary: test

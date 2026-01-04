@@ -1,0 +1,336 @@
+# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: sydx
+  name: 声韵调形
+  version:
+  author: zhanghaozhecn
+  description: |
+    修改自宫保拼音、地球拼音【佛振】，星空键道6【吅吅大山】
+    https://github.com/rime/home/wiki/ComboPinyin
+    https://gitee.com/xkinput/Rime_JD
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    #states: [ 中文, 西文 ]
+  - name: full_shape
+    #states: [ 半角, 全角 ]
+  - name: simplification
+    #states: [ 漢字, 汉字 ]
+  - name: ascii_punct
+    #states: [ 。，, ．， ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - chord_composer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - reverse_lookup_translator
+    - script_translator
+  filters:
+    - simplifier
+    - uniquifier
+
+editor:
+  bindings:
+    # 退格键删除一个音节
+    BackSpace: back_syllable
+    
+speller:
+  # 进入输入区的字符
+  alphabet: 'zyxwvutsrqponmlkjihgfedcbaAUIOV-<>\'
+  initials: qwertyuiopasdfghjklzxcvbnm
+  delimiter: " '"
+  algebra:
+    # 辅助码可以为0~4码
+    - derive/(:).*$/$1/
+    - derive/(:.).*$/$1/
+    - derive/(:..).*$/$1/
+    - derive/(:...).*$/$1/
+    # lo=luo
+    - xform/^lo(\d)/luo$1/
+    # 删除用于分隔的:
+    - xform/://
+    # 声调用符号表示
+    - 'xlit 12345 -<>\-'
+    # 无阳平音节容错，顺序为上声、阳平、去声
+    - 'derive ^(dei|dia|er|fou|gei|gun|hen|ken|kuai|lan|lia|lian|liang|luan|lv|mai|mei|mian|min|ming|mu|nai|nei|niao|ning|nu|nuan|nv|ran|rang|rao|re|ren|rong|ru|ruan|rui|shui|shun|ze|zen|zui)> $1- '
+    - 'derive ^(cen|fo|huai|lai|neng|niang|nin|nong|nuo|rou|ruo|shei|zei)< $1- '
+    - 'derive ^(ce|fiao|kuo|lve|miu|nen|nou|nun|nve|ri|run|se|te)\\ $1- '
+    # 兼容不打声调，请启用下一行
+    # - 'derive ^([a-z]*)[<>\\] $1-'
+
+chord_composer:
+  # 进入并击的按键，按照下列排序
+  alphabet: "qazwsxedcrfvtgbyhnujm ik,ol.p;/'`"
+  algebra:
+    # 处理辅助码，HSPDZ表示横竖撇点折
+    # 左中
+    - xform/sf(.*')/SH$1/
+    - xform/df(.*')/SS$1/
+    - xform/sd(.*')/SP$1/
+    - xform/as(.*')/SD$1/
+    - xform/af(.*')/SZ$1/
+    - xform/g(.*')/HH$1/ 
+    - xform/f(.*')/HS$1/
+    - xform/d(.*')/HP$1/
+    - xform/s(.*')/HD$1/
+    - xform/a(.*')/HZ$1/
+    # 左上
+    - xform/wr(.*')/DH$1/
+    - xform/er(.*')/DS$1/
+    - xform/we(.*')/DP$1/
+    - xform/qw(.*')/DD$1/
+    - xform/qr(.*')/DZ$1/
+    - xform/t(.*')/PH$1/
+    - xform/r(.*')/PS$1/
+    - xform/e(.*')/PP$1/
+    - xform/w(.*')/PD$1/
+    - xform/q(.*')/PZ$1/
+    # 左下
+    - xform/xv(.*')/H$1/
+    - xform/cv(.*')/S$1/
+    - xform/xc(.*')/P$1/
+    - xform/zx(.*')/D$1/
+    - xform/zv(.*')/Z$1/
+    - xform/b(.*')/ZH$1/
+    - xform/v(.*')/ZS$1/
+    - xform/c(.*')/ZP$1/
+    - xform/x(.*')/ZD$1/
+    - xform/z(.*')/ZZ$1/
+    # 右中
+    - xform/jl(.*')/SH$1/
+    - xform/jk(.*')/SS$1/
+    - xform/kl(.*')/SP$1/
+    - xform/l;(.*')/SD$1/
+    - xform/j;(.*')/SZ$1/
+    - xform/h(.*')/HH$1/ 
+    - xform/j(.*')/HS$1/
+    - xform/k(.*')/HP$1/
+    - xform/l(.*')/HD$1/
+    - xform/;(.*')/HZ$1/
+    # 右上
+    - xform/uo(.*')/DH$1/
+    - xform/ui(.*')/DS$1/
+    - xform/io(.*')/DP$1/
+    - xform/op(.*')/DD$1/
+    - xform/up(.*')/DZ$1/
+    - xform/y(.*')/PH$1/
+    - xform/u(.*')/PS$1/
+    - xform/i(.*')/PP$1/
+    - xform/o(.*')/PD$1/
+    - xform/p(.*')/PZ$1/
+    # 右下
+    - xform/m\.(.*')/H$1/
+    - xform/m\,(.*')/S$1/
+    - xform/\,\.(.*')/P$1/
+    - xform \./(.*') D$1 
+    - xform m/(.*') Z$1 
+    - xform/n(.*')/ZH$1/
+    - xform/m(.*')/ZS$1/
+    - xform/\,(.*')/ZP$1/
+    - xform/\.(.*')/ZD$1/
+    - xform /(.*') ZZ$1 
+    # 去除'号
+    - xform/(.+)'/$1/
+
+
+    # 处理声调
+    # 1/0列作声调键
+    - xform/q/B1/
+    - xform/a/B2/
+    - xform/z/B3/
+    - xform/p/C1/
+    - xform/;/C2/
+    - xform / C3 
+    # 5/6列打常用符号、选字
+    - xform/^t$/^/
+    - xform/^g$/"/
+    - xform/^b$/5/
+    - xform/^y$/3/
+    - xform/^h$/2/
+    - xform/^n$/4/
+    # 234789列打音节
+    - xlit/wsxedcrfvujm ik,ol./cszlhfdgbuivaINUoeE/
+    # 音节区单击的符号
+    - xform/^a$/ /
+    - xform/^U$/,/
+    - xform/^E$/./
+    # 给输入码加声调
+    # 上声
+    - xform/B[123]([a-zINUE]+)C[123](`?)$/$1F$2/
+    # 阳平
+    - xform/B[123]([a-zINUE]+)(`?)$/$1B$2/
+    # 去声
+    - xform/([a-zINUE]+)C[123]/$1C/
+    # 默认阴平
+    - xform/([a-zINUE]+)(`?)$/$1G$2/
+    # 声调键单击打符号
+    - xform/^B1$/!/
+    - xform/^B2$/:/
+    - xform/^B3$/?/
+    - xform/^C1$/_/
+    - xform/^C2$/;/
+    - xform ^C3$ / 
+    # 处理声韵
+    # 单韵母a
+    - xform/^ae([BCFG]`?)$/a$1/
+    # 声母
+    - xform/^zb/p/
+    - xform/^cd/t/
+    - xform/^sg/k/
+    - xform/^fb/m/
+    - xform/^ld/n/
+    - xform/^hg/r/
+    - xform/^zf/zh/
+    - xform/^cl/ch/
+    # 韵母er
+    - xform/^ra([BCFG]`?)$/er$1/
+    # 韵母为o/e
+    - xform/^([dtnlgkhzcsr]h?)o([BCFG]`?)$/$1uo$2/
+    - xform/vE([BCFG]`?)$/ve$1/
+    # 韵尾为U
+    - xform/v(a?)U([BCFG]`?)$/i$1U$2/
+    - xform/aU([BCFG]`?)$/ao$1/
+    - xform/U([BCFG]`?)$/ou$1/
+    - xform/^aE([BCFG]`?)$/ou$1/
+    # 韵尾为I
+    - xform/aI([BCFG]`?)$/ai$1/
+    - xform/I([BCFG]`?)$/ei$1/
+    # 韵尾为ng
+    - xform/(ua?)Io([BCFG]`?)$/$1ng$2/
+    - xform/^ung([BCFG]`?)$/weng$1/
+    - xform/ung([BCFG]`?)$/ong$1/
+    - xform/vUE([BCFG]`?)$/iong$1/
+    - xform/([aiuv])Ne([BCFG]`?)$/$1ng$2/
+    - xform/Ne([BCFG]`?)$/eng$1/
+    # 韵尾为n
+    - xform/(a?)Io([BCFG]`?)$/u$1n$2/
+    - xform/^un([BCFG]`?)$/wen$1/
+    - xform/(a?)UE([BCFG]`?)$/v$1n$2/
+    - xform/([aiuv])N([BCFG]`?)$/$1n$2/
+    - xform/N([BCFG]`?)$/en$1/
+    # gkh变成jqx
+    - xform/^g([iv])/j$1/
+    - xform/^k([iv])/q$1/
+    - xform/^h([iv])/x$1/
+    # 汉语拼音方案的拼写规则
+    - xform/^i(ng?)/yi$1/
+    - xform/^i([BCFG]`?)$/yi$1/
+    - xform/^i/y/
+    - xform/^u([BCFG]`?)$/wu$1/
+    - xform/^u/w/
+    - xform/^v/yu/
+    - xform/^([jqx])v/$1u/
+    - xform/iou/iu/
+    - xform/uei/ui/
+    # 声母补全
+    - xform/^([bpf])([BCFG]`?)$/$1u$2/
+    - xform/^([mdtnlgkh])([BCFG]`?)$/$1e$2/
+    - xform/^([zcsr]h?)([BCFG]`?)$/$1i$2/
+    # 笔画变成键道形式
+    - xlit/HSPDZ/VIUOA/
+    # 消除非法组合
+    - xform/^(a|ai|an|ang|ao|ba|bai|ban|bang|bao|bei|ben|beng|bi|bian|biao|bie|bin|bing|bo|bu|ca|cai|can|cang|cao|ce|cen|ceng|cha|chai|chan|chang|chao|che|chen|cheng|chi|chong|chou|chu|chua|chuai|chuan|chuang|chui|chun|chuo|ci|cong|cou|cu|cuan|cui|cun|cuo|da|dai|dan|dang|dao|de|dei|deng|di|dia|dian|diao|die|ding|diu|dong|dou|du|duan|dui|dun|duo|e|ei|en|eng|er|fa|fan|fang|fei|fen|feng|fiao|fo|fou|fu|ga|gai|gan|gang|gao|ge|gei|gen|geng|gong|gou|gu|gua|guai|guan|guang|gui|gun|guo|ha|hai|han|hang|hao|he|hei|hen|heng|hong|hou|hu|hua|huai|huan|huang|hui|hun|huo|ji|jia|jian|jiang|jiao|jie|jin|jing|jiong|jiu|ju|juan|jue|jun|ka|kai|kan|kang|kao|ke|kei|ken|keng|kong|kou|ku|kua|kuai|kuan|kuang|kui|kun|kuo|la|lai|lan|lang|lao|le|lei|leng|li|lia|lian|liang|liao|lie|lin|ling|liu|lo|long|lou|lu|luan|lun|luo|lv|lve|ma|mai|man|mang|mao|me|mei|men|meng|mi|mian|miao|mie|min|ming|miu|mo|mou|mu|na|nai|nan|nang|nao|ne|nei|nen|neng|ni|nian|niang|niao|nie|nin|ning|niu|nong|nou|nu|nuan|nun|nuo|nv|nve|o|ou|pa|pai|pan|pang|pao|pei|pen|peng|pi|pia|pian|piao|pie|pin|ping|po|pou|pu|qi|qia|qian|qiang|qiao|qie|qin|qing|qiong|qiu|qu|quan|que|qun|ran|rang|rao|re|ren|reng|ri|rong|rou|ru|ruan|rui|run|ruo|sa|sai|san|sang|sao|se|sen|seng|sha|shai|shan|shang|shao|she|shei|shen|sheng|shi|shou|shu|shua|shuai|shuan|shuang|shui|shun|shuo|si|song|sou|su|suan|sui|sun|suo|ta|tai|tan|tang|tao|te|tei|teng|ti|tian|tiao|tie|ting|tong|tou|tu|tuan|tui|tun|tuo|wa|wai|wan|wang|wei|wen|weng|wo|wu|xi|xia|xian|xiang|xiao|xie|xin|xing|xiong|xiu|xu|xuan|xue|xun|ya|yan|yang|yao|ye|yi|yin|ying|yo|yong|you|yu|yuan|yue|yun|za|zai|zan|zang|zao|ze|zei|zen|zeng|zha|zhai|zhan|zhang|zhao|zhe|zhen|zheng|zhi|zhong|zhou|zhu|zhua|zhuai|zhuan|zhuang|zhui|zhun|zhuo|zi|zong|zou|zu|zuan|zui|zun|zuo)([BCFG]`?)$/X$1$2/
+    - erase/^X(an|ban|bang|bei|ben|bian|biao|bin|bing|ca|ce|che|chua|chuai|chuo|cou|cui|dai|dan|dang|dei|deng|dia|dian|diao|ding|diu|dong|dou|duan|dui|dun|en|eng|fiao|gai|gan|gang|gao|gei|geng|gong|gou|gu|gua|guai|guan|guang|gui|gun|hei|jian|jiang|jin|jing|jiong|jiu|juan|jun|ka|kai|kan|kao|kei|ken|keng|kong|kou|ku|kua|kuai|kuan|kun|kuo|le|lia|lie|lo|lve|me|mie|miu|nai|ne|nei|nen|niao|nie|nou|nuan|nun|nv|nve|ou|pia|pie|re|ri|run|sa|sai|san|sang|sao|se|sen|seng|shai|shan|shang|shua|shuai|shuan|shuang|shun|shuo|si|song|sou|suan|sun|suo|ta|te|tei|tie|wai|weng|wo|xin|xiu|yo|zai|zang|zen|zeng|zhan|zhang|zhen|zheng|zhong|zhua|zhuai|zhuan|zhuang|zhui|zhun|zi|zong|zou|zuan|zui|zun)B.*/
+    - erase/^X(ang|bin|cang|ce|cen|ceng|chua|chui|chuo|cong|cou|cu|cuan|de|die|diu|dui|ei|en|eng|fiao|fo|hang|he|hei|heng|hua|huai|hun|jue|jun|kei|keng|kuo|lai|le|lo|lun|lve|me|men|mie|miu|ne|nen|neng|niang|nie|nin|nong|nou|nun|nuo|nve|pa|pai|pan|pei|pen|pia|ping|qiong|que|qun|reng|ri|rou|run|ruo|sai|se|seng|shei|shuan|shuo|su|suan|tai|te|tei|teng|xia|xiong|xun|yo|yue|zei|zeng|zhui|zhuo)F.*/
+    - erase/^X(ca|cang|cen|chua|chui|chun|cong|de|dei|dia|die|diu|ei|eng|fo|fou|gei|hei|jiong|jue|ka|kei|keng|kuan|lia|lo|mang|me|min|mou|neng|nin|nuan|pia|pie|ping|qiong|qiu|qun|ran|reng|rong|ruan|sen|seng|shei|shuang|sun|tei|teng|yo|za|zei|zhua|zhun|zhuo|zu|zun)C.*/
+    - erase/^[a-z](.*)$/
+    - xform/X//
+    # 声调用符号表示
+    - 'xlit BCFG <\>- '
+    # 并击`上屏
+    - xform/`/1/
+  # 并击过程中套用的式样
+  prompt_format:
+    # 加方括弧
+    - 'xform/^(.*)$/[$1]/'
+
+translator:
+  dictionary: pyd_jd
+  preedit_format:
+    # 笔画表示
+    - xlit/VIUOA/一丨丿丶乛/
+    # 无阳平音节表示为其他声调
+    - 'xform ^(dei|dia|er|fou|gei|gun|hen|ken|kuai|lan|lia|lian|liang|luan|lv|mai|mei|mian|min|ming|mu|nai|nei|niao|ning|nu|nuan|nv|ran|rang|rao|re|ren|rong|ru|ruan|rui|shui|shun|ze|zen|zui)- $1>'
+    - 'xform ^(cen|fo|huai|lai|neng|niang|nin|nong|nuo|rou|ruo|shei|zei)- $1<'
+    - 'xform ^(ce|fiao|kuo|lve|miu|nen|nou|nun|nve|ri|run|se|te)- $1\'
+    # 表示ü
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ve/$1üe/
+    # 表示声调
+    - 'xform ([aeiou])(ng?|r)([-<>\\]) $1$3$2'
+    - 'xform ([aeo])([iuo])([-<>\\]) $1$3$2'
+    - 'xform a- ā'
+    - 'xform a< á'
+    - 'xform a> ǎ'
+    - 'xform a\\ à'
+    - 'xform e- ē'
+    - 'xform e< é'
+    - 'xform e> ě'
+    - 'xform e\\ è'
+    - 'xform o- ō'
+    - 'xform o< ó'
+    - 'xform o> ǒ'
+    - 'xform o\\ ò'
+    - 'xform i- ī'
+    - 'xform i< í'
+    - 'xform i> ǐ'
+    - 'xform i\\ ì'
+    - 'xform u- ū'
+    - 'xform u< ú'
+    - 'xform u> ǔ'
+    - 'xform u\\ ù'
+    - 'xform ü- ǖ'
+    - 'xform ü< ǘ'
+    - 'xform ü> ǚ'
+    - 'xform ü\\ ǜ'
+      
+# 笔画反查
+reverse_lookup:
+  dictionary: stroke
+  enable_completion: true
+  prefix: "@"
+  suffix: "'"
+  tips: 〔筆畫〕
+  preedit_format:
+    - xlit/hspnz/一丨丿丶乛/
+  comment_format:
+    - xform/([nl])v/$1ü/
+
+punctuator:
+  import_preset: my_symbols
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  patterns:
+    #  打特殊符号
+    punct: '^\\([0-9]0?|[A-Za-z]+)$'
+    # @引导反查
+    reverse_lookup: "@[a-z]*'?$"
+    
+# 用大写锁定切换中英文
+ascii_composer:
+  good_old_caps_lock: false
+  switch_key:
+    Shift_L: noop
+    Shift_R: noop
+    Caps_Lock: clear

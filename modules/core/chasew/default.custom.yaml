@@ -1,0 +1,12 @@
+patch:
+  style:
+    inline_preedit: true
+    horizontal: true
+  "key_binder/bindings":
+    - {accept: bracketright, send: Page_Up, when: paging}
+    - {accept: bracketleft, send: Page_Down, when: has_menu}
+  schema_list:
+        - schema: chasew
+  "menu/page_size": 10
+  "switcher/hotkeys":
+    - "Control+grave"

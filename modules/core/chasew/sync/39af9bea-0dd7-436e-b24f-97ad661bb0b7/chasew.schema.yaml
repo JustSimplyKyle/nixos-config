@@ -1,0 +1,384 @@
+# Rime schema
+# encodeing: utf-8
+
+schema:
+  name: 追音輸入法
+  schema_id: chasew
+  author:
+    - "司法院 委託 網際智慧股份有限公司"
+  description: |
+    追音輸入法，是一套針對法院法官、書記官，在司法領域中文輸入需求所設計的智慧型中文輸入系統
+  version: 0.1
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: ["中", "En"]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - chord_composer
+    - key_binder
+    - speller
+    - selector
+    - navigator
+    - express_editor
+    # - fluid_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - fallback_segmentor
+  translators:
+    - table_translator@custom_phrase
+    - script_translator
+  filters:
+    - simplifier@zh_hans
+    - simplifier@zh_hant_tw
+    - uniquifier
+
+menu:
+  alternative_select_labels: [1,2,3,4,5,6,7,8,9,0]
+  alternative_select_keys: "!@#$%^&*()_"
+
+
+ascii_composer:
+  switch_key:
+    Shift_L: noop
+    Shift_R: noop
+
+key_binder:
+  import_preset: default
+  bindings:
+    - { when: has_menu, accept: bracketleft, send: Up }
+    - { when: has_menu, accept: bracketright, send: Down }
+    - { when: always, accept: Shift_L, send: noop}
+    - { when: always, accept: Right_L, send: noop}
+
+editor:
+  bindings:
+    BackSpace: back_syllable
+# confirm            輸出候選項
+# commit_comment     輸出候選項備注
+# commit_raw_input   輸出原始輸入按鍵
+# commit_script_text 輸出注音預覽
+# commit_composition 語句流單字上屏
+# revert             撤消上次輸入
+# back               按字符回退
+# back_syllable      按音節回退
+# delete_candidate   刪除候選項
+# delete             向後刪除
+# cancel             取消輸入
+# noop               空
+
+
+common_prompt:
+  __append:
+    # 僅三碼字為四碼 e.g. ba1 -> ㄅㄚ，bE43 -> ㄅㄧㄝˋ
+
+    # - xform/^([dtgkhZCSr])o/$1e # 去 ㄉ/ㄊ/ㄐ/ㄑ/ㄒ/ㄓ/ㄔ/ㄕ/ㄖ + ㄛ/ㄦ，留 ㄉ/ㄊ/ㄐ/ㄑ/ㄒ/ㄓ/ㄔ/ㄕ/ㄖ + ㄜ
+    # - xform/^([dtl])E/$1I # 去 ㄉ/ㄊ/ㄌ + ㄝ，留 ㄉ/ㄊ/ㄌ + ㄟ
+
+    # ㄅ ㄆ ㄇ ㄈ
+    - xform|([bpmf])a12|$1a/$1a˙| # ㄚ/ㄚ˙
+    - xform|([bpf])o(\d)2|$1ㄛ$2| # ㄛ/ㄜx/ㄦx
+    - xform|([bpmfdtnlgkh])E(\d)2|$1ㄟ$2|
+    - xform|([bpmf])E(\d)3|$1ㄧㄝ$2|
+    - xform|([bpmfdtnl])O(\d)3|$1ㄧㄠ$2|
+    - xform|([bpmf])([MNG]\d)3|$1ㄧ$2|
+    - xform|mo12|mㄛ1/mㄜ˙|
+    - xform|mo([234])2|mㄛ$1|
+    - xform|mN12|mN1/mN˙|
+    - xform|mU(\d)3|mㄧㄡ$1|
+
+    # ㄉ ㄊ ㄋ ㄌ
+    - xform|([dtnl])E(\d)3|$1ㄧㄝ$2/$1ㄨㄟ$2|
+    - xform|([dtnl])U(\d)3|$1ㄧㄡ$2|
+    - xform|([dtnl])([MG]\d)3|$1[ㄧ/ㄨ]$2|
+    - xform|([dtnl])([oN]\d)3|$1ㄨ$2|
+
+    # ㄍ ㄎ ㄏ ㄐ ㄑ ㄒ
+    - xform|([gkh])o(\d)2|$1ㄜ$2|
+    - xform|g([G])(\d)3|ㄐ[ㄧ/ㄩ]ㄥ$2/ㄍㄨㄥ$2|
+    - xform|g([MK]\d)3|[ㄍ/ㄐ]ㄧ$1|
+    - xform|g([N]\d)3|ㄍㄨ$1/ㄐ[ㄧ/ㄩ]$1|
+    - xform|ga(\d)3|ㄍㄨㄚ$1/ㄐㄧㄚ$1|
+    - xform|k([aMNKG]\d)3|ㄎㄨ$1/ㄑㄧ$1|
+    - xform|h([aK]\d)3|ㄏㄨ$1/ㄒㄧ$1|
+    - xform|h([MNG]\d)3|ㄏㄨ$1/ㄒ[ㄧ/ㄩ]$1|
+    - xform|go(\d)3|ㄍㄨㄛ$1|
+    - xform|gA(\d)3|ㄍㄨㄞ$1|
+    - xform|gE(\d)3|ㄍㄨㄟ$1/ㄐㄧㄝ$1|
+    - xform|gO(\d)3|ㄐㄧㄠ$1|
+    - xform|kE(\d)3|ㄎㄨㄟ$1/ㄑㄧㄝ$1|
+    - xform|hE(\d)3|ㄏㄨㄟ$1/ㄒㄧㄝ$1|
+    - xform|hU(\d)3|ㄒㄧㄡ$1|
+    - xform|g([iv]\d)2|j$1|
+    - xform|k([iv]\d)2|q$1|
+    - xform|h([iv]\d)2|x$1|
+
+    # 去 ㄍ/ㄎ/ㄏ + ㄧ/ㄩ，留 ㄐㄧ ㄑㄧ ㄒㄧ
+
+    # 去 ㄖ + ㄧ、ㄩ，留 ㄋㄧ ㄋㄩ
+    - xform/ni/ㄋㄧ/
+    - xform/nv/ㄋㄩ/
+
+    # 去 ㄓ/ㄔ/ㄕ/ㄗ/ㄘ/ㄙ + ㄝ/ㄟ，留 ㄓ/ㄔ/ㄕ/ㄗ/ㄘ/ㄙ + ㄨㄟ
+    # - xform/^([ZCS])E/$1ㄨㄟ
+
+    - xform|Z([aMNKGo]\d)3|[ㄓ/ㄗ]ㄨ$1|
+    - xform|ZE(\d)3|[ㄓ/ㄗ]ㄨㄟ$1|
+    - xform|Z(o)(1)2|ㄓㄜˉ/ㄓㄜ˙|
+    - xform|Z(o)([234])2|[ㄓ/ㄗ]ㄜ$2|
+    - xform|Z([GONMKaAu])(\d)2|[ㄓ/ㄗ]$1$2|
+    - xform|Z_(\d)1|ㄓ/ㄗ$1|
+
+    # - xform C ㄔ/ㄘ
+    - xform|C([aMNKGo]\d)3|[ㄔ/ㄘ]ㄨ$1|
+    - xform|C([GONMKaAu])(\d)2|[ㄔ/ㄘ]$1$2|
+    - xform|Co(\d)2|[ㄔ/ㄘ]ㄜ$1|
+    - xform|CE(\d)3|[ㄔ/ㄘ]ㄨ[ㄟ/ㄝ]$1|
+    - xform|C_(\d)1|ㄔ/ㄘ$1|
+
+
+    - xform|S([aMNKGo]\d)3|[ㄕ/ㄙ]ㄨ$1|
+    - xform|S([GONMKaAu])(\d)2|[ㄕ/ㄙ]$1$2|
+    - xform|SE(\d)3|[ㄕ/ㄙ]ㄨㄟ$1|
+    - xform|So(\d)2|[ㄕ/ㄙ]ㄜ$1|
+    - xform|S_(\d)1|ㄕ/ㄙ$1|
+
+    # iuv
+    - xform|i_(4)1|ㄧ$1/ㄧㄝ$1|
+    - xform|u_(4)1|ㄨ$1/ㄨㄟ$1|
+    - xform|v_(4)1|ㄩ$1/ㄩㄝ$1|
+
+    # n
+    - xform|n_(\d)1|ㄖ$1/ㄖㄨㄟ$1/ㄋㄟ$1|
+    - xform|n([N])(\d)2|ㄖ[ㄨ]$1$2|
+    - xform|n([u])(\d)2|[ㄖ/ㄋ]$1$2|
+    - xform|n([o])(\d)2|[ㄖ/ㄋ][ㄨ]ㄜ$2|
+    - xform|n([M])(\d)2|[ㄖ/ㄋ][ㄨ]$1$2/ㄋㄧ$1$2|
+    - xform|n([O])(\d)2|ㄋ[ㄧ]$1$2/ㄖ$1$2|
+
+    # - xform E [ㄝ/ㄟ]
+    - xform|E_(\d)1|ㄝ/ㄟ$1|
+
+    # - xform o ㄛ/ㄜ/ㄦ
+    - xform|uE(\d)2|ㄨㄟ$1|
+
+    # 未修改
+    # 單音符的字：單音 + 「_」 + 聲調 + 1
+    - xform/(\w)_(\d)1/$1$2
+
+    # 雙音符的字：雙音 + 聲調 + 2
+    - xform/(\w{2})(\d)2/$1$2
+    - "xlit|bpmfdtnlgkhjqxriuvaoeEAIOUMNKGR12345|ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄖㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˉˊˇˋ˙"
+
+chord_filter:
+  __append:
+    # 去長度不為四
+    - xform/^(\w{1,3}|\w{5,})$//
+
+    # 去錯誤編碼
+    - xform/^\d\w*$//
+    - xform/^\w[^\d]{2,}$//
+    - xform/^[bpmfdtnlgkhjqxZCS]{2,}\w*$//
+    - xform/^\w*[iuv]{2,}\w*$//
+    - xform/^\w*[aoeEAIOUMNKGR]{2,}\w*$//
+    - xform/^[A-Za-z]?\d{3,}$//
+    - xform/^\w*[^123 ]$//
+
+    # ----------- 去不存在的音 ----------
+    - xform/^b[U]\d+$//
+    - xform/^b[EMNK]22$//
+    - xform/^b[MNG]23$//
+    - xform/^pA32$// # terra-pinyin 無，但教育部簡編本有
+    - xform/^pE23$//
+    - xform/^m[uAE]12$//
+    - xform/^mE33$//
+    - xform/^mU[12]3$//
+    - xform/^m[MG]13$//
+    - xform/^mN[14]3$//
+
+chord_transform:
+  __append:
+    
+    # 單音符的字：單音 + 「_」 + 聲調 + 1
+    - xform/^(\w)_(\d)1$/$1$2
+
+    # 雙音符的字：雙音 + 聲調 + 2
+    - xform/^(\w{2})(\d)2$/$1$2
+
+symbols:
+  __append:
+    # ------------ 全型符號 ------------
+    #     全型符號，一律按三鍵，任意順序
+
+    # 1. 聲調符號
+    - xform/^weu$/˙/ # 輕聲（we＋右1聲）
+    - xform/^wej$/ˊ/ # 二聲（we＋右2聲）
+    - xform/^wem$/ˇ/ # 三聲（we＋右3聲）
+    - xform/^weh$/ˋ/ # 四聲（we＋右4聲）
+
+    # 2. 其他全型符號（可將原來英文鍵盤的符號、1234567890數字、空白，直接輸出為全型），
+    - xform/^sd,$/，/
+    - 'xform/^sd\.$/。'
+    - xform|^sd/$|／
+    - xform/^sd;$/；/
+    - xform/^sd'$/、/
+    - xform/^sd\[$/「/
+    - xform/^sd\]$/」/
+    # - 'xform ^sd\\ $/＼'
+    # - xform/^sd1$/１/
+    # - xform/^sd2$/２/
+    # - xform/^sd3$/３/
+    # - xform/^sd4$/４/
+    # - xform/^sd5$/５/
+    # - xform/^sd6$/６/
+    # - xform/^sd7$/７/
+    # - xform/^sd8$/８/
+    # - xform/^sd9$/９/
+    # - xform/^sd0$/０/
+    - xform/^sd $/　/
+
+    # 原本要加 Shift 的符號
+    # - xform/^xc,$//
+    # - xform/^xc.$//
+    - xform|^xc/$|？|
+    - xform|^xc9$|（|
+    - xform|^xc0$|）|
+    - xform|^xc1$|！|
+    - xform/^xc;$/：/
+
+chord_process:
+  __append:
+    # --- QWERTY -> Chasew Layout ---
+
+    #
+    # |ㄅ|ㄉ|ㄍㄐ|_˙|ㄓㄗ| ㄞ |ㄧ_|  ㄚ |ㄢ|ㄥ
+    # |ㄆ|ㄊ|ㄎㄑ|ˊ |ㄔㄘ| ㄈˋ|ㄨˊ|ㄛㄜㄦ|ㄣ|ㄠ
+    # |ㄇ|ㄌ|ㄏㄒ|ˇ |ㄕㄙ|ㄋㄖ|ㄩˇ| ㄝㄟ |ㄤ|ㄡ
+    #                  ˋ
+    - xlit|qazhwsnxedctgbujmik,y;/ol.prfv |bpmfdtnlgkhZCSiuvaoEAOUMNKG1234|
+
+    # 半形空白
+    - xform/^4$/ /
+
+    # ---------- 還原按鍵順序 ----------
+
+    - xform/^(\w*)([bpmfdtnlgkhjqxZCS])$/$2$1/
+    - xform/^([bpmfdtnlgkhjqxZCS]?)(\w*)([iuv])$/$1$3$2/
+    - xform/^([bpmfdtnlgkhjqxZCS]?[iuv]?)(\d)([aoeEAIOUMNKGR])$/$1$3$2/
+
+    # ------------ 修正發音 ------------
+    # 編碼結構：注音x2 + 聲調 + 音符數
+    #
+    # 單音符的字：單音＋左手聲調鍵＋空白，四聲已是空白鍵則補「，」
+    # 編碼：單音 + 「_」 + 聲調 + 1
+    - xform/^AE1$/E_41/ #,jr
+
+    - xform/^([A-Za-z])([123])4$/$1_${2}1/
+    - xform/^([ZCSaoeAIOUMNKGR])E4$/$1_41/
+    # 例外：三碼字，結尾為ㄝ/ㄟ
+    - xform/^b_(\d)1$/bE$13/
+
+    # 雙音符的字：聲母鍵＋韻母鍵＋左手聲調鍵
+    # 編碼：雙音 + 聲調 + 2
+    - derive/^([A])([iuvn])(\d)$/$2$1$3 # Weird hack to fix order of ㄧ/ㄨ/ㄩ/ㄋ+ ㄞ
+    - derive/^([iuvn])(E4)$/$1_41
+    - derive/^([A-Za-z]{2})(\d)$/$1${2}2/
+
+
+    # 三音符的字：省略「ㄧㄨㄩ」鍵，除「ㄋ、ㄖ」使用左手聲調鍵外，其餘使用右手聲調鍵。
+    # 編碼：頭尾 + 聲調 + 3
+    - xform/^([bpmfdtlgkhjqxZCS])i([aoeEAIOUMNKGR])$/$1${2}13/
+    - xform/^([bpmfdtlgkhjqxZCS])u([aoeEAIOUMNKGR])$/$1${2}23/
+    - xform/^([bpmfdtlgkhjqxZCS])v([aoeEAIOUMNKGR])$/$1${2}33/
+    - xform/^([bpmdtlgkhjqxZCS])f([aoeEAIOUMNKGR])$/$1${2}43/
+    - xform/^f([bpmdtlgkhjqxZCS])([aoeEAIOUMNKGR])$/$1${2}43/
+
+    # 去 ㄉ/ㄊ/ㄐ/ㄑ/ㄒ/ㄓ/ㄔ/ㄕ/ㄖ + ㄛ/ㄦ，留 ㄉ/ㄊ/ㄐ/ㄑ/ㄒ/ㄓ/ㄔ/ㄕ/ㄖ + ㄜ
+    # - xform/^([dtgkhZCSr])o/$1e
+
+chord_composer:
+  # alphabet: "sxdc,.;/ '[]\\1234567890"
+  alphabet: "qazwsxedctgbyhnujmikol.p;/,rfv '[]190"
+  algebra:
+    __patch:
+      - symbols
+      - chord_process
+  output_format:
+    __patch:
+      - chord_filter
+  prompt_format:
+    __patch:
+      - common_prompt
+
+derives:
+  __append:
+    - xlit/jqxrzcseRI/gkhnZCSooE/
+
+    # 輕聲鍵位同左一聲
+    - derive/(\w+)5/${1}1/
+
+    # 單音符的字：單音 + 「_」 + 聲調 + 1
+    - derive/^(\w)(\d)$/$1_${2}1/
+
+    # 雙音符的字：雙音 + 聲調 + 2
+    - derive/^([A])([iuvn])(\d)$/$2${1}$3 # Weird hack to fix order of ㄧ/ㄨ/ㄩ/ㄋ+ ㄞ
+    - derive/^([iuvn])(E4)$/$1_41
+    - derive/^n[iuv](E4)$/n_41/
+    - derive/^([A-Za-z]{2})(\d)$/$1${2}2/
+
+    # 三音符的字：頭尾 + 聲調 + 3
+    # 省略「ㄧㄨㄩ」鍵
+    - derive/^([bpmfdtlgkhjqxZCSrzcs])[iuv]([aoeEAIOUMNKGR])(\d)$/$1$2${3}3/
+    # 除「ㄋ、ㄖ」使用左手聲調鍵外，其餘使用右手聲調鍵
+    - derive/^n[iuv]([aoeEAIOUMNKGR])(\d)$/n$1${2}2/
+
+tones:
+  __append:
+    - xlit/bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR!@#$%_/bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345_
+
+speller:
+  alphabet: "bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR12345_"
+  initials: bpmfdtnlgkhjqxZCSrzcsiuvaoeEAIOUMNKGR
+  delimiter: " "
+  algebra:
+    __patch:
+      - tones
+      - zhuyin:/pinyin_to_zhuyin
+      - derives
+
+translator:
+  dictionary: chasew_ext
+  prism: chasew
+  db_class: tabledb
+  enable_user_dict: true
+  spelling_hints: true
+  enable_sentence: false
+  preedit_format:
+    __patch:
+      - common_prompt
+
+
+# custom_phrase:
+#   dictionary: ""
+#   user_dict: chasew_phrase
+#   db_class: tabledb
+#   enable_completion: true
+#   initial_quality: 1
+
+zh_hans:
+  option_name: zh_hans
+  opencc_config: t2s.json
+  tips: all
+  excluded_types: [reverse_lookup]
+
+zh_hant_tw:
+  option_name: zh_hant_tw
+  opencc_config: t2tw.json
+  tips: none
+  excluded_types: [reverse_lookup]
