@@ -214,15 +214,15 @@ in
       Mod+9 { focus-workspace 9; }
 
       // === Move to Numbered Workspaces ===
-      Mod+Ctrl+1 { move-column-to-workspace 1; }
-      Mod+Ctrl+2 { move-column-to-workspace 2; }
-      Mod+Ctrl+3 { move-column-to-workspace 3; }
-      Mod+Ctrl+4 { move-column-to-workspace 4; }
-      Mod+Ctrl+5 { move-column-to-workspace 5; }
-      Mod+Ctrl+6 { move-column-to-workspace 6; }
-      Mod+Ctrl+7 { move-column-to-workspace 7; }
-      Mod+Ctrl+8 { move-column-to-workspace 8; }
-      Mod+Ctrl+9 { move-column-to-workspace 9; }
+      Alt+1 { move-column-to-workspace 1; }
+      Alt+2 { move-column-to-workspace 2; }
+      Alt+3 { move-column-to-workspace 3; }
+      Alt+4 { move-column-to-workspace 4; }
+      Alt+5 { move-column-to-workspace 5; }
+      Alt+6 { move-column-to-workspace 6; }
+      Alt+7 { move-column-to-workspace 7; }
+      Alt+8 { move-column-to-workspace 8; }
+      Alt+9 { move-column-to-workspace 9; }
 
       // === Column Management ===
       Mod+BracketLeft  { consume-or-expel-window-left; }
