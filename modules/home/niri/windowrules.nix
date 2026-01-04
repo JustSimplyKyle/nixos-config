@@ -24,7 +24,7 @@
   // Launch vesktop and Telegram on DP-3 monitor
   window-rule {
       match app-id=r#"^(vesktop|org\.telegram\.desktop)$"#
-      open-on-output "DP-3"
+      open-on-output "HDMI-A-1"
   }
 
   // OBS always opens at full width on DP-2
