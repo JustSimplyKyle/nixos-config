@@ -11,7 +11,6 @@ let
   inherit (variables) waybarChoice;
 
   # New variable system
-  windowManager = variables.windowManager or "hyprland";
   barChoice = variables.barChoice or "waybar";
   defaultShell = variables.defaultShell or "zsh";
   useNvidia = variables.useNvidia or false;
