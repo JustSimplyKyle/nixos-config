@@ -120,7 +120,6 @@ in
       wl-clipboard # Clipboard support for Wayland
       cliphist # Clipboard history manager
       brightnessctl # Brightness control
-      hyprpicker # Color picker for Hyprland
       matugen # Material Design color generation
 
       # System monitoring dependencies

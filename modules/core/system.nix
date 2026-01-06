@@ -11,12 +11,6 @@ in
         "nix-command"
         "flakes"
       ];
-      substituters = [
-        "https://hyprland.cachix.org"
-      ];
-      trusted-public-keys = [
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      ];
     };
   };
   time.timeZone = "${timeZone}";
@@ -43,7 +37,7 @@ in
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     # Common libraries needed for Android tools
-  stdenv.cc.cc
+    stdenv.cc.cc
     xorg.libX11
     xorg.libXext
     xorg.libXcursor

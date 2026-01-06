@@ -11,15 +11,8 @@
       enable = false;
       defaultEditor = false;
     };
-    firefox.enable = false; # Firefox is not installed by default
     dconf.enable = true;
     seahorse.enable = true;
-    # Hyprland always enabled - both WMs available at login
-    hyprland = {
-      enable = true; # Create desktop file and dependencies
-      package = pkgs.hyprland;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
-    };
     hyprlock.enable = true; # Resolve pam issue, can be disabled per-host via enableHyprlock
     fuse.userAllowOther = true;
     mtr.enable = true;
@@ -114,6 +107,5 @@
     (
         pkgs.bottles.override { removeWarningPopup = true; }
     )
-    bottles
   ];
 }

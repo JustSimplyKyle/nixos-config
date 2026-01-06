@@ -6,11 +6,6 @@
   # System Configuration
   timeZone = "Asia/Taipei";
 
-  # Monitor Settings (update after installation for your displays)
-  extraMonitorSettings = ''
-    monitor=,preferred,auto,1
-  '';
-
   # Waybar Settings
   clock24h = false;
 
@@ -53,9 +48,4 @@
 
   # Theming
   stylixImage = ../../wallpapers/Valley.jpg;
-  #waybarChoice = ../../modules/home/waybar/waybar-ddubs.nix;  # Waybar temporarily disabled
-  animChoice = ../../modules/home/hyprland/animations-end4.nix;
-
-  # Startup Applications
-  startupApps = [];
 }

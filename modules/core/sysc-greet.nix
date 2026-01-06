@@ -51,7 +51,7 @@ let
     else if config.programs.sway.enable or false then
       "sway"
     else
-      "Hyprland"; # Default fallback
+      "niri"; # Default fallback
 
 in
 {
