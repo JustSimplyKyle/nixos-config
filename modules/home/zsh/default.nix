@@ -44,7 +44,6 @@ in
     };
     defaultOptions = [
       "--margin=1"
-      "--layout=reverse"
       "--border=none"
       "--info='hidden'"
       "--header=''"
@@ -55,6 +54,8 @@ in
   };
 
   programs.zsh = {
+    dotDir = "${config.xdg.configHome}/zsh";
+    
     enable = true;
     autosuggestion.enable = true;
     enableCompletion = true;
@@ -216,8 +217,7 @@ in
               --info=hidden \
               --prompt="   " \
               --pointer="▶" \
-              --color='bg+:-1,gutter:-1' \
-              --tiebreak=begin,index \
+              --tiebreak=begin,index --layout=default \
         )
 
         if [ -n "$selected_command" ]; then
