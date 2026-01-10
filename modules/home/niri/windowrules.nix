@@ -35,12 +35,6 @@
       open-on-output "DP-2"
   }
 
-  // Zen Browser and Zed settings
-  window-rule {
-      match app-id=r#"^(zen-beta|dev\.zed\.Zed)$"#
-      opacity 0.98
-      default-column-width { proportion 0.75; }
-  }
 
   // Web apps and Steam opacity
   window-rule {
