@@ -1,6 +1,7 @@
 # Claude Code agent directories
 .claude/
 claude/
+rime/
 
 # NixOS build artifacts
 result

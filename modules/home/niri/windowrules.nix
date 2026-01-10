@@ -21,9 +21,10 @@
 
   // Opacity rules for specific applications
 
-  // Launch vesktop and Telegram on DP-3 monitor
+  // Launch vesktop and motrix on secondary monitor
   window-rule {
-      match app-id=r#"^(vesktop|org\.telegram\.desktop)$"#
+      match app-id=r#"^(vesktop|Motrix)$"#
+      open-focused false
       open-on-output "HDMI-A-1"
   }
 

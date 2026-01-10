@@ -139,14 +139,10 @@ in
       Mod+L     { focus-column-right; }
 
       // === Window Movement ===
-      Mod+Shift+Left  { move-column-left; }
-      Mod+Shift+Down  { move-window-down; }
-      Mod+Shift+Up    { move-window-up; }
-      Mod+Shift+Right { move-column-right; }
-      Mod+Shift+H     { move-column-left; }
-      Mod+Shift+J     { move-window-down; }
-      Mod+Shift+K     { move-window-up; }
-      Mod+Shift+L     { move-column-right; }
+      Mod+Shift+H     { move-column-left-or-to-monitor-left; }
+      Mod+Shift+J     { move-window-down-or-to-workspace-down; }
+      Mod+Shift+K     { move-window-up-or-to-workspace-up; }
+      Mod+Shift+L     { move-column-right-or-to-monitor-right; }
 
       // === Column Navigation ===
       Mod+Home { focus-column-first; }

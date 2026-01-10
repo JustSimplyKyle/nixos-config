@@ -9,6 +9,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zimfw.url = "github:joedevivo/zimfw.nix";
     nvf.url = "github:notashelf/nvf";
     stylix.url = "github:danth/stylix";
     flake-utils.url = "github:numtide/flake-utils";
@@ -22,14 +23,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.quickshell.follows = "quickshell";
     };
-    helium-browser = {
-      url = "github:fpletz/flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    direnv-instant.url = "github:Mic92/direnv-instant";
   };
 
   outputs =
-    { nixpkgs, flake-utils, ... }@inputs:
+    { nixpkgs, flake-utils, nixpkgs-stable, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -69,6 +67,12 @@
         nixos-desktop = mkHost {
           hostname = "nixos-desktop";
           profile = "amd";
+          username = "kyle";
+        };
+
+        nixos-laptop = mkHost {
+          hostname = "nixos-laptop";
+          profile = "nvidia-laptop-amd";
           username = "kyle";
         };
 

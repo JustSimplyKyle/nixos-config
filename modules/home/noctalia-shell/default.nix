@@ -10,6 +10,10 @@ let
   variables = import ../../../hosts/${host}/variables.nix;
   barChoice = variables.barChoice or "waybar";
   enableNoctalia = barChoice == "noctalia";
+  wallpapersPkg = pkgs.fetchzip {
+    url = "https://files.simplykyle.eu.org/raw/wallpapers.zip";
+    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Nix will ask for this
+  };
 in
 {
   imports = lib.optionals enableNoctalia [
@@ -18,7 +22,8 @@ in
 
   config = lib.mkIf enableNoctalia {
     programs.waybar.enable = lib.mkForce false;
-    home.packages = [ inputs.noctalia.packages.${pkgs.system}.default ];
+    home.packages = [ inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+    home.file.".config/noctalia/wallpapers".source = wallpapersPkg;
 
     home.file.".config/noctalia/settings.json.template" = {
       text = builtins.toJSON {
@@ -489,7 +494,7 @@ in
           tooltipsEnabled = true;
         };
         wallpaper = {
-          directory = "/home/kyle/black-don-os/wallpapers";
+          directory = "${config.home.homeDirectory}/.config/noctalia/wallpapers";
           enableMultiMonitorDirectories = false;
           enabled = true;
           fillColor = "#000000";

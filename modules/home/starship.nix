@@ -17,6 +17,7 @@ in
   programs.starship = {
     # Disable starship for Fish (it has its own custom prompt)
     enable = defaultShell != "fish";
+    enableZshIntegration = true;
     settings = {
       add_newline = false;
       format = lib.concatStrings [

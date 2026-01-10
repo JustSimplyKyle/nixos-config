@@ -16,7 +16,6 @@
     hyprlock.enable = true; # Resolve pam issue, can be disabled per-host via enableHyprlock
     fuse.userAllowOther = true;
     mtr.enable = true;
-    adb.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -104,8 +103,12 @@
     gtk3
     gtk4
     localsend
+    pkgs.android-tools
     (
         pkgs.bottles.override { removeWarningPopup = true; }
+    )
+    (
+        pkgs.tetrio-desktop.override { withTetrioPlus = false; }
     )
   ];
 }

@@ -9,7 +9,7 @@
     kernel.sysctl = { "vm.max_map_count" = 2147483642; };
     loader.systemd-boot = {
       enable = true;
-      configurationLimit = 5;
+      configurationLimit = 12;
     };
     loader.efi.canTouchEfiVariables = true;
     # Appimage Support

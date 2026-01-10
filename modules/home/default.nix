@@ -33,7 +33,7 @@ in
     ./cava.nix
     ./emoji.nix
     ./helix.nix
-    ./zellij.nix
+    # ./zellij.nix
     ./eza.nix
     ./gh.nix
     ./ghostty.nix
@@ -57,9 +57,9 @@ in
     ./wlogout
     ./xdg.nix
     ./yazi
-    ./zoxide.nix
     ./environment.nix
     ./better-focus.nix
+    ./direnv.nix
   ]
 
   ++ [

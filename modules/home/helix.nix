@@ -9,7 +9,9 @@
       marksman
       taplo
       nil
+      nixd
       jq-lsp
+      tinymist
       vscode-langservers-extracted
       bash-language-server
       awk-language-server
@@ -19,6 +21,7 @@
       docker-compose
       docker-language-server
       typescript-language-server
+      rust-analyzer
     ]
   );
 
@@ -35,6 +38,32 @@
 
       [language-server.markdown]
       command = "marksman"
+
+      [[language]]
+      name = "typst"
+      language-servers = ["tinymist"]
+
+      [language-server.tinymist]
+      command = "tinymist"
+      config.preview.background.enabled = true
+      config.formatterMode = "typestyle"
+      config.lint.enabled = true
+      config.preview.background.args = [
+        "--data-plane-host=127.0.0.1:0", "--invert-colors=never", "--open"]
+
+      [language-server.rust-analyzer.config]
+      procMacro = true
+      cargo.loadOutDirsFromCheck = true
+      cargo.allFeatures = true
+
+      check.command = "clippy"
+
+      check.extraArgs = [
+          "--", "-W", "clippy::pedantic", "-W", "clippy::nursery",  "-A", "clippy::default_trait_access", "-A", "clippy::ptr_as_ptr", "-A", "clippy::wildcard_imports", "-A", "clippy::cast-precision-loss", "-A", "clippy::module_name_repetitions", "-W","clippy::unwrap-used", "-W","clippy::rc-buffer", "-W","clippy::get_unwrap", "-A", "clippy::explicit_deref_methods"
+      ]
+
+
+
     '';
 
   home.file.".config/helix/config.toml".text =

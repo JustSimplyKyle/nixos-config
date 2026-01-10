@@ -4,6 +4,7 @@
   username,
   host,
   profile,
+  nixpkgs-stable,
   ...
 }:
 let

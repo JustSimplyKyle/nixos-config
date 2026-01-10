@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   host,
   ...
 }: let
@@ -23,8 +24,11 @@ in
     ripgrep
     wl-clipboard
     zoxide
-    nix-index # Replacement for command-not-found
+    inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.oculante
+    nix-index
   ];
+
+  imports = [inputs.zimfw.homeManagerModules.zimfw];
 
   programs.zoxide = {
     enable = true;
@@ -57,12 +61,12 @@ in
     dotDir = "${config.xdg.configHome}/zsh";
     
     enable = true;
-    autosuggestion.enable = true;
-    enableCompletion = true;
+    autosuggestion.enable = false;
+    enableCompletion = false;
     autocd = true; 
 
     syntaxHighlighting = {
-      enable = true;
+      enable = false;
       highlighters = [ "main" "brackets" "pattern" "cursor" "root" "line" ];
     };
     
@@ -76,41 +80,31 @@ in
       share = true;
     };
 
-    plugins = [
-      {
-        name = "zsh-completions";
-        src = pkgs.zsh-completions.src;
-      }
-      
-      {
-        name = "fzf-tab";
-        src = pkgs.zsh-fzf-tab.src;
-      }
-      {
-        name = "zsh-autopair";
-        src = pkgs.zsh-autopair.src;
-      }
-      {
-        # Replaces zim 'extract'
-        name = "zsh-extract";
-        src = pkgs.fetchFromGitHub {
-          owner = "le0me55i";
-          repo = "zsh-extract";
-          rev = "master";
-          sha256 = "sha256-XG9cJuQHAodyd7BrgryC/MiPV1Ch9jK6TvAN+y13uwI=";
-        };
-      }
-      {
-        # Replaces zim 'undollar'
-        name = "zsh-undollar";
-        src = pkgs.fetchFromGitHub {
-          owner = "zpm-zsh";
-          repo = "undollar";
-          rev = "master";
-          sha256 = "sha256-VjNiMgGzeTNBbj/xyRc2YKw1NtaflttoSUiIlb/9DJk=";
-        };
-      }
-    ];
+    zimfw = {
+      enable = true;
+      degit = true;
+      # Add the modules you want to use
+      zmodules = [
+        "environment"
+        "git"
+        "input"
+        "termtitle"
+        "utility"
+        "duration-info"
+        "git-info"
+        "hlissner/zsh-autopair"
+        "zsh-users/zsh-completions --fpath src"
+        "zsh-users/zsh-autosuggestions"
+        "Aloxaf/fzf-tab"
+        "archive"
+        "completion"
+        "zsh-users/zsh-syntax-highlighting"
+      ];
+    }; 
+
+    envExtra = ''
+      setopt no_global_rcs
+    '';
 
     shellAliases = {
       # Navigation & Core
@@ -127,18 +121,9 @@ in
       update = "dcli update";
       cleanup = "dcli cleanup";
 
-      # Arch/AUR legacy (from your config)
-      aurpush = "makepkg --printsrcinfo >| .SRCINFO;git commit -a --allow-empty; git push";
-      shapush = "updpkgsums; makepkg --printsrcinfo >| .SRCINFO; git commit -a --allow-empty; git push";
-      
       # Utils
-      record = "/home/kyle/record.sh";
-      mpv = "env -uMANGOHUD mpv";
-      piano = "~/.config/hypr/scripts/piano.sh";
-      tb = "nc termbin.com 9999";
-      "osu-wayland" = "env SDL_VIDEODRIVER=wayland osu-lazer";
-      bg-spawn = "hyprctl dispatch exec";
       niri-kill = "kill \"$(niri msg -j pick-window | jq \".pid\")\"";
+      imv = "oculante";
     };
 
     sessionVariables = {
@@ -147,18 +132,10 @@ in
     };
 
     initContent = ''
-      # --- Zim 'input' module logic ---
-      bindkey '^H'      backward-kill-word            # ctrl+bs
-      bindkey '^[[3;5~' kill-word                     # ctrl+del
-      bindkey '^M' accept-line
-      bindkey '^]' list-expand
-      
       # Edit command line / Undo / Redo
       autoload -Uz edit-command-line
       zle -N edit-command-line
       bindkey "^xe" edit-command-line
-      bindkey '^[[1;5D' backward-word
-      bindkey '^[[1;5C' forward-word
       bindkey "^xl" undo
       bindkey "^xL" redo
 
@@ -221,7 +198,7 @@ in
         )
 
         if [ -n "$selected_command" ]; then
-          BUFFER="$selected_command"
+          BUFFER=`echo -e "$selected_command"`
           CURSOR=$#BUFFER
         fi
         zle reset-prompt
@@ -230,11 +207,6 @@ in
       zle -N fzf-history-search
       bindkey '^[[A' fzf-history-search
       bindkey '^[OA' fzf-history-search  # Up Arrow (Application Mode)
-
-      # Zellij Auto Start
-      if [[ -z "$ZELLIJ" ]]; then
-         eval "$(zellij setup --generate-auto-start zsh)"
-      fi
     '';
   };
 }
