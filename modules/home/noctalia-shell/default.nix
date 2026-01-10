@@ -12,7 +12,7 @@ let
   enableNoctalia = barChoice == "noctalia";
   wallpapersPkg = pkgs.fetchzip {
     url = "https://files.simplykyle.eu.org/raw/wallpapers.zip";
-    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Nix will ask for this
+    hash = "sha256-OjrxBVPZzj1jfdQ2877YSLlFtI9FRMUHhq+MWBmN5RM="; # Nix will ask for this
   };
 in
 {
