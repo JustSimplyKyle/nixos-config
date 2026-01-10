@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = [
-    inputs.better-focus.packages.${pkgs.system}.default
+    inputs.better-focus.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
 

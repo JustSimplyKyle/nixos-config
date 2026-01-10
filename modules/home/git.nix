@@ -3,6 +3,7 @@
 in {
   programs.git = {
     enable = true;
+    ignores = [ ".direnv" ];
     # Updated to use programs.git.settings in nixpkgs-unstable
     settings = {
       user = {

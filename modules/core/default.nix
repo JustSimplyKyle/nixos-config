@@ -33,6 +33,7 @@
     ./xserver.nix
     ./fcitx5.nix
     ./tailscale.nix
+    ./blocky.nix
     inputs.stylix.nixosModules.stylix
   ];
 }

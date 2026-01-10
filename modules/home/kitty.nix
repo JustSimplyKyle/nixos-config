@@ -8,6 +8,7 @@ in
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
+    shellIntegration.enableZshIntegration = false;
     settings = {
       # Use configured shell based on defaultShell variable
       shell = "${shellPackage}/bin/${defaultShell}";

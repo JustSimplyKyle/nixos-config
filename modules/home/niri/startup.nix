@@ -18,10 +18,9 @@ in
   spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
   ${barStartupCommand}
   spawn-at-startup "bash" "-c" "swww-daemon && sleep 1 && swww img '${stylixImage}'"
-  spawn-at-startup "wal" "-R"
   spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
   spawn-at-startup "vesktop"
   spawn-at-startup "fcitx5"
   spawn-at-startup "better-focus"
-  spawn-at-startup "Telegram"
+  spawn-at-startup "motrix"
 ''
