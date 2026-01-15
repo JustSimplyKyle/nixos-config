@@ -29,6 +29,7 @@
             # Fix for Xwayland symbol errors
             libkrb5
             keyutils
+            gperftools
           ];
       };
     };

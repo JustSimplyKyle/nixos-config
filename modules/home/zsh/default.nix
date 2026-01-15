@@ -136,8 +136,11 @@ in
       autoload -Uz edit-command-line
       zle -N edit-command-line
       bindkey "^xe" edit-command-line
+      bindkey '^H'      backward-kill-word            # ctrl+bs    delete previous word
+      bindkey '^[[3;5~' kill-word                     # ctrl+del   delete next word
       bindkey "^xl" undo
       bindkey "^xL" redo
+      unsetopt nomatch
 
       # --- Functions ---
       help() {

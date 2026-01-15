@@ -110,5 +110,8 @@
     (
         pkgs.tetrio-desktop.override { withTetrioPlus = false; }
     )
+    (
+        callPackage ../../pkgs/mv-merge.nix {}
+    )
   ];
 }

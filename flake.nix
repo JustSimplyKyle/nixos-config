@@ -24,6 +24,13 @@
       # inputs.quickshell.follows = "quickshell";
     };
     direnv-instant.url = "github:Mic92/direnv-instant";
+    jellyfin-flake.url = "github:matt1432/nixos-jellyfin";
+    jellyfin-ultrachromic-src = {
+      flake = false;
+      owner = "CTalvio";
+      repo = "Ultrachromic";
+      type = "github";
+    };
   };
 
   outputs =

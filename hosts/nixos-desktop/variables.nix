@@ -46,6 +46,9 @@
   # Shell Choice
   defaultShell = "zsh";   # Options: "fish" or "zsh"
 
+
+  enableJellyfin = true;
+  
   # Theming
   stylixImage = ../../wallpapers/Valley.jpg;
 }
