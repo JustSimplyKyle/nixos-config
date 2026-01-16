@@ -1,0 +1,5 @@
+google.com A
+facebook.com A
+youtube.com A
+amazon.com A
+wikipedia.org A

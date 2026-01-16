@@ -34,6 +34,7 @@
     ./fcitx5.nix
     ./tailscale.nix
     ./blocky.nix
+    ./jellyfin.nix
     inputs.stylix.nixosModules.stylix
   ];
 }

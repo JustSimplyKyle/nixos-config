@@ -1,0 +1,10 @@
+keys:
+  - &admin-kyle age12zyzprucuah6k35lhk2gk094jnhr6elyckfwnhgkc2hj5rajzays5qrnsz
+  - &nixos-desktop age1dj4mg80gntpfue2ch2tdla4jzpe23d3qdc4lup3dtkr8r6a4lsms6zj6fc
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *nixos-desktop
+      - *admin-kyle
+

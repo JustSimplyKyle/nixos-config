@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ inputs, pkgs, config, ... }:
 let
   silentBootKernelParams = [
       "quiet"
@@ -10,7 +10,8 @@ let
    in 
 {
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    # kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-bore-lto;
     kernelModules = [ "v4l2loopback" ];
     kernelParams = [ "hid_apple.fnmode=2" ] ++ silentBootKernelParams;
     consoleLogLevel = 3;

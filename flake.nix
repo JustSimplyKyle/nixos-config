@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     better-focus.url = "path:/home/kyle/coding/better-focus";
+    hxrename.url = "path:/home/kyle/coding/hxrename";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +25,12 @@
       # inputs.quickshell.follows = "quickshell";
     };
     direnv-instant.url = "github:Mic92/direnv-instant";
-    jellyfin-flake.url = "github:matt1432/nixos-jellyfin";
+    jellarr.url = "github:venkyr77/jellarr";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     jellyfin-ultrachromic-src = {
       flake = false;
       owner = "CTalvio";
@@ -32,6 +38,7 @@
       type = "github";
     };
   };
+
 
   outputs =
     { nixpkgs, flake-utils, nixpkgs-stable, ... }@inputs:
@@ -57,6 +64,7 @@
           };
           modules = [
             ./profiles/${profile}
+            inputs.sops-nix.nixosModules.sops
           ];
         };
 

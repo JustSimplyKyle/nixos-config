@@ -59,6 +59,7 @@ in
     ./yazi
     ./environment.nix
     ./better-focus.nix
+    ./hxrename.nix
     ./direnv.nix
   ]
 
