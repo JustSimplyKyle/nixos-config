@@ -5,6 +5,10 @@
   host,
   ...
 }:
+let
+  variables = import ../../hosts/${host}/variables.nix;
+  headless = variables.headless or false;
+in
 {
   programs = {
     neovim = {
@@ -12,17 +16,18 @@
       defaultEditor = false;
     };
     dconf.enable = true;
-    seahorse.enable = true;
-    hyprlock.enable = true; # Resolve pam issue, can be disabled per-host via enableHyprlock
     fuse.userAllowOther = true;
     mtr.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
+
+    # GUI specific programs
+    seahorse.enable = !headless;
+    hyprlock.enable = !headless;
   };
 
-  # Virtualization support for GNOME Boxes
   virtualisation.libvirtd.enable = true;
 
   nixpkgs.config.allowUnfree = true;
@@ -34,8 +39,6 @@
 
   environment.systemPackages = with pkgs; [
     amfora # Fancy Terminal Browser For Gemini Protocol
-    feishin
-    motrix
     appimage-run # Needed For AppImage Support
     bottom # btop like util
     brightnessctl # For Screen Brightness Control
@@ -46,72 +49,69 @@
     dysk # disk usage util
     eza # Beautiful ls Replacement
     ffmpeg # Terminal Video / Audio Editing
-    file-roller # Archive Manager
-    gdu # graphical disk usage
-    gedit # Simple Graphical Text Editor
-    gimp # Great Photo Editor
-    mesa-demos # Needed for inxi -G GPU info
-    gping # graphical ping
-    tuigreet # The Login Manager (Sometimes Referred To As Display Manager)
+    gdu # graphical disk usage (TUI)
+    gping # graphical ping (TUI)
+    gum # Shell scripting tool
     htop # Simple Terminal Based System Monitor
-    hyprpicker # Color Picker
-    eog # For Image Viewing
-    alacritty # Terminal Emulator (default for niri)
-    fuzzel # Application Launcher (default for niri)
     inxi # CLI System Information Tool
     killall # For Killing All Instances Of Programs
-    libnotify # For Notifications
+    libnotify # For Notifications (useful even in scripts)
     lm_sensors # Used For Getting Hardware Temps
     lolcat # Add Colors To Your Terminal Command Output
     lshw # Detailed Hardware Information
-    mpv # Incredible Video Player
     ncdu # Disk Usage Analyzer With Ncurses Interface
     nitch # small fetch util
-    # Nix Language Packages
-    nixfmt-rfc-style # Nix Formatter
-    nixd # Nix Language Server
-    nil # Nix Language Server
     onefetch # shows current build info and stats
-    pavucontrol # For Editing Audio Levels & Devices
     pciutils # Collection Of Tools For Inspecting PCI Devices
-    picard # For Changing Music Metadata & Getting Cover Art
     pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
     playerctl # Allows Changing Media Volume Through Scripts
-    rhythmbox
     ripgrep # Improved Grep
-    socat # Needed For Screenshots
+    socat # Needed For Screenshots / networking
     sox # audio support for FFMPEG
     unrar # Tool For Handling .rar Files
     unzip # Tool For Handling .zip Files
     usbutils # Good Tools For USB Devices
     v4l-utils # Used For Things Like OBS Virtual Camera
-    waypaper # backup wallpaper GUI
     wget # Tool For Fetching Files With Links
-    xwayland-satellite # Xwayland outside your Wayland compositor
     ytmdl # Tool For Downloading Audio From YouTube
+    pkgs.android-tools
+    (callPackage ../../pkgs/mv-merge.nix {})
+
+    # Nix Language Packages
+    nixfmt
+    nixd # Nix Language Server
+    nil # Nix Language Server
+  ] ++ lib.optionals (!headless) [
+    feishin
+    motrix
+    feishin
+    file-roller # Archive Manager
+    gedit # Simple Graphical Text Editor
+    gimp # Great Photo Editor
+    mesa-demos # Needed for inxi -G GPU info
+    tuigreet # The Login Manager
+    hyprpicker # Color Picker
+    eog # For Image Viewing
+    alacritty # Terminal Emulator (default for niri)
+    fuzzel # Application Launcher (default for niri)
+    mpv # Incredible Video Player
+    pavucontrol # For Editing Audio Levels & Devices
+    picard # For Changing Music Metadata & Getting Cover Art
+    rhythmbox
+    waypaper # backup wallpaper GUI
+    xwayland-satellite # Xwayland outside your Wayland compositor
     nwg-displays # Manage Displays
     nwg-drawer # drawer GUI
     nwg-look # Look GUI
-    rofi-emoji # rofi-emoji-wayland merged into rofi-emoji in nixpkgs-unstable
+    rofi-emoji # rofi-emoji-wayland merged into rofi-emoji
     pear-desktop
     zen-browser # Default browser
-    # Development Tools
     zed-editor # Code editor with AI features
     popsicle
-    # AI code editors (cursor, claude-code, gemini-cli) moved to modules/core/ai-code-editors.nix
-    gum
     gtk3
     gtk4
     localsend
-    pkgs.android-tools
-    (
-        pkgs.bottles.override { removeWarningPopup = true; }
-    )
-    (
-        pkgs.tetrio-desktop.override { withTetrioPlus = false; }
-    )
-    (
-        callPackage ../../pkgs/mv-merge.nix {}
-    )
+    (pkgs.bottles.override { removeWarningPopup = true; })
+    (pkgs.tetrio-desktop.override { withTetrioPlus = false; })
   ];
 }

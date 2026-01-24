@@ -5,23 +5,19 @@
   inputs,
   username,
   ...
-}:
-let
-  optionalGroup = name:
-    lib.optionals
-    (lib.hasAttr name config.users.groups)
-    [config.users.groups.${name}.name];
-in
-{
-  # imports = [
-  #   inputs.direnv-instant.homeModules.direnv-instant
-  # ];
+}: {
 
   imports = [inputs.jellarr.nixosModules.default];
 
 
 
   config.sops.secrets.jellarr-api-key.sopsFile = ../../secrets/jellarr.yaml;
+
+
+  config.sops.secrets."opc-ssh" = {
+    sopsFile = ../../secrets/opc-ssh.yaml;
+    owner = username;
+  };
 
   config.services.jellarr = {
     enable = true;

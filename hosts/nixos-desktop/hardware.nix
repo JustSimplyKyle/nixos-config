@@ -39,6 +39,12 @@
       options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" ];
     };
 
+  fileSystems."/mnt/drive1" =
+    { device = "/dev/disk/by-uuid/f0ffcee3-c4e0-4103-83ea-e5ecfccb7921";
+      fsType = "btrfs";
+      options = [ "rw" "relatime" "compress=zstd:3" "discard=async" "space_cache=v2" ];
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/93daa467-9b2e-413f-81e8-4dcaed069112"; }
     ];

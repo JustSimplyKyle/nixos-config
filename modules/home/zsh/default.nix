@@ -9,24 +9,24 @@
   accent = "#" + config.lib.stylix.colors.base0D;
   foreground = "#" + config.lib.stylix.colors.base05;
   muted = "#" + config.lib.stylix.colors.base03;
+  scripts = import ./shellApplications.nix { inherit pkgs; };
 in
 {
-  # Enable dependencies used in your aliases/functions
+  # Add the new custom packages to your environment
   home.packages = with pkgs; [
     bat
     eza 
     zellij
-    fd
+    fd            
     fzf
     gh
     jq
-    parallel
     ripgrep
     wl-clipboard
     zoxide
     inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.oculante
     nix-index
-  ];
+  ] ++ (builtins.attrValues scripts);
 
   imports = [inputs.zimfw.homeManagerModules.zimfw];
 
@@ -83,7 +83,6 @@ in
     zimfw = {
       enable = true;
       degit = true;
-      # Add the modules you want to use
       zmodules = [
         "environment"
         "git"
@@ -142,44 +141,8 @@ in
       bindkey "^xL" redo
       unsetopt nomatch
 
-      # --- Functions ---
-      help() {
-          "$@" --help 2>&1 | bat --plain --language=help
-      }
-
-      uf_gh() { gh gist create "$@" --public; }
-
-      uf() {
-        if [ -z $1 ];then curl -F"file=@-" https://c-v.sh --progress-bar | cat
-        else curl -F"file=@$1" https://c-v.sh --progress-bar | cat; fi
-      }
-
-      function repocopy() {
-          local silent="false"
-          local realsilent="false"
-          local args=()
-          for arg in "$@"; do
-              if [[ "$arg" == "-s" ]]; then silent="true"
-              elif [[ "$arg" == "-ss" ]]; then realsilent="true"
-              else args+=("$arg"); fi
-          done
-          export REPOCOPY_SILENT="$silent"
-          export REPOCOPY_REAL_SILENT="$realsilent"
-          fd -t f -E "*.lock" -E "*.svg" -E "*.png" -E "*.jpg" -E "*.pdf" -0 \
-          . "$@" | parallel -0 -k --will-cite '
-              if iconv -f utf-8 -t utf-8 "{}" >/dev/null 2>&1; then
-                  if [ "$REPOCOPY_SILENT" != "true" ] && [ "$REPOCOPY_REAL_SILENT" != "true" ]; then
-                      echo -e "\033[0;32m[+] Adding:\033[0m {}" >&2
-                  fi            
-                  echo "==> {} <=="; cat "{}"; echo ""
-              elif [ "$REPOCOPY_REAL_SILENT" != "true" ]; then
-                  echo -e "\033[0;33m[-] Skipping (Non-UTF8):\033[0m {}" >&2
-              fi
-          ' | wl-copy
-          [ "$realsilent" != "true" ] && echo "---------------------------------"
-          echo "Repository copied to clipboard!"
-          unset REPOCOPY_SILENT; unset REPOCOPY_REAL_SILENT
-      }
+      # --- ZLE Widgets ---
+      # These must remain in Zsh config as they modify the shell state buffer
 
       fzf-history-search() {
         # --height 12: Only take up 12 lines

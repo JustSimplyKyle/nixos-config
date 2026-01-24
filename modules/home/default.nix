@@ -14,7 +14,7 @@ let
   barChoice = variables.barChoice or "waybar";
   defaultShell = variables.defaultShell or "zsh";
   useNvidia = variables.useNvidia or false;
-
+  headless = variables.headless;
 
   # Legacy variable support (backwards compatibility)
   enableDMS = variables.enableDankMaterialShell or false;
@@ -30,44 +30,44 @@ in
     ./bat.nix
     ./bottom.nix
     ./btop.nix
-    ./cava.nix
-    ./emoji.nix
-    ./helix.nix
-    # ./zellij.nix
     ./eza.nix
     ./gh.nix
-    ./ghostty.nix
     ./git.nix
-    ./gtk.nix
+    ./helix.nix
     ./htop.nix
-    ./kitty.nix
     ./lazygit.nix
-    ./nwg-drawer.nix
-    ./obs-studio.nix
-    ./rofi
-    ./qt.nix
     ./scripts
     ./starship.nix
-    ./stylix.nix
-    ./swappy.nix
+    ./stylix.nix 
     ./tealdeer.nix
     ./tmux.nix
-    ./virtmanager.nix
-    ./vscode.nix
-    ./wlogout
     ./xdg.nix
     ./yazi
     ./environment.nix
-    ./better-focus.nix
     ./hxrename.nix
     ./direnv.nix
+    ./ssh.nix
+    # ./zellij.nix
   ]
 
-  ++ [
+  ++ lib.optionals (!headless) [
+    ./better-focus.nix
+    ./cava.nix
+    ./emoji.nix
+    ./ghostty.nix
+    ./gtk.nix
+    ./kitty.nix
     ./niri
+    ./nwg-drawer.nix
+    ./obs-studio.nix
+    ./qt.nix
+    ./rofi
+    ./swappy.nix
+    ./virtmanager.nix
+    ./vscode.nix
+    ./wlogout
   ]
 
-  # Shell - conditional import based on defaultShell variable
   ++ lib.optionals (defaultShell == "fish") [
     ./fish
     ./fish/fishrc-personal.nix
@@ -76,14 +76,13 @@ in
     ./zsh
   ]
 
-  # Bar - conditional import based on barChoice variable
-  ++ lib.optionals (actualBarChoice == "dms") [
+  ++ lib.optionals (!headless && actualBarChoice == "dms") [
     ./dank-material-shell
   ]
-  ++ lib.optionals (actualBarChoice == "noctalia") [
+  ++ lib.optionals (!headless && actualBarChoice == "noctalia") [
     ./noctalia-shell
   ]
-  ++ lib.optionals (actualBarChoice == "waybar") [
+  ++ lib.optionals (!headless && actualBarChoice == "waybar") [
     waybarChoice
     ./swaync.nix # Only use swaync with waybar
   ];
