@@ -133,6 +133,10 @@ in
     initContent = ''
       # Edit command line / Undo / Redo
       autoload -Uz edit-command-line
+
+      autoload -U select-word-style
+      select-word-style bash
+
       zle -N edit-command-line
       bindkey "^xe" edit-command-line
       bindkey '^H'      backward-kill-word            # ctrl+bs    delete previous word

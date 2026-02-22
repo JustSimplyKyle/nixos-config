@@ -18,7 +18,7 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/af996b66-5ec8-4e8f-b8f7-eb1d9c06b4c7";
       fsType = "ext4";
-      options = [ "noatime" ];
+      options = [ "noatime" "discard" ];
     };
 
   fileSystems."/boot" =
@@ -27,16 +27,16 @@
       options = [ "fmask=0077" "dmask=0077" "noatime" ];
     };
 
-  fileSystems."/mnt/nvme1" =
-    { device = "/dev/disk/by-uuid/42f27e76-7424-45f7-8385-96b4562f7fee";
-      fsType = "btrfs";
-      options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" ];
-    };
+  # fileSystems."/mnt/nvme1" =
+  #   { device = "/dev/disk/by-uuid/42f27e76-7424-45f7-8385-96b4562f7fee";
+  #     fsType = "btrfs";
+  #     options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" ];
+  #   };
 
   fileSystems."/mnt/nvme2" =
     { device = "/dev/disk/by-uuid/f816ddbf-3206-90a4-a17a-29b64636594b";
       fsType = "btrfs";
-      options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" ];
+      options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" "nofail" "x-systemd.automount" ];
     };
 
   fileSystems."/mnt/drive1" =

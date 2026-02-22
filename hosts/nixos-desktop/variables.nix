@@ -10,7 +10,7 @@
   clock24h = false;
 
   # Default Applications
-  browser = "zen";
+  browser = "zen-beta";
   terminal = "ghostty";
   keyboardLayout = "us";
   consoleKeyMap = "us";
@@ -34,7 +34,7 @@
   enableCommunicationApps = true;   # Discord, Teams, Zoom, Telegram
   enableExtraBrowsers = false;       # Vivaldi, Brave, Firefox, Chromium, Helium
   enableProductivityApps = false;    # Obsidian, GNOME Boxes, QuickEmu
-  aiCodeEditorsEnable = false;       # Claude-code, gemini-cli, cursor
+  aiCodeEditorsEnable = true;       # Claude-code, gemini-cli
 
   # Desktop Environment
   enableHyprlock = false;  # Set to false if using DMS/Noctalia lock screens

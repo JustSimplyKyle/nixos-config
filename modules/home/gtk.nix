@@ -1,15 +1,15 @@
 { pkgs, lib, ... }:
 
 {
-  qt = {
-    enable = true;
-    platformTheme.name = "qtct"; # Use qt5ct/qt6ct defined by Stylix
-    style = {
-      # Force the style to adwaita-dark so you get the "Shapes"
-      name = lib.mkForce "adwaita-dark"; 
-      package = lib.mkForce pkgs.adwaita-qt;
-    };
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "qtct"; # Use qt5ct/qt6ct defined by Stylix
+  #   style = {
+  #     # Force the style to adwaita-dark so you get the "Shapes"
+  #     name = lib.mkForce "adwaita-dark"; 
+  #     package = lib.mkForce pkgs.adwaita-qt;
+  #   };
+  # };
 
   gtk = {
     enable = true;

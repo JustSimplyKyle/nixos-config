@@ -10,10 +10,12 @@ let
    in 
 {
   boot = {
+    # kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxPackages_zen;
-    kernelPackages = inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-bore-lto;
+    kernelPackages = inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-latest-lto-x86_64-v3;
+
     kernelModules = [ "v4l2loopback" ];
-    kernelParams = [ "hid_apple.fnmode=2" ] ++ silentBootKernelParams;
+    kernelParams = [ "hid_apple.fnmode=2"  "usbcore.autosuspend=-1" ] ++ silentBootKernelParams;
     consoleLogLevel = 3;
     initrd.verbose = false;
 
@@ -38,4 +40,6 @@ let
       enable = true;
     };
   };
+  powerManagement.cpuFreqGovernor = "performance";
+  programs.appimage.package = pkgs.appimage-run.override { extraPkgs = pkgs: [ pkgs.webkitgtk_4_1 ]; };
 }

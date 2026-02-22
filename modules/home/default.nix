@@ -85,7 +85,15 @@ in
   ++ lib.optionals (!headless && actualBarChoice == "waybar") [
     waybarChoice
     ./swaync.nix # Only use swaync with waybar
+  ] ++ [
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
   ];
+
+  services.flatpak.packages = [
+    { appId = "com.bambulab.BambuStudio"; origin = "flathub"; }
+  ];
+
+  
 
   # Allows usage in other modules for overriding settings
   _module.args = {
@@ -107,5 +115,9 @@ in
                       pathExists (overlay_path + ("/" + n + "/default.nix")))
                   (attrNames (readDir overlay_path)));
   };
+
+  home.packages = [ pkgs.manrope pkgs.source-han-sans ];
+
+  fonts.fontconfig.enable = true;
 
 }

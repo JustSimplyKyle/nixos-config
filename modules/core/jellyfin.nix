@@ -24,6 +24,7 @@
     user = "jellyfin";
     group = "jellyfin";
     config = {
+      version = 1;
       base_url = "http://localhost:8096";
       system.enableMetrics = true;
     };

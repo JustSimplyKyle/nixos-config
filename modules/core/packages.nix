@@ -113,5 +113,7 @@ in
     localsend
     (pkgs.bottles.override { removeWarningPopup = true; })
     (pkgs.tetrio-desktop.override { withTetrioPlus = false; })
+    prismlauncher
+    webkitgtk_4_1
   ];
 }
