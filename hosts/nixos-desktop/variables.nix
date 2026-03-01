@@ -10,7 +10,7 @@
   clock24h = false;
 
   # Default Applications
-  browser = "zen-beta";
+  browser = "helium";
   terminal = "ghostty";
   keyboardLayout = "us";
   consoleKeyMap = "us";

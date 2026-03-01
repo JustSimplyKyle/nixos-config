@@ -27,11 +27,11 @@
       options = [ "fmask=0077" "dmask=0077" "noatime" ];
     };
 
-  # fileSystems."/mnt/nvme1" =
-  #   { device = "/dev/disk/by-uuid/42f27e76-7424-45f7-8385-96b4562f7fee";
-  #     fsType = "btrfs";
-  #     options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" ];
-  #   };
+  fileSystems."/mnt/nvme1" =
+    { device = "/dev/disk/by-uuid/42f27e76-7424-45f7-8385-96b4562f7fee";
+      fsType = "btrfs";
+      options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" "nofail" ];
+    };
 
   fileSystems."/mnt/nvme2" =
     { device = "/dev/disk/by-uuid/f816ddbf-3206-90a4-a17a-29b64636594b";

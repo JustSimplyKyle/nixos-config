@@ -15,7 +15,14 @@
     nvf.url = "github:notashelf/nvf";
     stylix.url = "github:danth/stylix";
     flake-utils.url = "github:numtide/flake-utils";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    # zen-browser = {
+    #   url = "github:0xc000022070/zen-browser-flake";
+    #   inputs = {
+    #     # IMPORTANT: To ensure compatibility with the latest Firefox version, use nixpkgs-unstable.
+    #     nixpkgs.follows = "nixpkgs";
+    #     home-manager.follows = "home-manager";
+    #   };
+    # };
     quickshell = {
       url = "github:outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +45,10 @@
       repo = "Ultrachromic";
       type = "github";
     };
+    helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 
@@ -45,6 +56,19 @@
     { nixpkgs, flake-utils, nixpkgs-stable, ... }@inputs:
     let
       system = "x86_64-linux";
+      overlay_path = ./overlays; 
+      myOverlays = with builtins;
+        map (n: import (overlay_path + ("/" + n)))
+            (filter (n: match ".*\\.nix" n != null ||
+                        pathExists (overlay_path + ("/" + n + "/default.nix")))
+                    (attrNames (readDir overlay_path)));
+
+      nixpkgsConfig = {
+        allowUnfree = true;
+        allowBroken = true;
+        allowInsecure = false;
+      };
+
 
       # Helper function to create a host configuration
       mkHost =
@@ -61,11 +85,16 @@
             inherit profile;
             inherit username;
             zen-browser = inputs.zen-browser.packages.${system}.default;
-            helium-browser = inputs.helium-browser.packages.${system}.helium-browser;
+            helium-browser = inputs.helium.packages.${system}.helium;
           };
           modules = [
             ./profiles/${profile}
             inputs.sops-nix.nixosModules.sops
+
+            {
+              nixpkgs.overlays = myOverlays;
+              nixpkgs.config = nixpkgsConfig;
+            }
           ];
         };
 
@@ -104,7 +133,6 @@
           username = "don";
         };
       };
-      nixpkgs.config.allowUnfree = true;
 
       # Flutter development environment
       devShells = flake-utils.lib.eachDefaultSystem (

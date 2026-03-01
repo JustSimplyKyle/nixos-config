@@ -1,7 +1,8 @@
 {
   pkgs,
   lib,
-  zen-browser,
+  helium-browser,
+
   host,
   ...
 }:
@@ -29,13 +30,6 @@ in
   };
 
   virtualisation.libvirtd.enable = true;
-
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "zed"
-    ];
 
   environment.systemPackages = with pkgs; [
     amfora # Fancy Terminal Browser For Gemini Protocol
@@ -105,7 +99,7 @@ in
     nwg-look # Look GUI
     rofi-emoji # rofi-emoji-wayland merged into rofi-emoji
     pear-desktop
-    zen-browser # Default browser
+    helium-browser
     zed-editor # Code editor with AI features
     popsicle
     gtk3
@@ -113,6 +107,7 @@ in
     localsend
     (pkgs.bottles.override { removeWarningPopup = true; })
     (pkgs.tetrio-desktop.override { withTetrioPlus = false; })
+    evince
     prismlauncher
     webkitgtk_4_1
   ];

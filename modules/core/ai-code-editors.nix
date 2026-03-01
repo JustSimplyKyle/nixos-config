@@ -10,13 +10,6 @@ let
 in
 {
   config = lib.mkIf aiCodeEditorsEnable {
-    nixpkgs.config.allowUnfreePredicate =
-      pkg:
-      builtins.elem (lib.getName pkg) [
-        "cursor"
-        "claude"
-      ];
-
     environment.systemPackages = with pkgs; [
       # AI-powered code editors and development tools
       # code-cursor # AI IDE (currently commented out - uncomment if needed)

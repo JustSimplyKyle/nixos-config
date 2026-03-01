@@ -13,6 +13,7 @@
   input {
       keyboard {
           xkb {
+              options "caps:none"
           }
           numlock
       }

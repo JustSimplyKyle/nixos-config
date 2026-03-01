@@ -12,12 +12,6 @@ in
 {
   config = lib.mkIf flutterdevEnable {
     # Allow unfree packages for Flutter development
-    nixpkgs.config.allowUnfreePredicate =
-      pkg:
-      builtins.elem (lib.getName pkg) [
-        "flutter"
-        "android-studio"
-      ];
 
     # Install Flutter development packages
     environment.systemPackages = with pkgs; [

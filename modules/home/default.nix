@@ -100,21 +100,21 @@ in
     inherit useNvidia;
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowBroken = true;
-      allowInsecure = false;
-    };
+  # nixpkgs = {
+  #   config = {
+  #     allowUnfree = true;
+  #     allowBroken = true;
+  #     allowInsecure = false;
+  #   };
 
-    overlays =
-      # Apply each overlay found in the /overlays directory
-      let overlay_path = ../../overlays; in with builtins;
-      map (n: import (overlay_path + ("/" + n)))
-          (filter (n: match ".*\\.nix" n != null ||
-                      pathExists (overlay_path + ("/" + n + "/default.nix")))
-                  (attrNames (readDir overlay_path)));
-  };
+  #   overlays =
+  #     # Apply each overlay found in the /overlays directory
+  #     let overlay_path = ../../overlays; in with builtins;
+  #     map (n: import (overlay_path + ("/" + n)))
+  #         (filter (n: match ".*\\.nix" n != null ||
+  #                     pathExists (overlay_path + ("/" + n + "/default.nix")))
+  #                 (attrNames (readDir overlay_path)));
+  # };
 
   home.packages = [ pkgs.manrope pkgs.source-han-sans ];
 

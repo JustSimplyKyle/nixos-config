@@ -24,6 +24,7 @@ let
     ./blocky.nix
     ./jellyfin.nix
     ./infi75_custom.nix
+    ./create_ap.nix
   ];
   guiApps = [
     ./ai-code-editors.nix

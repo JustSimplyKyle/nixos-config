@@ -1,29 +1,44 @@
-final: prev:
+final: prev: {
+  manrope = prev.stdenvNoCC.mkDerivation rec {
+    pname = "otf-manrope";
+    version = "4.5";
 
-let
-  pname = "manrope";
-  version = "3";
-in {
-  manrope = prev.fetchFromGitHub {
-    name = "${pname}-${version}";
-    owner = "sharanda";
-    repo = pname;
-    rev = "3bd68c0c325861e32704470a90dfc1868a5c37e9";
-    sha256 = "1h4chkfbp75hrrqqarf28ld4yb7hfrr7q4w5yz96ivg94lbwlnld";
-    
-    # Using postFetch allows this to act as the builder, 
-    # avoiding the need for stdenv.mkDerivation for simple font files.
-    postFetch = ''
-      tar xf $downloadedFile --strip=1
-      install -Dm644 -t $out/share/fonts/opentype "desktop font"/*
+    src = prev.fetchurl {
+      url = "https://www.shimmer.cloud/assets/manrope/manrope.zip";
+      sha256 = "sha256-M/mVhc0nyFiScfZ5CoJefIMtHGV+FChy30PDpNgmBuA=";
+    };
+
+    nativeBuildInputs = [ prev.unzip ];
+
+    sourceRoot = "."; 
+
+    installPhase = ''
+      runHook preInstall
+
+      # Create the fonts directory
+      install -d $out/share/fonts/opentype
+
+      # 1. Use `find` to locate any OTF files, case-insensitively, anywhere inside the zip.
+      # This completely bypasses folder structure/casing issues.
+      find . -type f -iname "*.otf" -exec install -m644 {} $out/share/fonts/opentype/ \;
+
+      # 2. Safety check: Abort if `find` couldn't locate any fonts
+      if [ -z "$(ls -A $out/share/fonts/opentype/)" ]; then
+        echo "Error: No .otf files were found inside the zip!"
+        exit 1
+      fi
+
+      # 3. Handle the license file (if it exists within the zip)
+      find . -type f -iname "ofl.txt" -exec install -Dm644 {} $out/share/licenses/${pname}/LICENCE \;
+
+      runHook postInstall
     '';
 
     meta = with prev.lib; {
-      description = "Open-source modern sans-serif font family";
-      homepage = "https://github.com/sharanda/manrope";
+      description = "Manrope font – modern geometric sans-serif";
+      homepage = "https://www.shimmer.cloud/manrope";
       license = licenses.ofl;
       platforms = platforms.all;
-      maintainers = with maintainers; [ dtzWill ];
     };
   };
 }
