@@ -34,8 +34,8 @@ noctaliaKeybinds =
         Mod+Shift+C {
             spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle";
         }
-        XF86AudioRaiseVolume { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"; } 
-        XF86AudioLowerVolume { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; } 
+        XF86AudioRaiseVolume { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+"; } 
+        XF86AudioLowerVolume { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"; } 
         XF86AudioMute { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }  
         XF86MonBrightnessDown { spawn-sh "brightnessctl set 5%-"; } 
         XF86MonBrightnessUp { spawn-sh "brightnessctl set +5%"; } 

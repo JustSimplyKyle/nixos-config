@@ -38,10 +38,10 @@ in
   programs.nix-ld.libraries = with pkgs; [
     # Common libraries needed for Android tools
     stdenv.cc.cc
-    xorg.libX11
-    xorg.libXext
-    xorg.libXcursor
-    xorg.libXinerama
+    libx11
+    libxext
+    libxcursor
+    libxinerama
     xorg.libXrandr
     libv4l
     libpulseaudio

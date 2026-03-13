@@ -88,7 +88,6 @@ in
     eog # For Image Viewing
     alacritty # Terminal Emulator (default for niri)
     fuzzel # Application Launcher (default for niri)
-    mpv # Incredible Video Player
     pavucontrol # For Editing Audio Levels & Devices
     picard # For Changing Music Metadata & Getting Cover Art
     rhythmbox

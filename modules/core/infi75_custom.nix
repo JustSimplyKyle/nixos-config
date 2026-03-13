@@ -4,6 +4,6 @@
   '';
 
   environment.systemPackages = [
-    # inputs.infi75-custom.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.infi75-custom.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

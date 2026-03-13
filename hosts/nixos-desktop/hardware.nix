@@ -33,11 +33,11 @@
       options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" "nofail" ];
     };
 
-  fileSystems."/mnt/nvme2" =
-    { device = "/dev/disk/by-uuid/f816ddbf-3206-90a4-a17a-29b64636594b";
-      fsType = "btrfs";
-      options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" "nofail" "x-systemd.automount" ];
-    };
+  # fileSystems."/mnt/nvme2" =
+  #   { device = "/dev/disk/by-uuid/f816ddbf-3206-90a4-a17a-29b64636594b";
+  #     fsType = "btrfs";
+  #     options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" "nofail" "x-systemd.automount" ];
+  #   };
 
   fileSystems."/mnt/drive1" =
     { device = "/dev/disk/by-uuid/f0ffcee3-c4e0-4103-83ea-e5ecfccb7921";

@@ -25,6 +25,7 @@ let
     ./jellyfin.nix
     ./infi75_custom.nix
     ./create_ap.nix
+    ./usb-wakeup-disable.nix
   ];
   guiApps = [
     ./ai-code-editors.nix

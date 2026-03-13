@@ -9,6 +9,8 @@ let
   ];
    in 
 {
+  system.etc.overlay.enable = true;
+
   boot = {
     # kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxPackages_zen;
@@ -18,6 +20,7 @@ let
     kernelParams = [ "hid_apple.fnmode=2"  "usbcore.autosuspend=-1" ] ++ silentBootKernelParams;
     consoleLogLevel = 3;
     initrd.verbose = false;
+    initrd.systemd.enable = true;
 
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     kernel.sysctl = { "vm.max_map_count" = 2147483642; };

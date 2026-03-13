@@ -66,6 +66,7 @@ in
     ./virtmanager.nix
     ./vscode.nix
     ./wlogout
+    ./mpv.nix
   ]
 
   ++ lib.optionals (defaultShell == "fish") [

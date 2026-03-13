@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     better-focus.url = "path:/home/kyle/coding/better-focus";
-    # infi75-custom.url = "path:/home/kyle/coding/infi75-custom";
+    infi75-custom.url = "path:/home/kyle/coding/infi75-custom";
     hxrename.url = "path:/home/kyle/coding/hxrename";
     home-manager = {
       url = "github:nix-community/home-manager";

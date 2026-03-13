@@ -8,3 +8,7 @@ creation_rules:
       - *nixos-desktop
       - *admin-kyle
 
+# you can add a new machine via `nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"`
+# after so, you can do `sops updateKeys secrets/*`
+# you can allow `sops` commands on the new machine via moving ~/.config/sops/age/keys.txt to the new machine
+# or add the new user via `age-keygen -y ~/.config/sops/age/keys.txt`
