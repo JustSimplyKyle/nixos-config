@@ -2,17 +2,26 @@
 
   programs.ssh = {
     enable = true;
-    extraConfig = ''
-      Host opc
-        HostName 100.117.138.27
-        User opc
-        IdentityFile /run/secrets/opc-ssh
-        RequestTTY yes
-        RemoteCommand TERM=xterm-256color /usr/bin/bash -l
+    
+    enableDefaultConfig = false;
 
-      Host remarkable
-        HostName 10.11.99.1
-        User root
-    '';
+    matchBlocks = {
+      opc = {
+        hostname = "100.117.138.27";
+        user = "opc";
+        identityFile = "/run/secrets/opc-ssh";
+        
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "TERM=xterm-256color /usr/bin/bash -l";
+        };
+      };
+
+      remarkable = {
+        hostname = "10.11.99.1";
+        user = "root";
+      };
+    };
   };
+
 }
