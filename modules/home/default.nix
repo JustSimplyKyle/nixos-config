@@ -67,6 +67,7 @@ in
     ./vscode.nix
     ./wlogout
     ./mpv.nix
+    ./playlists.nix
   ]
 
   ++ lib.optionals (defaultShell == "fish") [

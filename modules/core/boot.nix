@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, ... }:
+{ inputs, pkgs, config, lib, ... }:
 let
   silentBootKernelParams = [
       "quiet"
@@ -38,7 +38,7 @@ let
       mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
-    loader.timeout = 0;
+    loader.timeout = lib.mkDefault 0;
     plymouth = {
       enable = true;
     };

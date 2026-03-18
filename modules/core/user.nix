@@ -4,6 +4,7 @@
   username,
   host,
   profile,
+  config,
   nixpkgs-stable,
   ...
 }:
@@ -41,7 +42,22 @@ in
       };
     };
   };
-  users.mutableUsers = true;
+
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
+  sops.secrets = {
+    "passwords/${username}" = {
+      sopsFile = ../../secrets/passwords.yaml;
+      neededForUsers = true;
+    };
+    "passwords/root" = {
+      sopsFile = ../../secrets/passwords.yaml;
+      neededForUsers = true;
+    };
+  };
+
+  users.mutableUsers = false;
+
   users.users.${username} = {
     isNormalUser = true;
     description = "${gitUsername}";
@@ -58,7 +74,13 @@ in
     # Use configured shell based on defaultShell variable
     shell = shellPackage;
     ignoreShellProgramCheck = true;
+    hashedPasswordFile = config.sops.secrets."passwords/${username}".path;
   };
+
+  users.users.root = {
+    hashedPasswordFile = config.sops.secrets."passwords/root".path;
+  };
+
   nix.settings.allowed-users = [ "${username}" ];
   nix.settings.substituters = [ "https://attic.xuyh0120.win/lantian" ];
   nix.settings.trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];

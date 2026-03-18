@@ -36,6 +36,21 @@
   }
 
 
+window-rule {
+      match app-id=r#"^mpv-stream$"#
+      
+      open-floating true
+      
+      open-focused false
+      
+      default-floating-position x=513 y=143
+      
+      default-column-width { fixed 1300; }
+      default-window-height { fixed 732; }
+      
+      open-on-output "HDMI-A-1"
+  }
+
   // Web apps and Steam opacity
   window-rule {
       match app-id=r#"^(steam|chrome-app\.restream\.io__home-Default|chrome-claude\.ai__new-Default|chrome-github\.com__-Default|chrome-gitlab\.com__theblackdon_black-don-os-Default|chrome-mail\.proton\.me__u_0_inbox-Default|chrome-meet\.google\.com__-Default|chrome-messages\.google\.com__web_u_1_conversations-Default|chrome-web\.descript\.com__-Default)$"#

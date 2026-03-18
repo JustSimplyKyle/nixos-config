@@ -42,7 +42,7 @@ in
     libxext
     libxcursor
     libxinerama
-    xorg.libXrandr
+    libxrandr
     libv4l
     libpulseaudio
     freeglut

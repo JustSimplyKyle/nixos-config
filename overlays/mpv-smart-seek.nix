@@ -55,10 +55,12 @@ final: prev: {
               return
           end
 
-          if gap <= 6 then
+          if gap <= 3 then
               mp.commandv("sub-seek", "-1")
           else
-              mp.osd_message(string.format("Gap is %.1fs (Max %.1fs). Canceled.", gap, MAX_SKIP_TIME), 2)
+              mp.osd_message(string.format("Gap is %.1fs (Max %.1fs). Seeking normaly.", gap, MAX_SKIP_TIME), 2)
+             local target_time = mp.get_property_number("time-pos") - 3
+             mp.commandv("seek", tostring(target_time), "absolute")
           end
       end
 

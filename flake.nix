@@ -121,6 +121,12 @@
           username = "kyle";
         };
 
+        nixos-portable = mkHost {
+          hostname = "nixos-portable";
+          profile = "amd";
+          username = "kyle";
+        };
+
         nix-tester = mkHost {
           hostname = "nix-tester";
           profile = "intel";

@@ -9,6 +9,10 @@
         IdentityFile /run/secrets/opc-ssh
         RequestTTY yes
         RemoteCommand TERM=xterm-256color /usr/bin/bash -l
+
+      Host remarkable
+        HostName 10.11.99.1
+        User root
     '';
   };
 }
