@@ -54,7 +54,7 @@
       [language-server.rust-analyzer.config]
       procMacro = true
       cargo.loadOutDirsFromCheck = true
-      cargo.allFeatures = true
+      cargo.allFeatures = false
 
       check.command = "clippy"
 

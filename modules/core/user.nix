@@ -70,6 +70,7 @@ in
       "scanner"
       "wheel" # sudo access
       "vboxusers" # For VirtualBox
+      "dialout" # usb writing
     ];
     # Use configured shell based on defaultShell variable
     shell = shellPackage;

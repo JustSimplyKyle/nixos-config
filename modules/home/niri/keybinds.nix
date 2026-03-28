@@ -124,6 +124,7 @@ in
       Mod+Shift+Q repeat=false { close-window; }
       Mod+Alt+F { maximize-column; }
       Mod+F { fullscreen-window; }
+      Mod+Shift+F { toggle-windowed-fullscreen; }
       Mod+V { toggle-window-floating; }
       Mod+Shift+V { switch-focus-between-floating-and-tiling; }
       Mod+Tab { toggle-column-tabbed-display; }
