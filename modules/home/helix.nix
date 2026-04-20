@@ -103,6 +103,8 @@
       render = true
 
       [keys.normal]
+      C-n = ':! echo -e "\e]52;;$(echo %{buffer_name} | base64)\007" > /dev/tty'
+
       # movement
       n = "move_line_down"
       e = "move_line_up" 

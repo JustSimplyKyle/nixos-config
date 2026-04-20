@@ -26,6 +26,7 @@ let
     ./infi75_custom.nix
     ./create_ap.nix
     ./usb-wakeup-disable.nix
+    ./altstore.nix
   ];
   guiApps = [
     ./ai-code-editors.nix
@@ -43,6 +44,7 @@ let
     ./xserver.nix
     ./fcitx5.nix
     ./stylix.nix
+    ./sunshine.nix
     inputs.stylix.nixosModules.stylix
   ];
   in

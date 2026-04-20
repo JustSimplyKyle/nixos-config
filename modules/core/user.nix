@@ -58,6 +58,8 @@ in
 
   users.mutableUsers = false;
 
+  hardware.uinput.enable = true;
+
   users.users.${username} = {
     isNormalUser = true;
     description = "${gitUsername}";
@@ -71,6 +73,7 @@ in
       "wheel" # sudo access
       "vboxusers" # For VirtualBox
       "dialout" # usb writing
+      "uinput" # for sunshine
     ];
     # Use configured shell based on defaultShell variable
     shell = shellPackage;

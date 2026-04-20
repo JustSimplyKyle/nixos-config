@@ -8,14 +8,20 @@
       "LEFT" = "script-binding skip-prev-conditional";
     };
 
-    scripts = with pkgs.mpvScripts; [
-      uosc
-      sponsorblock
-      thumbfast
-      mpris
-    ] ++ [
-      pkgs.mpv-skip-conditional 
-    ];
+    package = pkgs.mpv.override {
+      mpv-unwrapped = pkgs.mpv-unwrapped.override {
+        cddaSupport = true;
+        waylandSupport = true;
+      };
+      scripts = with pkgs.mpvScripts; [
+        uosc
+        sponsorblock
+        thumbfast
+        mpris
+      ] ++ [
+        pkgs.mpv-skip-conditional
+      ];
+    };
 
     scriptOpts = {
       uosc = {
