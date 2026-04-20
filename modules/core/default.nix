@@ -46,6 +46,7 @@ let
     ./fcitx5.nix
     ./stylix.nix
     ./sunshine.nix
+    ./kicad.nix
     inputs.stylix.nixosModules.stylix
   ];
   in
