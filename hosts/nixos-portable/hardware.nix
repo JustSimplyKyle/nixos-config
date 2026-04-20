@@ -12,7 +12,12 @@
     "xhci_pci" "ehci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "usbhid" "uas" 
   ];
   
-  boot.kernelModules = [ "kvm-intel" "kvm-amd" ];
+  boot.kernelModules = [ "kvm-intel" "kvm-amd" ] ++ [
+      "zswap.enabled=1" # enables zswap
+      "zswap.compressor=zstd" # compression algorithm
+      "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
+      "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
+  ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -27,8 +32,24 @@
       options = [ "fmask=0077" "dmask=0077" "noatime" ];
     };
 
+  fileSystems."/swap" = {
+    device = "/dev/disk/by-uuid/f7b3ea28-bb5f-46a7-8a01-9c09389a4bf8";
+    fsType = "btrfs";
+    options = [ "subvol=swap" ]; 
+  };
+
+  # systemd.services = {
+  #   create-swapfile = {
+  #     serviceConfig.Type = "oneshot";
+  #     wantedBy = [ "swap-swapfile.swap" ];
+  #     script = ''
+  #       ${pkgs.btrfs-progs}/bin/btrfs filesystem mkswapfile --size 32g --uuid clear /swap/swapfile
+  #     '';
+  #   };
+  # };
+
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/93daa467-9b2e-413f-81e8-4dcaed069112"; }
+    [ { device = "/swap/swapfile"; size = 32*1024;  }
     ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

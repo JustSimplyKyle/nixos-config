@@ -6,7 +6,7 @@
 
   gestures {
       hot-corners {
-          off
+          top-left
       }
   }
 

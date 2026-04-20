@@ -27,6 +27,7 @@ let
     ./create_ap.nix
     ./usb-wakeup-disable.nix
     ./altstore.nix
+    ./auto-cpufreq.nix
   ];
   guiApps = [
     ./ai-code-editors.nix
