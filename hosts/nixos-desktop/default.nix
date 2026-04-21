@@ -2,6 +2,8 @@
   imports = [
     ./hardware.nix
     ./host-packages.nix
+    ../../modules/core/create_ap.nix
+    ../../modules/core/jellyfin.nix
   ];
 
   # Enable sddm display manager
