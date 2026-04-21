@@ -1,7 +1,7 @@
 keys:
   - &admin-kyle age12zyzprucuah6k35lhk2gk094jnhr6elyckfwnhgkc2hj5rajzays5qrnsz
   - &nixos-desktop age1dj4mg80gntpfue2ch2tdla4jzpe23d3qdc4lup3dtkr8r6a4lsms6zj6fc
-  - &nixos-portable age1k8n5nk3wc7dsc4x7xgh7a40txfz0nhr6c0axh8vpk7367fzlkvsqa9ez0a
+  - &nixos-portable age1c4xdxn7eygr0zzek336tdgdmwrjk94cn8l2tlpae3h2fem3759tsdvlzjg
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -11,6 +11,6 @@ creation_rules:
       - *nixos-portable
 
 # you can add a new machine via `nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"`
-# after so, you can do `sops updateKeys secrets/*`
+# after so, you can do `sops updatekeys secrets/*`
 # you can allow `sops` commands on the new machine via moving ~/.config/sops/age/keys.txt to the new machine
-# or add the new user via `age-keygen -y ~/.config/sops/age/keys.txt`
+# or add the new user via `age-keygen -o ~/.config/sops/age/keys.txt`

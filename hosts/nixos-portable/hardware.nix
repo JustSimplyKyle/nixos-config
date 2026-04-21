@@ -21,22 +21,22 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f7b3ea28-bb5f-46a7-8a01-9c09389a4bf8";
+    { device = "/dev/disk/by-uuid/e536b594-3921-4051-b6e6-f58b34bf300c";
       fsType = "btrfs";
       options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" "nofail" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/BC5E-BB0D";
+    { device = "/dev/disk/by-uuid/BEBC-3223";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" "noatime" ];
     };
 
-  fileSystems."/swap" = {
-    device = "/dev/disk/by-uuid/f7b3ea28-bb5f-46a7-8a01-9c09389a4bf8";
-    fsType = "btrfs";
-    options = [ "subvol=swap" ]; 
-  };
+  # fileSystems."/swap" = {
+  #   device = "/dev/disk/by-uuid/f7b3ea28-bb5f-46a7-8a01-9c09389a4bf8";
+  #   fsType = "btrfs";
+  #   options = [ "subvol=swap" ]; 
+  # };
 
   # systemd.services = {
   #   create-swapfile = {
@@ -48,9 +48,9 @@
   #   };
   # };
 
-  swapDevices =
-    [ { device = "/swap/swapfile"; size = 32*1024;  }
-    ];
+  # swapDevices =
+  #   [ { device = "/swap/swapfile"; size = 32*1024;  }
+  #   ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   

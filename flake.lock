@@ -74,14 +74,17 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1776676911,
-        "narHash": "sha256-VwiabnAG+SGJtj5jqcForG9ZYrz6ZHifha5fPOK6xqk=",
-        "path": "/home/kyle/coding/better-focus",
-        "type": "path"
+        "lastModified": 1767500827,
+        "narHash": "sha256-YSckJkZdZt5eNtdU6Ym6nRU+8/k1T/IzeihjIbR9PB4=",
+        "owner": "justsimplykyle",
+        "repo": "better-focus",
+        "rev": "b94b0d17499e9f9b809b46a415ed19d7b1a182c5",
+        "type": "github"
       },
       "original": {
-        "path": "/home/kyle/coding/better-focus",
-        "type": "path"
+        "owner": "justsimplykyle",
+        "repo": "better-focus",
+        "type": "github"
       }
     },
     "cachyos-kernel": {
@@ -400,14 +403,17 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1776677060,
-        "narHash": "sha256-nEz9DCaAYkzV1AbWvhDeyqr3vz66sJxgcVe83wUZBNI=",
-        "path": "/home/kyle/coding/hxrename",
-        "type": "path"
+        "lastModified": 1776677050,
+        "narHash": "sha256-j+n383dfBFCdWWBg7IwoJ7eHnl9llbIXODmxbIF4fo4=",
+        "owner": "justsimplykyle",
+        "repo": "hxrename",
+        "rev": "39dce4547022c7735f5fe33100a67b12ee27b405",
+        "type": "github"
       },
       "original": {
-        "path": "/home/kyle/coding/hxrename",
-        "type": "path"
+        "owner": "justsimplykyle",
+        "repo": "hxrename",
+        "type": "github"
       }
     },
     "infi75-custom": {
@@ -416,14 +422,17 @@
         "utils": "utils_4"
       },
       "locked": {
-        "lastModified": 1776677130,
-        "narHash": "sha256-4wS6WNendzicEC25VQxD0XCb3pWqVckMWNYeUqI0WpQ=",
-        "path": "/home/kyle/coding/infi75-custom",
-        "type": "path"
+        "lastModified": 1776677116,
+        "narHash": "sha256-kaeOlU2F/VnMxfYBgHgBw0WHIsPv1TZl+h4niYGKRWI=",
+        "owner": "justsimplykyle",
+        "repo": "infi75-custom",
+        "rev": "27b945872eda0939947a1fdbaa2182700540e726",
+        "type": "github"
       },
       "original": {
-        "path": "/home/kyle/coding/infi75-custom",
-        "type": "path"
+        "owner": "justsimplykyle",
+        "repo": "infi75-custom",
+        "type": "github"
       }
     },
     "jellarr": {
@@ -541,11 +550,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1776169885,
-        "narHash": "sha256-l/iNYDZ4bGOAFQY2q8y5OAfBBtrDAaPuRQqWaFHVRXM=",
+        "lastModified": 1776548001,
+        "narHash": "sha256-ZSK0NL4a1BwVbbTBoSnWgbJy9HeZFXLYQizjb2DPF24=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4bd9165a9165d7b5e33ae57f3eecbcb28fb231c9",
+        "rev": "b12141ef619e0a9c1c84dc8c684040326f27cdcc",
         "type": "github"
       },
       "original": {
@@ -635,11 +644,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1776169885,
-        "narHash": "sha256-l/iNYDZ4bGOAFQY2q8y5OAfBBtrDAaPuRQqWaFHVRXM=",
+        "lastModified": 1776548001,
+        "narHash": "sha256-ZSK0NL4a1BwVbbTBoSnWgbJy9HeZFXLYQizjb2DPF24=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4bd9165a9165d7b5e33ae57f3eecbcb28fb231c9",
+        "rev": "b12141ef619e0a9c1c84dc8c684040326f27cdcc",
         "type": "github"
       },
       "original": {

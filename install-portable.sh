@@ -105,7 +105,7 @@ echo
 # ── Step 3: Passwords ─────────────────────────────────────────────────────────
 info "Step 3/6: Password hashes"
 
-SECRETS_FILE="$SECRETS_DIR/secrets.yaml"
+SECRETS_FILE="$SECRETS_DIR/passwords.yaml"
 [[ -f "$SECRETS_FILE" ]] || die "Secrets file not found at $SECRETS_FILE"
 
 # Check if password keys already exist in secrets
