@@ -17,7 +17,7 @@ let
     kernelPackages = inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-latest-lto-x86_64-v3;
 
     kernelModules = [ "v4l2loopback" ];
-    kernelParams = [ "hid_apple.fnmode=2"  "usbcore.autosuspend=-1" ] ++ silentBootKernelParams;
+    kernelParams = [ "hid_apple.fnmode=2" ] ++ silentBootKernelParams;
     consoleLogLevel = 3;
     initrd.verbose = false;
     initrd.systemd.enable = true;
@@ -43,6 +43,6 @@ let
       enable = true;
     };
   };
-  powerManagement.cpuFreqGovernor = "performance";
+
   programs.appimage.package = pkgs.appimage-run.override { extraPkgs = pkgs: [ pkgs.webkitgtk_4_1 ]; };
 }
