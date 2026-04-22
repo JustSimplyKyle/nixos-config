@@ -90,6 +90,7 @@
           modules = [
             ./profiles/${profile}
             inputs.sops-nix.nixosModules.sops
+            inputs.infi75-custom.nixosModules.default
 
             {
               nixpkgs.overlays = myOverlays;
