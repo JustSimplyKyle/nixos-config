@@ -12,6 +12,7 @@ let
     terminal
     stylixImage
     startupApps
+    enablePowerSaving
     ;
 
   barChoice = variables.barChoice or "waybar";
@@ -60,6 +61,11 @@ let
 in
 
 {
+  imports = [ ./battery-refresh-rate.nix ];
+
+  services.batteryRefreshRate.enable = enablePowerSaving;
+
+
   # Install Niri and related packages
   home.packages = with pkgs; [
     niri

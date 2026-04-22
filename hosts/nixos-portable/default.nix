@@ -2,7 +2,7 @@
   imports = [
     ./hardware.nix
     ./host-packages.nix
-    ../../modules/core/auto-cpufreq.nix
+    ../../modules/core/laptop-tuning.nix
   ];
 
   # Enable sddm display manager

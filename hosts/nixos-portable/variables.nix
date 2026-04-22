@@ -49,6 +49,7 @@
   enableJellyfin = true;
 
   headless = false;
+  enablePowerSaving = true;
 
   # Theming
   stylixImage = ../../wallpapers/Valley.jpg;

@@ -123,7 +123,7 @@
 
         nixos-portable = mkHost {
           hostname = "nixos-portable";
-          profile = "amd";
+          profile = "intel";
           username = "kyle";
         };
 
