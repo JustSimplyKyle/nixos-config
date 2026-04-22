@@ -94,18 +94,18 @@ in
 
               if [[ "$current_mode" == "high" && "$capacity" -le ${toString cfg.thresholdDown} ]]; then
                 log "Battery ''${capacity}% → switching to ${cfg.modeLow}"
-                set_mode "${cfg.modeLow}"
                 notify-send -u normal "Power Saver" \
-                  "Battery ''${capacity}%: display set to 60 Hz" 2>/dev/null || true
+                  "Battery ''${capacity}%: display is about to be set to 60 Hz" 2>/dev/null || true
                 sleep 5
+                set_mode "${cfg.modeLow}"
                 current_mode="low"
 
               elif [[ "$current_mode" == "low" && "$capacity" -ge ${toString cfg.thresholdUp} ]]; then
                 log "Battery ''${capacity}% → switching to ${cfg.modeHigh}"
-                set_mode "${cfg.modeHigh}"
                 notify-send -u normal "Power Saver" \
-                  "Battery ''${capacity}%: display restored to 120 Hz" 2>/dev/null || true
+                  "Battery ''${capacity}%: display is about to be restored to 120 Hz" 2>/dev/null || true
                 sleep 5
+                set_mode "${cfg.modeHigh}"
                 current_mode="high"
               fi
 
