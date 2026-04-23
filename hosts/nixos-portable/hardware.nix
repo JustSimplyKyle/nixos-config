@@ -12,7 +12,7 @@
     "xhci_pci" "ehci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "usbhid" "uas" 
   ];
   
-  boot.kernelModules = [ "kvm-intel" "kvm-amd" ] ++ [
+  boot.kernelModules = [ "kvm-intel" ] ++ [
       "zswap.enabled=1" # enables zswap
       "zswap.compressor=zstd" # compression algorithm
       "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
@@ -56,5 +56,4 @@
   
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

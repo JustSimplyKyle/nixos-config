@@ -22,7 +22,8 @@
           // Up swipe scrolls down, down swipe scrolls up (natural direction)
           natural-scroll
           tap
-          scroll-factor 0.8
+          dwt
+          scroll-factor 0.5
       }
       mouse {
           accel-profile "flat"

@@ -2,7 +2,6 @@
   imports = [
     ./hardware.nix
     ./host-packages.nix
-    ../../modules/core/laptop-tuning.nix
   ];
 
   # Enable sddm display manager

@@ -48,5 +48,5 @@ let
   ];
   in
 {
-  imports = headlessApps ++ lib.optionals (!headless) guiApps;
+  imports = headlessApps ++ lib.optionals (!headless) guiApps ++ [ hosts/${host}/default.nix ];
 }
