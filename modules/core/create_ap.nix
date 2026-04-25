@@ -12,10 +12,16 @@ in
   networking.networkmanager.unmanaged = [ apInterface ];
 
   # 2. Static IP for the AP interface
-  networking.interfaces.${apInterface}.ipv4.addresses = [{
-    address      = "192.168.12.1";
-    prefixLength = 24;
-  }];
+  networking.interfaces.${apInterface} = {
+    ipv4.addresses = [{
+        address      = "192.168.12.1";
+        prefixLength = 24;
+    }];
+  };
+
+  services.udev.extraRules = ''
+    SUBSYSTEM=="net", ACTION=="add", KERNEL=="${apInterface}", RUN+="${pkgs.iw}/bin/iw dev ${apInterface} set power_save off"
+  '';
 
   # 3. NAT + IPv4 forwarding
   networking.nat = {
