@@ -70,7 +70,7 @@ in
     ytmdl # Tool For Downloading Audio From YouTube
     pkgs.android-tools
     (callPackage ../../pkgs/mv-merge.nix {})
-    (callPackage ../../pkgs/rust4diva.nix {})
+    # (callPackage ../../pkgs/rust4diva.nix {})
 
     # Nix Language Packages
     nixfmt
