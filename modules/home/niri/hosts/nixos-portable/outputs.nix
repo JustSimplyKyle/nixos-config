@@ -13,7 +13,7 @@
       // for the resolution.
       // If the mode is omitted altogether or is invalid, niri will pick one automatically.
       // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-      mode "2880x1800@120.000"
+      mode "2880x1800@60.000"
 
       // You can use integer or fractional scale, for example use 1.5 for 150% scale.
       scale 1.75
