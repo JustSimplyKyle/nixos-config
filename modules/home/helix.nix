@@ -27,6 +27,21 @@
 
   home.file.".config/helix/languages.toml".text =
     ''
+      [language-server.wakatime]
+      command = "wakatime-ls"
+
+      [[language]]
+      name = "markdown"
+      language-servers = ["marksman", "wakatime"]
+
+      [[language]]
+      name = "rust"
+      language-servers = ["rust-analyzer", "wakatime"]
+
+      [[language]]
+      name = "nix"
+      language-servers = ["nil", "wakatime"]
+
       [language-server.nil]
       command = "nil"
 

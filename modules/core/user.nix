@@ -33,8 +33,10 @@ in
         profile
         ;
     };
+    sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
     users.${username} = {
       imports = [ ./../home ];
+      sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
       home = {
         username = "${username}";
         homeDirectory = "/home/${username}";

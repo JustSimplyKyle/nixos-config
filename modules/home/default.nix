@@ -47,6 +47,7 @@ in
     ./hxrename.nix
     ./direnv.nix
     ./ssh.nix
+    ./wakatime.nix
     # ./zellij.nix
   ]
 
