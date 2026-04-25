@@ -123,4 +123,36 @@ in
 
   fonts.fontconfig.enable = true;
 
+  # services.wluma = {
+  #   enable = true;
+    
+  #   # This translates directly into the config.toml
+  #   settings = {
+  #     als.webcam = {
+  #       video = 0; # This corresponds to /dev/video0
+  #       thresholds = {
+  #         "0" = "night";
+  #         "15" = "dark";
+  #         "30" = "dim";
+  #         "45" = "normal";
+  #         "60" = "bright";
+  #         "75" = "outdoors";
+  #       };
+  #     };
+
+  #     # Choose your capturer based on your Wayland compositor.
+  #     # Use 'wlroots' for Sway/Hyprland. Use 'wayland' for Gnome/KDE.
+  #     # capturer.wlroots = {}; 
+
+  #     output.backlight = [
+  #       {
+  #         name = "eDP-1"; # Change this to your laptop screen's name (check using wlr-randr or hyprctl monitors)
+  #         path = "/sys/class/backlight/intel_backlight"; # Verify this path exists! E.g., amdgpu_bl0 for AMD
+  #         capturer = "wayland"; # Must match the capturer defined above
+  #       }
+  #     ];
+
+  #     # We omit the [keyboard.dell] section to fix your second warning.
+  #   };
+  # };
 }
