@@ -8,8 +8,12 @@ in
     sopsFile = ../../secrets/wifi-passphrase.yaml;
   };
 
+  networking.networkmanager.enable = true;
+
+  networking.networkmanager.wifi.powersave = false;
+
   # 1. Keep NetworkManager away from the AP radio
-  networking.networkmanager.unmanaged = [ apInterface ];
+  networking.networkmanager.unmanaged = [ "interface-name:${apInterface}" ];
 
   # 2. Static IP for the AP interface
   networking.interfaces.${apInterface} = {
@@ -57,15 +61,17 @@ in
       bogus-priv    = true;
     };
   };
-  systemd.services."network-addresses-wlp0s20f3" = {
+  systemd.services."network-addresses-${apInterface}" = {
     after    = [ "hostapd.service" ];
-    wants    = [ "hostapd.service" ];
+    requires = [ "hostapd.service" ];
+    # Force it to re-run if it already ran and failed
+    serviceConfig.Restart = "on-failure";
   };
 
   # dnsmasq still waits for the address (which now waits for hostapd)
   systemd.services.dnsmasq = {
-    after    = [ "network-addresses-wlp0s20f3.service" ];
-    requires = [ "network-addresses-wlp0s20f3.service" ];
+    after    = [ "network-addresses-${apInterface}.service" ];
+    requires = [ "network-addresses-${apInterface}.service" ];
   };
 
   # 6. hostapd
