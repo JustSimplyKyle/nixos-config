@@ -7,5 +7,6 @@
     };
   };
   networking.resolvconf.useLocalResolver = false;
+  networking.search = [ "taila3e46.ts.net" ];
   networking.firewall.checkReversePath = "loose";
 }
