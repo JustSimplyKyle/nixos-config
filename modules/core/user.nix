@@ -36,7 +36,8 @@ in
     sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
     users.${username} = {
       imports = [ ./../home ];
-      sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    # sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      sops.age.sshKeyPaths = [ "/home/${username}/.config/sops/age/keys.txt" ];
       home = {
         username = "${username}";
         homeDirectory = "/home/${username}";
