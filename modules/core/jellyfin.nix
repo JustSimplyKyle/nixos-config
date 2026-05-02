@@ -9,16 +9,6 @@
 
   imports = [inputs.jellarr.nixosModules.default];
 
-
-
-  config.sops.secrets.jellarr-api-key.sopsFile = ../../secrets/jellarr.yaml;
-
-
-  config.sops.secrets."opc-ssh" = {
-    sopsFile = ../../secrets/opc-ssh.yaml;
-    owner = username;
-  };
-
   config.services.jellarr = {
     enable = true;
     user = "jellyfin";

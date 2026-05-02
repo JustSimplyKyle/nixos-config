@@ -25,6 +25,7 @@ let
     ./infi75_custom.nix
     ./usb-wakeup-disable.nix
     ./altstore.nix
+    ./secrets.nix
   ];
   guiApps = [
     ./ai-code-editors.nix

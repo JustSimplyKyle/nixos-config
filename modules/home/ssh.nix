@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ nixosConfig, ... }: {
 
   programs.ssh = {
     enable = true;
@@ -9,7 +9,7 @@
       opc = {
         hostname = "100.117.138.27";
         user = "opc";
-        identityFile = "/run/secrets/opc-ssh";
+        identityFile = nixosConfig.sops.secrets."opc-ssh".path;
         
         extraOptions = {
           RequestTTY = "yes";

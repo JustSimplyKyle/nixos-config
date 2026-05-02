@@ -4,10 +4,6 @@ let
   upstreamInterface = "enp8s0";
 in
 {
-  sops.secrets."wifi_passphrase" = {
-    sopsFile = ../../secrets/wifi-passphrase.yaml;
-  };
-
   networking.networkmanager.enable = true;
 
   networking.networkmanager.wifi.powersave = false;
