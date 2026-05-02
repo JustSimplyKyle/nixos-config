@@ -56,7 +56,7 @@
 
       [[language]]
       name = "typst"
-      language-servers = ["tinymist"]
+      language-servers = ["tinymist", "wakatime"]
 
       [language-server.tinymist]
       command = "tinymist"
