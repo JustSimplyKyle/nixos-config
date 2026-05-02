@@ -34,6 +34,7 @@
   # ── Binary cache (nix-serve) ──────────────────────────────────────────────
   services.nix-serve = {
     enable        = true;
+    package = pkgs.nix-serve-ng;
     secretKeyFile = config.sops.secrets."nix-serve/private-key".path;
     port          = 5000;
     bindAddress   = "0.0.0.0";  # firewall below restricts to tailscale0

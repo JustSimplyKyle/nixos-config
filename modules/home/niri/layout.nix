@@ -203,6 +203,28 @@ layer-rule {
   place-within-backdrop true
 }
 
+blur {
+  passes 2        // more passes = stronger blur (default: 3)
+  offset 3.0      // sample distance per pass (default: 3.0)
+  noise 0.03      // grain overlay (default: 0.02)
+  saturation 1.0  // color saturation boost (default: 1.5)
+}
+
+window-rule {
+  background-effect {
+    blur true
+    xray false
+  }
+}
+
+/* Noctalia: blur everywhere without xray for a better look */
+layer-rule {
+  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+  background-effect {
+    xray false
+  }
+}
+
   overview {
       backdrop-color "#1e1e2e"
 
