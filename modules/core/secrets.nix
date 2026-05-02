@@ -18,6 +18,7 @@
     sopsFile = ../../secrets/wifi-passphrase.yaml;
   };
 
+  sops.secrets."nix-serve/private-key".sopsFile = ../../secrets/nix-serve.yaml;
 
 }
 
