@@ -65,7 +65,6 @@ in
 
   services.batteryRefreshRate.enable = enablePowerSaving;
 
-
   # Install Niri and related packages
   home.packages = with pkgs; [
     niri

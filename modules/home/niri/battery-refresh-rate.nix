@@ -1,4 +1,3 @@
-# battery-refresh-rate.nix
 { config, lib, pkgs, ... }:
 
 let
@@ -6,7 +5,7 @@ let
 in
 {
   options.services.batteryRefreshRate = {
-    enable = lib.mkEnableOption "battery-triggered display refresh rate switcher";
+    enable = lib.mkEnableOption "AC/battery-triggered display refresh rate switcher";
 
     battery = lib.mkOption {
       type    = lib.types.str;
@@ -20,43 +19,26 @@ in
       description = "Niri output name to change refresh rate on";
     };
 
-    modeLow = lib.mkOption {
+    modeBattery = lib.mkOption {
       type    = lib.types.str;
       default = "2880x1800@60.000";
-      description = "Display mode when battery is low";
+      description = "Display mode when on battery (unplugged)";
     };
 
-    modeHigh = lib.mkOption {
+    modeAC = lib.mkOption {
       type    = lib.types.str;
       default = "2880x1800@120.000";
-      description = "Display mode when battery is normal";
-    };
-
-    thresholdDown = lib.mkOption {
-      type    = lib.types.ints.between 1 99;
-      default = 30;
-      description = "Battery % at or below which to switch to modeLow";
-    };
-
-    thresholdUp = lib.mkOption {
-      type    = lib.types.ints.between 1 99;
-      default = 35;
-      description = "Battery % at or above which to restore modeHigh (hysteresis)";
+      description = "Display mode when plugged in (AC)";
     };
 
     pollInterval = lib.mkOption {
       type    = lib.types.ints.positive;
-      default = 30;
-      description = "Seconds between battery checks";
+      default = 5; # Reduced default interval since AC changes usually expect a faster response
+      description = "Seconds between battery status checks";
     };
   };
 
   config = lib.mkIf cfg.enable {
-    assertions = [{
-      assertion = cfg.thresholdUp > cfg.thresholdDown;
-      message   = "services.batteryRefreshRate: thresholdUp must be greater than thresholdDown";
-    }];
-
     systemd.user.services.battery-refresh-rate =
       let
         script = pkgs.writeShellApplication {
@@ -64,12 +46,12 @@ in
           runtimeInputs = [ pkgs.niri pkgs.libnotify ];
           text = ''
             BATTERY_PATH="/sys/class/power_supply/${cfg.battery}"
-            current_mode="high"
+            current_mode="unknown" # Start unknown to force applying correct state on boot
 
             log() { echo "$(date '+%F %T') $*"; }
 
-            get_capacity() {
-              cat "$BATTERY_PATH/capacity" 2>/dev/null
+            get_status() {
+              cat "$BATTERY_PATH/status" 2>/dev/null
             }
 
             set_mode() {
@@ -81,32 +63,41 @@ in
               fi
             }
 
-            log "Started (↓${toString cfg.thresholdDown}% → ${cfg.modeLow} / ↑${toString cfg.thresholdUp}% → ${cfg.modeHigh})"
+            log "Started (Battery → ${cfg.modeBattery} / AC → ${cfg.modeAC})"
 
             while true; do
-              capacity=$(get_capacity)
+              status=$(get_status)
 
-              if [[ -z "$capacity" ]]; then
-                log "WARNING: could not read battery capacity, retrying..."
+              if [[ -z "$status" ]]; then
+                log "WARNING: could not read battery status, retrying..."
                 sleep ${toString cfg.pollInterval}
                 continue
               fi
 
-              if [[ "$current_mode" == "high" && "$capacity" -le ${toString cfg.thresholdDown} ]]; then
-                log "Battery ''${capacity}% → switching to ${cfg.modeLow}"
-                notify-send -u normal "Power Saver" \
-                  "Battery ''${capacity}%: display is about to be set to 60 Hz" 2>/dev/null || true
-                sleep 5
-                set_mode "${cfg.modeLow}"
-                current_mode="low"
+              # Check if discharging (on battery) or anything else (Charging, Full, Not charging -> plugged in)
+              if [[ "$status" == "Discharging" ]]; then
+                target_mode="battery"
+              else
+                target_mode="ac"
+              fi
 
-              elif [[ "$current_mode" == "low" && "$capacity" -ge ${toString cfg.thresholdUp} ]]; then
-                log "Battery ''${capacity}% → switching to ${cfg.modeHigh}"
-                notify-send -u normal "Power Saver" \
-                  "Battery ''${capacity}%: display is about to be restored to 120 Hz" 2>/dev/null || true
-                sleep 5
-                set_mode "${cfg.modeHigh}"
-                current_mode="high"
+              if [[ "$current_mode" != "$target_mode" ]]; then
+                if [[ "$target_mode" == "battery" ]]; then
+                  log "Unplugged → switching to ${cfg.modeBattery}"
+                  notify-send -u normal "Power Saver" \
+                    "Unplugged: display is about to be set to ${cfg.modeBattery}" 2>/dev/null || true
+                  sleep 5
+                  set_mode "${cfg.modeBattery}"
+                  current_mode="battery"
+
+                elif [[ "$target_mode" == "ac" ]]; then
+                  log "Plugged in → switching to ${cfg.modeAC}"
+                  notify-send -u normal "Performance" \
+                    "Plugged in: display is about to be restored to ${cfg.modeAC}" 2>/dev/null || true
+                  sleep 5
+                  set_mode "${cfg.modeAC}"
+                  current_mode="ac"
+                fi
               fi
 
               sleep ${toString cfg.pollInterval}
@@ -116,7 +107,7 @@ in
       in
       {
         Unit = {
-          Description = "Battery-triggered display refresh rate switcher (niri / ${cfg.output})";
+          Description = "AC/Battery-triggered display refresh rate switcher (niri / ${cfg.output})";
           After       = [ "graphical-session.target" ];
           PartOf      = [ "graphical-session.target" ];
         };
