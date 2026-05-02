@@ -4,6 +4,7 @@ in {
   programs.git = {
     enable = true;
     ignores = [ ".direnv" ];
+    lfs.enable = true;
     # Updated to use programs.git.settings in nixpkgs-unstable
     settings = {
       user = {
