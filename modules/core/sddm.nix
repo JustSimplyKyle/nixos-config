@@ -6,8 +6,8 @@
   ...
 }:
 let
-  foreground = config.stylix.base16Scheme.base00;
-  textColor = config.stylix.base16Scheme.base05;
+  foreground = config.lib.stylix.colors.base00;
+  textColor = config.lib.stylix.colors.base05;
   sddm-astronaut = pkgs.sddm-astronaut.override {
     embeddedTheme = "pixel_sakura";
     themeConfig =
@@ -53,13 +53,13 @@ let
           UserIconColor = "#${textColor}";
           PasswordIconColor = "#${textColor}";
           WarningColor = "#${textColor}";
-          LoginButtonBackgroundColor = "#${config.stylix.base16Scheme.base01}";
+          LoginButtonBackgroundColor = "#${config.lib.stylix.colors.base01}";
           SystemButtonsIconsColor = "#${textColor}";
           SessionButtonTextColor = "#${textColor}";
           VirtualKeyboardButtonTextColor = "#${textColor}";
-          DropdownBackgroundColor = "#${config.stylix.base16Scheme.base01}";
+          DropdownBackgroundColor = "#${config.lib.stylix.colors.base01}";
           HighlightBackgroundColor = "#${textColor}";
-          FormBackgroundColor = "#${config.stylix.base16Scheme.base01}";
+          FormBackgroundColor = "#${config.lib.stylix.colors.base01}";
         };
   };
 in

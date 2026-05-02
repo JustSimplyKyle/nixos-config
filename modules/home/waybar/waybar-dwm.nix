@@ -200,16 +200,16 @@ in {
       };
     };
     style = ''
-      @define-color bg #${config.stylix.base16Scheme.base00};
-      @define-color fg #${config.stylix.base16Scheme.base05};
-      @define-color lbg #${config.stylix.base16Scheme.base01};
-      @define-color yellow #${config.stylix.base16Scheme.base0A};
-      @define-color lavender #${config.stylix.base16Scheme.base0E};
-      @define-color peach #${config.stylix.base16Scheme.base0A};
-      @define-color red #${config.stylix.base16Scheme.base08};
-      @define-color green #${config.stylix.base16Scheme.base0B};
-      @define-color blue #${config.stylix.base16Scheme.base0D};
-      @define-color border #${config.stylix.base16Scheme.base02};
+      @define-color bg #${config.lib.stylix.colors.base00};
+      @define-color fg #${config.lib.stylix.colors.base05};
+      @define-color lbg #${config.lib.stylix.colors.base01};
+      @define-color yellow #${config.lib.stylix.colors.base0A};
+      @define-color lavender #${config.lib.stylix.colors.base0E};
+      @define-color peach #${config.lib.stylix.colors.base0A};
+      @define-color red #${config.lib.stylix.colors.base08};
+      @define-color green #${config.lib.stylix.colors.base0B};
+      @define-color blue #${config.lib.stylix.colors.base0D};
+      @define-color border #${config.lib.stylix.colors.base02};
 
       * {
         min-height: 0;

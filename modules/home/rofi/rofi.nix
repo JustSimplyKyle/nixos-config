@@ -5,7 +5,7 @@
 }: {
   programs = {
     rofi = {
-      enable = true;
+      enable = false;
       package = pkgs.rofi; # rofi-wayland has been merged into rofi in nixpkgs-unstable
       extraConfig = {
         modi = "drun,filebrowser,run";
@@ -23,13 +23,13 @@
         "*" = {
           bg = mkLiteral "#1d1c2c";
           bg-alt = mkLiteral "#1d1c2cCC";
-          foreground = mkLiteral "#${config.stylix.base16Scheme.base01}";
-          selected = mkLiteral "#${config.stylix.base16Scheme.base08}";
-          active = mkLiteral "#${config.stylix.base16Scheme.base0B}";
-          text-selected = mkLiteral "#${config.stylix.base16Scheme.base00}";
-          text-color = mkLiteral "#${config.stylix.base16Scheme.base05}";
-          border-color = mkLiteral "#${config.stylix.base16Scheme.base0F}";
-          urgent = mkLiteral "#${config.stylix.base16Scheme.base0E}";
+          foreground = mkLiteral "#${config.lib.stylix.colors.base01}";
+          selected = mkLiteral "#${config.lib.stylix.colors.base08}";
+          active = mkLiteral "#${config.lib.stylix.colors.base0B}";
+          text-selected = mkLiteral "#${config.lib.stylix.colors.base00}";
+          text-color = mkLiteral "#${config.lib.stylix.colors.base05}";
+          border-color = mkLiteral "#${config.lib.stylix.colors.base0F}";
+          urgent = mkLiteral "#${config.lib.stylix.colors.base0E}";
         };
         "window" = {
           transparency = "real";
