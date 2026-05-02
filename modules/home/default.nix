@@ -90,7 +90,7 @@ in
     ./swaync.nix # Only use swaync with waybar
   ] ++ [
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
-  ];
+ ];
 
   services.flatpak.packages = [
     { appId = "com.bambulab.BambuStudio"; origin = "flathub"; }

@@ -4,6 +4,9 @@
     package = pkgs.ghostty;
     enableZshIntegration = true;
   };
+
+  programs.ghostty.systemd.enable = false;
+  
   home.file."./.config/ghostty/config".text = ''
     font-family = Jetbrains Mono
     shell-integration-features = no-cursor,sudo,no-title

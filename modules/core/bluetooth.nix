@@ -4,9 +4,12 @@
     powerOnBoot = true;
     settings = {
       General = {
-        # ControllerMode = "dual";
+        ControllerMode = "dual";
         FastConnectable = true;
         Experimental = true;
+      };
+      Policy = {
+        AutoEnable = "true";
       };
     };
   };

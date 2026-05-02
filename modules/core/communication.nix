@@ -12,7 +12,8 @@ in
 {
   config = lib.mkIf enableCommunicationApps {
     environment.systemPackages = [
-      inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.vesktop
+      pkgs.vesktop
+      # inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.vesktop
     ];
   };
 }

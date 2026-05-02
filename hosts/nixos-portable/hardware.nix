@@ -55,5 +55,7 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   
   hardware.enableRedistributableFirmware = true;
+  boot.extraModprobeConfig = "options ideapad_laptop allow_v4_dytc=1";
+  systemd.services.bluetooth.after = [ "sys-subsystem-net-devices-wlan0.device" ];
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
