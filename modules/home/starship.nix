@@ -6,8 +6,8 @@
   ...
 }:
 let
-  accent = "#${config.lib.stylix.colors.base0D}";
-  background-alt = "#${config.lib.stylix.colors.base01}";
+  # accent = "#${config.lib.stylix.colors.base0D}";
+  # background-alt = "#${config.lib.stylix.colors.base01}";
 
   # Import variables to check shell choice
   variables = import ../../hosts/${host}/variables.nix;
@@ -30,12 +30,8 @@ in
         "\n"
         "$character"
       ];
-      directory = {
-        style = accent;
-      };
 
       character = {
-        success_symbol = "[❯](${accent})";
         error_symbol = "[❯](red)";
         vimcmd_symbol = "[❮](cyan)";
       };
@@ -47,9 +43,6 @@ in
       };
 
       git_branch = {
-        symbol = "[](${background-alt}) ";
-        style = "fg:${accent} bg:${background-alt}";
-        format = "on [$symbol$branch]($style)[](${background-alt}) ";
       };
 
       git_status = {

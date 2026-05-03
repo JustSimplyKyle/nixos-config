@@ -38,7 +38,7 @@ in
     ./lazygit.nix
     ./scripts
     ./starship.nix
-    ./stylix.nix 
+    # ./stylix.nix 
     ./tealdeer.nix
     ./tmux.nix
     ./xdg.nix
@@ -59,14 +59,12 @@ in
     ./gtk.nix
     ./kitty.nix
     ./niri
-    ./nwg-drawer.nix
     ./obs-studio.nix
     ./qt.nix
-    ./rofi
     ./swappy.nix
     ./virtmanager.nix
     ./vscode.nix
-    ./wlogout
+    # ./wlogout
     ./mpv.nix
     ./playlists.nix
   ]

@@ -9,7 +9,7 @@ in
 lib.mkIf stylixEnable {
   # Styling Options
   stylix = {
-    enable = true;
+    enable = false;
     image = stylixImage;
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-soft.yaml";
     base16Scheme = {

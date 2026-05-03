@@ -42,10 +42,10 @@ let
     ./thunar.nix
     ./xserver.nix
     ./fcitx5.nix
-    ./stylix.nix
+    # ./stylix.nix
     ./sunshine.nix
     ./kicad.nix
-    inputs.stylix.nixosModules.stylix
+    # inputs.stylix.nixosModules.stylix
   ];
   in
 {

@@ -15,5 +15,4 @@ lib.mkIf stylixEnable {
     qt.enable = true;
   };
 
-  services.nwg-drawer-stylix.enable = true;
 }

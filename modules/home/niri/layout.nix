@@ -204,16 +204,23 @@ layer-rule {
 }
 
 blur {
-  passes 2        // more passes = stronger blur (default: 3)
-  offset 3.0      // sample distance per pass (default: 3.0)
-  noise 0.03      // grain overlay (default: 0.02)
-  saturation 1.0  // color saturation boost (default: 1.5)
+    passes 4
+    offset 4.0
+    noise 0.015
+    saturation 1.6
 }
 
 window-rule {
   background-effect {
     blur true
     xray false
+  }
+  popups {
+      geometry-corner-radius 15
+      background-effect {
+        blur true
+        xray false
+      }
   }
 }
 
