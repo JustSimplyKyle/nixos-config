@@ -110,5 +110,6 @@ in
     evince
     prismlauncher
     webkitgtk_4_1
+    hydralauncher
   ];
 }

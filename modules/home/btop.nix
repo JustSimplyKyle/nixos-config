@@ -8,7 +8,7 @@
     settings = {
       vim_keys = true;
       rounded_corners = true;
-      proc_tree = true;
+      proc_tree = false;
       show_gpu_info = "on";
       show_uptime = true;
       show_coretemp = true;
@@ -17,6 +17,7 @@
       only_physical = true;
       io_mode = true;
       io_graph_combined = false;
+      update_ms = 200;
     };
   };
 }

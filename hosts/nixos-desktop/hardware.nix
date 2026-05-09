@@ -1,5 +1,4 @@
 { config, lib, pkgs, modulesPath, ... }:
-
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
@@ -34,9 +33,9 @@
     };
 
   fileSystems."/mnt/nvme2" =
-    { device = "/dev/disk/by-uuid/f816ddbf-3206-90a4-a17a-29b64636594b";
-      fsType = "btrfs";
-      options = [ "rw" "relatime" "ssd" "compress=zstd:3" "discard=async" "space_cache=v2" "nofail" "x-systemd.automount" ];
+    { device = "/dev/disk/by-uuid/FE06-EF12";
+      fsType = "exfat";
+      options = [ "fmask=0113" "dmask=0002" "uid=1000" "gid=100" "nofail"];
     };
 
   fileSystems."/mnt/drive1" =
@@ -53,5 +52,4 @@
   
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

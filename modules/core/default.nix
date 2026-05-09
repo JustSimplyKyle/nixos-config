@@ -45,6 +45,7 @@ let
     # ./stylix.nix
     ./sunshine.nix
     ./kicad.nix
+    ./hydralauncher.nix
     # inputs.stylix.nixosModules.stylix
   ];
   in
