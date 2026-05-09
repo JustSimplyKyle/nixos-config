@@ -108,6 +108,7 @@ in
       rebuild = "dcli rebuild";
       update = "dcli update";
       cleanup = "dcli cleanup";
+      open = "xdg-open";
 
       # Utils
       niri-kill = "kill \"$(niri msg -j pick-window | jq \".pid\")\"";
