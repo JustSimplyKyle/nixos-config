@@ -14,7 +14,7 @@
 
   // Global window styling
   window-rule {
-      geometry-corner-radius 9
+      geometry-corner-radius 25
       clip-to-geometry true
       draw-border-with-background false
   }

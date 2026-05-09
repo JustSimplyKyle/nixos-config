@@ -10,6 +10,7 @@
   home.file."./.config/ghostty/config".text = ''
     font-family = Jetbrains Mono
     shell-integration-features = no-cursor,sudo,no-title
+    background-opacity = 0.88
     font-size = 14
     cursor-style = block
     mouse-hide-while-typing = true
