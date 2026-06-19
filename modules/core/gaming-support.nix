@@ -3,15 +3,23 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   inherit (import ../../hosts/${host}/variables.nix) gamingSupportEnable;
 in
 lib.mkIf gamingSupportEnable {
   # Enable kernel modules for controller support
   boot.kernelModules = [
-    "uinput"      # User input module for virtual devices
+    "uinput" # User input module for virtual devices
     "hid_nintendo" # Nintendo Switch Pro Controller and Joy-Cons support
-    "xpad"        # Xbox controller support
+    "xpad" # Xbox controller support
+  ];
+
+  hardware.opentabletdriver.enable = true;
+
+  boot.blacklistedKernelModules = [
+    "wacom"
+    "hid_wacom"
   ];
 
   # Hardware configuration for controller support
@@ -100,6 +108,6 @@ lib.mkIf gamingSupportEnable {
 
   # Enable joystick support in the kernel
   boot.kernelParams = [
-    "usbhid.quirks=0x057e:0x2009:0x80000000"  # Fix for Switch Pro Controller
+    "usbhid.quirks=0x057e:0x2009:0x80000000" # Fix for Switch Pro Controller
   ];
 }

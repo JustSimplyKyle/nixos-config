@@ -55,24 +55,29 @@
     };
   };
 
-
   outputs =
-    { nixpkgs, flake-utils, nixpkgs-stable, ... }@inputs:
+    {
+      nixpkgs,
+      flake-utils,
+      nixpkgs-stable,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
-      overlay_path = ./overlays; 
-      myOverlays = with builtins;
-        map (n: import (overlay_path + ("/" + n)))
-            (filter (n: match ".*\\.nix" n != null ||
-                        pathExists (overlay_path + ("/" + n + "/default.nix")))
-                    (attrNames (readDir overlay_path)));
+      overlay_path = ./overlays;
+      myOverlays =
+        with builtins;
+        map (n: import (overlay_path + ("/" + n))) (
+          filter (n: match ".*\\.nix" n != null || pathExists (overlay_path + ("/" + n + "/default.nix"))) (
+            attrNames (readDir overlay_path)
+          )
+        );
 
       nixpkgsConfig = {
         allowUnfree = true;
         allowBroken = true;
         allowInsecure = false;
       };
-
 
       # Helper function to create a host configuration
       mkHost =
@@ -88,7 +93,6 @@
             host = hostname;
             inherit profile;
             inherit username;
-            zen-browser = inputs.zen-browser.packages.${system}.default;
             helium-browser = inputs.helium.packages.${system}.helium;
           };
           modules = [

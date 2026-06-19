@@ -22,7 +22,7 @@
 
   # Core Features
   enableNFS = false;
-  printEnable = false;
+  printEnable = true;
   thunarEnable = true;
   stylixEnable = true;
 
