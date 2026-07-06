@@ -80,7 +80,7 @@
 
       cat > flake.nix <<'FLAKE'
       {
-        description = (builtins.fromTOML (builtins.readFile ./Cargo.toml)).package.name;
+        description = "app";
         inputs = {
           nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
           utils.url = "github:numtide/flake-utils";
@@ -107,7 +107,7 @@
                 nativeBuildInputs = [ pkgs.pkg-config ];
                 buildInputs = [ pkgs.openssl ];
               };
-              devShells.default = pkgs.mkShell {
+              devShells.default = pkgs.mkShell rec {
                 buildInputs = [
                   rustToolchain
                   pkgs.cargo
@@ -115,7 +115,9 @@
                   pkgs.rust-analyzer
                   pkgs.pkg-config
                 ];
-                # LD_LIBRARY_PATH = "''${pkgs.lib.makeLibraryPath [ pkgs.opencv ]}";
+                LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:''${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}";
+                # LIBCLANG_PATH="''${pkgs.libclang.lib}/lib";
+
               };
             });
       }

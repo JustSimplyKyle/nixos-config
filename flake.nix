@@ -28,7 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia-shell?ref=v4.7.7";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     direnv-instant.url = "github:Mic92/direnv-instant";
@@ -76,7 +76,10 @@
       nixpkgsConfig = {
         allowUnfree = true;
         allowBroken = true;
-        allowInsecure = false;
+        allowInsecure = true;
+        permittedInsecurePackages = [
+          "pnpm-10.29.2"
+        ];
       };
 
       # Helper function to create a host configuration
