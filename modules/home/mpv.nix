@@ -1,30 +1,27 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   anime4k = pkgs.fetchFromGitHub {
     owner = "bloc97";
-    repo  = "Anime4K";
-    rev   = "v4.0.1";
-    hash  = "sha256-OQWJWcDpwmnJJ/kc4uEReaO74dYFlxNQwf33E5Oagb0=";
+    repo = "Anime4K";
+    rev = "v4.0.1";
+    hash = "sha256-OQWJWcDpwmnJJ/kc4uEReaO74dYFlxNQwf33E5Oagb0=";
   };
 
   # Recursively search for a filename under a directory, returns the full path
-  findGlsl = dir: name:
-    let
-      entries = builtins.readDir dir;
-      found   = entries ? ${name} && entries.${name} == "regular";
-      subdirs = lib.filterAttrs (_: type: type == "directory") entries;
-      hits    = lib.filterAttrs (_: v: v != null)
-                  (lib.mapAttrs (d: _: findGlsl "${dir}/${d}" name) subdirs);
-    in
-      if found then "${dir}/${name}"
-      else if hits != {} then builtins.head (builtins.attrValues hits)
-      else null;
+  findGlsl =
+    dir: name:
+    lib.findFirst (file: builtins.baseNameOf file == name) null (lib.filesystem.listFilesRecursive dir);
 
-  s         = name: findGlsl "${anime4k}/glsl" name;
+  s = name: findGlsl "${anime4k}/glsl" name;
   shaderSet = names: builtins.concatStringsSep ":" (map s names);
 
-  modeA  = shaderSet [
+  modeA = shaderSet [
     "Anime4K_Clamp_Highlights.glsl"
     "Anime4K_Restore_CNN_VL.glsl"
     "Anime4K_Upscale_CNN_x2_VL.glsl"
@@ -32,7 +29,7 @@ let
     "Anime4K_AutoDownscalePre_x4.glsl"
     "Anime4K_Upscale_CNN_x2_M.glsl"
   ];
-  modeB  = shaderSet [
+  modeB = shaderSet [
     "Anime4K_Clamp_Highlights.glsl"
     "Anime4K_Restore_CNN_Soft_VL.glsl"
     "Anime4K_Upscale_CNN_x2_VL.glsl"
@@ -40,7 +37,7 @@ let
     "Anime4K_AutoDownscalePre_x4.glsl"
     "Anime4K_Upscale_CNN_x2_M.glsl"
   ];
-  modeC  = shaderSet [
+  modeC = shaderSet [
     "Anime4K_Clamp_Highlights.glsl"
     "Anime4K_Upscale_Denoise_CNN_x2_VL.glsl"
     "Anime4K_AutoDownscalePre_x2.glsl"
@@ -79,8 +76,8 @@ in
     enable = true;
 
     bindings = {
-      "RIGHT"  = "script-binding skip-next-conditional";
-      "LEFT"   = "script-binding skip-prev-conditional";
+      "RIGHT" = "script-binding skip-next-conditional";
+      "LEFT" = "script-binding skip-prev-conditional";
 
       "CTRL+1" = ''no-osd change-list glsl-shaders set "${modeA}";  show-text "Anime4K: Mode A (HQ)"'';
       "CTRL+2" = ''no-osd change-list glsl-shaders set "${modeB}";  show-text "Anime4K: Mode B (HQ)"'';
@@ -96,39 +93,48 @@ in
         cddaSupport = true;
         waylandSupport = true;
       };
-      scripts = with pkgs.mpvScripts; [
-        uosc
-        sponsorblock
-        thumbfast
-        mpris
-      ] ++ [
-        pkgs.mpv-skip-conditional
-      ];
+      scripts =
+        with pkgs.mpvScripts;
+        [
+          uosc
+          sponsorblock
+          thumbfast
+          mpris
+        ]
+        ++ [
+          pkgs.mpv-skip-conditional
+        ];
     };
 
     scriptOpts = {
-      uosc      = { font_scale = 2; };
-      thumbfast = { network = true; hwdec = true; };
+      uosc = {
+        font_scale = 2;
+      };
+      thumbfast = {
+        network = true;
+        hwdec = true;
+      };
     };
 
     config = {
-      ytdl-format      = "bestvideo[height<=?1440]+bestaudio/best";
+      ytdl-format = "bestvideo[height<=?1440]+bestaudio/best";
       ytdl-raw-options = "yes-playlist=,cookies-from-browser=chromium:${config.xdg.configHome}/net.imput.helium/Default";
-      hwdec            = "auto";
-      hwdec-codecs     = "all";
-      profile          = "high-quality";
-      vo               = "gpu-next";
-      video-sync       = "display-resample";
-      volume           = 85;
-      blend-subtitles  = "video";
-      ao               = "pipewire";
-      sub-font-size    = 44;
-      cache            = "yes";
+      hwdec = "auto";
+      hwdec-codecs = "all";
+      profile = "high-quality";
+      vo = "gpu-next";
+      video-sync = "display-resample";
+      volume = 85;
+      blend-subtitles = "video";
+      ao = "pipewire";
+      sub-font-size = 36;
+      cache = "yes";
       save-position-on-quit = "yes";
-      osc              = "no";
-      osd-bar          = "no";
-      border           = "no";
+      osc = "no";
+      osd-bar = "no";
+      border = "no";
       demuxer-readahead-secs = 120;
+      sub-font = "jf open 粉圓 2.1";
     };
   };
 }

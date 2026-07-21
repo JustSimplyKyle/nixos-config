@@ -1,5 +1,5 @@
 final: prev: {
-  instrument-sans = prev.stdenvNoCC.mkDerivation rec {
+  open-huninn = prev.stdenvNoCC.mkDerivation rec {
     pname = "open-huninn";
     version = "2024-09-19";
 
@@ -7,7 +7,7 @@ final: prev: {
       owner = "justfont";
       repo = "open-huninn-font";
       rev = "98d53b3dac1730889edf548359c326c53624fa80";
-      hash = "sha256-F68VaS0baIo/NjhCiUU/zhchWIysgohaySqADYSemx0="; # Update this!
+      hash = "sha256-9WYS3TD1AiYmXzIiseHX4oVEq701ROnGuJHZ+XWFWB4="; # Update this!
     };
 
     installPhase = ''
@@ -15,7 +15,7 @@ final: prev: {
 
       # Install only the Variable TTF files
       install -d $out/share/fonts/truetype
-      install -m644 font/jf-openhuninn-2.1.tff $out/share/fonts/truetype
+      install -m644 font/jf-openhuninn-2.1.ttf $out/share/fonts/truetype
 
       install -Dm644 LICENSE $out/share/licenses/${pname}/LICENSE
       runHook postInstall

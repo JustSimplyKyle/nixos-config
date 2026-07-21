@@ -38,7 +38,7 @@ in
     ./lazygit.nix
     ./scripts
     ./starship.nix
-    # ./stylix.nix 
+    # ./stylix.nix
     ./tealdeer.nix
     ./tmux.nix
     ./xdg.nix
@@ -86,15 +86,17 @@ in
   ++ lib.optionals (!headless && actualBarChoice == "waybar") [
     waybarChoice
     ./swaync.nix # Only use swaync with waybar
-  ] ++ [
+  ]
+  ++ [
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
- ];
-
-  services.flatpak.packages = [
-    { appId = "com.bambulab.BambuStudio"; origin = "flathub"; }
   ];
 
-  
+  services.flatpak.packages = [
+    {
+      appId = "com.bambulab.BambuStudio";
+      origin = "flathub";
+    }
+  ];
 
   # Allows usage in other modules for overriding settings
   _module.args = {
@@ -117,13 +119,17 @@ in
   #                 (attrNames (readDir overlay_path)));
   # };
 
-  home.packages = [ pkgs.manrope pkgs.source-han-sans ];
+  home.packages = [
+    pkgs.manrope
+    pkgs.open-huninn
+    pkgs.source-han-sans
+  ];
 
   fonts.fontconfig.enable = true;
 
   # services.wluma = {
   #   enable = true;
-    
+
   #   # This translates directly into the config.toml
   #   settings = {
   #     als.webcam = {
@@ -140,7 +146,7 @@ in
 
   #     # Choose your capturer based on your Wayland compositor.
   #     # Use 'wlroots' for Sway/Hyprland. Use 'wayland' for Gnome/KDE.
-  #     # capturer.wlroots = {}; 
+  #     # capturer.wlroots = {};
 
   #     output.backlight = [
   #       {
