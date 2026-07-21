@@ -78,6 +78,10 @@ in
       nixfmt
       nixd # Nix Language Server
       nil # Nix Language Server
+
+      # coding apps
+      codex
+      cargo
     ]
     ++ lib.optionals (!headless) [
       feishin

@@ -1,66 +1,76 @@
 { host, ... }:
 ''
-  // Work around WezTerm's initial configure bug
-  window-rule {
-      match app-id=r#"^org\.wezfurlong\.wezterm$"#
-      default-column-width {}
-  }
+    // Work around WezTerm's initial configure bug
+    window-rule {
+        match app-id=r#"^org\.wezfurlong\.wezterm$"#
+        default-column-width {}
+    }
 
-  // Open the Firefox picture-in-picture player as floating by default
+    // Open the Firefox picture-in-picture player as floating by default
+    window-rule {
+        match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+        open-floating true
+    }
+
+    // Global window styling
+    window-rule {
+        geometry-corner-radius 25
+        clip-to-geometry true
+        draw-border-with-background false
+    }
+
+    // Opacity rules for specific applications
+
+    // Launch vesktop and motrix on secondary monitor
+    window-rule {
+        match app-id=r#"^(vesktop|Motrix)$"#
+        open-focused false
+        open-on-output "HDMI-A-1"
+    }
+
+    // OBS always opens at full width on DP-2
+    window-rule {
+        match app-id=r#"^com\.obsproject\.Studio$"#
+        default-column-width { proportion 1.0; }
+        open-on-output "DP-2"
+    }
+
+
   window-rule {
-      match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+        match app-id=r#"^mpv-stream$"#
+        
+        open-floating true
+        
+        open-focused false
+        
+        default-floating-position x=513 y=143
+        
+        default-column-width { fixed 1300; }
+        default-window-height { fixed 732; }
+        
+        open-on-output "HDMI-A-1"
+    }
+
+    // Web apps and Steam opacity
+    window-rule {
+        match app-id=r#"^(steam|chrome-app\.restream\.io__home-Default|chrome-claude\.ai__new-Default|chrome-github\.com__-Default|chrome-gitlab\.com__theblackdon_black-don-os-Default|chrome-mail\.proton\.me__u_0_inbox-Default|chrome-meet\.google\.com__-Default|chrome-messages\.google\.com__web_u_1_conversations-Default|chrome-web\.descript\.com__-Default)$"#
+        opacity 0.95
+    }
+
+    // Commented out: Steam fullscreen rule
+    /-window-rule {
+        match app-id="steam"
+        exclude title="^Steam$"
+        open-fullscreen true
+    }
+  window-rule {
+      match app-id=r#"^xdg-desktop-portal-gtk$"#
       open-floating true
+      open-focused true
   }
-
-  // Global window styling
   window-rule {
-      geometry-corner-radius 25
-      clip-to-geometry true
-      draw-border-with-background false
-  }
-
-  // Opacity rules for specific applications
-
-  // Launch vesktop and motrix on secondary monitor
-  window-rule {
-      match app-id=r#"^(vesktop|Motrix)$"#
-      open-focused false
-      open-on-output "HDMI-A-1"
-  }
-
-  // OBS always opens at full width on DP-2
-  window-rule {
-      match app-id=r#"^com\.obsproject\.Studio$"#
-      default-column-width { proportion 1.0; }
-      open-on-output "DP-2"
-  }
-
-
-window-rule {
-      match app-id=r#"^mpv-stream$"#
-      
+      match app-id=r#"^chrome-[a-p]{32}-.+$"#
       open-floating true
-      
-      open-focused false
-      
-      default-floating-position x=513 y=143
-      
-      default-column-width { fixed 1300; }
-      default-window-height { fixed 732; }
-      
-      open-on-output "HDMI-A-1"
-  }
-
-  // Web apps and Steam opacity
-  window-rule {
-      match app-id=r#"^(steam|chrome-app\.restream\.io__home-Default|chrome-claude\.ai__new-Default|chrome-github\.com__-Default|chrome-gitlab\.com__theblackdon_black-don-os-Default|chrome-mail\.proton\.me__u_0_inbox-Default|chrome-meet\.google\.com__-Default|chrome-messages\.google\.com__web_u_1_conversations-Default|chrome-web\.descript\.com__-Default)$"#
-      opacity 0.95
-  }
-
-  // Commented out: Steam fullscreen rule
-  /-window-rule {
-      match app-id="steam"
-      exclude title="^Steam$"
-      open-fullscreen true
+      open-focused true
   }
 ''

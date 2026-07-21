@@ -1,13 +1,11 @@
 {
   config,
-  lib,
-  pkgs,
   inputs,
-  username,
   ...
-}: {
+}:
+{
 
-  imports = [inputs.jellarr.nixosModules.default];
+  imports = [ inputs.jellarr.nixosModules.default ];
 
   config.services.jellarr = {
     enable = true;
@@ -30,4 +28,3 @@
   };
 
 }
-

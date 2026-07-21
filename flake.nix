@@ -65,14 +65,14 @@
     let
       system = "x86_64-linux";
       overlay_path = ./overlays;
+
       myOverlays =
         with builtins;
-        map (n: import (overlay_path + ("/" + n))) (
-          filter (n: match ".*\\.nix" n != null || pathExists (overlay_path + ("/" + n + "/default.nix"))) (
-            attrNames (readDir overlay_path)
+        map import (
+          filter (path: nixpkgs.lib.hasSuffix ".nix" (toString path)) (
+            nixpkgs.lib.filesystem.listFilesRecursive overlay_path
           )
         );
-
       nixpkgsConfig = {
         allowUnfree = true;
         allowBroken = true;
