@@ -10,7 +10,15 @@ creation_rules:
       - *admin-kyle
       - *nixos-portable
 
-# you can add a new machine via `nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"`
-# after so, you can do `sops updatekeys secrets/*`
-# you can allow `sops` commands on the new machine via moving ~/.config/sops/age/keys.txt to the new machine
-# or add the new user via `age-keygen -o ~/.config/sops/age/keys.txt`
+# Adding a new machine
+# 
+# retrieve the new machine key: `nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"`
+# add the new *public key* to `.sops.yaml`(`&nixos-newmachine`: age####)
+# from an existing admin machine, run `sops updatekeys secrets/*` so that the secrets are updated with this information
+# 
+# Adding a new Admin
+# create a new admin key with `age-keygen -o ~/.config/sops/age/keys.txt` and retrieve its public key with `age-keygen -y ~/.config/sops/age/keys.txt`
+# add the admin *public key* to `.sops.yaml`(`&admin-new`: age####), then you can run admin commands such as `sops updatekeys secrets/*`
+#
+# Reusing the same Admin
+# copy `~/.config/sops/age/keys.txt` if the same admin identity is needed on another machine
