@@ -65,7 +65,7 @@ in
     ./virtmanager.nix
     ./vscode.nix
     # ./wlogout
-    ./mpv.nix
+    ./mpv
     ./playlists.nix
   ]
 

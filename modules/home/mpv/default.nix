@@ -6,6 +6,9 @@
 }:
 
 let
+  mpvSkipConditional = pkgs.callPackage ./mpv-skip-conditional.nix { };
+  mpvHoldToSpeedup = pkgs.callPackage ./mpv-hold-to-speedup.nix { };
+
   anime4k = pkgs.fetchFromGitHub {
     owner = "bloc97";
     repo = "Anime4K";
@@ -102,7 +105,8 @@ in
           mpris
         ]
         ++ [
-          pkgs.mpv-skip-conditional
+          mpvSkipConditional
+          mpvHoldToSpeedup
         ];
     };
 
