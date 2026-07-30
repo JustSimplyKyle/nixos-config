@@ -5,27 +5,31 @@
   inputs,
   host,
   ...
-}: let
+}:
+let
   scripts = import ./shellApplications.nix { inherit pkgs; };
 in
 {
   # Add the new custom packages to your environment
-  home.packages = with pkgs; [
-    bat
-    eza 
-    zellij
-    fd            
-    fzf
-    gh
-    jq
-    ripgrep
-    wl-clipboard
-    zoxide
-    inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.oculante
-    nix-index
-  ] ++ (builtins.attrValues scripts);
+  home.packages =
+    with pkgs;
+    [
+      bat
+      eza
+      zellij
+      fd
+      fzf
+      gh
+      jq
+      ripgrep
+      wl-clipboard
+      zoxide
+      inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.oculante
+      nix-index
+    ]
+    ++ (builtins.attrValues scripts);
 
-  imports = [inputs.zimfw.homeManagerModules.zimfw];
+  imports = [ inputs.zimfw.homeManagerModules.zimfw ];
 
   programs.zoxide = {
     enable = true;
@@ -48,17 +52,24 @@ in
 
   programs.zsh = {
     dotDir = "${config.xdg.configHome}/zsh";
-    
+
     enable = true;
     autosuggestion.enable = false;
     enableCompletion = false;
-    autocd = true; 
+    autocd = true;
 
     syntaxHighlighting = {
       enable = false;
-      highlighters = [ "main" "brackets" "pattern" "cursor" "root" "line" ];
+      highlighters = [
+        "main"
+        "brackets"
+        "pattern"
+        "cursor"
+        "root"
+        "line"
+      ];
     };
-    
+
     historySubstringSearch.enable = false;
 
     history = {
@@ -88,7 +99,7 @@ in
         "completion"
         "zsh-users/zsh-syntax-highlighting"
       ];
-    }; 
+    };
 
     envExtra = ''
       setopt no_global_rcs
@@ -98,7 +109,7 @@ in
       # Navigation & Core
       cat = "bat --plain --paging=never";
       lg = "lazygit";
-      
+
       # Nix/DCLI
       ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
       hosts = "dcli list-hosts";
@@ -113,6 +124,8 @@ in
       # Utils
       niri-kill = "kill \"$(niri msg -j pick-window | jq \".pid\")\"";
       imv = "oculante";
+
+      load-cargo = "export $PATH:/home/kyle/.cargo/bin";
     };
 
     sessionVariables = {
@@ -146,7 +159,7 @@ in
         # --tiebreak=begin,index: 
         #     1. 'begin': Prioritize matches starting at the beginning of the line
         #     2. 'index': Sort by order of appearance (which is "Newest" due to fc -rl)
-  
+
         local selected_command=$(fc -rl 1 | sed 's/^[[:space:]]*[0-9]*[[:space:]]*//' | awk '!seen[$0]++' | \
           fzf --query="^$BUFFER" \
               --height=12 \

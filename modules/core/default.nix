@@ -1,4 +1,10 @@
-{ inputs, lib, host, ... }:
+{
+  inputs,
+  username,
+  lib,
+  host,
+  ...
+}:
 let
   # Import variables safely to avoid recursion
   variables = import ../../hosts/${host}/variables.nix;
@@ -48,7 +54,13 @@ let
     ./hydralauncher.nix
     # inputs.stylix.nixosModules.stylix
   ];
-  in
+in
 {
+
+  programs.corectrl.enable = true;
+  security.polkit.enable = true;
+
+  # Optional: authorize CoreCtrl without a password prompt.
+  users.users.${username}.extraGroups = [ "corectrl" ];
   imports = headlessApps ++ lib.optionals (!headless) guiApps ++ [ hosts/${host}/default.nix ];
 }
