@@ -1,4 +1,19 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  grammarYaml = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/lotem/rime-octagram-data/master/grammar.yaml";
+    hash = "sha256-pYzp7x3IEGY07TBVZagywG3eycAXllAbGkra63cmQSk=";
+  };
+  hantWordGrammar = pkgs.fetchurl {
+    url = "https://github.com/lotem/rime-octagram-data/releases/download/20260712/zh-hant-t-essay-bgw.gram";
+    hash = "sha256-be23x6PSI6OXoQDd7Kzr4HO6i6ZVFFt0e2OhjR4hXMk=";
+  };
+  hantCharGrammar = pkgs.fetchurl {
+    url = "https://github.com/lotem/rime-octagram-data/releases/download/20260712/zh-hant-t-essay-bgc.gram";
+    hash = "sha256-ASJy09Z6tpG4QboBQf9Ec2JkWFg8txFhVuGBKN9UUpU=";
+  };
+in
+{
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
@@ -14,6 +29,9 @@
             (runCommand "chasew-rime-data" { } ''
               mkdir -p $out/share/rime-data
               cp -r ${../core/chasew}/* $out/share/rime-data/
+              cp ${grammarYaml} $out/share/rime-data/grammar.yaml
+              cp ${hantWordGrammar} $out/share/rime-data/zh-hant-t-essay-bgw.gram
+              cp ${hantCharGrammar} $out/share/rime-data/zh-hant-t-essay-bgc.gram
             '')
             rime-data
           ];
