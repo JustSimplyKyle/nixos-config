@@ -29,6 +29,7 @@ in
       echo ""
       echo "System Commands:"
       echo "  rebuild         - Rebuild the NixOS system configuration for current host ($HOST)."
+      echo "  rebuild-local   - Rebuild locally without configured remote builders or caches."
       echo "  rebuild-boot    - Rebuild and set as boot default (activates on next restart)."
       echo "  update          - Update the flake and rebuild the system for current host."
       echo "  switch-host     - Interactive host switcher (same as ./switch-host.sh)."
@@ -215,6 +216,21 @@ in
           echo "✓ Rebuild finished successfully for $HOST"
         else
           echo "✗ Rebuild failed for $HOST" >&2
+          exit 1
+        fi
+        ;;
+      rebuild-local)
+        handle_backups
+        echo "Starting local-only NixOS rebuild for current host: $HOST"
+        echo "Remote builders and custom binary caches are disabled for this rebuild."
+        cd "$HOME/$PROJECT" || { echo "Error: Could not change to $HOME/$PROJECT"; exit 1; }
+        if sudo nixos-rebuild switch --flake ".#$HOST" \
+          --builders "" \
+          --option substituters "https://cache.nixos.org" \
+          --option builders-use-substitutes false; then
+          echo "✓ Local-only rebuild finished successfully for $HOST"
+        else
+          echo "✗ Local-only rebuild failed for $HOST" >&2
           exit 1
         fi
         ;;

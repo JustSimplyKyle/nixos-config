@@ -11,6 +11,7 @@
     shellAliases = {
       sv = "sudo nvim";
       fr = "dcli rebuild";
+      frl = "dcli rebuild-local";
       fu = "dcli update";
       rebuild = "dcli rebuild";
       update = "dcli update";

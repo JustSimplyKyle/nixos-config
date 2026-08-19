@@ -297,6 +297,7 @@ Black Don OS includes `dcli`, a powerful command-line utility for managing your 
 ### Quick Commands
 ```bash
 dcli rebuild      # Rebuild current system
+dcli rebuild-local # Rebuild locally without custom remote builders/caches
 dcli update       # Update and rebuild
 dcli list-hosts   # List available configurations
 dcli cleanup      # Remove old generations
@@ -304,6 +305,7 @@ dcli diag         # Generate diagnostic report
 
 # Convenient aliases
 fr                # Fast rebuild (dcli rebuild)
+frl               # Local-only rebuild (dcli rebuild-local)
 fu                # Fast update (dcli update)
 ```
 

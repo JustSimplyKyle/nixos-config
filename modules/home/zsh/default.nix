@@ -115,6 +115,7 @@ in
       hosts = "dcli list-hosts";
       switch = "dcli switch-host";
       fr = "dcli rebuild";
+      frl = "dcli rebuild-local";
       fu = "dcli update";
       rebuild = "dcli rebuild";
       update = "dcli update";

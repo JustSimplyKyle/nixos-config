@@ -51,21 +51,24 @@ If no command is provided, it displays the help message.
 
 dcli comes with convenient shell aliases for common operations:
 
-| Alias    | Command            | Description                                |
-| -------- | ------------------ | ------------------------------------------ |
-| `fr`     | `dcli rebuild`     | Fast rebuild current host                  |
-| `fu`     | `dcli update`      | Fast update and rebuild current host       |
-| `rebuild`| `dcli rebuild`     | Rebuild current host                       |
-| `update` | `dcli update`      | Update and rebuild current host            |
-| `cleanup`| `dcli cleanup`     | Clean up old generations                   |
-| `hosts`  | `dcli list-hosts`  | List available hosts                       |
-| `switch` | `dcli switch-host` | Interactive host switcher                  |
+| Alias     | Command              | Description                                             |
+| --------- | -------------------- | ------------------------------------------------------- |
+| `fr`      | `dcli rebuild`       | Fast rebuild current host                               |
+| `frl`     | `dcli rebuild-local` | Rebuild locally without custom remote builders or caches |
+| `fu`      | `dcli update`        | Fast update and rebuild current host                    |
+| `rebuild` | `dcli rebuild`       | Rebuild current host                                    |
+| `update`  | `dcli update`        | Update and rebuild current host                         |
+| `cleanup` | `dcli cleanup`       | Clean up old generations                                |
+| `hosts`   | `dcli list-hosts`    | List available hosts                                    |
+| `switch`  | `dcli switch-host`   | Interactive host switcher                               |
 
 ## Detailed Command Descriptions
 
 ### System Commands
 
 - **🔨 rebuild**: Performs a system rebuild for the current host. It automatically detects your hostname and rebuilds the appropriate configuration. Includes backup file cleanup before rebuilding.
+
+- **🏠 rebuild-local**: Performs the same rebuild locally, ignoring configured remote builders and custom binary caches for that invocation. The official NixOS cache remains enabled.
 
 - **🥾 rebuild-boot**: Similar to rebuild, but sets the new configuration as the boot default without immediately switching to it. Changes will take effect on next restart.
 
