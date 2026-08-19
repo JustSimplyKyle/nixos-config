@@ -31,6 +31,7 @@ in
     ./bottom.nix
     ./btop.nix
     ./eza.nix
+    ./fcitx5.nix
     ./gh.nix
     ./git.nix
     ./helix.nix

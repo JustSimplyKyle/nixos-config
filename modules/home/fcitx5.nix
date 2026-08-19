@@ -4,23 +4,24 @@
     type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
-      ignoreUserConfig = true;
+      # Keep Fcitx user paths enabled so Rime can save and load its user dictionary.
+      ignoreUserConfig = false;
       addons = with pkgs; [
         fcitx5-fluent
         (fcitx5-rime.override {
           rimeDataPkgs = [
             # Wrap local files so they end up in the 'share/rime-data' subpath
-            (runCommand "chasew-rime-data" {} ''
+            (runCommand "chasew-rime-data" { } ''
               mkdir -p $out/share/rime-data
-              cp -r ${./chasew}/* $out/share/rime-data/
-      '')
+              cp -r ${../core/chasew}/* $out/share/rime-data/
+            '')
             rime-data
           ];
         })
         qt6Packages.fcitx5-chinese-addons
       ];
       settings = {
-       # This is the correct path for UI/Theme settings
+        # This is the correct path for UI/Theme settings
         addons.classicui.globalSection = {
           Theme = "FluentDark-solid";
           # Use "Sans" followed by the size to change size without hardcoding a font

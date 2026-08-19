@@ -47,11 +47,11 @@ let
     ./steam.nix
     ./thunar.nix
     ./xserver.nix
-    ./fcitx5.nix
     # ./stylix.nix
     ./sunshine.nix
     ./kicad.nix
     ./hydralauncher.nix
+    ./vr.nix
     # inputs.stylix.nixosModules.stylix
   ];
 in
