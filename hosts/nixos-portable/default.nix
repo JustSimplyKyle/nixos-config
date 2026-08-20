@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
     ./host-packages.nix
+    ./rtl8852bd.nix
   ];
 
   # Enable sddm display manager
