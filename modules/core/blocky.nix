@@ -6,20 +6,29 @@
   services.blocky = {
     enable = true;
     settings = {
-      ports.dns = 53; # Port for incoming DNS Queries.
+      ports = {
+        dns = [
+          "127.0.0.1:53"
+          "192.168.12.1:53"
+        ];
+        freeBind = true;
+      };
       upstreams.groups.default = [
         "https://one.one.one.one/dns-query" # Using Cloudflare's DNS over HTTPS server for resolving queries.
       ];
       # For initially solving DoH/DoT Requests when no system Resolver is available.
       bootstrapDns = {
         upstream = "https://dns.google/dns-query";
-        ips = [ "8.8.8.8" "8.8.4.4" ];
+        ips = [
+          "8.8.8.8"
+          "8.8.4.4"
+        ];
       };
       #Enable Blocking of certain domains.
       blocking = {
         denylists = {
           #Adblocking
-          ads = ["https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"];
+          ads = [ "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" ];
         };
         #Configure what block categories are used
         clientGroupsBlock = {

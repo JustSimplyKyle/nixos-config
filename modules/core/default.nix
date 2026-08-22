@@ -52,6 +52,7 @@ let
     ./kicad.nix
     ./hydralauncher.nix
     ./vr.nix
+    ./waydroid.nix
     # inputs.stylix.nixosModules.stylix
   ];
 in
