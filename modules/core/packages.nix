@@ -72,6 +72,7 @@ in
       ytmdl # Tool For Downloading Audio From YouTube
       pkgs.android-tools
       (callPackage ../../pkgs/mv-merge.nix { })
+      (callPackage ../../pkgs/webtorrent-cli.nix { })
       # (callPackage ../../pkgs/rust4diva.nix {})
 
       # Nix Language Packages
