@@ -25,7 +25,7 @@ let
       owner = "kayozxo";
       repo = "GNOME-macOS-Tahoe";
       rev = "main";
-      hash = "sha256-waIEuYoahFbzyjqN7AfJhFTM5S15QbASSyAmLnUGpa8=";
+      hash = "sha256-lcR2TeEjHrMOcLN6SWJGLMUBBDgqTutcElEIFnzGlvU=";
     };
 
     nativeBuildInputs = with pkgs; [
@@ -39,6 +39,7 @@ let
       unzip
       git
       curl
+      sass
     ];
 
     buildInputs = with pkgs; [

@@ -13,7 +13,7 @@ in
         inherit pnpm;
       }
       // prev.lib.optionalAttrs ((args.pname or null) == "jellarr") {
-        hash = "sha256-DA4PFpH+CZRHtreOlRHz0S3/93LdqlHVvsUyw9WAwII=";
+        hash = "sha256-mGxHtQa2UOft4HkI0EE2WmtkgzIqY8dDl5MlC79nhVE=";
       }
     );
 }
