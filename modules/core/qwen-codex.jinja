@@ -1,0 +1,63 @@
+{%- macro render_content(content) -%}
+  {%- if content is string -%}
+    {{- content -}}
+  {%- elif content is iterable and content is not mapping -%}
+    {%- for item in content -%}
+      {%- if item.text is defined -%}
+        {{- item.text -}}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endmacro -%}
+
+{{- '<|im_start|>system\n' -}}
+{%- for message in messages if message.role in ['system', 'developer'] -%}
+  {%- set system_content = render_content(message.content) | trim -%}
+  {%- if system_content -%}
+    {{- system_content + '\n\n' -}}
+  {%- endif -%}
+{%- endfor -%}
+{%- if tools is defined and tools -%}
+  {{- '# Tools\n\nYou have access to the following functions:\n\n<tools>' -}}
+  {%- for tool in tools -%}
+    {{- '\n' + (tool | tojson) -}}
+  {%- endfor -%}
+  {{- '\n</tools>\n\n' -}}
+  {{- 'If you call a function, use exactly this format and do not add text after it:\n' -}}
+  {{- '<tool_call>\n<function=FUNCTION_NAME>\n<parameter=PARAMETER_NAME>\nVALUE\n</parameter>\n</function>\n</tool_call>' -}}
+{%- endif -%}
+{{- '<|im_end|>\n' -}}
+
+{%- for message in messages -%}
+  {%- set content = render_content(message.content) | trim -%}
+  {%- if message.role == 'user' -%}
+    {{- '<|im_start|>user\n' + content + '<|im_end|>\n' -}}
+  {%- elif message.role == 'assistant' -%}
+    {{- '<|im_start|>assistant\n' -}}
+    {%- if message.reasoning_content is defined and message.reasoning_content -%}
+      {{- '<think>\n' + (message.reasoning_content | trim) + '\n</think>\n\n' -}}
+    {%- endif -%}
+    {{- content -}}
+    {%- if message.tool_calls is defined and message.tool_calls -%}
+      {%- for call in message.tool_calls -%}
+        {%- set function = call.function if call.function is defined else call -%}
+        {{- '\n<tool_call>\n<function=' + function.name + '>\n' -}}
+        {%- if function.arguments is defined and function.arguments is mapping -%}
+          {%- for name, value in function.arguments | items -%}
+            {{- '<parameter=' + name + '>\n' -}}
+            {{- value if value is string else value | tojson -}}
+            {{- '\n</parameter>\n' -}}
+          {%- endfor -%}
+        {%- endif -%}
+        {{- '</function>\n</tool_call>' -}}
+      {%- endfor -%}
+    {%- endif -%}
+    {{- '<|im_end|>\n' -}}
+  {%- elif message.role == 'tool' -%}
+    {{- '<|im_start|>user\n<tool_response>\n' + content + '\n</tool_response><|im_end|>\n' -}}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if add_generation_prompt -%}
+  {{- '<|im_start|>assistant\n<think>\n' -}}
+{%- endif -%}
