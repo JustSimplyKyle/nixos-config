@@ -244,7 +244,7 @@ in
                 id = "Notifications";
               }
               {
-                id = "PowerProfile";
+                id = "NoctaliaPerformance";
               }
               {
                 id = "KeepAwake";
@@ -300,9 +300,9 @@ in
         };
         hooks = {
           darkModeChange = "";
-          enabled = false;
-          performanceModeDisabled = "";
-          performanceModeEnabled = "";
+          enabled = true;
+          performanceModeDisabled = "sudo -n /run/current-system/sw/bin/auto-cpufreq --force=reset";
+          performanceModeEnabled = "sudo -n /run/current-system/sw/bin/auto-cpufreq --force=performance";
           screenLock = "";
           screenUnlock = "";
           wallpaperChange = "";
