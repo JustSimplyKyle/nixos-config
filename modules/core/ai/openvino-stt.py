@@ -105,16 +105,22 @@ def main() -> None:
     compile_cache = cache_root / "openvino" / "speech-to-text" / model_cache_name
     compile_cache.mkdir(parents=True, exist_ok=True)
 
-    print(f"Loading {args.model} on {args.device}...", file=sys.stderr)
+    print(f"Downloading/checking {args.model}...", file=sys.stderr, flush=True)
     model_path = snapshot_download(repo_id=args.model)
+    print(
+        f"Compiling {args.model} on {args.device} "
+        "(the first NPU run may take a few minutes)...",
+        file=sys.stderr,
+        flush=True,
+    )
     pipeline_options: dict[str, object] = {
         "CACHE_DIR": str(compile_cache),
         "word_timestamps": args.words,
     }
-    if args.device.startswith("NPU"):
-        pipeline_options["STATIC_PIPELINE"] = True
-
-    pipe = ov_genai.ASRPipeline(model_path, args.device, **pipeline_options)
+    # OpenVINO GenAI 2026.2 exposes Whisper through WhisperPipeline.  The
+    # generic ASRPipeline API was only added in 2026.3.
+    pipe = ov_genai.WhisperPipeline(model_path, args.device, **pipeline_options)
+    print("Transcribing...", file=sys.stderr, flush=True)
     config = pipe.get_generation_config()
     config.task = "translate" if args.translate else "transcribe"
     config.return_timestamps = args.timestamps or args.words
@@ -127,11 +133,11 @@ def main() -> None:
     print(result.texts[0].strip())
 
     if args.timestamps and result.chunks:
-        for chunk in result.chunks[0]:
+        for chunk in result.chunks:
             print(f"[{chunk.start_ts:8.2f} - {chunk.end_ts:8.2f}] {chunk.text.strip()}")
     if args.words and result.words:
-        for word in result.words[0]:
-            print(f"[{word.start_ts:8.2f} - {word.end_ts:8.2f}] {word.text.strip()}")
+        for word in result.words:
+            print(f"[{word.start_ts:8.2f} - {word.end_ts:8.2f}] {word.word.strip()}")
 
 
 if __name__ == "__main__":

@@ -6,8 +6,14 @@ from huggingface_hub import snapshot_download
 from openvino import Core
 
 
-def stream_text(text: str) -> None:
+streamed_text = False
+
+
+def stream_text(text: str) -> ov_genai.StreamingStatus:
+    global streamed_text
+    streamed_text = streamed_text or bool(text)
     print(text, end="", flush=True)
+    return ov_genai.StreamingStatus.RUNNING
 
 
 def main() -> None:
@@ -16,15 +22,27 @@ def main() -> None:
         available = ", ".join(devices) or "none"
         raise SystemExit(f"OpenVINO cannot see the NPU (available devices: {available})")
 
-    model_id = os.environ.get("QWEN_NPU_MODEL", "OpenVINO/Qwen3-8B-int4-ov")
+    # The -cw model is symmetric, channel-wise INT4 and is published by
+    # OpenVINO specifically for NPU inference.  The similarly named model
+    # without -cw is asymmetric, group-wise INT4 and can stall NPU compile.
+    model_id = os.environ.get(
+        "QWEN_NPU_MODEL", "OpenVINO/Qwen3-8B-int4-cw-ov"
+    )
     cache_root = Path(
         os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")
     )
-    compile_cache = cache_root / "openvino" / "qwen3-8b-npu"
+    model_cache_name = model_id.replace("/", "--").lower()
+    compile_cache = cache_root / "openvino" / "llm" / model_cache_name
     compile_cache.mkdir(parents=True, exist_ok=True)
 
-    print(f"Loading {model_id} on NPU (the first run downloads and compiles it)...")
+    print(f"Downloading/checking {model_id}...", flush=True)
     model_path = snapshot_download(repo_id=model_id)
+    generate_hint = os.environ.get("QWEN_NPU_GENERATE_HINT", "FAST_COMPILE")
+    print(
+        f"Compiling {model_id} on NPU with {generate_hint} "
+        "(the first run can take several minutes)...",
+        flush=True,
+    )
     pipe = ov_genai.LLMPipeline(
         model_path,
         "NPU",
@@ -32,7 +50,7 @@ def main() -> None:
         CACHE_MODE="OPTIMIZE_SPEED",
         MAX_PROMPT_LEN=int(os.environ.get("QWEN_NPU_PROMPT", "1024")),
         MIN_RESPONSE_LEN=int(os.environ.get("QWEN_NPU_RESPONSE", "256")),
-        GENERATE_HINT="BEST_PERF",
+        GENERATE_HINT=generate_hint,
     )
 
     pipe.start_chat()
@@ -48,11 +66,17 @@ def main() -> None:
             if not prompt:
                 continue
             print("qwen> ", end="", flush=True)
-            pipe.generate(
+            global streamed_text
+            streamed_text = False
+            result = pipe.generate(
                 prompt,
                 max_new_tokens=int(os.environ.get("QWEN_NPU_MAX_TOKENS", "512")),
                 streamer=stream_text,
             )
+            # Some NPU/GenAI combinations return the decoded result without
+            # invoking a Python streamer.  Never discard that output.
+            if not streamed_text:
+                print(result.texts[0], end="", flush=True)
             print()
     finally:
         pipe.finish_chat()

@@ -29,8 +29,9 @@ let
         -hf "''${ORNITH_REPO:-${defaultRepo}}" \
         -hff "''${ORNITH_FILE:-${defaultFile}}" \
         -ngl 99 \
-        -c "''${ORNITH_CONTEXT:-65536}" \
+        -c "''${ORNITH_CONTEXT:-131072}" \
         --alias ornith-1.5 \
+        --chat-template-file ${./qwen-codex.jinja} \
         --flash-attn on \
         --cache-type-k q8_0 \
         --cache-type-v q8_0 \
