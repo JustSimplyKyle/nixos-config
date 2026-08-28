@@ -1,0 +1,18 @@
+{
+  "id": "niri-fast-mode",
+  "name": "Niri Fast Mode",
+  "version": "1.0.0",
+  "minNoctaliaVersion": "3.6.0",
+  "author": "black-don-os",
+  "license": "MIT",
+  "description": "Toggle Niri animations, blur, and window opacity for maximum performance.",
+  "entryPoints": {
+    "controlCenterWidget": "ControlCenterWidget.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {}
+  }
+}

@@ -5,6 +5,6 @@
     ../../bluetooth.nix
     ../../altstore.nix
     ../../remote-builder.nix
-    ../../qwen-local.nix
+    ../../ai
   ];
 }
