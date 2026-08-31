@@ -24,6 +24,7 @@ in
     programs.waybar.enable = lib.mkForce false;
     home.packages = [ inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default ];
     home.file.".config/noctalia/wallpapers".source = wallpapersPkg;
+    home.file.".config/noctalia/plugins/niri-fast-mode".source = ./plugins/niri-fast-mode;
 
     home.file.".config/noctalia/settings.json.template" = {
       text = builtins.toJSON {
@@ -252,6 +253,9 @@ in
               {
                 id = "NightLight";
               }
+              {
+                id = "plugin:niri-fast-mode";
+              }
             ];
           };
         };
@@ -366,7 +370,12 @@ in
           autoHideMs = 2000;
           backgroundOpacity = 1;
           enabled = true;
-          enabledTypes = [ 0 1 2 4 ];
+          enabledTypes = [
+            0
+            1
+            2
+            4
+          ];
           "location" = "top_right";
           monitors = [ ];
           overlayLayer = true;
@@ -539,7 +548,41 @@ in
       fi
     '';
 
-    home.activation.noctaliaWarning = lib.hm.dag.entryAfter [ "noctaliaSettingsInit" ] ''
+    home.activation.noctaliaFastModePlugin = lib.hm.dag.entryAfter [ "noctaliaSettingsInit" ] ''
+      PLUGINS_FILE="$HOME/.config/noctalia/plugins.json"
+      SETTINGS_FILE="$HOME/.config/noctalia/settings.json"
+      TMP_FILE="$(mktemp)"
+
+      if [ -f "$PLUGINS_FILE" ]; then
+        ${pkgs.jq}/bin/jq \
+          '.version = (.version // 2) |
+           .sources = (.sources // []) |
+           .states = (.states // {}) |
+           .states["niri-fast-mode"] = { "enabled": true, "sourceUrl": "local" }' \
+          "$PLUGINS_FILE" > "$TMP_FILE"
+      else
+        ${pkgs.jq}/bin/jq -n \
+          '{ "version": 2, "sources": [], "states": { "niri-fast-mode": { "enabled": true, "sourceUrl": "local" } } }' \
+          > "$TMP_FILE"
+      fi
+      $DRY_RUN_CMD mv "$TMP_FILE" "$PLUGINS_FILE"
+
+      if [ -f "$SETTINGS_FILE" ]; then
+        TMP_FILE="$(mktemp)"
+        ${pkgs.jq}/bin/jq '
+          def has_fast_mode:
+            [(.controlCenter.shortcuts.left // [])[],
+             (.controlCenter.shortcuts.right // [])[]] |
+            any(.id == "plugin:niri-fast-mode");
+          if has_fast_mode then .
+          else
+            .controlCenter.shortcuts.right += [{ "id": "plugin:niri-fast-mode" }]
+          end' "$SETTINGS_FILE" > "$TMP_FILE"
+        $DRY_RUN_CMD mv "$TMP_FILE" "$SETTINGS_FILE"
+      fi
+    '';
+
+    home.activation.noctaliaWarning = lib.hm.dag.entryAfter [ "noctaliaFastModePlugin" ] ''
       $DRY_RUN_CMD echo ""
       $DRY_RUN_CMD echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
       $DRY_RUN_CMD echo "🌙 Noctalia Shell is ENABLED"

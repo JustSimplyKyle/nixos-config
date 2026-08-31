@@ -57,7 +57,6 @@ let
     else
       "";
 
-      
 in
 
 {
@@ -122,6 +121,48 @@ in
     prefer-no-csd
 
     screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+    // Loaded last so fast mode overrides the visual effects above. The
+    // Noctalia plugin toggles this by renaming fast.kdl.disabled.
+    include optional=true "fast.kdl"
+  '';
+
+  # Keep the generated contents immutable, but let the active/disabled
+  # filename remain mutable so fast mode survives Home Manager rebuilds.
+  xdg.configFile."niri/fast.kdl.template".text = ''
+    animations {
+      off
+    }
+
+    window-rule {
+      opacity 1.0
+      background-effect {
+        blur false
+      }
+      popups {
+        background-effect {
+          blur false
+        }
+      }
+    }
+
+    layer-rule {
+      opacity 1.0
+      background-effect {
+        blur false
+      }
+    }
+  '';
+
+  home.activation.niriFastModeInit = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    FAST_MODE_ON="$HOME/.config/niri/fast.kdl"
+    FAST_MODE_OFF="$HOME/.config/niri/fast.kdl.disabled"
+    FAST_MODE_TEMPLATE="$HOME/.config/niri/fast.kdl.template"
+
+    if { [ ! -e "$FAST_MODE_ON" ] && [ ! -L "$FAST_MODE_ON" ]; } &&
+       { [ ! -e "$FAST_MODE_OFF" ] && [ ! -L "$FAST_MODE_OFF" ]; }; then
+      $DRY_RUN_CMD ln -s "$FAST_MODE_TEMPLATE" "$FAST_MODE_OFF"
+    fi
   '';
 
   # Systemd services for Niri session

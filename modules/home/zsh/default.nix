@@ -149,6 +149,11 @@ in
       bindkey "^xL" redo
       unsetopt nomatch
 
+      LBN() {
+        export NIX_CONFIG=$'builders =\nsubstituters = https://cache.nixos.org'
+        echo "Local Nix mode enabled: remote builders and custom substituters are disabled for this shell."
+      }
+
       # --- ZLE Widgets ---
       # These must remain in Zsh config as they modify the shell state buffer
 
