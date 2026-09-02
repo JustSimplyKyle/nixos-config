@@ -70,7 +70,7 @@ def main() -> None:
             streamed_text = False
             result = pipe.generate(
                 prompt,
-                max_new_tokens=int(os.environ.get("QWEN_NPU_MAX_TOKENS", "512")),
+                max_new_tokens=int(os.environ.get("QWEN_NPU_MAX_TOKENS", "32768")),
                 streamer=stream_text,
             )
             # Some NPU/GenAI combinations return the decoded result without

@@ -45,7 +45,7 @@ let
       buildPhase = ''
         runHook preBuild
         make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build \
-          M=$PWD/src LLVM=1 modules
+          M=$PWD/src modules
         runHook postBuild
       '';
       installPhase = ''

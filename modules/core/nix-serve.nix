@@ -6,14 +6,20 @@
 #
 # Both services are firewalled to the Tailscale interface only.
 # Import this file from your desktop's configuration.nix.
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  username,
+  ...
+}:
 
 {
   # ── Secrets ──────────────────────────────────────────────────────────────
   # The signing key lives encrypted in secrets/nix-serve.yaml.
   # See secrets/nix-serve.yaml and the README for how to generate & encrypt it.
   sops.secrets."nix-serve/private-key" = {
-    owner        = "nix-serve";   # works because we declare the user below
+    owner = "nix-serve"; # works because we declare the user below
     restartUnits = [ "nix-serve.service" ];
   };
 
@@ -24,8 +30,8 @@
   # Solution: declare a real system user and disable DynamicUser.
   users.users.nix-serve = {
     isSystemUser = true;
-    group        = "nix-serve";
-    description  = "nix-serve binary cache daemon";
+    group = "nix-serve";
+    description = "nix-serve binary cache daemon";
   };
   users.groups.nix-serve = { };
 
@@ -33,12 +39,12 @@
 
   # ── Binary cache (nix-serve) ──────────────────────────────────────────────
   services.nix-serve = {
-    enable        = true;
+    enable = true;
     package = pkgs.nix-serve-ng;
     secretKeyFile = config.sops.secrets."nix-serve/private-key".path;
-    port          = 5000;
-    bindAddress   = "0.0.0.0";  # firewall below restricts to tailscale0
-    openFirewall  = false;
+    port = 5000;
+    bindAddress = "0.0.0.0"; # firewall below restricts to tailscale0
+    openFirewall = false;
   };
 
   # ── Remote build user ─────────────────────────────────────────────────────
@@ -47,8 +53,8 @@
   # Retrieve from a client with: cat /etc/ssh/ssh_host_ed25519_key.pub
   users.users.nix-ssh = {
     isSystemUser = true;
-    group        = "nix-ssh";
-    shell        = pkgs.bash;
+    group = "nix-ssh";
+    shell = pkgs.bash;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMSM+xdHn2QGOB0W1l4j5uRmi/9rTxIBDKPbZXPz5Pm nixos-portable-host-key"
       # "ssh-ed25519 AAAA... nixos-portable"
@@ -58,21 +64,26 @@
   users.groups.nix-ssh = { };
 
   # Trust the nix-ssh user so it can use the local Nix daemon
-  nix.settings.trusted-users = [ "root" "nix-ssh" "@wheel" ];
+  nix.settings.trusted-users = [
+    "root"
+    "nix-ssh"
+    "@wheel"
+    "${username}"
+  ];
 
   # ── SSH daemon ────────────────────────────────────────────────────────────
   services.openssh = {
-    enable       = true;
-    openFirewall = false;   # restricted to tailscale0 below
+    enable = true;
+    openFirewall = false; # restricted to tailscale0 below
     settings = {
       PasswordAuthentication = false;
-      PermitRootLogin        = "no";
+      PermitRootLogin = "no";
     };
   };
 
   # ── Firewall: Tailscale only ──────────────────────────────────────────────
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [
-    22    # SSH  — remote build submissions
-    5000  # HTTP — nix-serve binary cache
+    22 # SSH  — remote build submissions
+    5000 # HTTP — nix-serve binary cache
   ];
 }

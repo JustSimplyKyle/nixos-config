@@ -1,20 +1,27 @@
-{ inputs, pkgs, config, lib, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   silentBootKernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "udev.log_priority=3"
-      "rd.systemd.show_status=auto"
+    "quiet"
+    "splash"
+    "boot.shell_on_fail"
+    "udev.log_priority=3"
+    "rd.systemd.show_status=auto"
   ];
-   in 
+in
 {
   system.etc.overlay.enable = true;
 
   boot = {
     # kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxPackages_zen;
-    kernelPackages = inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-latest-lto-x86_64-v3;
+    kernelPackages =
+      inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-latest-lto-x86_64-v3;
 
     kernelModules = [ "v4l2loopback" ];
     kernelParams = [ "hid_apple.fnmode=2" ] ++ silentBootKernelParams;
@@ -23,7 +30,9 @@ let
     initrd.systemd.enable = true;
 
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-    kernel.sysctl = { "vm.max_map_count" = 2147483642; };
+    kernel.sysctl = {
+      "vm.max_map_count" = 2147483642;
+    };
     loader.systemd-boot = {
       enable = true;
       configurationLimit = 12;
@@ -44,5 +53,7 @@ let
     };
   };
 
-  programs.appimage.package = pkgs.appimage-run.override { extraPkgs = pkgs: [ pkgs.webkitgtk_4_1 ]; };
+  programs.appimage.package = pkgs.appimage-run.override {
+    extraPkgs = pkgs: [ pkgs.webkitgtk_4_1 ];
+  };
 }

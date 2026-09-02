@@ -60,6 +60,7 @@ in
     ./gtk.nix
     ./kitty.nix
     ./niri
+    # ./opencode.nix
     ./obs-studio.nix
     ./qt.nix
     ./swappy.nix
