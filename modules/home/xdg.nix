@@ -1,6 +1,9 @@
 {pkgs, ...}: {
   xdg = {
     enable = true;
+    configFile."net.imput.helium/WidevineCdm/latest-component-updated-widevine-cdm".text = builtins.toJSON {
+      Path = "${pkgs.widevine-cdm}/share/google/chrome/WidevineCdm";
+    };
     mime.enable = true;
     mimeApps = {
       enable = true;
