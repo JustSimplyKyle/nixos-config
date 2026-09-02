@@ -7,13 +7,13 @@
 
     matchBlocks = {
       opc = {
-        hostname = "100.117.138.27";
+        hostname = "100.87.91.4";
         user = "opc";
         identityFile = nixosConfig.sops.secrets."opc-ssh".path;
 
         extraOptions = {
           RequestTTY = "yes";
-          RemoteCommand = "TERM=xterm-256color /usr/bin/bash -l";
+          RemoteCommand = "TERM=xterm-256color /usr/bin/env zsh -l";
         };
       };
 
