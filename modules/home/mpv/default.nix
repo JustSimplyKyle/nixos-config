@@ -123,7 +123,7 @@ in
     config = {
       ytdl-format = "bestvideo[height<=?1440]+bestaudio/best";
       ytdl-raw-options = "yes-playlist=,cookies-from-browser=chromium:${config.xdg.configHome}/net.imput.helium/Default";
-      hwdec = "auto";
+      hwdec = "vaapi-copy";
       hwdec-codecs = "all";
       profile = "high-quality";
       vo = "gpu-next";

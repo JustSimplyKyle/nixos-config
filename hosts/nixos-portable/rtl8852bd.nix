@@ -44,7 +44,7 @@ let
       nativeBuildInputs = kernel.moduleBuildDependencies;
       buildPhase = ''
         runHook preBuild
-        make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build \
+        make LLVM=1 -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build \
           M=$PWD/src modules
         runHook postBuild
       '';

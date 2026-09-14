@@ -39,6 +39,7 @@
         mapping = {
           # Ask the Tailscale DNS Resolver (100.100.100.100) to resolve ts.net domains
           "ts.net" = "100.100.100.100";
+          "portal.na" = "140.118.31.99";
         };
       };
     };

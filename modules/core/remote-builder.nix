@@ -1,14 +1,14 @@
 # nixos/shared/remote-builder.nix
 #
-# Import this on any machine that should:
-#   • Offload builds to the desktop
-#   • Pull pre-built derivations from the desktop's nix-serve
+# Import this on any machine that should be able to opt in to:
+#   • Offloading builds to the desktop
+#   • Pulling pre-built derivations from the desktop's nix-serve
 #
 # Prerequisites (run once per client, see README):
 #   1. Tailscale up and routable to `nixos-desktop`
 #   2. Desktop has this machine's host public key in nix-serve.nix
 #   3. Root SSH known-hosts bootstrapped (see README)
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 let
   # ── Adjust these two values ───────────────────────────────────────────────
@@ -25,32 +25,7 @@ let
 in
 {
   # ── Remote build configuration ────────────────────────────────────────────
-  nix.distributedBuilds = true;
-
-  nix.buildMachines = [{
-    hostName = buildHost;
-    protocol = "ssh-ng";
-
-    # Authenticate using this machine's SSH host key (no extra key management)
-    sshUser  = "nix-ssh";
-    sshKey   = "/etc/ssh/ssh_host_ed25519_key";
-
-    # Adjust to the desktop's actual architecture
-    systems  = [ "x86_64-linux" "aarch64-linux" ];
-
-    # How many parallel Nix jobs the desktop will accept from this client
-    maxJobs     = 4;
-    speedFactor = 4;   # prefer desktop over localhost for heavy builds
-
-    supportedFeatures = [
-      "nixos-test"
-      "benchmark"
-      "big-parallel"
-      "kvm"
-    ];
-  }];
-
-  # SSH config so the Nix daemon (running as root) can reach the builder
+  # SSH config so Nix can reach the builder when RBN is enabled in a shell.
   programs.ssh.extraConfig = ''
     Host ${buildHost}
       User            nix-ssh
@@ -61,18 +36,12 @@ in
   '';
 
   # ── Binary cache ──────────────────────────────────────────────────────────
-  nix.settings = {
-    substituters = [
-      "https://cache.nixos.org"
-      "http://${buildHost}:5000"
-    ];
+  # Trust the desktop cache without enabling it by default. This permits an
+  # unprivileged shell to opt in via RBN.
+  nix.settings.trusted-substituters = [ "http://${buildHost}:5000" ];
 
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      cachePublicKey
-    ];
-
-    # Fetch from the cache before falling back to building
-    builders-use-substitutes = true;
-  };
+  nix.settings.trusted-public-keys = [
+    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    cachePublicKey
+  ];
 }

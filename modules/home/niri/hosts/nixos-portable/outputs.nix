@@ -6,7 +6,7 @@
   output "eDP-1" {
       // Uncomment this line to disable this output.
       // off
-      // variable-refresh-rate
+      variable-refresh-rate
       // Resolution and, optionally, refresh rate of the output.
       // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
       // If the refresh rate is omitted, niri will pick the highest refresh rate
@@ -31,13 +31,13 @@
       // so to put another output directly adjacent to it on the right, set its x to 1920.
       // If the position is unset or results in an overlap, the output is instead placed
       // automatically.
-      position x=0 y=0
+      position x=2560 y=0
   }
 
   // Add more outputs as needed
-  // output "HDMI-A-1" {
-  //   mode "2560x1440@144.000"
-  //   scale 1.0
-  //   position x=1920 y=0
-  // }
+  output "HDMI-A-1" {
+    mode "2560x1440@119.998"
+    scale 1.0
+    position x=0 y=0
+  }
 ''

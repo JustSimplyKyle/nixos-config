@@ -26,7 +26,6 @@ let
     ./system.nix
     ./aria2-nix-proxy.nix
     ./user.nix # home manager stuff
-    ./virtualisation.nix
     ./tailscale.nix
     ./blocky.nix
     ./infi75_custom.nix

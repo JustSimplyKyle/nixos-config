@@ -29,8 +29,6 @@ in
     hyprlock.enable = !headless;
   };
 
-  virtualisation.libvirtd.enable = true;
-
   environment.systemPackages =
     with pkgs;
     [

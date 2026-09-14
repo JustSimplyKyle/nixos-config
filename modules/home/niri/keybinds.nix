@@ -120,6 +120,11 @@ in
           spawn "kbdbrite.sh" "down";
       }
 
+      // === Media Controls ===
+      XF86AudioPlay allow-when-locked=true {
+          spawn "playerctl" "play-pause";
+      }
+
       // === Window Management ===
       Mod+Shift+Q repeat=false { close-window; }
       Mod+Alt+F { maximize-column; }
