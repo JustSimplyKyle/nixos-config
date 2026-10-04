@@ -62,6 +62,24 @@ dcli comes with convenient shell aliases for common operations:
 | `hosts`   | `dcli list-hosts`    | List available hosts                                    |
 | `switch`  | `dcli switch-host`   | Interactive host switcher                               |
 
+Zsh also provides the global alias `NARIA`, which expands anywhere on the
+command line to `--impure -I nixpkgs-overlays=/etc/nix/aria2-overlays.nix`.
+It enables the aria2 fetcher overlay for nixpkgs imports that use global overlay
+lookup, including imports inside external flakes.
+
+```zsh
+fr NARIA
+frl NARIA
+dcli build nixos-desktop NARIA --show-trace
+```
+
+`rebuild`, `rebuild-local`, `rebuild-boot`, `build` and `deploy` forward extra
+arguments to `nixos-rebuild`, preserving quoted values. `update` forwards them
+to its rebuild step. Arguments for `build` and `deploy` follow the hostname.
+These commands enable `--print-build-logs` by default, including aria2 source
+download progress, which is printed every second.
+The overlay file and alias are installed by rebuilding this configuration.
+
 ## Detailed Command Descriptions
 
 ### System Commands

@@ -55,6 +55,10 @@
       url = "github:mrnossiom/wakatime-ls";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-proton-cachyos = {
+      url = "github:powerofthe69/proton-cachyos-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -114,6 +118,16 @@
 
     in
     {
+      packages.${system}.aria2-nix-proxy =
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = myOverlays;
+            config = nixpkgsConfig;
+          };
+        in
+        pkgs.callPackage ./pkgs/aria2-nix-proxy.nix { };
+
       nixosConfigurations = {
         # Default template configuration
         # Users will create their own host configurations during installation

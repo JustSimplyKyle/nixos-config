@@ -495,6 +495,26 @@
         "type": "github"
       }
     },
+    "nix-proton-cachyos": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790877870,
+        "narHash": "sha256-kfAoWkgMeOUWr4E/rR4FbDH0v9HXqyuTYFQMgJG1UTs=",
+        "owner": "powerofthe69",
+        "repo": "proton-cachyos-nix",
+        "rev": "123dee83a1f17d6bcf2adfaab353ad9c762dd2d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "powerofthe69",
+        "repo": "proton-cachyos-nix",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1787498568,
@@ -853,6 +873,7 @@
         "jellyfin-ultrachromic-src": "jellyfin-ultrachromic-src",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-flatpak": "nix-flatpak",
+        "nix-proton-cachyos": "nix-proton-cachyos",
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-openvino": "nixpkgs-openvino",
         "nixpkgs-stable": "nixpkgs-stable",

@@ -1,11 +1,18 @@
-{ pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 {
   programs = {
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = false;
-      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      extraCompatPackages = [
+        pkgs.proton-ge-bin
+        inputs.nix-proton-cachyos.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos
+      ];
 
       # Enable Steam Input for controller support
       package = pkgs.steam.override {

@@ -25,7 +25,7 @@ in
     print_help() {
       echo "Black Don OS CLI Utility -- version $VERSION"
       echo ""
-      echo "Usage: dcli [command]"
+      echo "Usage: dcli [command] [arguments]"
       echo ""
       echo "System Commands:"
       echo "  rebuild         - Rebuild the NixOS system configuration for current host ($HOST)."
@@ -38,6 +38,10 @@ in
       echo "  build [HOST]    - Build configuration for specific host (no activation)."
       echo "  deploy [HOST]   - Build and switch to specific host configuration."
       echo "  list-hosts      - List all available host configurations."
+      echo ""
+      echo "Additional arguments to rebuild, rebuild-local, rebuild-boot, build and deploy"
+      echo "are passed to nixos-rebuild. update forwards them to its rebuild step."
+      echo "Zsh example: fr NARIA"
       echo ""
       echo "Maintenance Commands:"
       echo "  cleanup         - Clean up old system generations. Can specify a number to keep."
@@ -107,12 +111,13 @@ in
 
     build_host() {
       local target_host="$1"
+      shift
       validate_host "$target_host" || return 1
 
       echo "Building configuration for host: $target_host"
       cd "$HOME/$PROJECT" || { echo "Error: Could not change to $HOME/$PROJECT"; return 1; }
 
-      if nixos-rebuild build --flake ".#$target_host"; then
+      if nixos-rebuild build --print-build-logs --flake ".#$target_host" "$@"; then
         echo "✓ Build successful for $target_host"
         return 0
       else
@@ -123,12 +128,13 @@ in
 
     deploy_host() {
       local target_host="$1"
+      shift
       validate_host "$target_host" || return 1
 
       echo "Deploying configuration for host: $target_host"
       cd "$HOME/$PROJECT" || { echo "Error: Could not change to $HOME/$PROJECT"; return 1; }
 
-      if sudo nixos-rebuild switch --flake ".#$target_host"; then
+      if sudo nixos-rebuild switch --print-build-logs --flake ".#$target_host" "$@"; then
         echo "✓ Successfully deployed $target_host configuration"
         echo "System is now running $target_host configuration."
         return 0
@@ -212,7 +218,7 @@ in
         handle_backups
         echo "Starting NixOS rebuild for current host: $HOST"
         cd "$HOME/$PROJECT" || { echo "Error: Could not change to $HOME/$PROJECT"; exit 1; }
-        if sudo nixos-rebuild switch --flake ".#$HOST"; then
+        if sudo nixos-rebuild switch --print-build-logs --flake ".#$HOST" "''${@:2}"; then
           echo "✓ Rebuild finished successfully for $HOST"
         else
           echo "✗ Rebuild failed for $HOST" >&2
@@ -224,10 +230,10 @@ in
         echo "Starting local-only NixOS rebuild for current host: $HOST"
         echo "Remote builders and custom binary caches are disabled for this rebuild."
         cd "$HOME/$PROJECT" || { echo "Error: Could not change to $HOME/$PROJECT"; exit 1; }
-        if sudo nixos-rebuild switch --flake ".#$HOST" \
+        if sudo nixos-rebuild switch --print-build-logs --flake ".#$HOST" \
           --builders "" \
           --option substituters "https://cache.nixos.org" \
-          --option builders-use-substitutes false; then
+          --option builders-use-substitutes false "''${@:2}"; then
           echo "✓ Local-only rebuild finished successfully for $HOST"
         else
           echo "✗ Local-only rebuild failed for $HOST" >&2
@@ -238,7 +244,7 @@ in
         handle_backups
         echo "Starting NixOS rebuild with boot option for current host: $HOST"
         cd "$HOME/$PROJECT" || { echo "Error: Could not change to $HOME/$PROJECT"; exit 1; }
-        if sudo nixos-rebuild boot --flake ".#$HOST"; then
+        if sudo nixos-rebuild boot --print-build-logs --flake ".#$HOST" "''${@:2}"; then
           echo "✓ Rebuild with boot option finished successfully for $HOST"
           echo "Changes will activate on next restart"
         else
@@ -260,7 +266,7 @@ in
         fi
 
         echo "Rebuilding system..."
-        if sudo nixos-rebuild switch --flake ".#$HOST"; then
+        if sudo nixos-rebuild switch --print-build-logs --flake ".#$HOST" "''${@:2}"; then
           echo "✓ Update and rebuild finished successfully for $HOST"
         else
           echo "✗ Update and rebuild failed for $HOST" >&2
@@ -269,19 +275,19 @@ in
         ;;
       build)
         if [ "$#" -lt 2 ]; then
-          echo "Usage: dcli build <hostname>" >&2
+          echo "Usage: dcli build <hostname> [nixos-rebuild arguments]" >&2
           list_available_hosts
           exit 1
         fi
-        build_host "$2"
+        build_host "''${@:2}"
         ;;
       deploy)
         if [ "$#" -lt 2 ]; then
-          echo "Usage: dcli deploy <hostname>" >&2
+          echo "Usage: dcli deploy <hostname> [nixos-rebuild arguments]" >&2
           list_available_hosts
           exit 1
         fi
-        deploy_host "$2"
+        deploy_host "''${@:2}"
         ;;
       switch-host)
         if [ -f "$HOME/$PROJECT/switch-host.sh" ]; then

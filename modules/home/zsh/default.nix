@@ -8,6 +8,7 @@
 }:
 let
   scripts = import ./shellApplications.nix { inherit pkgs; };
+  helix-zsh = pkgs.callPackage ./helix-zsh.nix { };
 in
 {
   # Add the new custom packages to your environment
@@ -26,6 +27,7 @@ in
       zoxide
       inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.oculante
       nix-index
+      helix-zsh
     ]
     ++ (builtins.attrValues scripts);
 
@@ -128,6 +130,8 @@ in
 
       load-cargo = "export $PATH:/home/kyle/.cargo/bin";
     };
+
+    shellGlobalAliases.NARIA = "--impure -I nixpkgs-overlays=/etc/nix/aria2-overlays.nix";
 
     sessionVariables = {
       EDITOR = "hx";
