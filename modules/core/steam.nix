@@ -9,10 +9,7 @@
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = false;
-      extraCompatPackages = [
-        pkgs.proton-ge-bin
-        inputs.nix-proton-cachyos.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos
-      ];
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
 
       # Enable Steam Input for controller support
       package = pkgs.steam.override {
@@ -46,4 +43,8 @@
   environment.systemPackages = with pkgs; [
     mangohud
   ];
+
+  # Request a 64-frame quantum at 48 kHz (~1.33 ms) for low-latency audio.
+  # Proton-CachyOS uses winepipewire.drv by default and inherits this value.
+  environment.sessionVariables.PIPEWIRE_LATENCY = "64/48000";
 }

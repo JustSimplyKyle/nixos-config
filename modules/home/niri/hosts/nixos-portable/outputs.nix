@@ -6,7 +6,7 @@
   output "eDP-1" {
       // Uncomment this line to disable this output.
       // off
-      variable-refresh-rate
+      // variable-refresh-rate
       // Resolution and, optionally, refresh rate of the output.
       // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
       // If the refresh rate is omitted, niri will pick the highest refresh rate

@@ -12,7 +12,7 @@ in
 {
   config = lib.mkIf enableCommunicationApps {
     environment.systemPackages = [
-      pkgs.vesktop
+      pkgs.webcord
       # inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.vesktop
     ];
   };

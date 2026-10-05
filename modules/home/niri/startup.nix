@@ -12,14 +12,14 @@ let
     if barChoice == "noctalia" then
       ''spawn-at-startup "noctalia-shell"''
     else
-      ''// ${barChoice} started via systemd service'';
+      "// ${barChoice} started via systemd service";
 in
 ''
   spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
   ${barStartupCommand}
   spawn-at-startup "bash" "-c" "swww-daemon && sleep 1 && swww img '${stylixImage}'"
   spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
-  spawn-at-startup "vesktop"
+  spawn-at-startup "webcord"
   spawn-at-startup "fcitx5"
   spawn-at-startup "better-focus"
   spawn-at-startup "motrix"

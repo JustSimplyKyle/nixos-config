@@ -1,0 +1,61 @@
+diff --git a/scripts/provision-sriov.sh b/scripts/provision-sriov.sh
+index 12c6a1a..513b915 100755
+--- a/scripts/provision-sriov.sh
++++ b/scripts/provision-sriov.sh
+@@ -494,16 +494,8 @@ disable_sriov() {
+     echo 0 > "${PCI_SYSFS}/sriov_numvfs"
+     print_success "SR-IOV disabled"
+ 
+-    # Cleanup vfio-pci driver binding
+-    if [ -f "${PCI_SYSFS}/device" ]; then
+-        local device_id
+-        device_id=$(sed 's/0x//' < "${PCI_SYSFS}/device")
+-        [ -f "/sys/bus/pci/drivers/vfio-pci/remove_id" ] && \
+-            echo "8086 ${device_id}" > /sys/bus/pci/drivers/vfio-pci/remove_id 2>/dev/null
+-    fi
+-
+-    # Unload vfio-pci module
+-    lsmod | grep -q vfio_pci && rmmod vfio-pci 2>/dev/null
++    # The VM module also uses vfio-pci for its NVMe controller. Never unregister
++    # a global ID or unload vfio-pci while reprovisioning this PF.
+ 
+     # Clear PF spare allocations
+     local pf_path
+@@ -561,17 +553,27 @@ enable_vfs() {
+             # Load vfio-pci module
+             modprobe vfio-pci 2>/dev/null || print_info "vfio-pci already loaded"
+ 
+-            # Get device ID from first VF
+-            if [ -f "${PCI_SYSFS}/device" ]; then
+-                local device_id
+-                device_id=$(sed 's/0x//' < "${PCI_SYSFS}/device")
+-
+-                # Add device ID to vfio-pci driver if not already bound
+-                if [ -d "/sys/bus/pci/drivers/vfio-pci" ]; then
+-                    echo "8086 ${device_id}" > /sys/bus/pci/drivers/vfio-pci/new_id 2>/dev/null || print_info "Device ID already registered with vfio-pci"
+-                    print_success "VF devices bound to vfio-pci driver (Device ID: ${device_id})"
++            # Bind only VFs belonging to this PF. Registering the device ID
++            # globally can capture the PF or unrelated Intel devices with that ID.
++            local vf_link vf_device vf_driver
++            for vf_link in "${PCI_SYSFS}"/virtfn*; do
++                [ -L "${vf_link}" ] || continue
++                vf_device=$(basename "$(readlink -f "${vf_link}")")
++                echo vfio-pci > "/sys/bus/pci/devices/${vf_device}/driver_override"
++                vf_driver="/sys/bus/pci/devices/${vf_device}/driver"
++                if [ -L "${vf_driver}" ] && \
++                   [ "$(basename "$(readlink -f "${vf_driver}")")" != vfio-pci ]; then
++                    echo "${vf_device}" > "${vf_driver}/unbind"
+                 fi
+-            fi
++                if [ ! -L "${vf_driver}" ]; then
++                    echo "${vf_device}" > /sys/bus/pci/drivers_probe
++                fi
++                [ "$(basename "$(readlink -f "${vf_driver}")")" = vfio-pci ] || {
++                    print_error "Failed to bind VF ${vf_device} to vfio-pci"
++                    exit 1
++                }
++                print_success "VF ${vf_device} bound with driver_override=vfio-pci"
++            done
+ 
+             return 0
+         fi
