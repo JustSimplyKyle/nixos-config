@@ -4,6 +4,11 @@ let
   # accent = "#${config.lib.stylix.colors.base0D}";
   # muted = "#${config.lib.stylix.colors.base03}";
 in {
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
+
   programs.lazygit = {
     enable = true;
     settings = lib.mkForce {
@@ -14,6 +19,12 @@ in {
       git = {
         commit.signOff = true;
         parseEmoji = true;
+        diffRenderers = [
+          {
+            colorArg = "always";
+            command = "delta --paging=never";
+          }
+        ];
       };
       gui = {
         # theme = {
