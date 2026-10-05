@@ -95,7 +95,12 @@ mpvScripts.buildLua {
 
     -- Space: tap pauses, hold temporarily speeds up.
     local function handle_space(event)
-        if event.event == "down" then
+        -- Terminal input has no key-up event.  mpv reports those key presses as
+        -- "press", so treat them as a normal Space press rather than starting a
+        -- hold which can never be released.
+        if event.event == "press" then
+            mp.command("cycle pause")
+        elseif event.event == "down" then
             start_hold()
         elseif event.event == "up" then
             cancel_hold()
