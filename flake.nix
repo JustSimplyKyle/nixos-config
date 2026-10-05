@@ -6,6 +6,10 @@
     # OpenVINO 2026.2 is the release validated with Intel NPU driver 1.35.
     nixpkgs-openvino.url = "github:nixos/nixpkgs/241313f4e8e508cb9b13278c2b0fa25b9ca27163";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    proton-cachyos = {
+      url = "github:powerofthe69/proton-cachyos-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     better-focus.url = "github:justsimplykyle/better-focus";
     infi75-custom.url = "github:justsimplykyle/infi75-custom";
     hxrename.url = "github:justsimplykyle/hxrename";
@@ -110,7 +114,7 @@
             inputs.infi75-custom.nixosModules.default
 
             {
-              nixpkgs.overlays = myOverlays;
+              nixpkgs.overlays = myOverlays ++ [ inputs.proton-cachyos.overlays.default ];
               nixpkgs.config = nixpkgsConfig;
             }
           ];

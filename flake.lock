@@ -840,6 +840,26 @@
         "type": "github"
       }
     },
+    "proton-cachyos": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790620132,
+        "narHash": "sha256-cCUAHHt1u2y/OxDz6HUgRBEJbihYiTnZyJtMpUwLLXk=",
+        "owner": "powerofthe69",
+        "repo": "proton-cachyos-nix",
+        "rev": "b65dfc07a1e78f97bbed2457ef029fe6850d7f5f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "powerofthe69",
+        "repo": "proton-cachyos-nix",
+        "type": "github"
+      }
+    },
     "quickshell": {
       "inputs": {
         "nixpkgs": [
@@ -879,6 +899,7 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
         "nvf": "nvf",
+        "proton-cachyos": "proton-cachyos",
         "quickshell": "quickshell",
         "sops-nix": "sops-nix",
         "stylix": "stylix",

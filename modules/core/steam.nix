@@ -9,7 +9,10 @@
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = false;
-      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      extraCompatPackages = [
+        pkgs.proton-ge-bin
+        pkgs.proton-cachyos
+      ];
 
       # Enable Steam Input for controller support
       package = pkgs.steam.override {
