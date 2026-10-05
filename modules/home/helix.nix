@@ -100,7 +100,7 @@ in
           procMacro = true;
           cargo = {
             loadOutDirsFromCheck = true;
-            allFeatures = false;
+            allFeatures = true;
           };
           check = {
             command = "clippy";
