@@ -1,8 +1,10 @@
 import argparse
 import array
 import os
+import queue
 import subprocess
 import sys
+import threading
 from pathlib import Path
 
 import openvino_genai as ov_genai
@@ -11,6 +13,77 @@ from openvino import Core
 
 
 DEFAULT_MODEL = "OpenVINO/whisper-large-v3-turbo-int8-ov"
+SAMPLE_RATE = 16000
+
+
+def microphone_audio(source: str | None, chunk_seconds: float):
+    """Capture raw audio without temporary files, including during inference."""
+    command = [
+        "pw-record", "--raw", "--format", "f32", "--rate", str(SAMPLE_RATE),
+        "--channels", "1",
+    ]
+    if source is not None:
+        command.extend(["--target", source])
+    command.append("-")
+    chunk_bytes = round(chunk_seconds * SAMPLE_RATE) * 4
+    chunks = queue.Queue(maxsize=12)
+    stopped = threading.Event()
+    failures: list[str] = []
+
+    with subprocess.Popen(command, stdout=subprocess.PIPE) as recorder:
+        def capture() -> None:
+            try:
+                while not stopped.is_set():
+                    data = recorder.stdout.read(chunk_bytes)
+                    if not data:
+                        break
+                    try:
+                        chunks.put_nowait(data)
+                    except queue.Full:
+                        failures.append(
+                            "Transcription cannot keep up with microphone capture; "
+                            "try a faster model or device, or increase --chunk-seconds."
+                        )
+                        break
+                if not stopped.is_set() and not failures:
+                    failures.append("Microphone capture stopped unexpectedly.")
+            except (OSError, ValueError) as error:
+                if not stopped.is_set():
+                    failures.append(f"Microphone capture failed: {error}")
+            finally:
+                stopped.set()
+
+        reader = threading.Thread(target=capture, daemon=True)
+        reader.start()
+        try:
+            while True:
+                if stopped.is_set() and chunks.empty():
+                    raise SystemExit(failures[0] if failures else "Microphone stopped.")
+                try:
+                    data = chunks.get(timeout=0.2)
+                except queue.Empty:
+                    continue
+                samples = array.array("f")
+                # pw-record emits native-endian float32 samples in raw mode.
+                samples.frombytes(data)
+                yield samples.tolist()
+        finally:
+            stopped.set()
+            if recorder.poll() is None:
+                recorder.terminate()
+            try:
+                recorder.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                recorder.kill()
+                recorder.wait()
+            reader.join(timeout=5)
+
+
+def positive_seconds(value: str) -> float:
+    seconds = float(value)
+    if not 0.1 <= seconds <= 30:
+        raise argparse.ArgumentTypeError("chunk duration must be between 0.1 and 30 seconds")
+    return seconds
 
 
 def decode_audio(path: Path) -> list[float]:
@@ -50,9 +123,23 @@ def language_token(language: str) -> str | None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Transcribe an audio or video file locally with OpenVINO Whisper."
+        description="Continuously transcribe a microphone, or a file, with OpenVINO Whisper."
     )
-    parser.add_argument("input", type=Path, help="audio or video file to transcribe")
+    parser.add_argument(
+        "input", type=Path, nargs="?",
+        help="audio or video file (omit to capture the microphone)",
+    )
+    parser.add_argument(
+        "--log-file", type=Path, required=True,
+        help="append transcripts to this file as well as stdout",
+    )
+    parser.add_argument(
+        "--source", help="PipeWire microphone node name or serial (default: default microphone)",
+    )
+    parser.add_argument(
+        "--chunk-seconds", type=positive_seconds, default=5.0,
+        help="microphone audio duration per transcription (default: 5 seconds)",
+    )
     parser.add_argument(
         "--device",
         default=os.environ.get("OPENVINO_STT_DEVICE", "NPU"),
@@ -88,8 +175,12 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    if not args.input.is_file():
+    if args.input is not None and not args.input.is_file():
         raise SystemExit(f"Input file does not exist: {args.input}")
+    try:
+        log = args.log_file.expanduser().open("a", encoding="utf-8", buffering=1)
+    except OSError as error:
+        raise SystemExit(f"Cannot open log file {args.log_file}: {error}") from error
 
     devices = Core().available_devices
     if args.device.startswith("NPU") and not any(
@@ -129,15 +220,39 @@ def main() -> None:
     if language is not None:
         config.language = language
 
-    result = pipe.generate(decode_audio(args.input), config)
-    print(result.texts[0].strip())
+    def emit(text: str) -> None:
+        if text:
+            print(text, flush=True)
+            print(text, file=log, flush=True)
 
-    if args.timestamps and result.chunks:
-        for chunk in result.chunks:
-            print(f"[{chunk.start_ts:8.2f} - {chunk.end_ts:8.2f}] {chunk.text.strip()}")
-    if args.words and result.words:
-        for word in result.words:
-            print(f"[{word.start_ts:8.2f} - {word.end_ts:8.2f}] {word.word.strip()}")
+    audio = (
+        iter([decode_audio(args.input)]) if args.input is not None
+        else microphone_audio(args.source, args.chunk_seconds)
+    )
+    offset = 0.0
+    try:
+        with log:
+            for samples in audio:
+                result = pipe.generate(samples, config)
+                emit(result.texts[0].strip())
+                if args.timestamps and result.chunks:
+                    for chunk in result.chunks:
+                        emit(
+                            f"[{offset + chunk.start_ts:8.2f} - "
+                            f"{offset + chunk.end_ts:8.2f}] {chunk.text.strip()}"
+                        )
+                if args.words and result.words:
+                    for word in result.words:
+                        emit(
+                            f"[{offset + word.start_ts:8.2f} - "
+                            f"{offset + word.end_ts:8.2f}] {word.word.strip()}"
+                        )
+                offset += len(samples) / SAMPLE_RATE
+    except KeyboardInterrupt:
+        print("\nStopped transcription.", file=sys.stderr, flush=True)
+    finally:
+        if args.input is None:
+            audio.close()
 
 
 if __name__ == "__main__":

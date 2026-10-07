@@ -55,7 +55,7 @@ let
   openvinoSpeechToText = writeOpenvinoApplication {
     name = "openvino-stt";
     script = ./openvino-stt.py;
-    runtimeInputs = [ pkgs.ffmpeg ];
+    runtimeInputs = [ pkgs.ffmpeg pkgs.pipewire ];
   };
 in
 {
