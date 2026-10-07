@@ -26,9 +26,14 @@ system configuration. The proxy advertises priority 10 (configurable with
 controlled comparison use `--option substituters http://127.0.0.1:8123` to
 select only the proxy. Already installed store objects won't be downloaded.
 
-The proxy downloads an entire NAR before serving it. Nix may display no progress
-during that download; watch the proxy logs. Increase Nix's stalled download
-timeout above `--download-timeout` (600 seconds by default).
+The proxy streams completed contiguous pieces to Nix while aria2 downloads the
+rest, allowing Nix to display progress. It uses aria2's local authenticated RPC
+interface to track completed pieces, with disk buffering disabled so reported
+pieces are readable immediately. Parallel connections can still finish pieces
+out of order; the proxy waits for gaps before sending later bytes. The total
+download timeout is `--download-timeout` (600 seconds by default). A failure
+after streaming starts closes the HTTP connection with an incomplete response;
+the partial file is never published in the cache.
 
 ```sh
 aria2-nix-proxy --upstream https://cache.nixos.org \

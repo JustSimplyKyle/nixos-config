@@ -4,14 +4,18 @@ import argparse
 import contextlib
 import fcntl
 import hashlib
+import json
 import logging
 import os
 from pathlib import Path
 import re
 import shutil
+import secrets
+import socket
 import subprocess
 import tempfile
 import threading
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlsplit
@@ -28,6 +32,111 @@ class ProxyError(Exception):
     def __init__(self, status, message):
         super().__init__(message)
         self.status = status
+
+
+class Download:
+    """Read only the contiguous prefix aria2 reports as completed pieces."""
+
+    def __init__(self, process, path, port, secret, gid, timeout, limit):
+        self.process = process
+        self.path = path
+        self.url = f"http://127.0.0.1:{port}/jsonrpc"
+        self.secret = secret
+        self.gid = gid
+        self.deadline = time.monotonic() + timeout
+        self.limit = limit
+        self.size = 0
+        self.available = 0
+        self.complete = False
+        self.position = 0
+        self.handle = None
+
+    def update(self):
+        if time.monotonic() >= self.deadline:
+            raise ProxyError(504, "aria2 download timed out")
+        if self.process.poll() is not None:
+            raise ProxyError(502, "aria2 exited before completing the download")
+        payload = json.dumps({"jsonrpc": "2.0", "id": "progress",
+                              "method": "aria2.tellStatus",
+                              "params": ["token:" + self.secret, self.gid,
+                                         ["status", "totalLength", "pieceLength", "bitfield"]]}).encode()
+        try:
+            with urlopen(Request(self.url, data=payload, headers={"Content-Type": "application/json"}),
+                         timeout=min(2, max(0.01, self.deadline - time.monotonic()))) as response:
+                reply = json.load(response)
+        except (URLError, TimeoutError, OSError):
+            # The RPC listener may still be starting. The deadline bounds retries.
+            return
+        if "error" in reply:
+            raise ProxyError(502, "aria2 progress request failed")
+        status = reply["result"]
+        if status["status"] in ("error", "removed"):
+            raise ProxyError(502, "aria2 download failed")
+        self.size = int(status["totalLength"])
+        if self.size > self.limit:
+            raise ProxyError(507, "NAR exceeds cache size; increase --cache-size-mib")
+        self.complete = status["status"] == "complete"
+        if self.complete:
+            if not self.path.is_file() or self.path.stat().st_size != self.size:
+                raise ProxyError(502, "aria2 produced an incomplete file")
+            self.available = self.size
+        else:
+            pieces = 0
+            for byte in bytes.fromhex(status.get("bitfield", "")):
+                for bit in range(7, -1, -1):
+                    if not byte & (1 << bit):
+                        self.available = min(pieces * int(status["pieceLength"]), self.size)
+                        return
+                    pieces += 1
+            # Hold the final byte until aria2 confirms successful completion.
+            self.available = min(pieces * int(status.get("pieceLength", "0")), max(0, self.size - 1))
+
+    def initialize(self):
+        while not self.size and not self.complete:
+            self.update()
+            if not self.size and not self.complete:
+                time.sleep(0.1)
+
+    def seek(self, position):
+        self.position = position
+
+    def read(self, length=-1):
+        if length < 0:
+            blocks = []
+            while self.position < self.size:
+                blocks.append(self.read(1024 * 1024))
+            return b"".join(blocks)
+        if self.position >= self.size:
+            return b""
+        while self.available <= self.position:
+            self.update()
+            if self.available <= self.position:
+                time.sleep(0.1)
+        if self.handle is None:
+            self.handle = self.path.open("rb", buffering=0)
+        self.handle.seek(self.position)
+        data = self.handle.read(min(length, self.available - self.position))
+        if not data:
+            raise ProxyError(502, "aria2 completed pieces are missing from disk")
+        self.position += len(data)
+        return data
+
+    def finish(self):
+        while not self.complete:
+            self.update()
+            if not self.complete:
+                time.sleep(0.1)
+
+    def close(self):
+        if self.handle is not None:
+            self.handle.close()
+        if self.process.poll() is None:
+            self.process.terminate()
+            try:
+                self.process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                self.process.kill()
+                self.process.wait()
 
 
 def valid_path(path):
@@ -153,10 +262,19 @@ class Cache:
                     if length is not None and int(length) > self.limit:
                         raise ProxyError(507, "NAR exceeds cache size; increase --cache-size-mib")
                     with tempfile.TemporaryDirectory(prefix="download-", dir=self.directory) as temporary:
+                        with socket.socket() as listener:
+                            listener.bind(("127.0.0.1", 0))
+                            port = listener.getsockname()[1]
+                        secret = secrets.token_hex(32)
+                        gid = secrets.token_hex(8)
                         command = [
-                            self.aria2, "--no-conf", "--no-netrc", "--enable-rpc=false",
+                            self.aria2, "--no-conf", "--no-netrc", "--enable-rpc=true",
+                            "--rpc-listen-all=false", "--rpc-listen-port=" + str(port),
+                            "--rpc-secret=" + secret, "--gid=" + gid,
+                            "--disk-cache=0",
                             "--split=" + str(self.connections),
                             "--max-connection-per-server=" + str(self.connections),
+                            "--stream-piece-selector=inorder",
                             "--min-split-size=1M", "--file-allocation=none",
                             "--auto-file-renaming=false", "--allow-overwrite=true",
                             "--check-certificate=true", "--max-tries=3", "--retry-wait=1",
@@ -168,22 +286,21 @@ class Cache:
                         ]
                         LOG.info("downloading %s with up to %s connections", path, self.connections)
                         try:
-                            result = subprocess.run(command, stdout=subprocess.DEVNULL, timeout=self.timeout, check=False)
-                        except subprocess.TimeoutExpired as error:
-                            raise ProxyError(504, "aria2 download timed out") from error
+                            process = subprocess.Popen(command, stdout=subprocess.DEVNULL)
                         except OSError as error:
                             raise ProxyError(502, "could not start aria2") from error
-                        if result.returncode:
-                            raise ProxyError(502, "aria2 download failed (exit " + str(result.returncode) + ")")
                         downloaded = Path(temporary) / "object"
-                        if not downloaded.is_file():
-                            raise ProxyError(502, "aria2 did not produce a file")
-                        if downloaded.stat().st_size > self.limit:
-                            raise ProxyError(507, "NAR exceeds cache size; increase --cache-size-mib")
-                        with self.lock("index"):
-                            downloaded.replace(destination)
-                            handle = destination.open("rb")
-                            self.prune(destination)
+                        stream = Download(process, downloaded, port, secret, gid, self.timeout, self.limit)
+                        try:
+                            stream.initialize()
+                            yield stream
+                            stream.finish()
+                            with self.lock("index"):
+                                downloaded.replace(destination)
+                                self.prune(destination)
+                        finally:
+                            stream.close()
+                        return
         # An open descriptor survives LRU eviction while another request reads.
         try:
             yield handle
@@ -201,6 +318,7 @@ class Handler(BaseHTTPRequestHandler):
         self.respond(head=False)
 
     def respond(self, head):
+        self.response_started = False
         parsed = urlsplit(self.path)
         path = parsed.path
         if parsed.scheme or parsed.netloc or parsed.query or parsed.fragment or not valid_path(path):
@@ -209,7 +327,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if NAR.fullmatch(path) and not head:
                 with self.server.cache.object(path) as handle:
-                    size = os.fstat(handle.fileno()).st_size
+                    size = handle.size if isinstance(handle, Download) else os.fstat(handle.fileno()).st_size
                     start, end, status = 0, size - 1, 200
                     requested = self.headers.get("Range")
                     if requested:
@@ -236,6 +354,7 @@ class Handler(BaseHTTPRequestHandler):
                     if status == 206:
                         self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
                     self.end_headers()
+                    self.response_started = True
                     handle.seek(start)
                     remaining = end - start + 1
                     while remaining:
@@ -264,12 +383,19 @@ class Handler(BaseHTTPRequestHandler):
             if not head:
                 self.wfile.write(data)
         except ProxyError as error:
-            self.send_error(error.status, str(error))
+            if self.response_started:
+                LOG.warning("stream failed for %s: %s", path, error)
+                self.close_connection = True
+            else:
+                self.send_error(error.status, str(error))
         except (BrokenPipeError, ConnectionResetError):
             pass
         except (OSError, ValueError) as error:
             LOG.exception("request failed: %s", path)
-            self.send_error(502, "proxy request failed")
+            if self.response_started:
+                self.close_connection = True
+            else:
+                self.send_error(502, "proxy request failed")
 
     def log_message(self, fmt, *args):
         LOG.info("%s " + fmt, self.client_address[0], *args)

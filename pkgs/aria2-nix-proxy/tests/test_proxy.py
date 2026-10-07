@@ -2,6 +2,7 @@ import concurrent.futures
 import contextlib
 import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from http.client import IncompleteRead
 import importlib.util
 from pathlib import Path
 import shutil
@@ -55,6 +56,8 @@ class Upstream(BaseHTTPRequestHandler):
         if not head:
             try:
                 for offset in range(start, end + 1, 64 * 1024):
+                    if self.path.startswith("/nar/") and offset >= 1024 * 1024:
+                        self.server.download_gate.wait(timeout=10)
                     self.wfile.write(data[offset:min(offset + 64 * 1024, end + 1)])
                     if self.path.startswith("/nar/"):
                         time.sleep(0.002)
@@ -85,6 +88,9 @@ class ProxyTests(unittest.TestCase):
         self.upstream = ThreadingHTTPServer(("127.0.0.1", 0), Upstream)
         self.upstream.requests = []
         self.upstream.guard = threading.Lock()
+        self.upstream.download_gate = threading.Event()
+        self.upstream.download_gate.set()
+        self.addCleanup(self.upstream.download_gate.set)
         self.upstream.nar_url = b"nar/object.nar.xz"
         upstream_url = self.stack.enter_context(running(self.upstream))
         args = proxy.parser().parse_args([
@@ -130,6 +136,39 @@ class ProxyTests(unittest.TestCase):
         status, data, headers = self.get("/nar/object.nar.xz", method="HEAD")
         self.assertEqual((status, data, int(headers["Content-Length"])), (200, b"", len(DATA)))
         self.assertEqual([r[0] for r in self.upstream.requests], ["HEAD"])
+
+    @unittest.skipUnless(shutil.which("aria2c"), "aria2c is required for download tests")
+    def test_streams_before_download_finishes(self):
+        self.upstream.download_gate.clear()
+        try:
+            with urlopen(self.url + "/nar/object.nar.xz", timeout=5) as response:
+                # The upstream blocks every byte beyond the file's first MiB.
+                # Receiving bytes now proves we are streaming completed pieces.
+                prefix = response.read(1024)
+                self.assertEqual(prefix, DATA[:1024])
+                self.assertEqual(list(self.cache.directory.glob("*.nar")), [])
+                self.upstream.download_gate.set()
+                self.assertEqual(prefix + response.read(), DATA)
+            # A repeated request waits for atomic publication and uses the cache.
+            self.assertEqual(self.get("/nar/object.nar.xz")[1], DATA)
+            self.assertEqual(len(list(self.cache.directory.glob("*.nar"))), 1)
+        finally:
+            self.upstream.download_gate.set()
+
+    @unittest.skipUnless(shutil.which("aria2c"), "aria2c is required for download tests")
+    def test_stream_timeout_closes_response_without_publishing(self):
+        self.upstream.download_gate.clear()
+        self.cache.timeout = 2
+        try:
+            with urlopen(self.url + "/nar/object.nar.xz", timeout=5) as response:
+                self.assertEqual(response.read(1024), DATA[:1024])
+                with self.assertRaises(IncompleteRead) as error:
+                    response.read()
+                self.assertEqual(error.exception.partial, DATA[1024:1024 + len(error.exception.partial)])
+            self.assertEqual(list(self.cache.directory.glob("*.nar")), [])
+            self.assertEqual(list(self.cache.directory.glob("download-*")), [])
+        finally:
+            self.upstream.download_gate.set()
 
     @unittest.skipUnless(shutil.which("aria2c"), "aria2c is required for download tests")
     def test_parallel_download_deduplication_and_ranges(self):
