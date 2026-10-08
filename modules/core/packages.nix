@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   helium-browser,
 
   host,
@@ -84,6 +85,7 @@ in
       cargo
     ]
     ++ lib.optionals (!headless) [
+      inputs.pagecut.packages.${pkgs.stdenv.hostPlatform.system}.default
       feishin
       motrix
       feishin
@@ -119,5 +121,6 @@ in
       webkitgtk_4_1
       hydralauncher
       osu-lazer-bin
+      resources
     ];
 }

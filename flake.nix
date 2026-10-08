@@ -13,6 +13,10 @@
     better-focus.url = "github:justsimplykyle/better-focus";
     infi75-custom.url = "github:justsimplykyle/infi75-custom";
     hxrename.url = "github:justsimplykyle/hxrename";
+    pagecut = {
+      url = "github:JustSimplyKyle/pagecut";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
