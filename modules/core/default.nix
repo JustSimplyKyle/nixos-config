@@ -33,6 +33,7 @@ let
     ./secrets.nix
   ];
   guiApps = [
+    ./cloudflare-warp.nix
     ./ai-code-editors.nix
     ./browsers-extra.nix
     ./communication.nix
