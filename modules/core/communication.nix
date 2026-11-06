@@ -12,8 +12,10 @@ in
 {
   config = lib.mkIf enableCommunicationApps {
     environment.systemPackages = [
-      pkgs.webcord
-      # inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.vesktop
+      pkgs.vesktop
     ];
+
+    # Makes Electron apps (including Vesktop) use native Wayland
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
 }
