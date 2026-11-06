@@ -6,5 +6,7 @@
     # ../../altstore.nix
     ../../remote-builder.nix
     ../../ai
+    ../../jellyfin.nix
+    ../../eduroam.nix
   ];
 }

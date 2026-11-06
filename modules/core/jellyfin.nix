@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  username,
   ...
 }:
 {
@@ -9,8 +10,8 @@
 
   config.services.jellarr = {
     enable = true;
-    user = "jellyfin";
-    group = "jellyfin";
+    user = username;
+    group = "users";
     config = {
       version = 1;
       base_url = "http://localhost:8096";
@@ -24,6 +25,9 @@
 
   config.services.jellyfin = {
     enable = true;
+    # Run as the main user so media on user-owned drives (e.g. exfat mounts) is writable
+    user = username;
+    group = "users";
     openFirewall = true; # Optional: Open port 8096 automatically
   };
 
