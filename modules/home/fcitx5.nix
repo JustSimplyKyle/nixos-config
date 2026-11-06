@@ -29,6 +29,9 @@ in
             (runCommand "chasew-rime-data" { } ''
               mkdir -p $out/share/rime-data
               cp -r ${../core/chasew}/* $out/share/rime-data/
+              # chasew_ext.txt is the learned user dictionary; if it is shipped here,
+              # Rime uses this read-only copy and never saves to ~/.local/share/fcitx5/rime.
+              rm -f $out/share/rime-data/chasew_ext.txt
               cp ${grammarYaml} $out/share/rime-data/grammar.yaml
               cp ${hantWordGrammar} $out/share/rime-data/zh-hant-t-essay-bgw.gram
               cp ${hantCharGrammar} $out/share/rime-data/zh-hant-t-essay-bgc.gram

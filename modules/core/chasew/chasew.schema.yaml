@@ -359,9 +359,17 @@ translator:
   enable_user_dict: true
   spelling_hints: true
   enable_sentence: false
+  # Rerank homophones (為/喂/位…) using the previous committed text and the octagram grammar
+  contextual_suggestions: true
+  max_homophones: 7
+  max_homographs: 7
   preedit_format:
     __patch:
       - common_prompt
+
+# Octagram language model (zh-hant-t-essay-bgw.gram, shipped by modules/home/fcitx5.nix)
+grammar:
+  language: zh-hant-t-essay-bgw
 
 
 # custom_phrase:
