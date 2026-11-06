@@ -26,8 +26,6 @@ in
     kernelModules = [ "v4l2loopback" ];
     kernelParams = [ "hid_apple.fnmode=2" ] ++ silentBootKernelParams;
     consoleLogLevel = 3;
-    initrd.verbose = false;
-    initrd.systemd.enable = true;
 
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     kernel.sysctl = {

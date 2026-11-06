@@ -35,7 +35,11 @@ let
   };
 
   rtl8852bdBtrtl = config.boot.kernelPackages.callPackage (
-    { stdenv, kernel }:
+    {
+      stdenv,
+      kernel,
+      kernelModuleMakeFlags,
+    }:
     stdenv.mkDerivation {
       pname = "rtl8852bd-btrtl";
       version = "2026-08-10-${kernel.version}";
@@ -48,10 +52,18 @@ let
           M=$PWD/src modules
         runHook postBuild
       '';
+      # kbuild's modules_install signs the module and writes the btrtl.ko.cer
+      # certificate that aggregateModules expects; kernelModuleMakeFlags
+      # supplies the kmodigest cmd_sign override that does the signing.
       installPhase = ''
         runHook preInstall
-        install -D src/btrtl.ko \
-          $out/lib/modules/${kernel.modDirVersion}/updates/rtl8852bd/btrtl.ko
+        make LLVM=1 -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build \
+          ${lib.escapeShellArgs kernelModuleMakeFlags} \
+          M=$PWD/src \
+          INSTALL_MOD_PATH=$out \
+          INSTALL_MOD_DIR=updates/rtl8852bd \
+          DEPMOD=true \
+          modules_install
         runHook postInstall
       '';
       meta = {
