@@ -269,7 +269,7 @@ in
 
         // === Custom Application Launchers ===
         Mod+C { spawn "${browser}"; }
-        Mod+W { spawn "webcord"; }
+        Mod+W { spawn "vesktop"; }
         Mod+S { spawn "steam"; }
         Mod+Shift+O { spawn "obs"; }
         Mod+Z { spawn "zed-fix"; }

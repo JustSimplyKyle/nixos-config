@@ -62,7 +62,7 @@ in
 {
   imports = [ ./battery-refresh-rate.nix ];
 
-  services.batteryRefreshRate.enable = enablePowerSaving;
+  # services.batteryRefreshRate.enable = enablePowerSaving;
 
   # Install Niri and related packages
   home.packages = with pkgs; [

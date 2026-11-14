@@ -133,7 +133,15 @@ in
         };
       };
 
-      language = managedLanguages;
+      language = managedLanguages ++ [
+        {
+          name = "c";
+          indent = {
+            tab-width = 4;
+            unit = "    ";
+          };
+        }
+      ];
     };
 
     settings = {

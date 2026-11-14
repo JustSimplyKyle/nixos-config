@@ -3,6 +3,7 @@
   username,
   host,
   profile,
+  osConfig,
   ...
 }:
 {
@@ -26,6 +27,7 @@
     (import ./webapp-remove.nix { inherit pkgs; })
     (import ./dcli.nix {
       inherit pkgs host profile;
+      nixSettings = osConfig.nix.settings;
       backupFiles = [
         ".config/mimeapps.list.backup"
       ];

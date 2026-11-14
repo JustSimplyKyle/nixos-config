@@ -22,7 +22,6 @@
           // Up swipe scrolls down, down swipe scrolls up (natural direction)
           natural-scroll
           tap
-          dwt
           scroll-factor 0.5
       }
       mouse {
