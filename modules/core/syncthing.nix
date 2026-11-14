@@ -34,7 +34,11 @@ lib.mkIf (syncthingEnable || wallpaperEngine != [ ]) {
     key = lib.mkIf pinned config.sops.secrets.syncthing-key.path;
 
     settings = lib.mkIf pinned {
-      devices = lib.mapAttrs (_: id: { inherit id; }) otherDevices;
+      # Dial over Tailscale (MagicDNS hostname), global discovery doesn't work on every network
+      devices = lib.mapAttrs (name: id: {
+        inherit id;
+        addresses = [ "tcp://${name}:22000" "dynamic" ];
+      }) otherDevices;
       # Wallpaper Engine assets and wallpapers used by modules/home/wallpaper-engine.nix
       folders.wallpaperengine = {
         path = "/home/${username}/.local/share/wallpaperengine";
