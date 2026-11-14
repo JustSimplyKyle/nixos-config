@@ -4,6 +4,10 @@
     ./host-packages.nix
   ];
 
+  users.users.kyle.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMSM+xdHn2QGOB0W1l4j5uRmi/9rTxIBDKPbZXPz5Pm nixos-portable"
+  ];
+
   # Enable sddm display manager
   services.displayManager.sddm.enable = true;
 

@@ -30,7 +30,7 @@
   # You can enable these later by setting to true and rebuilding
   gamingSupportEnable = true; # Gaming controllers, gamescope, protonup-qt
   flutterdevEnable = false; # Flutter development environment
-  syncthingEnable = false; # Syncthing file synchronization
+  syncthingEnable = true;  # Syncthing file synchronization
   enableCommunicationApps = true; # Discord, Teams, Zoom, Telegram
   enableExtraBrowsers = false; # Vivaldi, Brave, Firefox, Chromium, Helium
   enableProductivityApps = false; # Obsidian, GNOME Boxes, QuickEmu

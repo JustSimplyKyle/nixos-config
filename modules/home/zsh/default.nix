@@ -17,7 +17,6 @@ in
     [
       bat
       eza
-      zellij
       fd
       fzf
       gh
@@ -154,7 +153,7 @@ in
       unsetopt nomatch
 
       RBN() {
-        export NIX_CONFIG=$'builders = ssh-ng://nix-ssh@nixos-desktop x86_64-linux,aarch64-linux /etc/ssh/ssh_host_ed25519_key 4 4 benchmark,big-parallel,kvm,nixos-test -\nsubstituters = https://cache.nixos.org https://attic.xuyh0120.win/lantian http://nixos-desktop:5000\nbuilders-use-substitutes = true'
+        export NIX_CONFIG=$'builders = ssh-ng://nix-ssh@nixos-desktop x86_64-linux,aarch64-linux /etc/ssh/ssh_host_ed25519_key 4 4 benchmark,big-parallel,kvm,nixos-test -\nsubstituters = https://cache.nixos.org https://cache.lantian.pub/lantian http://nixos-desktop:5000\nbuilders-use-substitutes = true'
         echo "Remote Nix mode enabled for this shell: builds and cache requests may use nixos-desktop."
       }
 

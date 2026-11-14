@@ -49,6 +49,15 @@
 
   enableJellyfin = true;
 
+  # Animated wallpapers (linux-wallpaperengine), empty list = disabled
+  # Files are synced by Syncthing (modules/core/syncthing.nix) into ~/.local/share/wallpaperengine/{assets,wallpapers}
+  # wallpaper: Workshop ID (folder in wallpapers/) or an absolute path
+  # Optional per entry: scaling ("stretch" "fit" "fill" "default"), clamp, extraOptions
+  wallpaperEngine = [
+    { monitor = "DP-2"; wallpaper = "1845706469"; }
+    { monitor = "HDMI-A-1"; wallpaper = "1845706469"; }
+  ];
+
   headless = false;
   enablePowerSaving = false;
 

@@ -41,6 +41,7 @@ in
       echo ""
       echo "Additional arguments to rebuild, rebuild-local, rebuild-boot, build and deploy"
       echo "are passed to nixos-rebuild. update forwards them to its rebuild step."
+      echo "Build logs, including source download progress, are shown by default."
       echo "Zsh example: fr NARIA"
       echo ""
       echo "Maintenance Commands:"

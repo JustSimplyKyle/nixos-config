@@ -82,6 +82,7 @@ in
 
       # coding apps
       codex
+      claude-code
       cargo
     ]
     ++ lib.optionals (!headless) [

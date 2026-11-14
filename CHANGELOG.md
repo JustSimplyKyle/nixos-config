@@ -1,5 +1,11 @@
 # Black-Don-OS Changelog
 
+## Unreleased
+
+- Restore Cloudflare WARP daemon startup at boot so the CLI and manually launched
+  GUI can communicate with it. Document immediate startup, registration, and
+  connection commands in the troubleshooting guide.
+
 ## Black-Don-OS v1.0 -- Initial Release
 
 **Release Date:** January 2025

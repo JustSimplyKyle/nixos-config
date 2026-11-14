@@ -49,7 +49,8 @@ in
     ./direnv.nix
     ./ssh.nix
     ./wakatime.nix
-    # ./zellij.nix
+    ./omp.nix
+    ./zellij
   ]
 
   ++ lib.optionals (!headless) [
@@ -69,6 +70,7 @@ in
     # ./wlogout
     ./mpv
     ./playlists.nix
+    ./wallpaper-engine.nix
   ]
 
   ++ lib.optionals (defaultShell == "fish") [

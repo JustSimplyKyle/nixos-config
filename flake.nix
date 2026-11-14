@@ -67,6 +67,10 @@
       url = "github:powerofthe69/proton-cachyos-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    omp = {
+      url = "github:can1357/oh-my-pi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -148,12 +152,6 @@
         nixos-desktop = mkHost {
           hostname = "nixos-desktop";
           profile = "amd";
-          username = "kyle";
-        };
-
-        nixos-laptop = mkHost {
-          hostname = "nixos-laptop";
-          profile = "nvidia-laptop-amd";
           username = "kyle";
         };
 
