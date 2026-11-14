@@ -107,17 +107,17 @@
     "cosmic-source": {
       "flake": false,
       "locked": {
-        "lastModified": 1787730577,
-        "narHash": "sha256-C3DTBkAYkgcq6Xtmq8Le2LqlvQ6vv9eqZBR+PTBigK0=",
+        "lastModified": 1791890272,
+        "narHash": "sha256-iII/7BODG7CSdQkX7SuYtc2i4kmSyOFfrrD968dGPo4=",
         "owner": "pop-os",
         "repo": "libcosmic",
-        "rev": "e9d8c30e9490c7badcddb7f2ab6a404e8ecccc4d",
+        "rev": "d3781f9c0bc4bb1c1d3348ae3017f65b89e8b2f2",
         "type": "github"
       },
       "original": {
         "owner": "pop-os",
         "repo": "libcosmic",
-        "rev": "e9d8c30e9490c7badcddb7f2ab6a404e8ecccc4d",
+        "rev": "d3781f9c0bc4bb1c1d3348ae3017f65b89e8b2f2",
         "type": "github"
       }
     },
@@ -483,17 +483,17 @@
     "iced-source": {
       "flake": false,
       "locked": {
-        "lastModified": 1790436824,
-        "narHash": "sha256-xx2fS0S7DfRKf3pPTOrVF7SAxy5Kgu4HoJi6fgMsPVc=",
+        "lastModified": 1794212633,
+        "narHash": "sha256-ZGJM+VIRTRE7EgEyZC7uq56rN+oGMfAziUm2rfYQDj0=",
         "owner": "JustSimplyKyle",
         "repo": "iced",
-        "rev": "bd9d88e5a54d59acc74a49e9f1c4593dbcaab294",
+        "rev": "91dadfdd6952ffebf621642b88271d6b4ba78239",
         "type": "github"
       },
       "original": {
         "owner": "JustSimplyKyle",
         "repo": "iced",
-        "rev": "bd9d88e5a54d59acc74a49e9f1c4593dbcaab294",
+        "rev": "91dadfdd6952ffebf621642b88271d6b4ba78239",
         "type": "github"
       }
     },
@@ -551,6 +551,19 @@
         "owner": "CTalvio",
         "repo": "Ultrachromic",
         "type": "github"
+      }
+    },
+    "loki-file-access-source": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1153704088,
+        "narHash": "sha256-i52loS8QRTLKPZY9bUjsgFVZhUD1+wcAxaGBqBKvhDE=",
+        "type": "tarball",
+        "url": "https://static.crates.io/crates/loki-file-access/loki-file-access-0.1.1.crate"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://static.crates.io/crates/loki-file-access/loki-file-access-0.1.1.crate"
       }
     },
     "mnw": {
@@ -864,11 +877,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1793726008,
-        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
+        "lastModified": 1791260994,
+        "narHash": "sha256-Miqqk/ammqnTUxaoCyvtwoPeLbI1ksFyLxi/CazZpWY=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
+        "rev": "151fa4e8ddfdd8dd25d945ad94ed54a13de9f6e4",
         "type": "github"
       },
       "original": {
@@ -939,11 +952,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1778377995,
-        "narHash": "sha256-uUzHDHqQF1rdVNiTa05L0mML3/d7fpbAShjCRWxbrBQ=",
+        "lastModified": 1783820560,
+        "narHash": "sha256-ZTpxiN6evzEEca3DeMba7GtUkMVC/FJBHyIYy4uTLVc=",
         "owner": "noctalia-dev",
         "repo": "noctalia-qs",
-        "rev": "d8327a723eed6dd9aebe8e0b162126f390e827df",
+        "rev": "606adedbfea92caba306730edd0f6adba4acf310",
         "type": "github"
       },
       "original": {
@@ -1003,6 +1016,7 @@
         "cosmic-source": "cosmic-source",
         "dioxus": "dioxus",
         "iced-source": "iced-source",
+        "loki-file-access-source": "loki-file-access-source",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -1011,11 +1025,11 @@
         "vse-source": "vse-source"
       },
       "locked": {
-        "lastModified": 1793001477,
-        "narHash": "sha256-cZIWCXQX7I3Qoi+VJu5Ny+NLscf9WL2D4+pbs9ZrCvY=",
+        "lastModified": 1794216873,
+        "narHash": "sha256-Qju6gPKUfcHjr03+x4B0sbPwVS+sbNLQHVzkwskTE1s=",
         "owner": "JustSimplyKyle",
         "repo": "pagecut",
-        "rev": "20b9ea3a81ffce4b346835a1c3077cc2d4088be4",
+        "rev": "3cc7e3f094b15d5549b35062ddf09ba6d0f955cb",
         "type": "github"
       },
       "original": {
@@ -1466,11 +1480,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775636079,
-        "narHash": "sha256-pc20NRoMdiar8oPQceQT47UUZMBTiMdUuWrYu2obUP0=",
+        "lastModified": 1780220602,
+        "narHash": "sha256-eynAfOmbmxJnkp7YewvCEbShNnnYJ9gLLqkzsYtBPeM=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "790751ff7fd3801feeaf96d7dc416a8d581265ba",
+        "rev": "db947814a175b7ca6ded66e21383d938df01c227",
         "type": "github"
       },
       "original": {
@@ -1587,17 +1601,17 @@
     "vse-source": {
       "flake": false,
       "locked": {
-        "lastModified": 1790938121,
-        "narHash": "sha256-rUjTMLpb9lYwCv/3pFp+PUbaBaqNFpytAZ9jXQjTbMw=",
+        "lastModified": 1793290631,
+        "narHash": "sha256-WeXi3pRol4tCSVAyT4exr8jTn+FTead0YvR7pBZs3hs=",
         "owner": "JustSimplyKyle",
         "repo": "videosubextract",
-        "rev": "504ce20035f559bf78b52556ea6e13738e3fa126",
+        "rev": "ce17f5e1a1600890f8d5687e04f7fe599de30a09",
         "type": "github"
       },
       "original": {
         "owner": "JustSimplyKyle",
         "repo": "videosubextract",
-        "rev": "504ce20035f559bf78b52556ea6e13738e3fa126",
+        "rev": "ce17f5e1a1600890f8d5687e04f7fe599de30a09",
         "type": "github"
       }
     },
