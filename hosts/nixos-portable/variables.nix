@@ -30,7 +30,7 @@
   # You can enable these later by setting to true and rebuilding
   gamingSupportEnable = true; # Gaming controllers, gamescope, protonup-qt
   flutterdevEnable = false; # Flutter development environment
-  syncthingEnable = true;  # Syncthing file synchronization
+  syncthingEnable = true; # Syncthing file synchronization
   enableCommunicationApps = true; # Discord, Teams, Zoom, Telegram
   enableExtraBrowsers = false; # Vivaldi, Brave, Firefox, Chromium, Helium
   enableProductivityApps = false; # Obsidian, GNOME Boxes, QuickEmu
@@ -45,6 +45,17 @@
 
   # Shell Choice
   defaultShell = "zsh"; # Options: "fish" or "zsh"
+
+  wallpaperEngine = [
+    {
+      monitor = "HDMI-A-1";
+      wallpaper = "1845706469";
+    }
+    {
+      monitor = "eDP-1";
+      wallpaper = "1845706469";
+    }
+  ];
 
   enableJellyfin = true;
 

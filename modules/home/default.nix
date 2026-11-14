@@ -49,7 +49,6 @@ in
     ./direnv.nix
     ./ssh.nix
     ./wakatime.nix
-    ./omp.nix
     ./zellij
   ]
 
